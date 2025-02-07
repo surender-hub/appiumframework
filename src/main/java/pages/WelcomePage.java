@@ -20,7 +20,7 @@ public class WelcomePage {
     public void clickOnFutureDate() throws InterruptedException {
         ElementUtils el = new ElementUtils(driver);
         String fututreDate = el.clickDate();
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         driver.findElement(By.xpath("//android.widget.TextView[@text='" + fututreDate + "']")).click();
     }
 

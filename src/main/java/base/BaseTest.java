@@ -30,10 +30,9 @@ public class BaseTest extends ListenerImplement
         options.setAutoGrantPermissions(true);
         // Initialize the driver
         try {
-            PageFactory.initElements(driver,this);
-            driver = new AndroidDriver(new URL(ConfigReader.getProperty("appium.server")), options);
+
+            driver = new AppiumDriver(new URL(ConfigReader.getProperty("appium.server")), options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-            PageFactory.initElements(driver,this);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -43,7 +42,7 @@ public class BaseTest extends ListenerImplement
     @AfterClass
     public void tearDown() {
         if (driver != null) {
-            driver.quit();
+            //driver.quit();
         }
     }
 }

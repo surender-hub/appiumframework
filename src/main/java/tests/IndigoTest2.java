@@ -28,11 +28,10 @@ public class IndigoTest2 extends BaseTest {
         searchPage.searchPlace("Mumbai");
         searchPage.clickOnMumbaiFlight();
         welcomePage.clickOnFutureDate();
-        Thread.sleep(5000);
         searchPage.clickOnSearchButton();
         searchPage.clickOnBookingList();
         searchPage.bookingNextButton();
-        searchPage.enterUserDetails("surender", "pal", "01/01/1993", "8473647464", "Indigostatusneo@gmail.com");
+        searchPage.enterUserDetails("Shubham", "Jain", "01/01/1995", "8473647464", "Indigostatusneo@gmail.com");
         searchPage.clickOnSkipToPayment();
         searchPage.clickOnNetBanking();
         searchPage.clickOnAddBank();
@@ -40,5 +39,7 @@ public class IndigoTest2 extends BaseTest {
         searchPage.clickOnAvenuePayment();
         searchPage.clickOnAvenueButtonPay();
         searchPage.clickOnButtonResponse();
+        Thread.sleep(10000);
+        searchPage.getPnrDetails();
     }
 }

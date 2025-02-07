@@ -5,6 +5,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.PerformsTouchActions;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -52,10 +53,10 @@ public class SearchPage {
     @FindBy(xpath = "//android.widget.EditText[@resource-id='dateofbirth']")
     private WebElement dob;
 
-    @FindBy(xpath = "//android.widget.EditText[@text='Flyer’s contact number']")
+    @FindBy(xpath = "//android.widget.EditText[@text=\"Primary contact number\"]")
     private WebElement mobileNumber;
 
-    @FindBy(xpath = "//android.widget.EditText[@resource-id='primaryEmail']")
+    @FindBy(xpath = "//android.widget.EditText[@resource-id=\"primaryEmail\"]")
     private WebElement emailId;
 
     // @FindBy(xpath = "//android.widget.TextView[@text="Skip To Payment"]")
@@ -80,6 +81,12 @@ public class SearchPage {
     @FindBy(xpath = "//android.widget.Button[@resource-id=\"btn\"]")
     private WebElement buttonResponse;
 
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Fri, 07 Feb | 04h 15m | YV2M7G\"]")
+    private WebElement pnr;
+
+
+
+    //android.widget.TextView
     public SearchPage(AppiumDriver driver) {
         this.driver = driver;
         this.elementUtils = new ElementUtils(driver);
@@ -120,50 +127,30 @@ public class SearchPage {
 
     @Step("Select Next for Payment")
     public void bookingNextButton() throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         elementUtils.clickElement(nextButton, 50);
     }
 
     @Step("Enter User Details")
     public void enterUserDetails(String firstname, String lastname, String Dob, String MobileNumber, String mailId) throws InterruptedException {
 
-
         firstName.sendKeys(firstname);
-        lastName.click();
         lastName.sendKeys(lastname);
-        Thread.sleep(2000);
-
-
-        WebElement elememnt = driver.findElement(AppiumBy.androidUIAutomator(
-                "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().resourceId(\"dateofbirth\"))"));
-
-        System.out.println(elememnt.getText());
-        elememnt.sendKeys(Dob);
-        Thread.sleep(2000);
-
-        WebElement mob = driver.findElement(AppiumBy.androidUIAutomator(
-                "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"Primary contact number\"))"));
-
-        mob.sendKeys(MobileNumber);
-
-
-        WebElement email = driver.findElement(AppiumBy.androidUIAutomator(
-                "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().resourceId(\"primaryEmail\"))"));
-        email.sendKeys(mailId);
-
-        ;
-        email.sendKeys(mailId);
-        Thread.sleep(5000);
-
-
+        elementUtils.scrollToElementByResourceId("dateofbirth");
+        dob.click();
+        dob.sendKeys(Dob);
+        elementUtils.scrollToElementByText("Primary contact number");
+        mobileNumber.click();
+        mobileNumber.sendKeys(MobileNumber);
+        elementUtils.scrollToElementByResourceId("primaryEmail");
+        Thread.sleep(8000);
+        emailId.click();
+        emailId.sendKeys(mailId);
     }
 
     @Step("Click on Skip To Payment")
     public void clickOnSkipToPayment() {
-        //elementUtils.clickElement(skipToPayment, 50);
-        WebElement skipPayment = driver.findElement(AppiumBy.androidUIAutomator(
-                "new UiSelector().text(\"Skip To Payment\")"));
-        skipPayment.click();
+        elementUtils.clickElement(skipToPayment, 50);
     }
 
     @Step("Click on Net Banking")
@@ -195,7 +182,41 @@ public class SearchPage {
 
     @Step("Click On Click on Response")
     public void clickOnButtonResponse() {
-        elementUtils.clickElement(buttonResponse, 50);
+//        WebElement responseButton = driver.findElement(AppiumBy.androidUIAutomator(
+//               "new UiSelector().resourceId('btn')"));
+//        responseButton.click();
+        //new UiSelector().resourceId("btn")
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("arguments[0].click();",buttonResponse);
+       // buttonResponse.click();
+        elementUtils.clickElement(buttonResponse, 20);
+    }
+
+    public void getPnrDetails() throws InterruptedException {
+ Thread.sleep(20000);
+        WebElement pnr1 = driver.findElements(By.className("android.widget.TextView")).get(1);
+        WebElement pnr2 = driver.findElements(By.className("android.widget.TextView")).get(2);
+        WebElement pnr3 = driver.findElements(By.className("android.widget.TextView")).get(3);
+        WebElement pnr4 = driver.findElements(By.className("android.widget.TextView")).get(4);
+        WebElement pnr5 = driver.findElements(By.className("android.widget.TextView")).get(5);
+        WebElement pnr6 = driver.findElements(By.className("android.widget.TextView")).get(6);
+        elementUtils.waitForElement(pnr1,50);
+        String pnrDetails =  pnr1.getText();
+        System.out.println("PNR Details: "+pnrDetails);
+
+
+        String pnrDetails2=pnr2.getText();
+        String pnrDetails3=pnr3.getText();
+        String pnrDetails4=pnr4.getText();
+        String pnrDetails5=pnr5.getText();
+       //String pnrDetails =  pnr1.getText();
+        //System.out.println("PNR Details: "+pnrDetails);
+        System.out.println("PNR Details: "+pnrDetails2);
+        System.out.println("PNR Details: "+pnrDetails3);
+        System.out.println("PNR Details: "+pnrDetails4);
+        System.out.println("PNR Details: "+pnrDetails5);
+        System.out.println("PNR Details: "+pnrDetails2);
+
     }
 
 

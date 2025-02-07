@@ -31,7 +31,6 @@ public class ElementUtils {
     }
     public WebElement waitForElement(WebElement element, int timeout) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-        System.out.println("Null Driver" + driver);
         return wait.until(ExpectedConditions.visibilityOf(element));
     }
 
@@ -109,5 +108,17 @@ public class ElementUtils {
 
 
     }
+    //Using resource ID
+    public WebElement scrollToElementByResourceId(String resourceId) {
+        return driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().resourceId(\"" + resourceId + "\"))"));
+    }
+
+    // By using text
+    public WebElement scrollToElementByText(String text) {
+        return driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + text + "\"))"));
+    }
+
 
 }
