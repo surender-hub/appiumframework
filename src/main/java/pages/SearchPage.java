@@ -143,7 +143,6 @@ public class SearchPage {
         mobileNumber.click();
         mobileNumber.sendKeys(MobileNumber);
         elementUtils.scrollToElementByResourceId("primaryEmail");
-        Thread.sleep(8000);
         emailId.click();
         emailId.sendKeys(mailId);
     }
