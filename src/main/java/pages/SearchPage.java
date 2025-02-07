@@ -58,7 +58,7 @@ public class SearchPage {
     @FindBy(xpath = "//android.widget.EditText[@resource-id='primaryEmail']")
     private WebElement emailId;
 
-   // @FindBy(xpath = "//android.widget.TextView[@text="Skip To Payment"]")
+    // @FindBy(xpath = "//android.widget.TextView[@text="Skip To Payment"]")
     @FindBy(xpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[7]/android.view.ViewGroup[2]/android.view.ViewGroup[2]/android.view.ViewGroup[2]/android.view.ViewGroup")
     private WebElement skipToPayment;
 
@@ -67,6 +67,18 @@ public class SearchPage {
 
     @FindBy(xpath = "//android.widget.TextView[@content-desc=\"msg_text\" and @text=\"+MORE BANKS\"]")
     private WebElement addBank;
+
+    @FindBy(xpath = "//android.widget.EditText[@content-desc=\"edt_searchbox\"]")
+    private WebElement searchPaymentMethod;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Avenue Test\"]")
+    private WebElement addAvenuePayment;
+
+    @FindBy(xpath = "//android.widget.RelativeLayout[@content-desc=\"btn_pay\"]/android.widget.LinearLayout")
+    private WebElement buttonAvenuePay;
+
+    @FindBy(xpath = "//android.widget.Button[@resource-id=\"btn\"]")
+    private WebElement buttonResponse;
 
     public SearchPage(AppiumDriver driver) {
         this.driver = driver;
@@ -139,7 +151,7 @@ public class SearchPage {
                 "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().resourceId(\"primaryEmail\"))"));
         email.sendKeys(mailId);
 
-       ;
+        ;
         email.sendKeys(mailId);
         Thread.sleep(5000);
 
@@ -153,6 +165,7 @@ public class SearchPage {
                 "new UiSelector().text(\"Skip To Payment\")"));
         skipPayment.click();
     }
+
     @Step("Click on Net Banking")
     public void clickOnNetBanking() {
         elementUtils.clickElement(netBanking, 50);
@@ -162,5 +175,28 @@ public class SearchPage {
     public void clickOnAddBank() {
         elementUtils.clickElement(addBank, 50);
     }
+
+    @Step("Search Avenue Payment Method: {Avenue Payment Method}")
+    public void searchAvenue(String avenuePayment) {
+        elementUtils.clickElement(searchPaymentMethod, 50);
+        elementUtils.sendKeys(searchPaymentMethod, avenuePayment, 50);
+    }
+
+    @Step("Select Avenue Method")
+    public void clickOnAvenuePayment() {
+        elementUtils.clickElement(addAvenuePayment, 50);
+    }
+
+
+    @Step("Click On Avenue Button pay")
+    public void clickOnAvenueButtonPay() {
+        elementUtils.clickElement(buttonAvenuePay, 50);
+    }
+
+    @Step("Click On Click on Response")
+    public void clickOnButtonResponse() {
+        elementUtils.clickElement(buttonResponse, 50);
+    }
+
 
 }

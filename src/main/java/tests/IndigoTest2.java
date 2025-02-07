@@ -32,9 +32,13 @@ public class IndigoTest2 extends BaseTest {
         searchPage.clickOnSearchButton();
         searchPage.clickOnBookingList();
         searchPage.bookingNextButton();
-        searchPage.enterUserDetails("Attahulah", "Khan", "01/01/2000", "1234567890", "Indigo@gmail.com");
+        searchPage.enterUserDetails("surender", "pal", "01/01/1993", "8473647464", "Indigostatusneo@gmail.com");
         searchPage.clickOnSkipToPayment();
         searchPage.clickOnNetBanking();
         searchPage.clickOnAddBank();
+        searchPage.searchAvenue("av");
+        searchPage.clickOnAvenuePayment();
+        searchPage.clickOnAvenueButtonPay();
+        searchPage.clickOnButtonResponse();
     }
 }
