@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","0","tearDown","Default Suite","Tue Feb 11 17:05:18 IST 2025","broken","Tue Feb 11 17:05:18 IST 2025","tests.IndigoTest","AppiumFramework","tests.IndigoTest","tearDown"
+"Verify GuestUser modify the PNR details","62148","TC_003 - Modify the PNR details","Default Suite","Tue Feb 11 17:00:54 IST 2025","broken","Tue Feb 11 17:01:56 IST 2025","tests.IndigoTest","AppiumFramework","tests.IndigoTest","indigoFlow3"
+"Verify GuestUser booking ticket end-to-end flow","0","TC_001 - Verify the Guest user generate PNR","Default Suite","Tue Feb 11 17:05:18 IST 2025","broken","Tue Feb 11 17:05:18 IST 2025","tests.IndigoTest","AppiumFramework","tests.IndigoTest","indigoUatFLow1"
+"Verify GuestUser booking ticket by selecting seat end-to-end flow","3799","TC_002 - Verify the Guest user select seat and generate PNR","Default Suite","Tue Feb 11 14:55:27 IST 2025","passed","Tue Feb 11 14:55:31 IST 2025","tests.IndigoTest","AppiumFramework","tests.IndigoTest","indigoUatFLow2"

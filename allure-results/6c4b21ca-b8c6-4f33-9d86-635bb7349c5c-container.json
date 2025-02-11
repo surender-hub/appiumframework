@@ -1,0 +1,1 @@
+{"uuid":"6c4b21ca-b8c6-4f33-9d86-635bb7349c5c","name":"Appium Test Suite","children":["ddc866f1-23b1-4128-b2d8-48c5383b892d"],"befores":[{"name":"setupSuite","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1739291151217,"stop":1739291151220}],"afters":[],"start":1739291151211,"stop":1739291188560}
