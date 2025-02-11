@@ -8,6 +8,7 @@ import io.qameta.allure.Story;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import io.appium.java_client.TouchAction;
@@ -95,88 +96,87 @@ public class SearchPage {
 
     @Step("Click on Destination Button")
     public void clickOnTo() {
-        elementUtils.clickElement(searchOnTo, 50);
+        elementUtils.waitAndClickElement(searchOnTo, 50);
     }
 
     @Step("Search Place: {placeName}")
     public void searchPlace(String placeName) {
-        elementUtils.clickElement(searchPlace, 50);
+        elementUtils.waitAndClickElement(searchPlace, 50);
         elementUtils.sendKeys(searchPlace, placeName, 50);
     }
 
     @Step("Select Destination Mumbai from List")
     @Story("Searching a flight")
     public void clickOnMumbaiFlight() {
-        elementUtils.clickElement(mumbaiFlight, 50);
+        elementUtils.waitAndClickElement(mumbaiFlight, 50);
     }
 
     @Step("Click on first in booking List")
     public void clickOnBookingList() {
-        elementUtils.clickElement(bookingList, 50);
+        elementUtils.waitAndClickElement(bookingList, 50);
     }
 
     @Step("Click on Booking")
     public void clickOnBooking() {
-        elementUtils.clickElement(desBook, 50);
+        elementUtils.waitAndClickElement(desBook, 50);
     }
 
     @Step("Search the available city")
     public void clickOnSearchButton() {
-        elementUtils.clickElement(searchButton, 50);
+        elementUtils.waitAndClickElement(searchButton, 50);
     }
 
     @Step("Select Next for Payment")
     public void bookingNextButton() throws InterruptedException {
         Thread.sleep(2000);
-        elementUtils.clickElement(nextButton, 50);
+        elementUtils.waitAndClickElement(nextButton, 50);
     }
 
     @Step("Enter User Details")
     public void enterUserDetails(String firstname, String lastname, String Dob, String MobileNumber, String mailId) throws InterruptedException {
-
+        elementUtils.waitAndClickElement(firstName,20);
         firstName.sendKeys(firstname);
         lastName.sendKeys(lastname);
         elementUtils.scrollToElementByResourceId("dateofbirth");
-        dob.click();
+        elementUtils.waitAndClickElement(dob,20);
         dob.sendKeys(Dob);
         elementUtils.scrollToElementByText("Primary contact number");
-        mobileNumber.click();
+        elementUtils.waitAndClickElement(mobileNumber,20);
         mobileNumber.sendKeys(MobileNumber);
         elementUtils.scrollToElementByResourceId("primaryEmail");
-        emailId.click();
         emailId.sendKeys(mailId);
     }
 
     @Step("Click on Skip To Payment")
     public void clickOnSkipToPayment() {
-        elementUtils.clickElement(skipToPayment, 50);
+        elementUtils.waitAndClickElement(skipToPayment, 50);
     }
 
     @Step("Click on Net Banking")
     public void clickOnNetBanking() {
-        elementUtils.clickElement(netBanking, 50);
+        elementUtils.waitAndClickElement(netBanking, 50);
     }
 
     @Step("Click on Add  Bank")
     public void clickOnAddBank() {
-        elementUtils.clickElement(addBank, 50);
+        elementUtils.waitAndClickElement(addBank, 50);
     }
 
     @Step("Search Avenue Payment Method: {Avenue Payment Method}")
     public void searchAvenue(String avenuePayment) {
-        elementUtils.clickElement(searchPaymentMethod, 50);
+        elementUtils.waitAndClickElement(searchPaymentMethod, 50);
         elementUtils.sendKeys(searchPaymentMethod, avenuePayment, 50);
     }
 
     @Step("Select Avenue Method")
     public void clickOnAvenuePayment() {
-        elementUtils.clickElement(addAvenuePayment, 50);
+        elementUtils.waitAndClickElement(addAvenuePayment, 50);
     }
 
 
     @Step("Click On Avenue Button pay")
     public void clickOnAvenueButtonPay() {
-        elementUtils.clickElement(buttonAvenuePay, 50);
+        elementUtils.waitAndClickElement(buttonAvenuePay, 50);
     }
 
     @Step("Click On Click on Response")
@@ -188,7 +188,10 @@ public class SearchPage {
 //        JavascriptExecutor js = (JavascriptExecutor) driver;
 //        js.executeScript("arguments[0].click();",buttonResponse);
        // buttonResponse.click();
-        elementUtils.clickElement(buttonResponse, 20);
+
+        Actions actions = new Actions(driver);
+        actions.doubleClick(buttonResponse).perform();
+        //elementUtils.waitAndClickElement(buttonResponse, 20);
     }
 
     public void getPnrDetails() throws InterruptedException {
@@ -199,7 +202,7 @@ public class SearchPage {
         WebElement pnr4 = driver.findElements(By.className("android.widget.TextView")).get(4);
         WebElement pnr5 = driver.findElements(By.className("android.widget.TextView")).get(5);
         WebElement pnr6 = driver.findElements(By.className("android.widget.TextView")).get(6);
-        elementUtils.waitForElement(pnr1,50);
+        elementUtils.waitAndClickElement(pnr1,50);
         String pnrDetails =  pnr1.getText();
         System.out.println("PNR Details: "+pnrDetails);
 
@@ -217,6 +220,5 @@ public class SearchPage {
         System.out.println("PNR Details: "+pnrDetails2);
 
     }
-
 
 }

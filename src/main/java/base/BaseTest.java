@@ -5,10 +5,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
 import utils.AllureUtils;
 import utils.ConfigReader;
 import utils.ListenerImplement;
@@ -24,7 +21,12 @@ import java.util.logging.Logger;
 
 public class BaseTest extends ListenerImplement
 {
-    public static AppiumDriver driver;
+    @BeforeSuite
+    public void setupSuite() {
+        System.out.println("Test Suite Setup - Run Once Before Suite");
+    }
+
+    public static AndroidDriver driver;
     @BeforeClass
     public void setup() throws MalformedURLException {
         // Use UiAutomator2Options instead of DesiredCapabilities
@@ -36,23 +38,44 @@ public class BaseTest extends ListenerImplement
         // Initialize the driver
         try {
 
-            driver = new AppiumDriver(new URL(ConfigReader.getProperty("appium.server")), options);
+            driver = new AndroidDriver(new URL(ConfigReader.getProperty("appium.server")), options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        System.out.println("Driver initiate" +driver);
+
+//        AndroidDriver driver = new AndroidDriver(new URL(ConfigReader.getProperty("appium.server")), options);
+//        System.out.println("Driver initiate" +driver);
+//        String currentPackage = driver.getCurrentPackage();
+//        System.out.println("Current App Package: " + currentPackage);
+    }
+
+    @BeforeMethod
+    public void beforeTestMethod() {
+        System.out.println("Before Each Test - Run Before Every Test Case");
+    }
+
+    @AfterMethod
+    public void afterTestMethod() {
+        System.out.println("After Each Test - Run After Every Test Case");
     }
 
 
-    @AfterMethod
+    @AfterClass
     public void tearDown(ITestResult result) {
         if (result.getStatus() == ITestResult.FAILURE) {
             AllureUtils.takeScreenshot(driver);
         }
         if (driver != null) {
-            //driver.quit();
+           // in.goindigo.android.uat
+            //surender@gmail.com
+            driver.quit();
         }
+    }
+
+    @AfterSuite
+    public void cleanupSuite() {
+        System.out.println("Test Suite Cleanup - Run Once After Suite");
     }
 
 }

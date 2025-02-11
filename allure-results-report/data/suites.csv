@@ -1,2 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"Verify GuestUser booking ticket end-to-end flow","54184","welcomeToIndigo","Default Suite","Sun Feb 09 20:15:21 IST 2025","broken","Sun Feb 09 20:16:15 IST 2025","tests.IndigoTest2","AppiumFramework","tests.IndigoTest2","welcomeToIndigo"

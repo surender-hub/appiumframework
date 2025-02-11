@@ -29,17 +29,9 @@ public class ElementUtils {
     public ElementUtils(AppiumDriver driver) {
         this.driver = driver;
     }
-    public WebElement waitForElement(WebElement element, int timeout) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-        return wait.until(ExpectedConditions.visibilityOf(element));
-    }
-
-    public void clickElement(WebElement element, int timeout) {
-        waitForElement(element, timeout).click();
-    }
 
     public void sendKeys(WebElement element, String text, int timeout) {
-        waitForElement(element, timeout);
+        waitAndClickElement(element, timeout);
         element.clear();
         element.sendKeys(text);
     }
@@ -77,9 +69,7 @@ public class ElementUtils {
         // Define the XPath locator for the calendar dates (Modify if necessary)
 
     }
-    public void scrollElement(WebElement element) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-    }
+
 
     public void scrollDown() {
         /*int screenHeight = driver.manage().window().getSize().height;
@@ -120,5 +110,26 @@ public class ElementUtils {
                 "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + text + "\"))"));
     }
 
+
+    public void waitAndClickElement(WebElement element, int timeout) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+
+        // Wait until the element is visible
+        wait.until(ExpectedConditions.visibilityOf(element));
+
+        // Wait until the element is enabled
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+
+        // Wait until the element is displayed
+        wait.until(ExpectedConditions.visibilityOf(element));
+
+        // Click the element once it is visible, enabled, and displayed
+        if (element.isEnabled() && element.isDisplayed()) {
+            element.click();
+            System.out.println("Element clicked!");
+        } else {
+            System.out.println("Element is either not enabled or not displayed.");
+        }
+    }
 
 }
