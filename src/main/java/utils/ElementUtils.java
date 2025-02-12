@@ -113,16 +113,10 @@ public class ElementUtils {
 
     public void waitAndClickElement(WebElement element, int timeout) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-
         // Wait until the element is visible
         wait.until(ExpectedConditions.visibilityOf(element));
-
         // Wait until the element is enabled
         wait.until(ExpectedConditions.elementToBeClickable(element));
-
-        // Wait until the element is displayed
-        wait.until(ExpectedConditions.visibilityOf(element));
-
         // Click the element once it is visible, enabled, and displayed
         if (element.isEnabled() && element.isDisplayed()) {
             element.click();

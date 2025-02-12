@@ -26,8 +26,8 @@ import java.util.List;
 
 
 public class SeatPage {
-    private AppiumDriver driver;
-    private ElementUtils elementUtils;
+    public  AndroidDriver driver;
+    public ElementUtils elementUtils;
 
     @FindBy(xpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[7]/android.view.ViewGroup[2]/android.view.ViewGroup[2]/android.view.ViewGroup[1]/android.view.ViewGroup")
     //@AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.view.ViewGroup\").instance(84)")
@@ -59,7 +59,7 @@ public class SeatPage {
     int indexToClick = 3;
 
     //android.widget.TextView
-    public SeatPage(AppiumDriver driver) {
+    public SeatPage(AndroidDriver driver) {
         this.driver = driver;
         this.elementUtils = new ElementUtils(driver);
         PageFactory.initElements(driver, this);
@@ -116,15 +116,16 @@ public class SeatPage {
 
             try {
                 boolean elememnt = driver.findElement(By.xpath("//android.widget.TextView[@text=\"All seat\"]")).isDisplayed();
-
-
-                if (value == true) {
+                if (elememnt == true) {
                     break;
                 }
 
             } catch (Exception e) {
 
-                driver.findElement(By.xpath("//*[@text ='Next']")).click();
+              WebElement ele =   driver.findElement(By.xpath("//*[@text ='Next']"));
+              Thread.sleep(2000);
+              elementUtils.waitAndClickElement(ele, 50);
+
 
 
             }
@@ -133,36 +134,90 @@ public class SeatPage {
 
         //code to select seat
 
-        Thread.sleep(2000);
         driver.findElement(AppiumBy.androidUIAutomator(
                 "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"
         ));
 
 
 
-        List<WebElement> seats     = driver.findElements(By.xpath("//*[@class='android.widget.ScrollView']/descendant::android.view.ViewGroup[contains(@resource-id,\"seatSelectionSeatSelectTestID\")]/descendant::android.widget.TextView"));
+        List<WebElement> seats = driver.findElements(By.xpath("//*[@class='android.widget.ScrollView']/descendant::android.view.ViewGroup[contains(@resource-id,\"seatSelectionSeatSelectTestID\")]/descendant::android.widget.TextView"));
 
         //System.out.println("Total seats found: " + seats.size());
         System.out.println("Total: " + seats);
 
         for (WebElement seat : seats) {
 
-            Thread.sleep(2000);
-            System.out.println( "Seat Name "+seat.getText());
+
+            //System.out.println( "Seat Name "+seat.getText());
+            System.out.println(" Seat Name "+seat.getText());
+            if(seat.isEnabled()) {
+                Thread.sleep(2000);
+                seat.click();
+                break;
+            }
+        }
+        Thread.sleep(5000);
+        WebElement elem = driver.findElement(By.xpath("//com.horcrux.svg.CircleView"));
+        elementUtils.waitAndClickElement(elem, 50);
+        //seatPage.clickOnSeat();
+
+        System.out.println(driver.findElement(By.xpath("//android.widget.TextView[@text=\"1 Seats Added\"]")).getText());
+
+    }
+
+    public void modifySeat(){
+//        boolean value = driver.findElement(By.className("android.view.ViewGroup")).isEnabled();
+//
+//
+//        while (value) {
+//
+//            try {
+//                boolean elememnt = driver.findElement(By.xpath("//android.widget.TextView[@text=\"All seat\"]")).isDisplayed();
+//                if (elememnt == true) {
+//                    break;
+//                }
+//
+//            } catch (Exception e) {
+//
+//                WebElement ele =   driver.findElement(By.xpath("//*[@text ='Next']"));
+//                Thread.sleep(2000);
+//                elementUtils.waitAndClickElement(ele, 50);
+//
+//
+//
+//            }
+//
+//        }
+
+        //code to select seat
+
+
+
+
+        driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"
+        ));
+        List<WebElement> seats = driver.findElements(By.xpath("//*[@class='android.widget.ScrollView']/descendant::android.view.ViewGroup[contains(@resource-id,\"seatSelectionSeatSelectTestID\")]/descendant::android.widget.TextView"));
+
+        //System.out.println("Total seats found: " + seats.size());
+        System.out.println("Total: " + seats);
+
+        for (WebElement seat : seats) {
+
+
+            //System.out.println( "Seat Name "+seat.getText());
+            System.out.println("Modify Seat Name "+seat.getText());
             if(seat.isEnabled()) {
                 seat.click();
                 break;
             }
-
         }
 
-
-
-        Thread.sleep(5000);
-        driver.findElement(By.xpath("//com.horcrux.svg.CircleView")).click();
+        WebElement elem = driver.findElement(By.xpath("//com.horcrux.svg.CircleView"));
+        elementUtils.waitAndClickElement(elem, 50);
         //seatPage.clickOnSeat();
-        Thread.sleep(2000);
+
         System.out.println(driver.findElement(By.xpath("//android.widget.TextView[@text=\"1 Seats Added\"]")).getText());
-        Thread.sleep(2000);
+
     }
-}
+    }

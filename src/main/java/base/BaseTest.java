@@ -27,7 +27,7 @@ public class BaseTest extends ListenerImplement
     }
 
     public static AndroidDriver driver;
-    @BeforeClass
+    @BeforeMethod
     public void setup() throws MalformedURLException {
         // Use UiAutomator2Options instead of DesiredCapabilities
         UiAutomator2Options options = new UiAutomator2Options();
@@ -37,7 +37,9 @@ public class BaseTest extends ListenerImplement
         options.setAutoGrantPermissions(true);
         // Initialize the driver
         try {
+           // String currentPackage = driver.getCurrentPackage();
 
+           // driver.activateApp(currentPackage);
             driver = new AndroidDriver(new URL(ConfigReader.getProperty("appium.server")), options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         } catch (MalformedURLException e) {
@@ -49,19 +51,19 @@ public class BaseTest extends ListenerImplement
 //        String currentPackage = driver.getCurrentPackage();
 //        System.out.println("Current App Package: " + currentPackage);
     }
+//
+//    @BeforeMethod
+//    public void beforeTestMethod() {
+//        System.out.println("Before Each Test - Run Before Every Test Case");
+//    }
+//
+//    @AfterMethod
+//    public void afterTestMethod() {
+//        System.out.println("After Each Test - Run After Every Test Case");
+//    }
 
-    @BeforeMethod
-    public void beforeTestMethod() {
-        System.out.println("Before Each Test - Run Before Every Test Case");
-    }
 
-    @AfterMethod
-    public void afterTestMethod() {
-        System.out.println("After Each Test - Run After Every Test Case");
-    }
-
-
-    @AfterClass
+ /*   @AfterClass
     public void tearDown(ITestResult result) {
         if (result.getStatus() == ITestResult.FAILURE) {
             AllureUtils.takeScreenshot(driver);
@@ -71,6 +73,21 @@ public class BaseTest extends ListenerImplement
             //surender@gmail.com
             driver.quit();
         }
+    }*/
+
+    @AfterMethod
+    public void tearDown() throws InterruptedException {
+
+        if (driver != null) {
+
+            String currentPackage = driver.getCurrentPackage();
+            driver.terminateApp(currentPackage);
+            Thread.sleep(5000);
+            driver.activateApp(currentPackage);
+            driver.quit();
+            System.out.println("Close the Session");
+        }
+
     }
 
     @AfterSuite

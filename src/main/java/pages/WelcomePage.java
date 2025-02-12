@@ -32,6 +32,6 @@ public class WelcomePage {
     public void clickLogin() {
         System.out.println("Login page");
         ElementUtils utils = new ElementUtils(driver);
-        utils.waitAndClickElement(guestUser, 60);
+        utils.waitAndClickElement(guestUser, 100);
     }
 }

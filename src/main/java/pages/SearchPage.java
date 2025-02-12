@@ -21,7 +21,7 @@ import java.time.Duration;
 
 
 public class SearchPage {
-    private AppiumDriver driver;
+    private AndroidDriver driver;
     private ElementUtils elementUtils;
 
     @FindBy(xpath = "//android.widget.TextView[@text='To']")
@@ -88,7 +88,7 @@ public class SearchPage {
 
 
     //android.widget.TextView
-    public SearchPage(AppiumDriver driver) {
+    public SearchPage( AndroidDriver driver) {
         this.driver = driver;
         this.elementUtils = new ElementUtils(driver);
         PageFactory.initElements(driver, this);
@@ -136,6 +136,8 @@ public class SearchPage {
     public void enterUserDetails(String firstname, String lastname, String Dob, String MobileNumber, String mailId) throws InterruptedException {
         elementUtils.waitAndClickElement(firstName,20);
         firstName.sendKeys(firstname);
+        Thread.sleep(2000);
+        elementUtils.scrollToElementByResourceId("lastName");
         lastName.sendKeys(lastname);
         elementUtils.scrollToElementByResourceId("dateofbirth");
         elementUtils.waitAndClickElement(dob,20);
@@ -189,9 +191,8 @@ public class SearchPage {
 //        js.executeScript("arguments[0].click();",buttonResponse);
        // buttonResponse.click();
 
-        Actions actions = new Actions(driver);
-        actions.doubleClick(buttonResponse).perform();
-        //elementUtils.waitAndClickElement(buttonResponse, 20);
+
+        elementUtils.waitAndClickElement(buttonResponse, 20);
     }
 
     public void getPnrDetails() throws InterruptedException {

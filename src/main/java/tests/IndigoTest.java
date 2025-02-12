@@ -60,8 +60,8 @@ public class IndigoTest extends BaseTest {
         searchPage.getPnrDetails();
         LogUtils.info("PNR Details Generated");
         currentPackage = driver.getCurrentPackage();
-        driver.terminateApp(currentPackage);
-        driver.activateApp(currentPackage);
+//        driver.terminateApp(currentPackage);
+//        driver.activateApp(currentPackage);
     }
 
     @Test(priority = 2, description = "TC_002 - Verify the Guest user select seat and generate PNR")
@@ -99,9 +99,7 @@ public class IndigoTest extends BaseTest {
         Thread.sleep(10000);
         searchPage.getPnrDetails();
         LogUtils.info("PNR Details Generated");
-        currentPackage = driver.getCurrentPackage();
-        driver.terminateApp(currentPackage);
-        driver.activateApp(currentPackage);
+
     }
 
 
@@ -122,45 +120,76 @@ public class IndigoTest extends BaseTest {
         modifyPage.enterPnr("K3NL7E");
         modifyPage.enterEmail("surender@gmail.com");
         modifyPage.clickOnGetStarted();
-        Thread.sleep(5000);
+        Thread.sleep(10000);
         modifyPage.clickOnModify();
         modifyPage.clickOnChangeFlightButton();
         modifyPage.clickOnCheckBox();
+        Thread.sleep(5000);
         modifyPage.clickOnProceedButton();
-        modifyPage.clickOnFlightList();
-        modifyPage.clickOnNxtButton();
-        modifyPage.clickOnNxtFareButton();
 
-        seatPage.selectSeat();
-        seatPage.clickOnNextButton();
-        searchPage.clickOnNetBanking();
-        searchPage.clickOnAddBank();
-        searchPage.searchAvenue("av");
-        LogUtils.info("Select Avenue payment method");
-        searchPage.clickOnAvenuePayment();
-        searchPage.clickOnAvenueButtonPay();
-        searchPage.clickOnButtonResponse();
-        Thread.sleep(10000);
-        searchPage.getPnrDetails();
+        modifyPage.clickOnFlightList();
+        Thread.sleep(5000);
+        modifyPage.clickOnNxtButton();
+        Thread.sleep(1000);
+        boolean value = driver.findElement(By.className("android.view.ViewGroup")).isEnabled();
+
+
+        while (value) {
+
+            try {
+                boolean elememnt = driver.findElement(By.xpath("//android.widget.TextView[@text=\"All seat\"]")).isDisplayed();
+                if (elememnt == true) {
+                    break;
+                }
+
+            } catch (Exception e) {
+
+                WebElement ele = driver.findElement(By.xpath("//*[@text ='Next']"));
+                ele.click();
+
+                Thread.sleep(2000);
+            }
+        }
+
+        driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"
+        ));
+        List<WebElement> seats = driver.findElements(By.xpath("//*[@class='android.widget.ScrollView']/descendant::android.view.ViewGroup[contains(@resource-id,\"seatSelectionSeatSelectTestID\")]/descendant::android.widget.TextView"));
+
+        //System.out.println("Total seats found: " + seats.size());
+        System.out.println("Total: " + seats);
+
+        for (WebElement seat : seats) {
+
+
+            //System.out.println( "Seat Name "+seat.getText());
+            System.out.println("Modify Seat Name " + seat.getText());
+            if (seat.isEnabled()) {
+                seat.click();
+                break;
+            }
+        }
+        Thread.sleep(5000);
+        WebElement elem = driver.findElement(By.xpath("//com.horcrux.svg.CircleView"));
+        Thread.sleep(2000);
+        elem.click();
+        //elementUtils.waitAndClickElement(elem, 50);
+        //seatPage.clickOnSeat();
+
+        System.out.println(driver.findElement(By.xpath("//android.widget.TextView[@text=\"1 Seats Added\"]")).getText());
+
+        Thread.sleep(2000);
+        modifyPage.clickOnNxtButton();
+        modifyPage.clickOnFinishButton();
+        modifyPage.clickOnCancelButton();
         LogUtils.info("PNR Details Generated");
-        currentPackage = driver.getCurrentPackage();
-        driver.terminateApp(currentPackage);
-        driver.activateApp(currentPackage);
+
     }
 }
 
 
-
-
-
-
-
-
-
-
-
 //How to call
-    // captureScreenshotStep("After opening the website");
+// captureScreenshotStep("After opening the website");
 //    @Step("Screenshot: {0}")
 //    public void captureScreenshotStep(String description) {
 //        AllureUtils.takeScreenshot(driver);

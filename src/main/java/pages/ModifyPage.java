@@ -1,16 +1,22 @@
 package pages;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.PerformsTouchActions;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.touch.TapOptions;
+import io.appium.java_client.touch.offset.ElementOption;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.ElementUtils;
 
 public class ModifyPage {
 
-    private AppiumDriver driver;
+    public AndroidDriver driver;
     private ElementUtils elementUtils;
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"My Trips\"]")
@@ -35,9 +41,13 @@ public class ModifyPage {
     private WebElement nxtButton;
     @FindBy(xpath = "//android.view.ViewGroup[@content-desc=\"When press next button open new screen\"]")
     private WebElement nxtButtonFare;
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Finish\"]")
+    private WebElement finishButton;
+    @FindBy(xpath = "//com.horcrux.svg.PathView")
+    private WebElement cancelButton;
 
 
-    public ModifyPage(AppiumDriver driver) {
+    public ModifyPage(AndroidDriver driver) {
         this.driver = driver;
         this.elementUtils = new ElementUtils(driver);
         PageFactory.initElements(driver, this);
@@ -68,9 +78,8 @@ public class ModifyPage {
     }
 
     @Step("Click on Modify button")
-    public void clickOnModify() throws InterruptedException
-    {
-        elementUtils.waitAndClickElement(modifyButton,20);
+    public void clickOnModify() throws InterruptedException {
+        elementUtils.waitAndClickElement(modifyButton, 50);
 //        System.out.println("Clicking Modify");
 //        driver.findElement(By.xpath("//android.widget.TextView[@text=\"Modify\"]")).click();
 //        Thread.sleep(10000);
@@ -98,12 +107,12 @@ public class ModifyPage {
 
     @Step("Click on Check Box")
     public void clickOnProceedButton() {
-        elementUtils.waitAndClickElement(proceedButton, 20);
+        elementUtils.waitAndClickElement(proceedButton, 50);
     }
 
     @Step("Click on Check Box")
     public void clickOnFlightList() {
-        elementUtils.waitAndClickElement(selectFlight, 20);
+        elementUtils.waitAndClickElement(selectFlight, 50);
     }
 
     @Step("Click on Check Box")
@@ -113,7 +122,23 @@ public class ModifyPage {
 
     @Step("Click on Next Button")
     public void clickOnNxtFareButton() {
-        elementUtils.waitAndClickElement(nxtButtonFare, 20);
+        elementUtils.waitAndClickElement(nxtButton, 50);
+
+        Actions actions = new Actions(driver);
+        actions.moveToElement(nxtButtonFare).click().perform();
+
+
+    }
+
+
+    @Step("Click on finish")
+    public void clickOnFinishButton() {
+        elementUtils.waitAndClickElement(finishButton, 20);
+    }
+
+    @Step("Click on Check Box")
+    public void clickOnCancelButton() {
+        elementUtils.waitAndClickElement(cancelButton, 20);
     }
 
 
