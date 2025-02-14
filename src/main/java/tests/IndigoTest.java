@@ -10,10 +10,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
-import pages.ModifyPage;
-import pages.SearchPage;
-import pages.SeatPage;
-import pages.WelcomePage;
+import pages.*;
 import utils.ElementUtils;
 import utils.LogUtils;
 
@@ -25,6 +22,9 @@ public class IndigoTest extends BaseTest {
     private SearchPage searchPage;
     private SeatPage seatPage;
     private ModifyPage modifyPage;
+    private RoundPage roundPage;
+    private MultiCity multiCity;
+
     private ElementUtils elementUtils;
     String currentPackage;
 
@@ -59,7 +59,7 @@ public class IndigoTest extends BaseTest {
         searchPage.clickOnButtonResponse();
         searchPage.getPnrDetails();
         LogUtils.info("PNR Details Generated");
-        currentPackage = driver.getCurrentPackage();
+  //      currentPackage = driver.getCurrentPackage();
 //        driver.terminateApp(currentPackage);
 //        driver.activateApp(currentPackage);
     }
@@ -108,7 +108,6 @@ public class IndigoTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser Modify the PNR id he wants")
     @Story("Guest User should be able to modify the PNR details")
-
     public void indigoFlow3() throws InterruptedException {
         LogUtils.info("Guest User Modify the PNR");
         welcomePage = new WelcomePage(driver);
@@ -124,67 +123,116 @@ public class IndigoTest extends BaseTest {
         modifyPage.clickOnModify();
         modifyPage.clickOnChangeFlightButton();
         modifyPage.clickOnCheckBox();
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         modifyPage.clickOnProceedButton();
-
         modifyPage.clickOnFlightList();
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         modifyPage.clickOnNxtButton();
-        Thread.sleep(1000);
-        boolean value = driver.findElement(By.className("android.view.ViewGroup")).isEnabled();
 
-
-        while (value) {
-
-            try {
-                boolean elememnt = driver.findElement(By.xpath("//android.widget.TextView[@text=\"All seat\"]")).isDisplayed();
-                if (elememnt == true) {
-                    break;
-                }
-
-            } catch (Exception e) {
-
-                WebElement ele = driver.findElement(By.xpath("//*[@text ='Next']"));
-                ele.click();
-
-                Thread.sleep(2000);
-            }
-        }
-
-        driver.findElement(AppiumBy.androidUIAutomator(
-                "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"
-        ));
-        List<WebElement> seats = driver.findElements(By.xpath("//*[@class='android.widget.ScrollView']/descendant::android.view.ViewGroup[contains(@resource-id,\"seatSelectionSeatSelectTestID\")]/descendant::android.widget.TextView"));
-
-        //System.out.println("Total seats found: " + seats.size());
-        System.out.println("Total: " + seats);
-
-        for (WebElement seat : seats) {
-
-
-            //System.out.println( "Seat Name "+seat.getText());
-            System.out.println("Modify Seat Name " + seat.getText());
-            if (seat.isEnabled()) {
-                seat.click();
-                break;
-            }
-        }
-        Thread.sleep(5000);
-        WebElement elem = driver.findElement(By.xpath("//com.horcrux.svg.CircleView"));
-        Thread.sleep(2000);
-        elem.click();
-        //elementUtils.waitAndClickElement(elem, 50);
-        //seatPage.clickOnSeat();
-
-        System.out.println(driver.findElement(By.xpath("//android.widget.TextView[@text=\"1 Seats Added\"]")).getText());
-
-        Thread.sleep(2000);
+        modifyPage.modifyFlight();
         modifyPage.clickOnNxtButton();
         modifyPage.clickOnFinishButton();
         modifyPage.clickOnCancelButton();
         LogUtils.info("PNR Details Generated");
 
     }
+
+
+    @Test(priority = 4, description = "TC_004 -Round  Trip booking")
+    @Description("Verify GuestUser booked the round trip")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("GuestUser book round trip")
+    @Story("Guest User should be able to book round trip")
+    public void indigoFlow4() throws InterruptedException {
+        LogUtils.info("Round Trip booking");
+        welcomePage = new WelcomePage(driver);
+        searchPage = new SearchPage(driver);
+        modifyPage = new ModifyPage(driver);
+        roundPage = new RoundPage(driver);
+        elementUtils = new ElementUtils(driver);
+        welcomePage.clickLogin();
+        roundPage.selectRoundTrip();
+        roundPage.clickOnToRoundTrip();
+        roundPage.searchCity("Mumbai");
+        LogUtils.info("Select Destination city");
+        roundPage.clickOnMumbaiFlight();
+        roundPage.clickOnDate();
+        roundPage.clickOnReturneDate();
+        roundPage.clickOnSearchButton();
+        searchPage.clickOnBookingList();
+        searchPage.bookingNextButton();
+        roundPage.clickOnReturnFlight();
+        Thread.sleep(6000);
+        roundPage.nextButton();
+        Thread.sleep(5000);
+        searchPage.enterUserDetails("anil", "pal", "04/04/1953", "6474344463", "abc@gmail.com");
+        LogUtils.info("Enter User Details");
+        searchPage.clickOnSkipToPayment();
+        searchPage.clickOnNetBanking();
+        searchPage.clickOnAddBank();
+        searchPage.searchAvenue("av");
+        LogUtils.info("Select Avenue payment method");
+        searchPage.clickOnAvenuePayment();
+        searchPage.clickOnAvenueButtonPay();
+        searchPage.clickOnButtonResponse();
+        Thread.sleep(10000);
+        searchPage.getPnrDetails();
+        LogUtils.info("PNR Details Generated");
+    }
+
+
+    @Test(priority = 5, description = "TC_005 -MultiCity booking")
+    @Description("Verify GuestUser booked Multi city flight")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("GuestUser book MultiCity")
+    @Story("Guest User should be able to book Multi CIty")
+    public void indigoFlow5() throws InterruptedException {
+        LogUtils.info("Multi City");
+        welcomePage = new WelcomePage(driver);
+        searchPage = new SearchPage(driver);
+        multiCity = new MultiCity(driver);
+        roundPage = new RoundPage(driver);
+        elementUtils = new ElementUtils(driver);
+        welcomePage.clickLogin();
+        multiCity.clickOnMultiCity();
+        Thread.sleep(2000);
+        multiCity.clickOnTo1();
+        searchPage.searchPlace("Mumbai");
+        LogUtils.info("Select Destination city");
+        searchPage.clickOnMumbaiFlight();
+        welcomePage.clickOnFutureDate();
+        multiCity.clickOnTo2();
+        searchPage.searchPlace("Agra");
+        LogUtils.info("Select Destination city");
+        multiCity.clickOnAgraFlight();
+        multiCity.clickOnDate();
+        Thread.sleep(4000);
+        elementUtils.scrollToElementByText("Search");
+        roundPage.clickOnSearchButton();
+        roundPage.clickOnReturnFlight();
+        Thread.sleep(6000);
+        roundPage.nextButton();
+        roundPage.clickOnReturnFlight();
+        Thread.sleep(6000);
+        roundPage.nextButton();
+        Thread.sleep(5000);
+        searchPage.enterUserDetails("anil", "pal", "04/04/1953", "6474344463", "abc@gmail.com");
+        LogUtils.info("Enter User Details");
+        searchPage.clickOnSkipToPayment();
+        searchPage.clickOnNetBanking();
+        searchPage.clickOnAddBank();
+        searchPage.searchAvenue("av");
+        LogUtils.info("Select Avenue payment method");
+        searchPage.clickOnAvenuePayment();
+        LogUtils.info("Click on Button pay");
+        searchPage.clickOnAvenueButtonPay();
+        searchPage.clickOnButtonResponse();
+        LogUtils.info("Response Button clicked");
+        Thread.sleep(10000);
+        searchPage.getPnrDetails();
+        LogUtils.info("PNR Details Generated");
+    }
+
 }
 
 

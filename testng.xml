@@ -3,7 +3,7 @@
     <test name="Appium Android Tests">
         <classes>
             <class name="tests.IndigoTest"/>
-
+            <class name="tests.ValidateFare"/>
         </classes>
     </test>
 </suite>

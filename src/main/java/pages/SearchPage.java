@@ -3,6 +3,7 @@ package pages;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.PerformsTouchActions;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import org.openqa.selenium.By;
@@ -15,7 +16,11 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 import utils.ElementUtils;
+import utils.RetryAnalyzer;
 
 import java.time.Duration;
 
@@ -23,6 +28,17 @@ import java.time.Duration;
 public class SearchPage {
     private AndroidDriver driver;
     private ElementUtils elementUtils;
+
+    //android.widget.TextView
+    public SearchPage(AndroidDriver driver) {
+        this.driver = driver;
+        this.elementUtils = new ElementUtils(driver);
+        PageFactory.initElements(driver, this);
+    }
+
+    @AndroidFindBy(xpath = "//android.widget.Button[@text=\"Send Response\"]")
+    private WebElement textButton;
+
 
     @FindBy(xpath = "//android.widget.TextView[@text='To']")
     private WebElement searchOnTo;
@@ -86,14 +102,6 @@ public class SearchPage {
     private WebElement pnr;
 
 
-
-    //android.widget.TextView
-    public SearchPage( AndroidDriver driver) {
-        this.driver = driver;
-        this.elementUtils = new ElementUtils(driver);
-        PageFactory.initElements(driver, this);
-    }
-
     @Step("Click on Destination Button")
     public void clickOnTo() {
         elementUtils.waitAndClickElement(searchOnTo, 50);
@@ -134,16 +142,16 @@ public class SearchPage {
 
     @Step("Enter User Details")
     public void enterUserDetails(String firstname, String lastname, String Dob, String MobileNumber, String mailId) throws InterruptedException {
-        elementUtils.waitAndClickElement(firstName,20);
+        elementUtils.waitAndClickElement(firstName, 20);
         firstName.sendKeys(firstname);
         Thread.sleep(2000);
         elementUtils.scrollToElementByResourceId("lastName");
         lastName.sendKeys(lastname);
         elementUtils.scrollToElementByResourceId("dateofbirth");
-        elementUtils.waitAndClickElement(dob,20);
+        elementUtils.waitAndClickElement(dob, 20);
         dob.sendKeys(Dob);
         elementUtils.scrollToElementByText("Primary contact number");
-        elementUtils.waitAndClickElement(mobileNumber,20);
+        elementUtils.waitAndClickElement(mobileNumber, 20);
         mobileNumber.sendKeys(MobileNumber);
         elementUtils.scrollToElementByResourceId("primaryEmail");
         emailId.sendKeys(mailId);
@@ -182,6 +190,7 @@ public class SearchPage {
     }
 
     @Step("Click On Click on Response")
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void clickOnButtonResponse() {
 //        WebElement responseButton = driver.findElement(AppiumBy.androidUIAutomator(
 //               "new UiSelector().resourceId('btn')"));
@@ -189,37 +198,47 @@ public class SearchPage {
         //new UiSelector().resourceId("btn")
 //        JavascriptExecutor js = (JavascriptExecutor) driver;
 //        js.executeScript("arguments[0].click();",buttonResponse);
-       // buttonResponse.click();
+        // buttonResponse.click();
 
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Wait up to 10 sec
 
-        elementUtils.waitAndClickElement(buttonResponse, 20);
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(buttonResponse)).click();
+            System.out.println("Button clicked successfully.");
+        } catch (Exception e) {
+            System.out.println("Failed to click button: " + e.getMessage());
+            throw e; // Throw exception to trigger retry
+        }
+        //elementUtils.waitAndClickElement(textButton, 20);
+
     }
 
     public void getPnrDetails() throws InterruptedException {
- Thread.sleep(20000);
+        Thread.sleep(20000);
         WebElement pnr1 = driver.findElements(By.className("android.widget.TextView")).get(1);
         WebElement pnr2 = driver.findElements(By.className("android.widget.TextView")).get(2);
         WebElement pnr3 = driver.findElements(By.className("android.widget.TextView")).get(3);
         WebElement pnr4 = driver.findElements(By.className("android.widget.TextView")).get(4);
         WebElement pnr5 = driver.findElements(By.className("android.widget.TextView")).get(5);
         WebElement pnr6 = driver.findElements(By.className("android.widget.TextView")).get(6);
-        elementUtils.waitAndClickElement(pnr1,50);
-        String pnrDetails =  pnr1.getText();
-        System.out.println("PNR Details: "+pnrDetails);
+        elementUtils.waitAndClickElement(pnr1, 50);
+        String pnrDetails = pnr1.getText();
+        System.out.println("PNR Details: " + pnrDetails);
 
 
-        String pnrDetails2=pnr2.getText();
-        String pnrDetails3=pnr3.getText();
-        String pnrDetails4=pnr4.getText();
-        String pnrDetails5=pnr5.getText();
-       //String pnrDetails =  pnr1.getText();
+        String pnrDetails2 = pnr2.getText();
+        String pnrDetails3 = pnr3.getText();
+        String pnrDetails4 = pnr4.getText();
+        String pnrDetails5 = pnr5.getText();
+        //String pnrDetails =  pnr1.getText();
         //System.out.println("PNR Details: "+pnrDetails);
-        System.out.println("PNR Details: "+pnrDetails2);
-        System.out.println("PNR Details: "+pnrDetails3);
-        System.out.println("PNR Details: "+pnrDetails4);
-        System.out.println("PNR Details: "+pnrDetails5);
-        System.out.println("PNR Details: "+pnrDetails2);
+        System.out.println("PNR Details: " + pnrDetails2);
+        System.out.println("PNR Details: " + pnrDetails3);
+        System.out.println("PNR Details: " + pnrDetails4);
+        System.out.println("PNR Details: " + pnrDetails5);
+        System.out.println("PNR Details: " + pnrDetails2);
 
     }
+
 
 }

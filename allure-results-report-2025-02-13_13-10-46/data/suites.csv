@@ -1,0 +1,7 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Verify GuestUser booked the round trip","245699","TC_004 -Round  Trip booking","Appium Test Suite","Thu Feb 13 12:50:07 IST 2025","passed","Thu Feb 13 12:54:12 IST 2025","tests.IndigoTest","Appium Android Tests","tests.IndigoTest","indigoFlow4"
+"","1","tearDown","Default Suite","Thu Feb 13 12:20:36 IST 2025","broken","Thu Feb 13 12:20:36 IST 2025","tests.IndigoTest","AppiumFramework","tests.IndigoTest","tearDown"
+"Verify GuestUser booking ticket by selecting seat end-to-end flow","342144","TC_002 - Verify the Guest user select seat and generate PNR","Appium Test Suite","Thu Feb 13 12:42:28 IST 2025","passed","Thu Feb 13 12:48:10 IST 2025","tests.IndigoTest","Appium Android Tests","tests.IndigoTest","indigoUatFLow2"
+"Verify GuestUser booking ticket end-to-end flow","224994","TC_001 - Verify the Guest user generate PNR","Appium Test Suite","Thu Feb 13 12:38:34 IST 2025","passed","Thu Feb 13 12:42:19 IST 2025","tests.IndigoTest","Appium Android Tests","tests.IndigoTest","indigoUatFLow1"
+"","1","setup","Default Suite","Thu Feb 13 10:21:25 IST 2025","broken","Thu Feb 13 10:21:25 IST 2025","tests.IndigoTest","AppiumFramework","tests.IndigoTest","setup"
+"Verify GuestUser modify the PNR details","133089","TC_003 - Modify the PNR details","Default Suite","Thu Feb 13 13:08:13 IST 2025","passed","Thu Feb 13 13:10:26 IST 2025","tests.IndigoTest","AppiumFramework","tests.IndigoTest","indigoFlow3"

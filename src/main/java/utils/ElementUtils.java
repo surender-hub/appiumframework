@@ -70,6 +70,24 @@ public class ElementUtils {
 
     }
 
+    public String clickReturnDate() {
+        // Get today's date and the date 5 days from today
+        LocalDate today = LocalDate.now();
+        String fiveDaysLater = getDateAfterDays(8);
+
+        System.out.println("Today's date: " + today);
+        System.out.println("Skipping the date: " + fiveDaysLater);
+
+        String date = fiveDaysLater.substring(0, 2);
+        int dat = Integer.parseInt(date);
+
+        return date;
+        // Define the XPath locator for the calendar dates (Modify if necessary)
+
+    }
+
+
+
 
     public void scrollDown() {
         /*int screenHeight = driver.manage().window().getSize().height;
@@ -120,7 +138,7 @@ public class ElementUtils {
         // Click the element once it is visible, enabled, and displayed
         if (element.isEnabled() && element.isDisplayed()) {
             element.click();
-            System.out.println("Element clicked!");
+            //System.out.println("Element clicked!");
         } else {
             System.out.println("Element is either not enabled or not displayed.");
         }

@@ -1,0 +1,6 @@
+"BROKEN","EPIC","FAILED","FEATURE","PASSED","SKIPPED","STORY","UNKNOWN"
+"0","","0","GuestUser book round trip","1","0","Guest User should be able to book round trip","0"
+"2","","0","","0","0","","0"
+"0","","0","GuestUser Booking Ticket Flow ans select seat","1","0","User should be able to Book Ticket by selecting seat","0"
+"0","","0","GuestUser Booking Ticket Flow","1","0","User should be able to Book Ticket","0"
+"0","","0","GuestUser Modify the PNR id he wants","1","0","Guest User should be able to modify the PNR details","0"

@@ -1,5 +1,6 @@
 package pages;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
@@ -13,6 +14,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.ElementUtils;
+
+import java.util.List;
 
 public class ModifyPage {
 
@@ -97,12 +100,12 @@ public class ModifyPage {
 
     @Step("Click on change flight Button")
     public void clickOnChangeFlightButton() {
-        elementUtils.waitAndClickElement(changeFlightButton, 20);
+        elementUtils.waitAndClickElement(changeFlightButton, 50);
     }
 
     @Step("Click on Check Box")
     public void clickOnCheckBox() {
-        elementUtils.waitAndClickElement(checkBox, 20);
+        elementUtils.waitAndClickElement(checkBox, 50);
     }
 
     @Step("Click on Check Box")
@@ -142,4 +145,52 @@ public class ModifyPage {
     }
 
 
+
+
+    public void modifyFlight() throws InterruptedException {
+        boolean value = driver.findElement(By.className("android.view.ViewGroup")).isEnabled();
+
+        while (value) {
+
+            try {
+                boolean elememnt = driver.findElement(By.xpath("//android.widget.TextView[@text=\"All seat\"]")).isDisplayed();
+                if (elememnt == true) {
+                    break;
+                }
+
+            } catch (Exception e) {
+
+                WebElement ele = driver.findElement(By.xpath("//*[@text ='Next']"));
+                ele.click();
+
+                Thread.sleep(2000);
+            }
+        }
+
+        driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"
+        ));
+        List<WebElement> seats = driver.findElements(By.xpath("//*[@class='android.widget.ScrollView']/descendant::android.view.ViewGroup[contains(@resource-id,\"seatSelectionSeatSelectTestID\")]/descendant::android.widget.TextView"));
+
+
+        System.out.println("Total: " + seats);
+
+        for (WebElement seat : seats) {
+
+
+
+            System.out.println("Modify Seat Name " + seat.getText());
+            if (seat.isEnabled()) {
+                seat.click();
+                break;
+            }
+        }
+        Thread.sleep(5000);
+        WebElement elem = driver.findElement(By.xpath("//com.horcrux.svg.CircleView"));
+        Thread.sleep(2000);
+        elem.click();
+
+        System.out.println(driver.findElement(By.xpath("//android.widget.TextView[@text=\"1 Seats Added\"]")).getText());
+        Thread.sleep(2000);
+    }
 }
