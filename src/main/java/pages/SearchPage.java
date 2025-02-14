@@ -136,7 +136,7 @@ public class SearchPage {
 
     @Step("Select Next for Payment")
     public void bookingNextButton() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(5000);
         elementUtils.waitAndClickElement(nextButton, 50);
     }
 

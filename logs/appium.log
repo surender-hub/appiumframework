@@ -557,3 +557,99 @@
 2025-02-13 17:25:20 [main] INFO  utils.LogUtils - Select Avenue payment method
 2025-02-13 17:27:48 [main] INFO  utils.LogUtils - PNR Details Generated
 2025-02-13 18:16:47 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 11:07:00 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 11:07:14 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 11:10:01 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 11:10:14 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 11:34:50 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 11:35:03 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 11:35:54 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 11:55:08 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 11:55:23 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 11:56:13 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 11:59:28 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 11:59:56 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 12:00:47 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 12:07:32 [main] INFO  utils.LogUtils - Multi City
+2025-02-14 12:08:11 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 12:08:20 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 12:12:51 [main] INFO  utils.LogUtils - Multi City
+2025-02-14 12:13:05 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 12:13:13 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 12:14:22 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 12:14:43 [main] INFO  utils.LogUtils - Select Avenue payment method
+2025-02-14 12:14:44 [main] INFO  utils.LogUtils - Click on Button pay
+2025-02-14 12:15:46 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 12:15:58 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 12:19:10 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 12:19:47 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 12:30:59 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 12:31:11 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 12:32:00 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 12:33:50 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 12:34:08 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 12:34:58 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 12:37:11 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 12:37:24 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 12:38:12 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 12:52:31 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 12:52:44 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 12:53:31 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 13:29:19 [main] INFO  utils.LogUtils - Guest User booking ticket using skip to payment
+2025-02-14 13:29:33 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 13:30:17 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 13:30:38 [main] INFO  utils.LogUtils - Select Avenue payment method
+2025-02-14 13:32:58 [main] INFO  utils.LogUtils - PNR Details Generated
+2025-02-14 13:33:07 [main] INFO  utils.LogUtils - Guest User booking ticket using skip to payment
+2025-02-14 13:33:21 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 13:34:24 [main] INFO  utils.LogUtils - Guest User Modify the PNR
+2025-02-14 13:36:54 [main] INFO  utils.LogUtils - Guest User booking ticket using skip to payment
+2025-02-14 13:37:06 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 13:37:49 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 13:39:56 [main] INFO  utils.LogUtils - Guest User booking ticket using skip to payment
+2025-02-14 13:40:09 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 13:40:52 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 13:41:11 [main] INFO  utils.LogUtils - Select Avenue payment method
+2025-02-14 13:43:32 [main] INFO  utils.LogUtils - PNR Details Generated
+2025-02-14 13:43:41 [main] INFO  utils.LogUtils - Guest User booking ticket using skip to payment
+2025-02-14 13:43:54 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 13:44:35 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 13:46:36 [main] INFO  utils.LogUtils - Select Avenue payment method
+2025-02-14 13:49:26 [main] INFO  utils.LogUtils - PNR Details Generated
+2025-02-14 13:49:36 [main] INFO  utils.LogUtils - Guest User Modify the PNR
+2025-02-14 13:52:41 [main] INFO  utils.LogUtils - Round Trip booking
+2025-02-14 13:52:55 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 13:54:00 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 13:54:21 [main] INFO  utils.LogUtils - Select Avenue payment method
+2025-02-14 13:56:49 [main] INFO  utils.LogUtils - PNR Details Generated
+2025-02-14 13:56:58 [main] INFO  utils.LogUtils - Multi City
+2025-02-14 13:57:12 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 13:57:22 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 13:58:34 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 13:58:52 [main] INFO  utils.LogUtils - Select Avenue payment method
+2025-02-14 13:58:54 [main] INFO  utils.LogUtils - Click on Button pay
+2025-02-14 14:00:49 [main] INFO  utils.LogUtils - Response Button clicked
+2025-02-14 14:01:19 [main] INFO  utils.LogUtils - PNR Details Generated
+2025-02-14 14:18:42 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 14:18:54 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 14:19:44 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 14:21:31 [main] INFO  utils.LogUtils - Guest User booking ticket using skip to payment
+2025-02-14 14:21:44 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 14:29:55 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 14:30:09 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 14:30:57 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 14:38:24 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 14:38:36 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 14:39:23 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 14:43:09 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 14:43:42 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 14:44:26 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 14:47:58 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 14:48:34 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 14:53:50 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 14:54:02 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 14:54:53 [main] INFO  utils.LogUtils - Enter User Details
+2025-02-14 17:11:40 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 17:11:57 [main] INFO  utils.LogUtils - Select Destination city
+2025-02-14 17:14:44 [main] INFO  utils.LogUtils - Validate Fare
+2025-02-14 17:15:03 [main] INFO  utils.LogUtils - Select Destination city

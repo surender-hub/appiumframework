@@ -10,25 +10,33 @@ import utils.ElementUtils;
 
 import java.util.List;
 
-public class ValidFare
+public class LoginUserPage
 {
-    private AndroidDriver driver;
+    public AndroidDriver driver;
     private ElementUtils elementUtils;
     List<WebElement> elements;
 
-    @FindBy(xpath = "//android.widget.TextView[@text=\"Multi city\"]")
-    private WebElement selectMultiCity;
-    @FindBy(xpath = "//android.widget.TextView[@text=\"TOTAL FARE\"]/following-sibling::android.view.ViewGroup[1]//android.widget.TextView")
-    private WebElement getFareText;
-    @FindBy(xpath ="//android.widget.TextView[@content-desc='clk_text' and starts-with(@text, '₹')]")
-    private WebElement getExpectedText;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='To']")
+    private WebElement searchOnTo;
+    @FindBy(xpath = "//android.widget.EditText[@text='Search place/airport']")
+    private WebElement searchPlace;
 
 
-
-    public ValidFare(AndroidDriver driver) {
+    public LoginUserPage(AndroidDriver driver) {
         this.driver = driver;
         this.elementUtils = new ElementUtils(driver);
         PageFactory.initElements(driver, this);
+    }
+    @Step("Click on Destination Button")
+    public void clickOnTo() {
+        elementUtils.waitAndClickElement(searchOnTo, 50);
+    }
+
+    @Step("Search Place: {placeName}")
+    public void searchPlace(String placeName) {
+        elementUtils.waitAndClickElement(searchPlace, 50);
+        elementUtils.sendKeys(searchPlace, placeName, 50);
     }
 
 
@@ -47,19 +55,12 @@ public class ValidFare
         //elementUtils.waitAndClickElement(returnFlightList, 50);
     }
 
-    @Step("Get Fare Text")
-    public String getActualText() throws InterruptedException {
-        Thread.sleep(5000);
-        String actualText = getFareText.getText();
-        actualText=actualText.replaceAll("\\s+", "").trim();
-        System.out.println("Actual txt" +actualText);
-        return  actualText;
+    public void clickOnFutureDate() throws InterruptedException {
+        ElementUtils el = new ElementUtils(driver);
+        String fututreDate = el.clickDate();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//android.widget.TextView[@text='" + fututreDate + "']")).click();
     }
 
-    @Step("Get Expected Text")
-    public String getExpectedText()
-    {
-        String expected = getExpectedText.getText().trim();
-        return expected;
-    }
+
 }
