@@ -2,6 +2,7 @@ package pages;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Step;
+import io.qameta.allure.Story;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,6 +22,19 @@ public class LoginUserPage
     private WebElement searchOnTo;
     @FindBy(xpath = "//android.widget.EditText[@text='Search place/airport']")
     private WebElement searchPlace;
+    @FindBy(xpath = "//android.widget.Button[@resource-id=\"next\"]")
+    private WebElement loginButton;
+    @FindBy(xpath = "//android.widget.TextView[@text='Chhatrapati Shivaji Maharaj International Airport']")
+    private WebElement mumbaiFlight;
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Search\"]")
+    private WebElement searchButton;
+    @FindBy(xpath = "//android.widget.TextView[@text='Next']")
+    private WebElement nextButton;
+    @FindBy(xpath = "//android.widget.TextView[@text=\"You\"]/parent::android.view.ViewGroup/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup//com.horcrux.svg.SvgView")
+    private WebElement checkBox;
+
+
+
 
 
     public LoginUserPage(AndroidDriver driver) {
@@ -62,5 +76,30 @@ public class LoginUserPage
         driver.findElement(By.xpath("//android.widget.TextView[@text='" + fututreDate + "']")).click();
     }
 
+    @Step("Click on Login Button")
+    public void loginButton() throws InterruptedException {
+        elementUtils.waitAndClickElement(loginButton, 20);
+    }
+
+    @Step("Select Destination Mumbai from List")
+    @Story("Searching a flight")
+    public void clickOnMumbaiFlight() {
+        elementUtils.waitAndClickElement(mumbaiFlight, 50);
+    }
+
+    @Step("Search the available city")
+    public void clickOnSearchButton() {
+        elementUtils.waitAndClickElement(searchButton, 50);
+    }
+
+    @Step("Select Next for Payment")
+    public void bookingNextButton() throws InterruptedException {
+        Thread.sleep(5000);
+        elementUtils.waitAndClickElement(nextButton, 50);
+    }
+    @Step("Select Next for Payment")
+    public void clickCheckbox() throws InterruptedException {
+        elementUtils.waitAndClickElement(checkBox, 50);
+    }
 
 }

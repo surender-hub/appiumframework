@@ -56,13 +56,13 @@
             <version>4.14.1</version> <!-- Compatible with Appium -->
         </dependency>
 
-        <!-- TestNG -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.7.1</version> <!-- Latest stable version -->
-            <scope>test</scope>
-        </dependency>
+<!--        &lt;!&ndash; TestNG &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.testng</groupId>-->
+<!--            <artifactId>testng</artifactId>-->
+<!--            <version>7.7.1</version> &lt;!&ndash; Latest stable version &ndash;&gt;-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>

@@ -1,6 +1,5 @@
 package tests;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.*;
 import org.openqa.selenium.support.PageFactory;
@@ -10,14 +9,14 @@ import org.testng.annotations.Test;
 import pages.LoginPage;
 import utils.ElementUtils;
 
-public class LoginTest {
-    private static final Logger log = LoggerFactory.getLogger(LoginTest.class);
+public class LoginTestOtp {
+    private static final Logger log = LoggerFactory.getLogger(LoginTestOtp.class);
     LoginPage loginPage;
     private AndroidDriver driver;
     private ElementUtils elementUtils;
 
 
-    public LoginTest(AndroidDriver driver) {
+    public LoginTestOtp(AndroidDriver driver) {
         this.driver = driver;
         this.elementUtils = new ElementUtils(driver);
         PageFactory.initElements(driver, this);
@@ -30,15 +29,9 @@ public class LoginTest {
     @Story("New login from 6E user")
     public void login6eUser() throws InterruptedException {
         loginPage = new LoginPage(driver);
-        loginPage.enterMobileNumber("");
+        loginPage.enterMobileNumber("8265858568");
         loginPage.clickOnContinue();
-        loginPage.enterPassword("");
-
-
+        loginPage.enterPassword("Bhagatsingh@1");
         //loginPage.clickOnVerifyButton();
-
-
-
-
     }
 }
