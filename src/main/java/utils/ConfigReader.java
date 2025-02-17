@@ -1,5 +1,6 @@
 package utils;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -9,7 +10,7 @@ public class ConfigReader {
 
     static {
         try {
-            FileInputStream file = new FileInputStream("/Users/surender/Downloads/ide/intellijidea/AppiumFramework/src/main/resources/config.properties");
+            FileInputStream file = new FileInputStream("src/main/resources/config.properties");
             properties = new Properties();
             properties.load(file);
         } catch (IOException e) {
@@ -18,6 +19,14 @@ public class ConfigReader {
     }
 
     public static String getProperty(String key) {
-        return properties.getProperty(key);
+        String value = properties.getProperty(key);
+
+        // Convert relative path to absolute path (for APK file)
+        if (key.equals("app.path")) {
+            File file = new File(value);
+            return file.getAbsolutePath();
+        }
+
+        return value;
     }
 }

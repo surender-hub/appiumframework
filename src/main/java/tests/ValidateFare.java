@@ -49,4 +49,27 @@ public class ValidateFare extends BaseTest {
         Assert.assertEquals(validFare.getActualText(), validFare.getExpectedText(), "Test Failed: Texts do NOT match!");
         System.out.println("Actual Text " + validFare.getActualText() + " " + " Expected text " + validFare.getExpectedText());
     }
+
+
+    @Test(priority = 2, description = "TC_002 -Compare Fare details Round Trip")
+    @Description("Verify GuestUser compare Fare in round trip")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("GuestUser compare fare on payment screen")
+    @Story("Guest User should be able compare fare on select city and payment screen")
+    public void ValidFareRound() throws InterruptedException {
+        LogUtils.info("Validate Fare");
+        welcomePage = new WelcomePage(driver);
+        searchPage = new SearchPage(driver);
+        multiCity = new MultiCity(driver);
+        roundPage = new RoundPage(driver);
+        validFare = new ValidFare(driver);
+        elementUtils = new ElementUtils(driver);
+        welcomePage.clickLogin();
+        welcomePage.clickLogin();
+        roundPage.selectRoundTrip();
+        roundPage.clickOnToRoundTrip();
+        roundPage.searchCity("Mumbai");
+        LogUtils.info("Select Destination city");
+        roundPage.clickOnMumbaiFlight();
+    }
 }
