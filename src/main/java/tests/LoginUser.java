@@ -56,6 +56,7 @@ public class LoginUser extends BaseTest
         searchPage.getPnrDetails();
         LogUtils.info("PNR Details Generated");
 
+
     }
 
 }
