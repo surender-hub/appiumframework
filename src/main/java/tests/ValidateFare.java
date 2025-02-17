@@ -65,7 +65,6 @@ public class ValidateFare extends BaseTest {
         validFare = new ValidFare(driver);
         elementUtils = new ElementUtils(driver);
         welcomePage.clickLogin();
-        welcomePage.clickLogin();
         roundPage.selectRoundTrip();
         roundPage.clickOnToRoundTrip();
         roundPage.searchCity("Mumbai");
