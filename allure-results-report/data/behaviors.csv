@@ -1,0 +1,7 @@
+"BROKEN","EPIC","FAILED","FEATURE","PASSED","SKIPPED","STORY","UNKNOWN"
+"0","","0","GuestUser Booking Ticket Flow ans select seat","1","0","User should be able to Book Ticket by selecting seat","0"
+"1","","0","GuestUser book round trip","0","0","Guest User should be able to book round trip","0"
+"0","","0","GuestUser compare fare on payment screen","3","0","Guest User should be able compare fare on select city and payment screen","0"
+"1","","0","GuestUser book MultiCity","0","0","Guest User should be able to book Multi CIty","0"
+"0","","0","GuestUser Booking Ticket Flow","1","0","User should be able to Book Ticket","0"
+"1","","0","GuestUser Modify the PNR id he wants","0","0","Guest User should be able to modify the PNR details","0"
