@@ -37,10 +37,9 @@ public class BaseTest extends ListenerImplement
         options.setAutoGrantPermissions(true);
         // Initialize the driver
         try {
-           // String currentPackage = driver.getCurrentPackage();
-
-           // driver.activateApp(currentPackage);
             driver = new AndroidDriver(new URL(ConfigReader.getProperty("appium.server")), options);
+            String currentPackage = driver.getCurrentPackage();
+            driver.activateApp(currentPackage);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -83,7 +82,7 @@ public class BaseTest extends ListenerImplement
             String currentPackage = driver.getCurrentPackage();
             driver.terminateApp(currentPackage);
             Thread.sleep(5000);
-            driver.activateApp(currentPackage);
+            //driver.activateApp(currentPackage);
             driver.quit();
             System.out.println("Close the Session");
         }

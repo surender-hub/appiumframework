@@ -71,7 +71,7 @@ public class ElementUtils {
     }
 
     public String clickReturnDate() {
-        // Get today's date and the date 5 days from today
+        // Get today's date and the date 8 days from today
         LocalDate today = LocalDate.now();
         String fiveDaysLater = getDateAfterDays(8);
 
@@ -138,7 +138,7 @@ public class ElementUtils {
         // Click the element once it is visible, enabled, and displayed
         if (element.isEnabled() && element.isDisplayed()) {
             element.click();
-            //System.out.println("Element clicked!");
+            System.out.println("Element clicked!");
         } else {
             System.out.println("Element is either not enabled or not displayed.");
         }

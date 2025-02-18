@@ -25,6 +25,7 @@ public class IndigoTest extends BaseTest {
     private ModifyPage modifyPage;
     private RoundPage roundPage;
     private MultiCity multiCity;
+    private ValidFarePage validFarePage;
 
     private ElementUtils elementUtils;
     String currentPackage;
@@ -39,12 +40,14 @@ public class IndigoTest extends BaseTest {
         welcomePage = new WelcomePage(driver);
         searchPage = new SearchPage(driver);
         elementUtils = new ElementUtils(driver);
+        validFarePage = new ValidFarePage(driver);
         welcomePage.clickLogin();
         searchPage.clickOnTo();
         searchPage.searchPlace("Mumbai");
         LogUtils.info("Select Destination city");
         searchPage.clickOnMumbaiFlight();
-        welcomePage.clickOnFutureDate();
+        validFarePage.clickOnFutureDate();
+       // welcomePage.clickOnFutureDate();
         searchPage.clickOnSearchButton();
         searchPage.clickOnBookingList();
         searchPage.bookingNextButton();
@@ -77,12 +80,14 @@ public class IndigoTest extends BaseTest {
         searchPage = new SearchPage(driver);
         seatPage = new SeatPage(driver);
         elementUtils = new ElementUtils(driver);
+        validFarePage = new ValidFarePage(driver);
         welcomePage.clickLogin();
         searchPage.clickOnTo();
         searchPage.searchPlace("Mumbai");
         LogUtils.info("Select Destination city");
         searchPage.clickOnMumbaiFlight();
-        welcomePage.clickOnFutureDate();
+        validFarePage.clickOnFutureDate();
+        //welcomePage.clickOnFutureDate();
         searchPage.clickOnSearchButton();
         searchPage.clickOnBookingList();
         searchPage.bookingNextButton();
@@ -115,6 +120,7 @@ public class IndigoTest extends BaseTest {
         searchPage = new SearchPage(driver);
         modifyPage = new ModifyPage(driver);
         elementUtils = new ElementUtils(driver);
+        validFarePage = new ValidFarePage(driver);
         welcomePage.clickLogin();
         modifyPage.clickOnMyTrips();
         modifyPage.enterPnr("K3NL7E");
@@ -122,6 +128,7 @@ public class IndigoTest extends BaseTest {
         modifyPage.clickOnGetStarted();
         Thread.sleep(10000);
         modifyPage.clickOnModify();
+        Thread.sleep(10000);
         modifyPage.clickOnChangeFlightButton();
         modifyPage.clickOnCheckBox();
         Thread.sleep(2000);
@@ -129,7 +136,6 @@ public class IndigoTest extends BaseTest {
         modifyPage.clickOnFlightList();
         Thread.sleep(2000);
         modifyPage.clickOnNxtButton();
-
         modifyPage.modifyFlight();
         modifyPage.clickOnNxtButton();
         modifyPage.clickOnFinishButton();
@@ -151,14 +157,18 @@ public class IndigoTest extends BaseTest {
         modifyPage = new ModifyPage(driver);
         roundPage = new RoundPage(driver);
         elementUtils = new ElementUtils(driver);
+        validFarePage = new ValidFarePage(driver);
         welcomePage.clickLogin();
         roundPage.selectRoundTrip();
         roundPage.clickOnToRoundTrip();
         roundPage.searchCity("Mumbai");
         LogUtils.info("Select Destination city");
         roundPage.clickOnMumbaiFlight();
-        roundPage.clickOnDate();
-        roundPage.clickOnReturneDate();
+       // roundPage.clickOnDate();
+        validFarePage.clickOnFutureDate();
+        Thread.sleep(5000);
+        validFarePage.clickOnReturnDate();
+       // roundPage.clickOnReturneDate();
         roundPage.clickOnSearchButton();
         searchPage.clickOnBookingList();
         searchPage.bookingNextButton();
@@ -194,6 +204,7 @@ public class IndigoTest extends BaseTest {
         multiCity = new MultiCity(driver);
         roundPage = new RoundPage(driver);
         elementUtils = new ElementUtils(driver);
+        validFarePage = new ValidFarePage(driver);
         welcomePage.clickLogin();
         multiCity.clickOnMultiCity();
         Thread.sleep(2000);
@@ -201,13 +212,14 @@ public class IndigoTest extends BaseTest {
         searchPage.searchPlace("Mumbai");
         LogUtils.info("Select Destination city");
         searchPage.clickOnMumbaiFlight();
-        welcomePage.clickOnFutureDate();
+        validFarePage.clickOnFutureDate();
         multiCity.clickOnTo2();
         searchPage.searchPlace("Agra");
         LogUtils.info("Select Destination city");
         multiCity.clickOnAgraFlight();
-        multiCity.clickOnDate();
-        Thread.sleep(4000);
+       // multiCity.clickOnDate();
+        validFarePage.clickOnReturnDate();
+        Thread.sleep(10000);
         elementUtils.scrollToElementByText("Search");
         roundPage.clickOnSearchButton();
         roundPage.clickOnReturnFlight();

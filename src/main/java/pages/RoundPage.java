@@ -24,7 +24,7 @@ public class RoundPage {
     private WebElement searchCity;
     @FindBy(xpath = "//android.widget.TextView[@text='Chhatrapati Shivaji Maharaj International Airport']")
     private WebElement mumbaiFlight;
-    @FindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup")
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Search\"]")
     private WebElement searchButton;
 
     @FindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup")

@@ -24,6 +24,15 @@ public class WelcomePage {
         driver.findElement(By.xpath("//android.widget.TextView[@text='" + fututreDate + "']")).click();
     }
 
+    public  String printFutureDate() throws InterruptedException {
+        ElementUtils el = new ElementUtils(driver);
+        String fututreDate = el.clickDate();
+        Thread.sleep(2000);
+     String fututreDate1 =driver.findElement(By.xpath("//android.widget.TextView[@text='" + fututreDate + "']")).getText();
+        System.out.println(fututreDate1);
+return fututreDate1;
+
+    }
 
     @FindBy(xpath = "//android.view.View[@resource-id=\"a\"]")
     public WebElement guestUser;

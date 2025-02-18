@@ -58,7 +58,7 @@ public class SearchPage {
     @FindBy(xpath = "//android.widget.TextView[@text='Next']")
     private WebElement nextButton;
 
-    @FindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup")
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Search\"]")
     private WebElement searchButton;
 
     @FindBy(xpath = "//android.widget.EditText[@resource-id='firstName']")
@@ -237,6 +237,20 @@ public class SearchPage {
         System.out.println("PNR Details: " + pnrDetails4);
         System.out.println("PNR Details: " + pnrDetails5);
         System.out.println("PNR Details: " + pnrDetails2);
+
+    }
+
+    public String validateDate() throws InterruptedException {
+        Thread.sleep(20000);
+
+        WebElement pnr5 = driver.findElements(By.className("android.widget.TextView")).get(5);
+        WebElement pnr6 = driver.findElements(By.className("android.widget.TextView")).get(6);
+        elementUtils.waitAndClickElement(pnr5, 50);
+        System.out.println("PNR Details: " + pnr5.getText());
+       return pnr5.getText();
+
+
+
 
     }
 
