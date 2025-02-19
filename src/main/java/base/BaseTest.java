@@ -23,7 +23,7 @@ public class BaseTest extends ListenerImplement
 {
     @BeforeSuite
     public void setupSuite() {
-        System.out.println("Test Suite Setup - Run Once Before Suite");
+        //System.out.println("Test Suite Setup - Run Once Before Suite");
     }
 
     public static AndroidDriver driver;
@@ -91,7 +91,7 @@ public class BaseTest extends ListenerImplement
 
     @AfterSuite
     public void cleanupSuite() {
-        System.out.println("Test Suite Cleanup - Run Once After Suite");
+        //System.out.println("Test Suite Cleanup - Run Once After Suite");
     }
 
 }

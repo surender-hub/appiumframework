@@ -7,10 +7,7 @@ import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -60,7 +57,7 @@ public class ElementUtils {
         String fiveDaysLater = getDateAfterDays(5);
 
         System.out.println("Today's date: " + today);
-        System.out.println("Skipping the date: " + fiveDaysLater);
+        System.out.println("Future  date: " + fiveDaysLater);
 
         String date = fiveDaysLater.substring(0, 2);
         int dat = Integer.parseInt(date);
@@ -85,8 +82,6 @@ public class ElementUtils {
         // Define the XPath locator for the calendar dates (Modify if necessary)
 
     }
-
-
 
 
     public void scrollDown() {
@@ -116,6 +111,7 @@ public class ElementUtils {
 
 
     }
+
     //Using resource ID
     public WebElement scrollToElementByResourceId(String resourceId) {
         return driver.findElement(AppiumBy.androidUIAutomator(
@@ -128,20 +124,24 @@ public class ElementUtils {
                 "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + text + "\"))"));
     }
 
-
     public void waitAndClickElement(WebElement element, int timeout) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-        // Wait until the element is visible
         wait.until(ExpectedConditions.visibilityOf(element));
-        // Wait until the element is enabled
         wait.until(ExpectedConditions.elementToBeClickable(element));
-        // Click the element once it is visible, enabled, and displayed
         if (element.isEnabled() && element.isDisplayed()) {
             element.click();
-            System.out.println("Element clicked!");
+            System.out.println("Element clicked successfully!");
         } else {
             System.out.println("Element is either not enabled or not displayed.");
         }
     }
 
+
+    public void waitForElement(WebElement element, int timeout)
+    {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+        wait.until(ExpectedConditions.visibilityOf(element));
+
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
 }

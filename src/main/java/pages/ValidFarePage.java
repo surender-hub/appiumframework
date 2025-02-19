@@ -12,8 +12,7 @@ import utils.ElementUtils;
 import java.time.LocalDate;
 import java.util.List;
 
-public class ValidFarePage
-{
+public class ValidFarePage {
     private AndroidDriver driver;
     private ElementUtils elementUtils;
     List<WebElement> elements;
@@ -23,9 +22,8 @@ public class ValidFarePage
     private WebElement selectMultiCity;
     @FindBy(xpath = "//android.widget.TextView[@text=\"TOTAL FARE\"]/following-sibling::android.view.ViewGroup[1]//android.widget.TextView")
     private WebElement getFareText;
-    @FindBy(xpath ="//android.widget.TextView[@content-desc='clk_text' and starts-with(@text, '₹')]")
+    @FindBy(xpath = "//android.widget.TextView[@content-desc='clk_text' and starts-with(@text, '₹')]")
     private WebElement getExpectedText;
-
 
 
     public ValidFarePage(AndroidDriver driver) {
@@ -69,67 +67,46 @@ public class ValidFarePage
     public String getActualText() throws InterruptedException {
         Thread.sleep(5000);
         String actualText = getFareText.getText();
-        actualText=actualText.replaceAll("\\s+", "").trim();
-        System.out.println("Actual txt" +actualText);
-        return  actualText;
+        actualText = actualText.replaceAll("\\s+", "").trim();
+        System.out.println("Actual txt" + actualText);
+        return actualText;
     }
 
     @Step("Get Expected Text")
-    public String getExpectedText()
-    {
+    public String getExpectedText() {
         String expected = getExpectedText.getText().trim();
         return expected;
     }
 
-    public void clickOnFutureDate() throws InterruptedException {
-        String fututreDate = clickDate();
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//android.widget.TextView[@text='" + fututreDate + "']")).click();
-    }
-
-    public String clickDate() {
-        // Get today's date and the date 5 days from today
+    public void clickOnFutureDate(int daysAhead) throws InterruptedException {
         LocalDate today = LocalDate.now();
-        String fiveDaysLater = getDateAfterDays(3);
+        LocalDate futureDate = today.plusDays(daysAhead);
+        String date = String.valueOf(futureDate.getDayOfMonth());
+        String currentMonth = today.getMonth().name();
+        String futureMonth = futureDate.getMonth().name();
         System.out.println("Today's date: " + today);
-        System.out.println("Select Future date: " + fiveDaysLater);
-        String date = fiveDaysLater.substring(0, 2);
-        int dat = Integer.parseInt(date);
-        String parseMonth = today.getMonth().name();
-        System.out.println("Month Number "+parseMonth);
-        return date;
-        // Define the XPath locator for the calendar dates (Modify if necessary)
-
-    }
-    public String getDateAfterDays(int daysToAdd) {
-        return DateUtils.getDateAfterDays(daysToAdd, "dd/MM/yyyy");
-    }
-
-    public void clickOnReturnDate() throws InterruptedException {
-        String fututreDate = clickReturnDate();
+        System.out.println("Selecting future date: " + futureDate);
+        System.out.println("Current Month: " + currentMonth);
+        System.out.println("Future Month: " + futureMonth);
+        if (!currentMonth.equals(futureMonth)) {
+            driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc=\"Next Month\"]/com.horcrux.svg.SvgView")).click();
+            Thread.sleep(2000);
+        }
         Thread.sleep(2000);
-        List<WebElement> elements = driver.findElements(By.xpath("//android.widget.TextView[@text='" + fututreDate + "']"));
-        if (!elements.isEmpty()) {
-            for (WebElement ele : elements) {
-                ele.click();
-                System.out.println("Clicked on every element");
+        List<WebElement> dateElements = driver.findElements(By.xpath("//android.widget.TextView[@text='" + date + "']"));
+
+        for (int i = 0; i < dateElements.size(); i++) {
+            List<WebElement> updatedDateElements = driver.findElements(By.xpath("//android.widget.TextView[@text='" + date + "']"));
+            if (!updatedDateElements.isEmpty() && i < updatedDateElements.size()) {
+                System.out.println("Clicking date: " + date);
+                updatedDateElements.get(i).click();
+                Thread.sleep(1000);
             }
         }
     }
-    public String clickReturnDate() {
-        // Get today's date and the date 8 days from today
-        LocalDate today = LocalDate.now();
-        String fiveDaysLater = getDateAfterDays(5);
 
-        String retMonth = today.getMonth().name();
-        System.out.println("Return month "+retMonth);
-        System.out.println("Today's date: " + today);
-        System.out.println("Skipping the date: " + fiveDaysLater);
-        String date = fiveDaysLater.substring(0, 2);
-        int dat = Integer.parseInt(date);
-        return date;
-        // Define the XPath locator for the calendar dates (Modify if necessary)
-
+    public String getFutureDate(int daysAhead) {
+        LocalDate futureDate = LocalDate.now().plusDays(daysAhead);
+        return String.valueOf(futureDate.getDayOfMonth());
     }
-
 }

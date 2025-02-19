@@ -142,7 +142,9 @@ public class SearchPage {
 
     @Step("Enter User Details")
     public void enterUserDetails(String firstname, String lastname, String Dob, String MobileNumber, String mailId) throws InterruptedException {
+        Thread.sleep(2000);
         elementUtils.waitAndClickElement(firstName, 20);
+        Thread.sleep(2000);
         firstName.sendKeys(firstname);
         Thread.sleep(2000);
         elementUtils.scrollToElementByResourceId("lastName");
@@ -164,11 +166,14 @@ public class SearchPage {
 
     @Step("Click on Net Banking")
     public void clickOnNetBanking() {
+        elementUtils.scrollToElementByText("Net banking");
         elementUtils.waitAndClickElement(netBanking, 50);
     }
 
     @Step("Click on Add  Bank")
     public void clickOnAddBank() {
+        elementUtils.scrollToElementByText("+MORE BANKS");
+
         elementUtils.waitAndClickElement(addBank, 50);
     }
 
@@ -221,6 +226,10 @@ public class SearchPage {
         WebElement pnr4 = driver.findElements(By.className("android.widget.TextView")).get(4);
         WebElement pnr5 = driver.findElements(By.className("android.widget.TextView")).get(5);
         WebElement pnr6 = driver.findElements(By.className("android.widget.TextView")).get(6);
+        WebElement pnr7 = driver.findElements(By.className("android.widget.TextView")).get(7);
+        WebElement pnr8 = driver.findElements(By.className("android.widget.TextView")).get(8);
+        WebElement pnr9 = driver.findElements(By.className("android.widget.TextView")).get(9);
+        WebElement pnr10 = driver.findElements(By.className("android.widget.TextView")).get(10);
         elementUtils.waitAndClickElement(pnr1, 50);
         String pnrDetails = pnr1.getText();
         System.out.println("PNR Details: " + pnrDetails);
@@ -230,24 +239,32 @@ public class SearchPage {
         String pnrDetails3 = pnr3.getText();
         String pnrDetails4 = pnr4.getText();
         String pnrDetails5 = pnr5.getText();
+        String pnrDetails6 = pnr6.getText();
+        String pnrDetails7 = pnr6.getText();
+        String pnrDetails8 = pnr6.getText();
+        String pnrDetails9 = pnr6.getText();
+        String pnrDetails10 = pnr6.getText();
+
         //String pnrDetails =  pnr1.getText();
         //System.out.println("PNR Details: "+pnrDetails);
         System.out.println("PNR Details: " + pnrDetails2);
         System.out.println("PNR Details: " + pnrDetails3);
         System.out.println("PNR Details: " + pnrDetails4);
         System.out.println("PNR Details: " + pnrDetails5);
-        System.out.println("PNR Details: " + pnrDetails2);
+        System.out.println("PNR Details: " + pnrDetails6);
 
     }
 
     public String validateDate() throws InterruptedException {
         Thread.sleep(20000);
 
-        WebElement pnr5 = driver.findElements(By.className("android.widget.TextView")).get(5);
-        WebElement pnr6 = driver.findElements(By.className("android.widget.TextView")).get(6);
-        elementUtils.waitAndClickElement(pnr5, 50);
-        System.out.println("PNR Details: " + pnr5.getText());
-       return pnr5.getText();
+//        WebElement pnr5 = driver.findElements(By.className("android.widget.TextView")).get(5);
+//        WebElement pnr6 = driver.findElements(By.className("android.widget.TextView")).get(6);
+//        elementUtils.waitAndClickElement(pnr5, 50);
+//        System.out.println("PNR Details: " + pnr5.getText());
+        elementUtils.scrollToElementByText("Departure Flight");
+        String DestinationDate = driver.findElement(By.xpath(" (//android.widget.TextView[@text=\"Departure Flight\"]/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup//android.widget.TextView)[1]")).getText();
+       return DestinationDate;
 
 
 

@@ -35,7 +35,7 @@ public class IndigoTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser Booking Ticket Flow")
     @Story("User should be able to Book Ticket")
-    public void indigoUatFLow1() throws InterruptedException {
+    public void generatePnrOneWay() throws InterruptedException {
         LogUtils.info("Guest User booking ticket using skip to payment");
         welcomePage = new WelcomePage(driver);
         searchPage = new SearchPage(driver);
@@ -46,10 +46,10 @@ public class IndigoTest extends BaseTest {
         searchPage.searchPlace("Mumbai");
         LogUtils.info("Select Destination city");
         searchPage.clickOnMumbaiFlight();
-        validFarePage.clickOnFutureDate();
-       // welcomePage.clickOnFutureDate();
+        validFarePage.clickOnFutureDate(3);
         searchPage.clickOnSearchButton();
         searchPage.clickOnBookingList();
+        Thread.sleep(5000);
         searchPage.bookingNextButton();
         searchPage.enterUserDetails("surender", "pal", "01/04/1993", "6474634463", "surende@gmail.com");
         LogUtils.info("Enter User Details");
@@ -63,9 +63,6 @@ public class IndigoTest extends BaseTest {
         searchPage.clickOnButtonResponse();
         searchPage.getPnrDetails();
         LogUtils.info("PNR Details Generated");
-        //      currentPackage = driver.getCurrentPackage();
-//        driver.terminateApp(currentPackage);
-//        driver.activateApp(currentPackage);
     }
 
     @Test(priority = 2, description = "TC_002 - Verify the Guest user select seat and generate PNR")
@@ -74,7 +71,7 @@ public class IndigoTest extends BaseTest {
     @Feature("GuestUser Booking Ticket Flow ans select seat")
     @Story("User should be able to Book Ticket by selecting seat")
 
-    public void indigoUatFLow2() throws InterruptedException {
+    public void generatePnrSelectSeatOneWay() throws InterruptedException {
         LogUtils.info("Guest User booking ticket using skip to payment");
         welcomePage = new WelcomePage(driver);
         searchPage = new SearchPage(driver);
@@ -86,8 +83,7 @@ public class IndigoTest extends BaseTest {
         searchPage.searchPlace("Mumbai");
         LogUtils.info("Select Destination city");
         searchPage.clickOnMumbaiFlight();
-        validFarePage.clickOnFutureDate();
-        //welcomePage.clickOnFutureDate();
+        validFarePage.clickOnFutureDate(3);
         searchPage.clickOnSearchButton();
         searchPage.clickOnBookingList();
         searchPage.bookingNextButton();
@@ -114,7 +110,7 @@ public class IndigoTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser Modify the PNR id he wants")
     @Story("Guest User should be able to modify the PNR details")
-    public void indigoFlow3() throws InterruptedException {
+    public void modifyPnrDetails() throws InterruptedException {
         LogUtils.info("Guest User Modify the PNR");
         welcomePage = new WelcomePage(driver);
         searchPage = new SearchPage(driver);
@@ -150,7 +146,7 @@ public class IndigoTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser book round trip")
     @Story("Guest User should be able to book round trip")
-    public void indigoFlow4() throws InterruptedException {
+    public void generatePnrRoundWay() throws InterruptedException {
         LogUtils.info("Round Trip booking");
         welcomePage = new WelcomePage(driver);
         searchPage = new SearchPage(driver);
@@ -164,11 +160,9 @@ public class IndigoTest extends BaseTest {
         roundPage.searchCity("Mumbai");
         LogUtils.info("Select Destination city");
         roundPage.clickOnMumbaiFlight();
-       // roundPage.clickOnDate();
-        validFarePage.clickOnFutureDate();
+        validFarePage.clickOnFutureDate(3);
         Thread.sleep(5000);
-        validFarePage.clickOnReturnDate();
-       // roundPage.clickOnReturneDate();
+        validFarePage.clickOnFutureDate(5);
         roundPage.clickOnSearchButton();
         searchPage.clickOnBookingList();
         searchPage.bookingNextButton();
@@ -197,7 +191,7 @@ public class IndigoTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser book MultiCity")
     @Story("Guest User should be able to book Multi CIty")
-    public void indigoFlow5() throws InterruptedException {
+    public void generatePnrMultiCityWay() throws InterruptedException {
         LogUtils.info("Multi City");
         welcomePage = new WelcomePage(driver);
         searchPage = new SearchPage(driver);
@@ -212,13 +206,12 @@ public class IndigoTest extends BaseTest {
         searchPage.searchPlace("Mumbai");
         LogUtils.info("Select Destination city");
         searchPage.clickOnMumbaiFlight();
-        validFarePage.clickOnFutureDate();
+        validFarePage.clickOnFutureDate(3);
         multiCity.clickOnTo2();
         searchPage.searchPlace("Agra");
         LogUtils.info("Select Destination city");
         multiCity.clickOnAgraFlight();
-       // multiCity.clickOnDate();
-        validFarePage.clickOnReturnDate();
+        validFarePage.clickOnFutureDate(5);
         Thread.sleep(10000);
         elementUtils.scrollToElementByText("Search");
         roundPage.clickOnSearchButton();
@@ -247,13 +240,5 @@ public class IndigoTest extends BaseTest {
     }
 
 }
-
-
-//How to call
-// captureScreenshotStep("After opening the website");
-//    @Step("Screenshot: {0}")
-//    public void captureScreenshotStep(String description) {
-//        AllureUtils.takeScreenshot(driver);
-//    }
 
 
