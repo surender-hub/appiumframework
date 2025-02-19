@@ -160,7 +160,7 @@ public class SeatPage {
         WebElement elem = driver.findElement(By.xpath("//com.horcrux.svg.CircleView"));
         elementUtils.waitAndClickElement(elem, 50);
         //seatPage.clickOnSeat();
-
+        Thread.sleep(5000);
         System.out.println(driver.findElement(By.xpath("//android.widget.TextView[@text=\"1 Seats Added\"]")).getText());
 
     }
