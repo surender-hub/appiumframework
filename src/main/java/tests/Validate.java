@@ -53,11 +53,19 @@ public class Validate extends BaseTest {
         LogUtils.info("Enter User Details");
         searchPage.clickOnSkipToPayment();
         Thread.sleep(5000);
-        Assert.assertEquals(validFarePage.getActualText(), validFarePage.getExpectedText(), "Test Failed: Texts do NOT match!");
+        searchPage.clickOnNetBanking();
+        searchPage.clickOnAddBank();
+        searchPage.searchAvenue("av");
+        LogUtils.info("Select Avenue payment method");
+        searchPage.clickOnAvenuePayment();
+        searchPage.clickOnAvenueButtonPay();
+        searchPage.clickOnButtonResponse();
+        Thread.sleep(5000);
+        elementUtils.scrollToElementByText("Total fare");
+        String totalFareOnPnrScreen = validFarePage.getTotalFare();
+        Assert.assertEquals(validFarePage.getActualText(), totalFareOnPnrScreen, "Test Failed: Texts do NOT match!");
         System.out.println("Actual Text " + validFarePage.getActualText() + " " + " Expected text " + validFarePage.getExpectedText());
     }
-
-
     @Test(priority = 2, description = "TC_002 -Compare Fare details Round Trip")
     @Description("Verify GuestUser compare Fare in round trip")
     @Severity(SeverityLevel.CRITICAL)

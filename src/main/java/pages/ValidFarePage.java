@@ -109,4 +109,20 @@ public class ValidFarePage {
         LocalDate futureDate = LocalDate.now().plusDays(daysAhead);
         return String.valueOf(futureDate.getDayOfMonth());
     }
+
+
+    public String getTotalFare() {
+        String fareXPath = "(//android.view.ViewGroup[.//android.widget.TextView[contains(@text, 'Total')]]//android.widget.TextView[contains(@text, '₹')])[9]";
+        try {
+            // Locate the element
+            WebElement fareElement = driver.findElement(By.xpath(fareXPath));
+            // Get text value
+            String fareValue = fareElement.getText();
+            // Remove ₹ symbol and trim spaces
+            return fareValue.replace("₹", "").trim();
+        } catch (Exception e) {
+            System.out.println("Error fetching fare: " + e.getMessage());
+            return null;
+        }
+    }
 }
