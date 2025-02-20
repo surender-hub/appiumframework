@@ -161,9 +161,16 @@ public class SearchPage {
 
     @Step("Click on Skip To Payment")
     public void clickOnSkipToPayment() {
-        elementUtils.waitAndClickElement(skipToPayment, 50);
+        if(!skipToPayment.isDisplayed())
+        {
+            elementUtils.waitForElement(nextButton,50);
+            nextButton.click();
+        }
+        else {
+            elementUtils.waitAndClickElement(skipToPayment, 50);
+        }
     }
-
+@Test(retryAnalyzer = RetryAnalyzer.class)
     @Step("Click on Net Banking")
     public void clickOnNetBanking() {
         elementUtils.scrollToElementByText("Net banking");
