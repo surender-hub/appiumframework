@@ -161,17 +161,14 @@ public class SearchPage {
 
     @Step("Click on Skip To Payment")
     public void clickOnSkipToPayment() {
-        if(!skipToPayment.isDisplayed())
-        {
-            elementUtils.waitForElement(nextButton,50);
+        if (!skipToPayment.isDisplayed()) {
+            elementUtils.waitForElement(nextButton, 50);
             nextButton.click();
-        }
-        else {
+        } else {
             elementUtils.waitAndClickElement(skipToPayment, 50);
         }
     }
-@Test(retryAnalyzer = RetryAnalyzer.class)
-    @Step("Click on Net Banking")
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void clickOnNetBanking() {
         elementUtils.scrollToElementByText("Net banking");
         elementUtils.waitAndClickElement(netBanking, 50);
@@ -180,7 +177,6 @@ public class SearchPage {
     @Step("Click on Add  Bank")
     public void clickOnAddBank() {
         elementUtils.scrollToElementByText("+MORE BANKS");
-
         elementUtils.waitAndClickElement(addBank, 50);
     }
 
@@ -204,25 +200,17 @@ public class SearchPage {
     @Step("Click On Click on Response")
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void clickOnButtonResponse() {
-//        WebElement responseButton = driver.findElement(AppiumBy.androidUIAutomator(
-//               "new UiSelector().resourceId('btn')"));
-//        responseButton.click();
-        //new UiSelector().resourceId("btn")
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        js.executeScript("arguments[0].click();",buttonResponse);
-        // buttonResponse.click();
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Wait up to 10 sec
-
         try {
             wait.until(ExpectedConditions.elementToBeClickable(buttonResponse)).click();
             System.out.println("Button clicked successfully.");
         } catch (Exception e) {
             System.out.println("Failed to click button: " + e.getMessage());
-            throw e; // Throw exception to trigger retry
+            throw e;
         }
+        //String dynamicXPath = "//android.widget.Button[@resource-id='btn' and @text='Send Response']";
+        //driver.findElement(By.xpath(dynamicXPath)).click();
         //elementUtils.waitAndClickElement(textButton, 20);
-
     }
 
     public void getPnrDetails() throws InterruptedException {
@@ -271,9 +259,7 @@ public class SearchPage {
 //        System.out.println("PNR Details: " + pnr5.getText());
         elementUtils.scrollToElementByText("Departure Flight");
         String DestinationDate = driver.findElement(By.xpath(" (//android.widget.TextView[@text=\"Departure Flight\"]/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup//android.widget.TextView)[1]")).getText();
-       return DestinationDate;
-
-
+        return DestinationDate;
 
 
     }

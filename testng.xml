@@ -4,6 +4,7 @@
         <classes>
             <class name="tests.IndigoTest"/>
             <class name="tests.Validate"/>
+            <class name="tests.LoginTest"/>
         </classes>
     </test>
 </suite>

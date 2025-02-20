@@ -67,8 +67,8 @@ public class ValidFarePage {
     public String getActualText() throws InterruptedException {
         Thread.sleep(5000);
         String actualText = getFareText.getText();
-        actualText = actualText.replaceAll("\\s+", "").trim();
-        System.out.println("Actual txt" + actualText);
+        actualText = actualText.replaceAll("\\s+", "").replace("₹", "").trim();
+        System.out.println("Actual Text: " + actualText);
         return actualText;
     }
 
@@ -112,14 +112,19 @@ public class ValidFarePage {
 
 
     public String getTotalFare() {
-        String fareXPath = "(//android.view.ViewGroup[.//android.widget.TextView[contains(@text, 'Total')]]//android.widget.TextView[contains(@text, '₹')])[9]";
+        String fareXPath = "(//android.view.ViewGroup[.//android.widget.TextView[contains(@text, 'Total')]]//android.widget.TextView[contains(@text, '₹')])";
         try {
-            // Locate the element
-            WebElement fareElement = driver.findElement(By.xpath(fareXPath));
-            // Get text value
-            String fareValue = fareElement.getText();
-            // Remove ₹ symbol and trim spaces
-            return fareValue.replace("₹", "").trim();
+            List<WebElement> fareElements = driver.findElements(By.xpath(fareXPath));
+            if (fareElements.isEmpty()) {
+                System.out.println("No fare elements found!");
+                return null;
+            }
+            WebElement lastFareElement = fareElements.get(fareElements.size() - 1);
+            lastFareElement.click();
+            String fareValue = lastFareElement.getText();
+            String cleanedFare = fareValue.replace("₹", "").replace(",", "").trim();
+            System.out.println("Total value: " + cleanedFare);
+            return cleanedFare;
         } catch (Exception e) {
             System.out.println("Error fetching fare: " + e.getMessage());
             return null;

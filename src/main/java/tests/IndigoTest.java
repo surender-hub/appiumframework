@@ -26,7 +26,6 @@ public class IndigoTest extends BaseTest {
     private RoundPage roundPage;
     private MultiCity multiCity;
     private ValidFarePage validFarePage;
-
     private ElementUtils elementUtils;
     String currentPackage;
 
