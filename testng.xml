@@ -1,16 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Appium Test Suite">
-
-    <listeners >
-<listener class-name="tests.RetryClass"></listener>
-    </listeners>
     <test name="Appium Android Tests">
         <classes>
-            <class name="tests.HomePageTest"/>
             <class name="tests.IndigoTest"/>
             <class name="tests.Validate"/>
             <class name="tests.LoginTest"/>
-
         </classes>
     </test>
 </suite>

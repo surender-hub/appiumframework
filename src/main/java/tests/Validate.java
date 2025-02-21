@@ -2,6 +2,7 @@ package tests;
 
 import base.BaseTest;
 import io.qameta.allure.*;
+import listener.RetryAnalyzer;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -25,7 +26,7 @@ public class Validate extends BaseTest {
     private int actualFare;
 
 
-    @Test(priority = 1, description = "TC_001 -Compare Fare details")
+    @Test(priority = 1, description = "TC_001 -Compare Fare details", retryAnalyzer = RetryAnalyzer.class)
     @Description("Verify GuestUser compare fare")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")
@@ -70,7 +71,7 @@ public class Validate extends BaseTest {
         Assert.assertEquals(fareString, totalFareOnPnrScreen, "Test Failed: Fares do NOT match!");
     }
 
-    @Test(priority = 2, description = "TC_002 -Compare Fare details Round Trip")
+    @Test(priority = 2, description = "TC_002 -Compare Fare details Round Trip", retryAnalyzer = RetryAnalyzer.class)
     @Description("Verify GuestUser compare Fare in round trip")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")
@@ -127,7 +128,7 @@ public class Validate extends BaseTest {
         System.out.println("Actual Text " + actualtotalFare + " " + " Expected text " + totalFareOnPnrScreen);
     }
 
-    @Test(priority = 3, description = "TC_003 -Compare Fare details in Multi city")
+    @Test(priority = 3, description = "TC_003 -Compare Fare details in Multi city", retryAnalyzer = RetryAnalyzer.class)
     @Description("Verify GuestUser compare Fare in Multi city")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")
@@ -189,7 +190,7 @@ public class Validate extends BaseTest {
         System.out.println("Actual Text " + fareString + " " + " Expected text " + totalFareOnPnrScreen);
     }
 
-    @Test(priority = 4, description = "TC_004 -Compare Date details one Way")
+    @Test(priority = 4, description = "TC_004 -Compare Date details one Way", retryAnalyzer = RetryAnalyzer.class)
     @Description("Verify GuestUser compare Date in One Way")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")
@@ -232,7 +233,7 @@ public class Validate extends BaseTest {
         LogUtils.info("Validate Date Succesfully");
     }
 
-    @Test(priority = 5, description = "TC_005 -Compare Date details Round Way")
+    @Test(priority = 5, description = "TC_005 -Compare Date details Round Way", retryAnalyzer = RetryAnalyzer.class)
     @Description("Verify GuestUser compare Date in One Way")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")
@@ -309,7 +310,7 @@ public class Validate extends BaseTest {
     }
 
 
-    @Test(priority = 6, description = "TC_006 -Compare Date details Multiple Way")
+    @Test(priority = 6, description = "TC_006 -Compare Date details Multiple Way", retryAnalyzer = RetryAnalyzer.class)
     @Description("Verify GuestUser compare Date in One Way")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")

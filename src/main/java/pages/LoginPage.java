@@ -52,13 +52,6 @@ public class LoginPage {
     private WebElement indigoTextButton;
 
 
-
-
-
-
-
-
-
     public LoginPage(AndroidDriver driver) {
         this.driver = driver;
         this.elementUtils = new ElementUtils(driver);
@@ -75,7 +68,6 @@ public class LoginPage {
     @Step("Click on Continue Button")
     public void clickOnContinue() {
         elementUtils.waitAndClickElement(continueButton, 50);
-
     }
 
     @Step("Enter password: {password}")
@@ -148,9 +140,7 @@ public class LoginPage {
     public void verifyContinueButtonClicking() {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-            // Wait for the error message to be visible
             wait.until(ExpectedConditions.visibilityOf(bookFlight));
-            // Assert that the message is displayed
             Assert.assertTrue(bookFlight.isDisplayed(), "Validation message is not visible.");
             System.out.println("Validation message is visible: " + bookFlight.getText());
 

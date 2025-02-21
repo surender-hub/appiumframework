@@ -3,6 +3,7 @@ package tests;
 import base.BaseTest;
 import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.*;
+import listener.RetryAnalyzer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
@@ -19,7 +20,7 @@ public class LoginTest extends BaseTest {
     String expectedText = "INDIGO BLUCHIP";
 
 
-    @Test(priority = 1, description = "TC_001 -Login page")
+    @Test(priority = 1, description = "TC_001 - Login page", retryAnalyzer = RetryAnalyzer.class)
     @Description("Enter Valid Mobile Number")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check Valid Mobile Number feature")
@@ -32,7 +33,7 @@ public class LoginTest extends BaseTest {
         loginPage.verifyLoginOrPersonalInfoVisibility();
     }
 
-    @Test(priority = 2, description = "TC_002 -Login page")
+    @Test(priority = 2, description = "TC_002 -Login page", retryAnalyzer = RetryAnalyzer.class)
     @Description("Enter Valid Email address")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check Valid email feature")
@@ -44,7 +45,7 @@ public class LoginTest extends BaseTest {
         loginPage.verifyLoginOrPersonalInfoVisibility();
     }
 
-    @Test(priority = 3, description = "TC_003 -Login page")
+    @Test(priority = 3, description = "TC_003 -Login page", retryAnalyzer = RetryAnalyzer.class)
     @Description("Enter Invalid Mobile number")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check invalid mobile number")
@@ -55,7 +56,7 @@ public class LoginTest extends BaseTest {
         loginPage.verifyInvalidNumberMessage();
     }
 
-    @Test(priority = 4, description = "TC_004 -Login page")
+    @Test(priority = 4, description = "TC_004 -Login page", retryAnalyzer = RetryAnalyzer.class)
     @Description("Enter Invalid email address")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check invalid email address")
@@ -66,7 +67,7 @@ public class LoginTest extends BaseTest {
         loginPage.verifyInvalidEmailMessage();
     }
 
-    @Test(priority = 5, description = "TC_005 -Login page")
+    @Test(priority = 5, description = "TC_005 -Login page", retryAnalyzer = RetryAnalyzer.class)
     @Description("Click on continue as a guest button")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check button clicking")
@@ -77,7 +78,7 @@ public class LoginTest extends BaseTest {
         loginPage.verifyContinueButtonClicking();
     }
 
-    @Test(priority = 6, description = "TC_006 -Login page")
+    @Test(priority = 6, description = "TC_006 -Login page", retryAnalyzer = RetryAnalyzer.class)
     @Description("Click Terms and Condition link text")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check button clicking")
@@ -86,6 +87,5 @@ public class LoginTest extends BaseTest {
         loginPage = new LoginPage(driver);
         loginPage.clickOnTermsAndConditionButton();
         loginPage.verifyTextInWebView();
-
     }
 }
