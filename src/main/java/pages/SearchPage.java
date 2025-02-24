@@ -6,6 +6,8 @@ import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
+import listener.RetryAnalyzerLocal;
+import listener.RetryAnalyzerResponse;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -95,7 +97,7 @@ public class SearchPage {
     @FindBy(xpath = "//android.widget.RelativeLayout[@content-desc=\"btn_pay\"]/android.widget.LinearLayout")
     private WebElement buttonAvenuePay;
 
-    @FindBy(xpath = "//android.widget.Button[@resource-id=\"btn\"]")
+    @FindBy(xpath = "//android.widget.Button[@text=\"Send Response \"]")
     private WebElement buttonResponse;
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"Fri, 07 Feb | 04h 15m | YV2M7G\"]")
@@ -134,6 +136,9 @@ public class SearchPage {
         elementUtils.waitAndClickElement(searchButton, 50);
     }
 
+    @FindBy(xpath = "//android.view.ViewGroup[@resource-id=\"seatSelectionSectorTestID1\"]")
+    private WebElement selectReturnSeat;
+
     @Step("Select Next for Payment")
     public void bookingNextButton() throws InterruptedException {
         Thread.sleep(5000);
@@ -168,6 +173,7 @@ public class SearchPage {
             elementUtils.waitAndClickElement(skipToPayment, 50);
         }
     }
+
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void clickOnNetBanking() {
         elementUtils.scrollToElementByText("Net banking");
@@ -198,9 +204,10 @@ public class SearchPage {
     }
 
     @Step("Click On Click on Response")
-    @Test(retryAnalyzer = RetryAnalyzer.class)
-    public void clickOnButtonResponse() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Wait up to 10 sec
+    //@Test(retryAnalyzer = RetryAnalyzerResponse.class)
+    public void clickOnButtonResponse() throws InterruptedException {
+        Thread.sleep(5000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
             wait.until(ExpectedConditions.elementToBeClickable(buttonResponse)).click();
             System.out.println("Button clicked successfully.");
@@ -208,9 +215,6 @@ public class SearchPage {
             System.out.println("Failed to click button: " + e.getMessage());
             throw e;
         }
-        //String dynamicXPath = "//android.widget.Button[@resource-id='btn' and @text='Send Response']";
-        //driver.findElement(By.xpath(dynamicXPath)).click();
-        //elementUtils.waitAndClickElement(textButton, 20);
     }
 
     public void getPnrDetails() throws InterruptedException {
@@ -263,6 +267,8 @@ public class SearchPage {
 
 
     }
+
+
 
 
 }

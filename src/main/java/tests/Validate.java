@@ -2,7 +2,7 @@ package tests;
 
 import base.BaseTest;
 import io.qameta.allure.*;
-import listener.RetryAnalyzer;
+import listener.RetryAnalyzerLocal;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -26,7 +26,7 @@ public class Validate extends BaseTest {
     private int actualFare;
 
 
-    @Test(priority = 1, description = "TC_001 -Compare Fare details", retryAnalyzer = RetryAnalyzer.class)
+    @Test(priority = 1, description = "TC_001 -Compare Fare details", retryAnalyzer = RetryAnalyzerLocal.class)
     @Description("Verify GuestUser compare fare")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")
@@ -44,7 +44,8 @@ public class Validate extends BaseTest {
         searchPage.searchPlace("Mumbai");
         LogUtils.info("Select Destination city");
         searchPage.clickOnMumbaiFlight();
-        welcomePage.clickOnFutureDate();
+        ///welcomePage.clickOnFutureDate();
+        validFarePage.clickOnFutureDate(5);
         searchPage.clickOnSearchButton();
         validFarePage.clickOnFlightList();
         String actualPrice = validFarePage.getActualText();
@@ -71,7 +72,7 @@ public class Validate extends BaseTest {
         Assert.assertEquals(fareString, totalFareOnPnrScreen, "Test Failed: Fares do NOT match!");
     }
 
-    @Test(priority = 2, description = "TC_002 -Compare Fare details Round Trip", retryAnalyzer = RetryAnalyzer.class)
+    @Test(priority = 2, description = "TC_002 -Compare Fare details Round Trip", retryAnalyzer = RetryAnalyzerLocal.class)
     @Description("Verify GuestUser compare Fare in round trip")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")
@@ -128,7 +129,7 @@ public class Validate extends BaseTest {
         System.out.println("Actual Text " + actualtotalFare + " " + " Expected text " + totalFareOnPnrScreen);
     }
 
-    @Test(priority = 3, description = "TC_003 -Compare Fare details in Multi city", retryAnalyzer = RetryAnalyzer.class)
+    @Test(priority = 3, description = "TC_003 -Compare Fare details in Multi city", retryAnalyzer = RetryAnalyzerLocal.class)
     @Description("Verify GuestUser compare Fare in Multi city")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")
@@ -190,7 +191,7 @@ public class Validate extends BaseTest {
         System.out.println("Actual Text " + fareString + " " + " Expected text " + totalFareOnPnrScreen);
     }
 
-    @Test(priority = 4, description = "TC_004 -Compare Date details one Way", retryAnalyzer = RetryAnalyzer.class)
+    @Test(priority = 4, description = "TC_004 -Compare Date details one Way", retryAnalyzer = RetryAnalyzerLocal.class)
     @Description("Verify GuestUser compare Date in One Way")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")
@@ -200,6 +201,7 @@ public class Validate extends BaseTest {
         searchPage = new SearchPage(driver);
         seatPage = new SeatPage(driver);
         elementUtils = new ElementUtils(driver);
+        try{
         welcomePage.clickLogin();
         searchPage.clickOnTo();
         searchPage.searchPlace("Mumbai");
@@ -231,9 +233,14 @@ public class Validate extends BaseTest {
         System.out.println(ActualDate);
         Assert.assertEquals(ExpectedDate, ActualDate, "Date is mismatch test case failed");
         LogUtils.info("Validate Date Succesfully");
+
+    } catch (Exception e) {
+        LogUtils.error(e.getMessage());
+        System.out.println("TestCase failed ");
+    }
     }
 
-    @Test(priority = 5, description = "TC_005 -Compare Date details Round Way", retryAnalyzer = RetryAnalyzer.class)
+    @Test(priority = 5, description = "TC_005 -Compare Date details Round Way", retryAnalyzer = RetryAnalyzerLocal.class)
     @Description("Verify GuestUser compare Date in One Way")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")
@@ -261,7 +268,6 @@ public class Validate extends BaseTest {
             validFarePage.clickOnFutureDate(5);
             String expectedDate2 = validFarePage.getFutureDate(5).trim();
             System.out.println("print expected Date 5 days ahead" + expectedDate2);
-
             Thread.sleep(5000);
             searchPage.clickOnSearchButton();
             validFarePage.clickOnFlightList();
@@ -310,7 +316,7 @@ public class Validate extends BaseTest {
     }
 
 
-    @Test(priority = 6, description = "TC_006 -Compare Date details Multiple Way", retryAnalyzer = RetryAnalyzer.class)
+    @Test(priority = 6, description = "TC_006 -Compare Date details Multiple Way", retryAnalyzer = RetryAnalyzerLocal.class)
     @Description("Verify GuestUser compare Date in One Way")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")

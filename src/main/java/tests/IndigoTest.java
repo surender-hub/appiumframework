@@ -2,21 +2,12 @@ package tests;
 
 
 import base.BaseTest;
-import com.google.common.collect.ImmutableMap;
-import io.appium.java_client.AppiumBy;
 import io.qameta.allure.*;
-import listener.RetryAnalyzer;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.SourceType;
+import listener.RetryAnalyzerLocal;
 import org.testng.annotations.Test;
 import pages.*;
 import utils.ElementUtils;
 import utils.LogUtils;
-
-import java.util.List;
 
 public class IndigoTest extends BaseTest {
 
@@ -30,7 +21,7 @@ public class IndigoTest extends BaseTest {
     private ElementUtils elementUtils;
     String currentPackage;
 
-    @Test(priority = 1, description = "TC_001 - Verify the Guest user generate PNR")
+    @Test(priority = 1, description = "TC_001 - Verify the Guest user generate PNR", retryAnalyzer = RetryAnalyzerLocal.class)
     @Description("Verify GuestUser booking ticket end-to-end flow")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser Booking Ticket Flow")
@@ -48,7 +39,7 @@ public class IndigoTest extends BaseTest {
         searchPage.clickOnMumbaiFlight();
         validFarePage.clickOnFutureDate(3);
         searchPage.clickOnSearchButton();
-        searchPage.clickOnBookingList();
+        validFarePage.clickOnFlightList();
         Thread.sleep(5000);
         searchPage.bookingNextButton();
         searchPage.enterUserDetails("surender", "pal", "01/04/1993", "6474634463", "surende@gmail.com");
@@ -65,7 +56,7 @@ public class IndigoTest extends BaseTest {
         LogUtils.info("PNR Details Generated");
     }
 
-    @Test(priority = 2, description = "TC_002 - Verify the Guest user select seat and generate PNR")
+    @Test(priority = 2, description = "TC_002 - Verify the Guest user select seat and generate PNR", retryAnalyzer = RetryAnalyzerLocal.class)
     @Description("Verify GuestUser booking ticket by selecting seat end-to-end flow")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser Booking Ticket Flow ans select seat")
@@ -84,7 +75,7 @@ public class IndigoTest extends BaseTest {
         searchPage.clickOnMumbaiFlight();
         validFarePage.clickOnFutureDate(3);
         searchPage.clickOnSearchButton();
-        searchPage.clickOnBookingList();
+        validFarePage.clickOnFlightReturn();
         searchPage.bookingNextButton();
         searchPage.enterUserDetails("ahyil", "pal", "02/04/1953", "6474344463", "Indisddftusneo@gmail.com");
         LogUtils.info("Enter User Details");
@@ -103,7 +94,7 @@ public class IndigoTest extends BaseTest {
 
     }
 
-    @Test(priority = 3, description = "TC_003 - Modify the PNR details")
+    @Test(priority = 3, description = "TC_003 - Modify the PNR details", retryAnalyzer = RetryAnalyzerLocal.class)
     @Description("Verify GuestUser modify the PNR details")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser Modify the PNR id he wants")
@@ -139,7 +130,7 @@ public class IndigoTest extends BaseTest {
     }
 
 
-    @Test(priority = 4, description = "TC_004 -Round  Trip booking")
+    @Test(priority = 4, description = "TC_004 -Round  Trip booking", retryAnalyzer = RetryAnalyzerLocal.class)
     @Description("Verify GuestUser booked the round trip")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser book round trip")
@@ -162,9 +153,11 @@ public class IndigoTest extends BaseTest {
         Thread.sleep(5000);
         validFarePage.clickOnFutureDate(5);
         roundPage.clickOnSearchButton();
-        searchPage.clickOnBookingList();
+        //searchPage.clickOnBookingList();
+        validFarePage.clickOnFlightReturn();
         searchPage.bookingNextButton();
-        roundPage.clickOnReturnFlight();
+        validFarePage.clickOnFlightReturn();
+        //roundPage.clickOnReturnFlight();
         Thread.sleep(6000);
         roundPage.nextButton();
         Thread.sleep(5000);
@@ -184,7 +177,7 @@ public class IndigoTest extends BaseTest {
     }
 
 
-    @Test(priority = 5, description = "TC_005 -MultiCity booking")
+    @Test(priority = 5, description = "TC_005 -MultiCity booking", retryAnalyzer = RetryAnalyzerLocal.class)
     @Description("Verify GuestUser booked Multi city flight")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser book MultiCity")
@@ -213,10 +206,12 @@ public class IndigoTest extends BaseTest {
         Thread.sleep(10000);
         elementUtils.scrollToElementByText("Search");
         roundPage.clickOnSearchButton();
-        roundPage.clickOnReturnFlight();
+        //roundPage.clickOnReturnFlight();
+        validFarePage.clickOnFlightReturn();
         Thread.sleep(6000);
         roundPage.nextButton();
-        roundPage.clickOnReturnFlight();
+        validFarePage.clickOnFlightReturn();
+        //roundPage.clickOnReturnFlight();
         Thread.sleep(6000);
         roundPage.nextButton();
         Thread.sleep(5000);
@@ -235,6 +230,55 @@ public class IndigoTest extends BaseTest {
         Thread.sleep(10000);
         searchPage.getPnrDetails();
         LogUtils.info("PNR Details Generated");
+    }
+
+
+    @Test(priority = 6, description = "TC_006 -Round  Trip booking Select seat on both way", retryAnalyzer = RetryAnalyzerLocal.class)
+    @Description("Verify GuestUser booked the round trip with selecting seat")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("GuestUser book round trip with selecting seat")
+    @Story("Guest User should be able to book round trip with seat on both way")
+    public void generatePnrRoundWaySelectSeat() throws InterruptedException {
+        LogUtils.info("Round Trip booking");
+        welcomePage = new WelcomePage(driver);
+        searchPage = new SearchPage(driver);
+        modifyPage = new ModifyPage(driver);
+        roundPage = new RoundPage(driver);
+        elementUtils = new ElementUtils(driver);
+        validFarePage = new ValidFarePage(driver);
+        welcomePage.clickLogin();
+        roundPage.selectRoundTrip();
+        roundPage.clickOnToRoundTrip();
+        roundPage.searchCity("Mumbai");
+        LogUtils.info("Select Destination city");
+        roundPage.clickOnMumbaiFlight();
+        validFarePage.clickOnFutureDate(3);
+        Thread.sleep(5000);
+        validFarePage.clickOnFutureDate(5);
+        roundPage.clickOnSearchButton();
+        //searchPage.clickOnBookingList();
+        validFarePage.clickOnFlightReturn();
+        searchPage.bookingNextButton();
+        validFarePage.clickOnFlightReturn();
+        //roundPage.clickOnReturnFlight();
+        Thread.sleep(6000);
+        roundPage.nextButton();
+        Thread.sleep(5000);
+        searchPage.enterUserDetails("anil", "pal", "04/04/1953", "6474344463", "abc@gmail.com");
+        LogUtils.info("Enter User Details");
+
+
+       /* searchPage.clickOnSkipToPayment();
+        searchPage.clickOnNetBanking();
+        searchPage.clickOnAddBank();
+        searchPage.searchAvenue("av");
+        LogUtils.info("Select Avenue payment method");
+        searchPage.clickOnAvenuePayment();
+        searchPage.clickOnAvenueButtonPay();
+        searchPage.clickOnButtonResponse();
+        Thread.sleep(10000);
+        searchPage.getPnrDetails();
+        LogUtils.info("PNR Details Generated");*/
     }
 }
 

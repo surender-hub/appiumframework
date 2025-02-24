@@ -34,7 +34,7 @@ public class LoginPage {
 
     @FindBy(xpath = "//android.widget.Button[@resource-id=\"phoneVerificationControl-readOnly_but_verify_code\"]")
     private WebElement verifyOtp;
-    @FindBy(xpath = "//android.widget.Button[@resource-id=\"next\"]")
+    @FindBy(xpath = "//android.widget.Button[@text=\"Login\"]")
     private WebElement loginButton;
     @FindBy(xpath = "//android.widget.TextView[@text=\"Personal Information\"]")
     private WebElement personalText;

@@ -1,15 +1,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Appium Test Suite">
     <listeners >
-        <listener class-name="tests.RetryClass"></listener>
+        <listener class-name="listener.RetryClass"></listener>
     </listeners>
     <test name="Appium Android Tests">
         <classes>
-            <class name="tests.HomePageTest"/>
             <class name="tests.IndigoTest"/>
             <class name="tests.Validate"/>
+            <class name="tests.HomePageTest"/>
             <class name="tests.LoginTest"/>
             <class name="tests.PrivacyPolicyTest"/>
+            <class name="tests.TermsAndConditons"/>
+            <class name="tests.RegistrationTest"/>
         </classes>
     </test>
 </suite>

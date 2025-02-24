@@ -26,6 +26,9 @@ public class ValidFarePage {
     private WebElement getExpectedText;
 
 
+
+
+
     public ValidFarePage(AndroidDriver driver) {
         this.driver = driver;
         this.elementUtils = new ElementUtils(driver);
