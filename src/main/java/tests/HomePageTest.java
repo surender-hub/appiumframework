@@ -63,7 +63,7 @@ public class HomePageTest extends BaseTest {
         homePage = new HomePage(driver);
         welcomePage.clickLogin();
         homePage.displayBookButton();
-        Thread.sleep(5000);
+
 
     }
 
@@ -127,7 +127,7 @@ public class HomePageTest extends BaseTest {
         homePage = new HomePage(driver);
         welcomePage.clickLogin();
         homePage.clickCheckInButton();
-        Thread.sleep(5000);
+
     }
 
 
@@ -166,7 +166,7 @@ public class HomePageTest extends BaseTest {
         homePage = new HomePage(driver);
         welcomePage.clickLogin();
         homePage.clickProfileButton();
-        Thread.sleep(5000);
+
     }
 
 
@@ -208,7 +208,7 @@ public class HomePageTest extends BaseTest {
         homePage = new HomePage(driver);
         welcomePage.clickLogin();
         homePage.clickExploreButton();
-        Thread.sleep(5000);
+
     }
 
     @Test(priority = 16, description = "TC_0016 - Verify the Leisure button is display or not ")
@@ -234,7 +234,7 @@ public class HomePageTest extends BaseTest {
         homePage = new HomePage(driver);
         welcomePage.clickLogin();
         homePage.workingLeisureButton();
-        Thread.sleep(5000);
+
     }
 
 
@@ -260,7 +260,7 @@ public class HomePageTest extends BaseTest {
         homePage = new HomePage(driver);
         welcomePage.clickLogin();
         homePage.workRadioButton();
-        Thread.sleep(5000);
+
     }
 
 
@@ -287,6 +287,34 @@ public class HomePageTest extends BaseTest {
         homePage = new HomePage(driver);
         welcomePage.clickLogin();
         homePage.workMedicalRadioButton();
-        Thread.sleep(5000);
+
+    }
+
+
+
+    @Test(priority = 22, description = "TC_0022 - Verify the RoundTrip button is Working or not ")
+    @Description("Verify RoundCity radio button is clickable for the guest user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("HomePage")
+    @Story("Verify whether the RoundTrip Radio  button is Clickable for the Guest user or not ")
+    public void verifyRoundTripRadioButtonWorking() throws InterruptedException {
+        welcomePage = new WelcomePage(driver);
+        homePage = new HomePage(driver);
+        welcomePage.clickLogin();
+        homePage.selectRoundRadioButton();
+
+    }
+
+
+    @Test(priority = 23, description = "TC_0023 - Verify the RoundTrip Radio button is display or not ")
+    @Description("Verify Medical Radio button is display for the guest user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("HomePage")
+    @Story("Verify whether the RoundTrip Radio  button is display for the Guest user or not ")
+    public void verifyRoundTripRadioButtonDisplay() throws InterruptedException {
+        welcomePage = new WelcomePage(driver);
+        homePage = new HomePage(driver);
+        welcomePage.clickLogin();
+        homePage.displayRoundCityButton();
     }
 }

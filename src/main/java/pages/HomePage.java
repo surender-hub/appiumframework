@@ -48,6 +48,9 @@ public class HomePage {
     @FindBy(xpath = "//android.widget.RadioButton[@content-desc=\"Medical unselected\"]/android.view.ViewGroup")
     public WebElement medicalRadioButton;
 
+    @FindBy(xpath = "//android.widget.RadioButton[@content-desc=\"Round trip unselected\"]/android.view.ViewGroup")
+    public WebElement roundRadioButton;
+
     public void displayMyTripButton() {
         if (myTripsButton.isDisplayed()) {
             System.out.println("My Trips Button is Displayed ");
@@ -279,9 +282,28 @@ public class HomePage {
         if (medicalRadioButton.isEnabled()) {
             medicalRadioButton.click();
             System.out.println("Medical radio Button is Selected ");
-        }
-        else {
+        } else {
             System.out.println("Medical radio  is not Selected ");
+            Assert.fail();
+        }
+
+
+    }
+        public void displayRoundCityButton() {
+            if (roundRadioButton.isDisplayed()) {
+                System.out.println("RoundTrip Radio Button is Displayed ");
+            } else {
+                System.out.println("RoundTrip Radio Button is not Displayed ");
+                Assert.fail();
+            }
+        }
+
+    public void selectRoundRadioButton() {
+        if (roundRadioButton.isEnabled()) {
+            roundRadioButton.click();
+            System.out.println("RoundTrip radio Button is Selected ");
+        } else {
+            System.out.println("RoundTrip radio  is not Selected ");
             Assert.fail();
         }
 }}
