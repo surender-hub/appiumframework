@@ -16,7 +16,7 @@ public class LoginTest extends BaseTest {
     String expectedText = "INDIGO BLUCHIP";
 
 
-    @Test(priority = 1, description = "TC_001 - Login page", retryAnalyzer = RetryAnalyzerLocal.class)
+    @Test(priority = 1, description = "TC_001 - Login page")
     @Description("Enter Valid Mobile Number")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check Valid Mobile Number feature")
@@ -41,7 +41,7 @@ public class LoginTest extends BaseTest {
         loginPage.verifyLoginOrPersonalInfoVisibility();
     }
 
-    @Test(priority = 3, description = "TC_003 -Login page", retryAnalyzer = RetryAnalyzerLocal.class)
+    @Test(priority = 3, description = "TC_003 -Login page")
     @Description("Enter Invalid Mobile number")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check invalid mobile number")
@@ -52,7 +52,7 @@ public class LoginTest extends BaseTest {
         loginPage.verifyInvalidNumberMessage();
     }
 
-    @Test(priority = 4, description = "TC_004 -Login page", retryAnalyzer = RetryAnalyzerLocal.class)
+    @Test(priority = 4, description = "TC_004 -Login page")
     @Description("Enter Invalid email address")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check invalid email address")
@@ -63,7 +63,7 @@ public class LoginTest extends BaseTest {
         loginPage.verifyInvalidEmailMessage();
     }
 
-    @Test(priority = 5, description = "TC_005 -Login page", retryAnalyzer = RetryAnalyzerLocal.class)
+    @Test(priority = 5, description = "TC_005 -Login page")
     @Description("Click on continue as a guest button")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check button clicking")
@@ -74,7 +74,7 @@ public class LoginTest extends BaseTest {
         loginPage.verifyContinueButtonClicking();
     }
 
-    @Test(priority = 6, description = "TC_006 -Login page", retryAnalyzer = RetryAnalyzerLocal.class)
+    @Test(priority = 6, description = "TC_006 -Login page")
     @Description("Click Terms and Condition link text")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check button clicking")

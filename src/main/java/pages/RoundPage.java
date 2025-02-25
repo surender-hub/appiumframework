@@ -103,6 +103,4 @@ public class RoundPage {
     public void nextButton() throws InterruptedException {
         elementUtils.waitAndClickElement(nxtButton, 20);
     }
-
-
 }

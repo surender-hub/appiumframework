@@ -102,7 +102,7 @@ public class ValidFarePage {
             List<WebElement> updatedDateElements = driver.findElements(By.xpath("//android.widget.TextView[@text='" + date + "']"));
             if (!updatedDateElements.isEmpty() && i < updatedDateElements.size()) {
                 System.out.println("Clicking date: " + date);
-                updatedDateElements.get(i).click();
+                elementUtils.waitAndClickElement(updatedDateElements.get(i),50);
                 Thread.sleep(1000);
             }
         }

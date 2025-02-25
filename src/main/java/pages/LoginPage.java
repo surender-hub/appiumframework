@@ -29,7 +29,8 @@ public class LoginPage {
     @FindBy(xpath = "//android.widget.TextView[@text=\"Continue\"]")
     private WebElement continueButton;
 
-    @FindBy(xpath = "//android.widget.EditText[@resource-id=\"password\"]")
+    //@FindBy(xpath = "//android.widget.EditText[@resource-id=\"password\"]")
+    @FindBy(xpath = "(//android.webkit.WebView[contains(@text, 'User details')]//android.widget.EditText)[2]")
     private WebElement enterPass;
 
     @FindBy(xpath = "//android.widget.Button[@resource-id=\"phoneVerificationControl-readOnly_but_verify_code\"]")
@@ -72,7 +73,8 @@ public class LoginPage {
 
     @Step("Enter password: {password}")
     public void enterPassword(String enterPassword) {
-        elementUtils.waitAndClickElement(enterPass, 50);
+        enterPass.click();
+       // elementUtils.waitAndClickElement(enterPass, 50);
         elementUtils.sendKeys(enterPass, enterPassword, 50);
     }
 

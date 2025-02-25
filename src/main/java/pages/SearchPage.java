@@ -25,6 +25,7 @@ import utils.ElementUtils;
 import utils.RetryAnalyzer;
 
 import java.time.Duration;
+import java.util.List;
 
 
 public class SearchPage {
@@ -54,7 +55,7 @@ public class SearchPage {
     @FindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]")
     private WebElement desBook;
 
-    @FindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]")
+    @FindBy(xpath = "(//android.widget.TextView[@text=\"Starts at\"])[1]")
     private WebElement bookingList;
 
     @FindBy(xpath = "//android.widget.TextView[@text='Next']")
@@ -72,7 +73,7 @@ public class SearchPage {
     @FindBy(xpath = "//android.widget.EditText[@resource-id='dateofbirth']")
     private WebElement dob;
 
-    @FindBy(xpath = "//android.widget.EditText[@text=\"Primary contact number\"]")
+    @FindBy(xpath = "//android.widget.EditText[@text=\"Flyer’s contact number\"]")
     private WebElement mobileNumber;
 
     @FindBy(xpath = "//android.widget.EditText[@resource-id=\"primaryEmail\"]")
@@ -122,8 +123,11 @@ public class SearchPage {
     }
 
     @Step("Click on first in booking List")
-    public void clickOnBookingList() {
-        elementUtils.waitAndClickElement(bookingList, 50);
+    public void clickOnBookingList() throws InterruptedException {
+        Thread.sleep(5000);
+       // elementUtils.waitAndClickElement(bookingList, 50);
+        bookingList.click();
+
     }
 
     @Step("Click on Booking")
@@ -138,6 +142,27 @@ public class SearchPage {
 
     @FindBy(xpath = "//android.view.ViewGroup[@resource-id=\"seatSelectionSectorTestID1\"]")
     private WebElement selectReturnSeat;
+
+
+
+    //Select Seat method
+    @FindBy(xpath = "//android.widget.TextView[@text='All seat']")
+    private WebElement allSeatText;
+
+    @FindBy(xpath = "//*[@text='Next']")
+    private WebElement nextButto;
+
+    @FindBy(xpath = "//*[@class='android.widget.ScrollView']/descendant::android.view.ViewGroup[contains(@resource-id,'seatSelectionSeatSelectTestID')]/descendant::android.widget.TextView")
+    private List<WebElement> availableSeats;
+
+    //@FindBy(xpath = "//com.horcrux.svg.CircleView")
+    @FindBy(xpath = "//*[@class='com.horcrux.svg.CircleView']")
+    private WebElement confirmSeatButton;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='1 Seats Added']")
+    private WebElement seatAddedText;
+
+
 
     @Step("Select Next for Payment")
     public void bookingNextButton() throws InterruptedException {
@@ -155,9 +180,9 @@ public class SearchPage {
         elementUtils.scrollToElementByResourceId("lastName");
         lastName.sendKeys(lastname);
         elementUtils.scrollToElementByResourceId("dateofbirth");
-        elementUtils.waitAndClickElement(dob, 20);
+        //elementUtils.waitAndClickElement(dob, 20);
         dob.sendKeys(Dob);
-        elementUtils.scrollToElementByText("Primary contact number");
+        elementUtils.scrollToElementByText("Flyer’s contact number");
         elementUtils.waitAndClickElement(mobileNumber, 20);
         mobileNumber.sendKeys(MobileNumber);
         elementUtils.scrollToElementByResourceId("primaryEmail");
@@ -167,7 +192,7 @@ public class SearchPage {
     @Step("Click on Skip To Payment")
     public void clickOnSkipToPayment() {
         if (!skipToPayment.isDisplayed()) {
-            elementUtils.waitForElement(nextButton, 50);
+            //elementUtils.waitForElement(nextButton, 50);
             nextButton.click();
         } else {
             elementUtils.waitAndClickElement(skipToPayment, 50);
@@ -254,21 +279,65 @@ public class SearchPage {
 
     }
 
-    public String validateDate() throws InterruptedException {
-        Thread.sleep(20000);
-
-//        WebElement pnr5 = driver.findElements(By.className("android.widget.TextView")).get(5);
-//        WebElement pnr6 = driver.findElements(By.className("android.widget.TextView")).get(6);
-//        elementUtils.waitAndClickElement(pnr5, 50);
-//        System.out.println("PNR Details: " + pnr5.getText());
-        elementUtils.scrollToElementByText("Departure Flight");
-        String DestinationDate = driver.findElement(By.xpath(" (//android.widget.TextView[@text=\"Departure Flight\"]/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup//android.widget.TextView)[1]")).getText();
-        return DestinationDate;
-
-
+    public void selectSeatDelhiToMumbai() throws InterruptedException {
+        while (true) {
+            try {
+                if (allSeatText.isDisplayed()) {
+                    break;
+                }
+            } catch (Exception e) {
+                nextButto.click();
+            }
+        }
+        // Scroll to end
+        driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"
+        ));
+        // Select first available seat
+        for (WebElement seat : availableSeats) {
+            if (seat.isEnabled()) {
+                Thread.sleep(5000);
+                seat.click();
+                break;
+            }
+        }
+        // Confirm seat selection
+        Thread.sleep(3000);
+        confirmSeatButton.click();
+        System.out.println("Seat selected from Delhi to Mumbai: "+seatAddedText.getText());
     }
+    public void selectSeatMumbaiToDelhi() throws InterruptedException {
+        Thread.sleep(5000);
+        elementUtils.scrollToElementByResourceId("seatSelectionSectorTestID1");
+        Thread.sleep(4000);
+        System.out.println("click on bon to delhi button");
+        selectReturnSeat.click();
+        //elementUtils.waitAndClickElement(selectReturnSeat, 50);
+        while (true) {
+            try {
+                if (allSeatText.isDisplayed()) {
+                    break;
+                }
+            } catch (Exception e) {
+                nextButto.click();
+            }
+        }
+        // Scroll to end
+        driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"
+        ));
 
-
-
-
+        // Select first available seat
+        for (WebElement seat : availableSeats) {
+            if (seat.isEnabled()) {
+                Thread.sleep(3000);
+                seat.click();
+                break;
+            }
+        }
+        Thread.sleep(5000);
+        confirmSeatButton.click();
+        //System.out.println("Seat selected from Mumbai to Delhi: "+seatAddedText.getText());
+        nextButton.click();
+    }
 }

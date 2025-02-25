@@ -8,7 +8,6 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import utils.AllureUtils;
 import utils.ConfigReader;
-import utils.ListenerImplement;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,9 +16,9 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 
-@Listeners(utils.ListenerImplement.class)
+//@Listeners(utils.ListenerImplement.class)
 
-public class BaseTest extends ListenerImplement
+public class BaseTest
 {
     @BeforeSuite
     public void setupSuite() {

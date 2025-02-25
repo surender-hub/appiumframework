@@ -21,7 +21,7 @@ public class RegistrationTest extends BaseTest {
     public SearchPage searchPage;
 
 
-    @Test(priority = 1, description = "TC_001 -Registration page", retryAnalyzer = RetryAnalyzerLocal.class)
+    @Test(priority = 1, description = "TC_001 -Registration page")
     @Description("Select first name and enter valid first name")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check Valid First Name must be enter")
@@ -33,7 +33,7 @@ public class RegistrationTest extends BaseTest {
         loginPage.clickOnContinue();
         registrationPage.enterFirstName("surender");
     }
-    @Test(priority = 2, description = "TC_002 -Registration page", retryAnalyzer = RetryAnalyzerLocal.class)
+    @Test(priority = 2, description = "TC_002 -Registration page")
     @Description("Select last name and enter Invalid last name")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check valid last Name")
@@ -46,7 +46,7 @@ public class RegistrationTest extends BaseTest {
         registrationPage.enterValidLastName("pal");
     }
 
-    @Test(priority = 3, description = "TC_003 -Registration page", retryAnalyzer = RetryAnalyzerLocal.class)
+    @Test(priority = 3, description = "TC_003 -Registration page")
     @Description("Select dob and enter valid dob")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check valid dob and no error message will be displayed.")
@@ -61,7 +61,7 @@ public class RegistrationTest extends BaseTest {
         registrationPage.checkValidDateOfBirth();
     }
 
-    @Test(priority = 4, description = "TC_004 -Registration page", retryAnalyzer = RetryAnalyzerLocal.class)
+    @Test(priority = 4, description = "TC_004 -Registration page")
     @Description("Select dob  and enter Invalid dob")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check Invalid dob and  displayed error message.")

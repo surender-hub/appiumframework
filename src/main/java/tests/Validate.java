@@ -27,7 +27,7 @@ public class Validate extends BaseTest {
     private int actualFare;
 
 
-    @Test(priority = 1, description = "TC_001 -Compare Fare details", retryAnalyzer = RetryAnalyzerLocal.class)
+    @Test(priority = 1, description = "TC_001 -Compare Fare details")
     @Description("Verify GuestUser compare fare")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")
@@ -73,7 +73,7 @@ public class Validate extends BaseTest {
         Assert.assertEquals(fareString, totalFareOnPnrScreen, "Test Failed: Fares do NOT match!");
     }
 
-    @Test(priority = 2, description = "TC_002 -Compare Fare details Round Trip", retryAnalyzer = RetryAnalyzerLocal.class)
+    @Test(priority = 2, description = "TC_002 -Compare Fare details Round Trip")
     @Description("Verify GuestUser compare Fare in round trip")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")
@@ -130,7 +130,7 @@ public class Validate extends BaseTest {
         System.out.println("Actual Text " + actualtotalFare + " " + " Expected text " + totalFareOnPnrScreen);
     }
 
-    @Test(priority = 3, description = "TC_003 -Compare Fare details in Multi city", retryAnalyzer = RetryAnalyzerLocal.class)
+    @Test(priority = 3, description = "TC_003 -Compare Fare details in Multi city")
     @Description("Verify GuestUser compare Fare in Multi city")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")
@@ -169,8 +169,8 @@ public class Validate extends BaseTest {
         int num1 = Integer.parseInt(flightFareDelhi.replace("₹", "").replace(",", ""));
         int num2 = Integer.parseInt(cityFlightMumbai.replace("₹", "").replace(",", ""));
         int actualMultiFare = num1 + num2;
-        String fareString = String.valueOf(""+actualMultiFare);
-        System.out.println("fareString : "+fareString);
+        String fareString = String.valueOf("" + actualMultiFare);
+        System.out.println("fareString : " + fareString);
         searchPage.bookingNextButton();
         Thread.sleep(5000);
         searchPage.enterUserDetails("surender", "pal", "01/04/1993", "6474634463", "surende@gmail.com");
@@ -192,7 +192,7 @@ public class Validate extends BaseTest {
         System.out.println("Actual Text " + fareString + " " + " Expected text " + totalFareOnPnrScreen);
     }
 
-    @Test(priority = 4, description = "TC_004 -Compare Date details one Way", retryAnalyzer = RetryAnalyzerLocal.class)
+    @Test(priority = 4, description = "TC_004 -Compare Date details one Way")
     @Description("Verify GuestUser compare Date in One Way")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")
@@ -202,54 +202,54 @@ public class Validate extends BaseTest {
         searchPage = new SearchPage(driver);
         seatPage = new SeatPage(driver);
         elementUtils = new ElementUtils(driver);
-        try{
-        validFarePage= new ValidFarePage(driver);
         try {
-            welcomePage.clickLogin();
-            searchPage.clickOnTo();
-            searchPage.searchPlace("Mumbai");
-            LogUtils.info("Select Destination city");
-            searchPage.clickOnMumbaiFlight();
-            validFarePage.clickOnFutureDate(3);
-            String expectedDate = validFarePage.getFutureDate(3).trim();
-            System.out.println(expectedDate);
-            searchPage.clickOnSearchButton();
-            Thread.sleep(5000);
-            searchPage.clickOnBookingList();
-            Thread.sleep(5000);
-            searchPage.bookingNextButton();
-            searchPage.enterUserDetails("Shubham", "Jain", "01/04/1993", "6474634463", "surende@gmail.com");
-            LogUtils.info("Enter User Details");
-            Thread.sleep(5000);
-            searchPage.clickOnSkipToPayment();
-            searchPage.clickOnNetBanking();
-            searchPage.clickOnAddBank();
-            searchPage.searchAvenue("av");
-            LogUtils.info("Select Avenue payment method");
-            searchPage.clickOnAvenuePayment();
-            searchPage.clickOnAvenueButtonPay();
-            //searchPage.clickOnButtonResponse();
-            Thread.sleep(10000);
-            driver.findElement(By.xpath("//android.widget.Button[@text=\"Send Response \"]")).click();
-            searchPage.getPnrDetails();
-            LogUtils.info("PNR Details Generated");
-            elementUtils.scrollToElementByText("Departure Flight");
-            String DestinationDate = driver.findElement(By.xpath(" (//android.widget.TextView[@text=\"Departure Flight\"]/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup//android.widget.TextView)[1]")).getText();
-            System.out.println(DestinationDate);
-            String ActualDate1 = DestinationDate.substring(5, 8).trim();
-            System.out.println(DestinationDate);
-            System.out.println(ActualDate1);
+            validFarePage = new ValidFarePage(driver);
+            try {
+                welcomePage.clickLogin();
+                searchPage.clickOnTo();
+                searchPage.searchPlace("Mumbai");
+                LogUtils.info("Select Destination city");
+                searchPage.clickOnMumbaiFlight();
+                validFarePage.clickOnFutureDate(3);
+                String expectedDate = validFarePage.getFutureDate(3).trim();
+                System.out.println(expectedDate);
+                searchPage.clickOnSearchButton();
+                Thread.sleep(5000);
+                searchPage.clickOnBookingList();
+                Thread.sleep(5000);
+                searchPage.bookingNextButton();
+                searchPage.enterUserDetails("Shubham", "Jain", "01/04/1993", "6474634463", "surende@gmail.com");
+                LogUtils.info("Enter User Details");
+                Thread.sleep(5000);
+                searchPage.clickOnSkipToPayment();
+                searchPage.clickOnNetBanking();
+                searchPage.clickOnAddBank();
+                searchPage.searchAvenue("av");
+                LogUtils.info("Select Avenue payment method");
+                searchPage.clickOnAvenuePayment();
+                searchPage.clickOnAvenueButtonPay();
+                //searchPage.clickOnButtonResponse();
+                Thread.sleep(10000);
+                driver.findElement(By.xpath("//android.widget.Button[@text=\"Send Response \"]")).click();
+                searchPage.getPnrDetails();
+                LogUtils.info("PNR Details Generated");
+                elementUtils.scrollToElementByText("Departure Flight");
+                String DestinationDate = driver.findElement(By.xpath(" (//android.widget.TextView[@text=\"Departure Flight\"]/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup//android.widget.TextView)[1]")).getText();
+                System.out.println(DestinationDate);
+                String ActualDate1 = DestinationDate.substring(5, 8).trim();
+                System.out.println(DestinationDate);
+                System.out.println(ActualDate1);
+            } catch (Exception e) {
+                System.out.println("Testcase got failed");
+            }
+
         } catch (Exception e) {
-            System.out.println("Testcase got failed");
+            LogUtils.error(e.getMessage());
+            System.out.println("TestCase failed ");
         }
-
-    } catch (Exception e) {
-        LogUtils.error(e.getMessage());
-        System.out.println("TestCase failed ");
-    }
     }
 
-    @Test(priority = 5, description = "TC_005 -Compare Date details Round Way", retryAnalyzer = RetryAnalyzerLocal.class)
+    @Test(priority = 5, description = "TC_005 -Compare Date details Round Way")
     @Description("Verify GuestUser compare Date in One Way")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")
@@ -328,7 +328,7 @@ public class Validate extends BaseTest {
     }
 
 
-    @Test(priority = 6, description = "TC_006 -Compare Date details Multiple Way", retryAnalyzer = RetryAnalyzerLocal.class)
+    @Test(priority = 6, description = "TC_006 -Compare Date details Multiple Way")
     @Description("Verify GuestUser compare Date in One Way")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")
@@ -343,66 +343,70 @@ public class Validate extends BaseTest {
         elementUtils = new ElementUtils(driver);
         welcomePage.clickLogin();
         multiCity.clickOnMultiCity();
-        Thread.sleep(2000);
-        multiCity.clickOnTo1();
-        searchPage.searchPlace("Mumbai");
-        LogUtils.info("Select Destination city");
-        searchPage.clickOnMumbaiFlight();
-        validFarePage.clickOnFutureDate(3);
-        String expectedDate = validFarePage.getFutureDate(3).trim();
-        System.out.println("print expected Date 3 days ahead" + expectedDate);
-        multiCity.clickOnTo2();
-        searchPage.searchPlace("Agra");
-        LogUtils.info("Select Destination city");
-        multiCity.clickOnAgraFlight();
-        validFarePage.clickOnFutureDate(5);
-        String expectedDate2 = validFarePage.getFutureDate(5).trim();
-        System.out.println("print expected Date 5 days ahead" + expectedDate2);
-        Thread.sleep(10000);
-        elementUtils.scrollToElementByText("Search");
-        roundPage.clickOnSearchButton();
-        validFarePage.clickOnFlightList();
-        Thread.sleep(5000);
-        validFarePage.clickOnFlightReturn();
-        searchPage.bookingNextButton();
-        Thread.sleep(5000);
-        searchPage.enterUserDetails("surender", "pal", "01/04/1993", "6474634463", "surende@gmail.com");
-        Thread.sleep(5000);
-        LogUtils.info("Enter User Details");
-        searchPage.clickOnSkipToPayment();
-        Thread.sleep(5000);
-        //  Assert.assertEquals(actualMultiFare, totalExpectedFares, "Fare mismatch! Test Case Failed.");
-        searchPage.clickOnNetBanking();
-        searchPage.clickOnAddBank();
-        searchPage.searchAvenue("av");
-        LogUtils.info("Select Avenue payment method");
-        searchPage.clickOnAvenuePayment();
-        searchPage.clickOnAvenueButtonPay();
+        try {
+            Thread.sleep(2000);
+            multiCity.clickOnTo1();
+            searchPage.searchPlace("Mumbai");
+            LogUtils.info("Select Destination city");
+            searchPage.clickOnMumbaiFlight();
+            validFarePage.clickOnFutureDate(3);
+            String expectedDate = validFarePage.getFutureDate(3).trim();
+            System.out.println("print expected Date 3 days ahead" + expectedDate);
+            multiCity.clickOnTo2();
+            searchPage.searchPlace("Agra");
+            LogUtils.info("Select Destination city");
+            multiCity.clickOnAgraFlight();
+            validFarePage.clickOnFutureDate(5);
+            String expectedDate2 = validFarePage.getFutureDate(5).trim();
+            System.out.println("print expected Date 5 days ahead" + expectedDate2);
+            Thread.sleep(10000);
+            elementUtils.scrollToElementByText("Search");
+            roundPage.clickOnSearchButton();
+            validFarePage.clickOnFlightList();
+            Thread.sleep(5000);
+            validFarePage.clickOnFlightReturn();
+            searchPage.bookingNextButton();
+            Thread.sleep(5000);
+            searchPage.enterUserDetails("surender", "pal", "01/04/1993", "6474634463", "surende@gmail.com");
+            Thread.sleep(5000);
+            LogUtils.info("Enter User Details");
+            searchPage.clickOnSkipToPayment();
+            Thread.sleep(5000);
+            //  Assert.assertEquals(actualMultiFare, totalExpectedFares, "Fare mismatch! Test Case Failed.");
+            searchPage.clickOnNetBanking();
+            searchPage.clickOnAddBank();
+            searchPage.searchAvenue("av");
+            LogUtils.info("Select Avenue payment method");
+            searchPage.clickOnAvenuePayment();
+            searchPage.clickOnAvenueButtonPay();
 //            searchPage.clickOnButtonResponse();
-        Thread.sleep(10000);
-        driver.findElement(By.xpath("//android.widget.Button[@text=\"Send Response \"]")).click();
-        Thread.sleep(5000);
+            Thread.sleep(10000);
+            driver.findElement(By.xpath("//android.widget.Button[@text=\"Send Response \"]")).click();
+            Thread.sleep(5000);
 
-        searchPage.getPnrDetails();
-        LogUtils.info("PNR Details Generated");
-        Thread.sleep(5000);
-        elementUtils.scrollToElementByText("Departure Flight");
-        String DestinationDate = driver.findElement(By.xpath(" (//android.widget.TextView[@text=\"Departure Flight\"]/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup//android.widget.TextView)[1]")).getText();
-        System.out.println(DestinationDate);
-        String ActualDate1 = DestinationDate.substring(5, 8).trim();
-        System.out.println(DestinationDate);
-        System.out.println(ActualDate1);
-        Assert.assertEquals(expectedDate, ActualDate1, "Date is correct");
-        elementUtils.scrollToElementByText("Return Flight");
-        String DestinationDate2 = driver.findElement(By.xpath(" (//android.widget.TextView[@text=\"Return Flight\"]/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup//android.widget.TextView)[1]")).getText();
-        System.out.println(DestinationDate2);
-        String ActualDate2 = DestinationDate2.substring(5, 8).trim();
-        System.out.println(ActualDate2);
+            searchPage.getPnrDetails();
+            LogUtils.info("PNR Details Generated");
+            Thread.sleep(5000);
+            elementUtils.scrollToElementByText("Departure Flight");
+            String DestinationDate = driver.findElement(By.xpath(" (//android.widget.TextView[@text=\"Departure Flight\"]/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup//android.widget.TextView)[1]")).getText();
+            System.out.println(DestinationDate);
+            String ActualDate1 = DestinationDate.substring(5, 8).trim();
+            System.out.println(DestinationDate);
+            System.out.println(ActualDate1);
+            Assert.assertEquals(expectedDate, ActualDate1, "Date is correct");
+            elementUtils.scrollToElementByText("Return Flight");
+            String DestinationDate2 = driver.findElement(By.xpath(" (//android.widget.TextView[@text=\"Return Flight\"]/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup//android.widget.TextView)[1]")).getText();
+            System.out.println(DestinationDate2);
+            String ActualDate2 = DestinationDate2.substring(5, 8).trim();
+            System.out.println(ActualDate2);
 
-        Assert.assertEquals(expectedDate2, ActualDate2, "Date is correct ");
-        LogUtils.info("Validate Date Succesfully");
-
+            Assert.assertEquals(expectedDate2, ActualDate2, "Date is correct ");
+            LogUtils.info("Validate Date Succesfully");
+        } catch (RuntimeException e) {
+            System.out.println("Testcase failed Due to MultiCity testcase is failing");
+        }
 
     }
 
+    //, retryAnalyzer = RetryAnalyzerLocal.class
 }

@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import constant.ThreadWaitClass;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import pages.*;
@@ -10,6 +11,7 @@ public class HomePageTest extends BaseTest {
 
     private WelcomePage welcomePage;
     private HomePage homePage;
+    private ThreadWaitClass threadWaitClass;
 
 
 
@@ -18,13 +20,11 @@ public class HomePageTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Feature("HomePage")
     @Story("Guest User should be able to  see the My Trips button")
-    public void verifyMyTripsButtonIsDisplayed()
-    {
+    public void verifyMyTripsButtonIsDisplayed() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
         homePage = new HomePage(driver);
         welcomePage.clickLogin();
         homePage.displayMyTripButton();
-
     }
 
     @Test(priority = 2, description = "TC_002 - Verify the My Trips button is enabled or not ")
@@ -32,8 +32,7 @@ public class HomePageTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Feature("HomePage")
     @Story("Verify whether the My Trips button is enabled for Guest user.")
-    public void verifyMyTripsButtonIsEnabled()
-    {
+    public void verifyMyTripsButtonIsEnabled() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
         homePage = new HomePage(driver);
         welcomePage.clickLogin();
@@ -97,8 +96,7 @@ public class HomePageTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Feature("HomePage")
     @Story("Guest User should be able to  see the Check-In  button")
-    public void verifyCheckInButtonIsDisplayed()
-    {
+    public void verifyCheckInButtonIsDisplayed() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
         homePage = new HomePage(driver);
         welcomePage.clickLogin();
@@ -138,8 +136,7 @@ public class HomePageTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Feature("HomePage")
     @Story("Guest User should be able to  see the Profile  button")
-    public void verifyProfileButtonIsDisplayed()
-    {
+    public void verifyProfileButtonIsDisplayed() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
         homePage = new HomePage(driver);
         welcomePage.clickLogin();
@@ -178,8 +175,7 @@ public class HomePageTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Feature("HomePage")
     @Story("Guest User should be able to  see the  Explore button")
-    public void verifyExploreButtonIsDisplayed()
-    {
+    public void verifyExploreButtonIsDisplayed() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
         homePage = new HomePage(driver);
         welcomePage.clickLogin();

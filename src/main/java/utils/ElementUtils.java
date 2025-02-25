@@ -1,22 +1,16 @@
 package utils;
 
-import ch.qos.logback.core.joran.event.stax.StaxEvent;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.PerformsTouchActions;
-import io.appium.java_client.TouchAction;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.PointerInput;
-import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
+
+import static base.BaseTest.driver;
 
 
 public class ElementUtils {
@@ -128,20 +122,33 @@ public class ElementUtils {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
         wait.until(ExpectedConditions.visibilityOf(element));
         wait.until(ExpectedConditions.elementToBeClickable(element));
-        if (element.isEnabled() && element.isDisplayed()) {
-            element.click();
-            System.out.println("Element clicked successfully!");
-        } else {
-            System.out.println("Element is either not enabled or not displayed.");
+
+        element.click();
+        // System.out.println("Element clicked successfully!");
+
+        //System.out.println("Element is either not enabled or not displayed.");
+    }
+
+       /* long endTime = System.currentTimeMillis() + (timeout * 1000);
+        while (System.currentTimeMillis() < endTime) {
+            try {
+                WebElement element = driver.findElement(locator); // Try to find the element dynamically
+
+                if (element != null) {
+                    element.click();  // Click the element immediately if found
+                    System.out.println("Element clicked successfully!");
+                    return;  // Exit after clicking
+                }
+            } catch (NoSuchElementException | ElementClickInterceptedException | StaleElementReferenceException e) {
+                // Ignore exceptions and keep retrying
+            }
         }
-    }
-
-
-    public void waitForElement(WebElement element, int timeout)
-    {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-        wait.until(ExpectedConditions.visibilityOf(element));
-
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-    }
+        System.out.println("Element not found within timeout.");*/
 }
+
+//public void waitForElement(WebElement element, int timeout) {
+//    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+//    //wait.until(ExpectedConditions.visibilityOf(element));
+//    wait.until(ExpectedConditions.elementToBeClickable(element));
+//}
+

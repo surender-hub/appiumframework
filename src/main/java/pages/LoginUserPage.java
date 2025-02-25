@@ -22,7 +22,7 @@ public class LoginUserPage
     private WebElement searchOnTo;
     @FindBy(xpath = "//android.widget.EditText[@text='Search place/airport']")
     private WebElement searchPlace;
-    @FindBy(xpath = "//android.widget.Button[@resource-id=\"next\"]")
+    @FindBy(xpath = "//android.widget.Button[@text=\"Login\"]")
     private WebElement loginButton;
     @FindBy(xpath = "//android.widget.TextView[@text='Chhatrapati Shivaji Maharaj International Airport']")
     private WebElement mumbaiFlight;
