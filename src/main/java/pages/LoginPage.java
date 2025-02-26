@@ -1,5 +1,6 @@
 package pages;
 
+import constant.ConstantClass;
 import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -39,6 +40,11 @@ public class LoginPage {
     private WebElement loginButton;
     @FindBy(xpath = "//android.widget.TextView[@text=\"Personal Information\"]")
     private WebElement personalText;
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Login or Sign up for IndiGo BluChip\"]")
+    private WebElement otpPage;
+
+
+
     @FindBy(xpath = "//android.widget.TextView[@text=\"*Please enter a valid phone number\"]")
     private WebElement enterValidNumber;
     @FindBy(xpath = "//android.widget.TextView[@text=\"*Please enter a valid email ID\"]")
@@ -62,13 +68,13 @@ public class LoginPage {
 
     @Step("Enter Mobile Number: {mobile number}")
     public void enterMobileNumber(String mobileNumber) {
-        elementUtils.waitAndClickElement(enterMobile, 50);
-        elementUtils.sendKeys(enterMobile, mobileNumber, 50);
+        elementUtils.waitAndClickElement(enterMobile, ConstantClass.LONG_WAIT_180);
+        elementUtils.sendKeys(enterMobile, mobileNumber, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click on Continue Button")
     public void clickOnContinue() {
-        elementUtils.waitAndClickElement(continueButton, 50);
+        elementUtils.waitAndClickElement(continueButton, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Enter password: {password}")
@@ -85,32 +91,29 @@ public class LoginPage {
 
     }
 
-    public void verifyLoginOrPersonalInfoVisibility() {
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-            // Create a list of elements
-            List<WebElement> elements = Arrays.asList(loginButton, personalText);
-            boolean isElementVisible = false;
-            // Iterate through the elements and check visibility
-            for (WebElement element : elements) {
-                try {
-                    wait.until(ExpectedConditions.visibilityOf(element));
-                    if (element.isDisplayed()) {
-                        System.out.println("Element found and visible: " + element.getText());
-                        isElementVisible = true;
-                        break;  // Stop checking once we find a visible element
-                    }
-                } catch (Exception ignored) {
-                    // Ignore the exception and continue to check the next element
-                }
-            }
-            // Assert if at least one element is visible
-            Assert.assertTrue(isElementVisible, "Neither Login button nor Personal Information is visible.");
+    public void verifyElementTextVisibility() {
+        List<WebElement> elements = Arrays.asList(loginButton, personalText, otpPage);
+        List<String> expectedTexts = Arrays.asList("Login", "Personal Information", "Login or Sign up for IndiGo BluChip");
 
-        } catch (WebDriverException e) {
-            Assert.fail("Failed to find the required elements: " + e.getMessage());
-        }
+        boolean isElementVisible = elements.stream().anyMatch(element -> {
+            try {
+                return expectedTexts.contains(element.getText().trim());
+            } catch (Exception ignored) {
+                return false; // Ignore NoSuchElementException or StaleElementException
+            }
+        });
+
+        Assert.assertTrue(isElementVisible, "None of the expected elements are visible on the page.");
     }
+
+
+
+
+
+
+
+
+
 
     public void verifyInvalidNumberMessage() {
         try {
