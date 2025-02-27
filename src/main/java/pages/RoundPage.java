@@ -1,5 +1,6 @@
 package pages;
 
+import constant.ConstantClass;
 import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
@@ -43,23 +44,23 @@ public class RoundPage {
 
     @Step("Select Round Trip")
     public void selectRoundTrip() {
-        elementUtils.waitAndClickElement(selectRoundTrip, 20);
+        elementUtils.waitAndClickElement(selectRoundTrip, ConstantClass.LONG_WAIT_180);
     }
     @Step("Select city in round trip")
     public void clickOnToRoundTrip() {
-        elementUtils.waitAndClickElement(searchOnTo, 20);
+        elementUtils.waitAndClickElement(searchOnTo, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Search City: {placeName}")
     public void searchCity(String cityName) {
-        elementUtils.waitAndClickElement(searchCity, 50);
-        elementUtils.sendKeys(searchCity, cityName, 50);
+        elementUtils.waitAndClickElement(searchCity, ConstantClass.LONG_WAIT_180);
+        elementUtils.sendKeys(searchCity, cityName, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Select Destination Mumbai from List")
     @Story("Searching a flight")
     public void clickOnMumbaiFlight() {
-        elementUtils.waitAndClickElement(mumbaiFlight, 50);
+        elementUtils.waitAndClickElement(mumbaiFlight, ConstantClass.LONG_WAIT_180);
     }
 
     public void clickOnDate() throws InterruptedException {
@@ -78,7 +79,7 @@ public class RoundPage {
 
     @Step("Search the available city")
     public void clickOnSearchButton() {
-        elementUtils.waitAndClickElement(searchButton, 50);
+        elementUtils.waitAndClickElement(searchButton, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click the return city")
@@ -101,6 +102,6 @@ public class RoundPage {
 
     @Step("Select Next for Payment")
     public void nextButton() throws InterruptedException {
-        elementUtils.waitAndClickElement(nxtButton, 20);
+        elementUtils.waitAndClickElement(nxtButton, ConstantClass.LONG_WAIT_180);
     }
 }

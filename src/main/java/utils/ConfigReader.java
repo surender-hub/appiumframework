@@ -26,6 +26,11 @@ public class ConfigReader {
             File file = new File(value);
             return file.getAbsolutePath();
         }
+        else if(key.equals("app.path2"))
+        {
+            File file = new File(value);
+            return file.getAbsolutePath();
+        }
 
         return value;
     }

@@ -1,6 +1,7 @@
 package pages;
 
 import base.BaseTest;
+import constant.ConstantClass;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
@@ -43,7 +44,7 @@ public class WelcomePage {
     public void clickLogin() throws InterruptedException {
         System.out.println("Login page");
         ElementUtils utils = new ElementUtils(driver);
-        utils.waitAndClickElement(guestUser, 100);
+        utils.waitAndClickElement(guestUser, ConstantClass.LONG_WAIT_180);
 
        /* ElementUtils utils = new ElementUtils(driver);
         LoginPage loginPage = new LoginPage(driver);

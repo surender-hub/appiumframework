@@ -45,10 +45,9 @@ public class IndigoTest extends BaseTest {
         validFarePage.clickOnFutureDate(3);
         searchPage.clickOnSearchButton();
         validFarePage.clickOnFlightList();
-        threadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);  // Waits for 5 seconds
-        Thread.sleep(5000);
+        //Thread.sleep(5000);
         searchPage.bookingNextButton();
-        searchPage.enterUserDetails("surender", "pal", "01/04/1993", "6474634463", "surende@gmail.com");
+        searchPage.enterUserDetails("surender", "pal", "01/04/1953", "6474634463", "surende@gmail.com");
         LogUtils.info("Enter User Details");
         searchPage.clickOnSkipToPayment();
         searchPage.clickOnNetBanking();
@@ -85,7 +84,8 @@ public class IndigoTest extends BaseTest {
         searchPage.clickOnMumbaiFlight();
         validFarePage.clickOnFutureDate(3);
         searchPage.clickOnSearchButton();
-        validFarePage.clickOnFlightReturn();
+        searchPage.clickOnBookingList();
+       // validFarePage.clickOnFlightReturn();
         searchPage.bookingNextButton();
         searchPage.enterUserDetails("ahyil", "pal", "02/04/1953", "6474344463", "Indisddftusneo@gmail.com");
         LogUtils.info("Enter User Details");
@@ -98,14 +98,13 @@ public class IndigoTest extends BaseTest {
         searchPage.clickOnAvenuePayment();
         searchPage.clickOnAvenueButtonPay();
         searchPage.clickOnButtonResponse();
-        Thread.sleep(10000);
+        //Thread.sleep(10000);
         searchPage.getPnrDetails();
         LogUtils.info("PNR Details Generated");
 
     }
 
     @Test(priority = 3, description = "TC_003 - Modify the PNR details")
-
     @Description("Verify GuestUser modify the PNR details")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser Modify the PNR id he wants")
@@ -123,15 +122,16 @@ public class IndigoTest extends BaseTest {
             modifyPage.enterPnr("K3NL7E");
             modifyPage.enterEmail("surender@gmail.com");
             modifyPage.clickOnGetStarted();
-            Thread.sleep(10000);
+            //Thread.sleep(10000);
             modifyPage.clickOnModify();
-            Thread.sleep(10000);
+            //Thread.sleep(10000);
             modifyPage.clickOnChangeFlightButton();
             modifyPage.clickOnCheckBox();
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
             modifyPage.clickOnProceedButton();
-            modifyPage.clickOnFlightList();
-            Thread.sleep(2000);
+            searchPage.clickOnBookingList();
+            //modifyPage.clickOnFlightList();
+            //Thread.sleep(2000);
             modifyPage.clickOnNxtButton();
             modifyPage.modifyFlight();
             modifyPage.clickOnNxtButton();
@@ -170,13 +170,13 @@ public class IndigoTest extends BaseTest {
         searchPage.clickOnBookingList();
         //validFarePage.clickOnFlightReturn();
         searchPage.bookingNextButton();
-        threadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);  // Waits for 5 seconds
+        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);  // Waits for 5 seconds
         searchPage.clickOnBookingList();
         //validFarePage.clickOnFlightReturn();
         //roundPage.clickOnReturnFlight();
-        Thread.sleep(6000);
+        //Thread.sleep(6000);
         roundPage.nextButton();
-        Thread.sleep(5000);
+        //Thread.sleep(5000);
         searchPage.enterUserDetails("anil", "pal", "04/04/1953", "6474344463", "abc@gmail.com");
         LogUtils.info("Enter User Details");
         searchPage.clickOnSkipToPayment();
@@ -187,7 +187,8 @@ public class IndigoTest extends BaseTest {
         searchPage.clickOnAvenuePayment();
         searchPage.clickOnAvenueButtonPay();
         searchPage.clickOnButtonResponse();
-        Thread.sleep(10000);
+        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
+        //Thread.sleep(10000);
         searchPage.getPnrDetails();
         LogUtils.info("PNR Details Generated");
     }

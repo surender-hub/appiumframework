@@ -122,13 +122,9 @@ public class ElementUtils {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
         wait.until(ExpectedConditions.visibilityOf(element));
         wait.until(ExpectedConditions.elementToBeClickable(element));
-
         element.click();
         // System.out.println("Element clicked successfully!");
-
-        //System.out.println("Element is either not enabled or not displayed.");
     }
-
        /* long endTime = System.currentTimeMillis() + (timeout * 1000);
         while (System.currentTimeMillis() < endTime) {
             try {

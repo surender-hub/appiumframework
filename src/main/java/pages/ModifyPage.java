@@ -1,5 +1,6 @@
 package pages;
 
+import constant.ConstantClass;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.PerformsTouchActions;
@@ -59,30 +60,30 @@ public class ModifyPage {
 
     @Step("Click on  My Trips on Bottom Bar ")
     public void clickOnMyTrips() {
-        elementUtils.waitAndClickElement(myTrips, 20);
+        elementUtils.waitAndClickElement(myTrips, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Enter PNR {Pnr details}")
     public void enterPnr(String pnrDetail) {
-        elementUtils.waitAndClickElement(pnrDetails, 50);
-        elementUtils.sendKeys(pnrDetails, pnrDetail, 50);
+        elementUtils.waitAndClickElement(pnrDetails, ConstantClass.LONG_WAIT_180);
+        elementUtils.sendKeys(pnrDetails, pnrDetail, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Enter EmailId {Pnr details}")
     public void enterEmail(String email) {
-        elementUtils.waitAndClickElement(emailId, 50);
-        elementUtils.sendKeys(emailId, email, 50);
+        elementUtils.waitAndClickElement(emailId, ConstantClass.LONG_WAIT_180);
+        elementUtils.sendKeys(emailId, email, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click on  Get Started Button after pnr details ")
     public void clickOnGetStarted() throws InterruptedException {
-        elementUtils.waitAndClickElement(getStarted, 20);
+        elementUtils.waitAndClickElement(getStarted, ConstantClass.LONG_WAIT_180);
         Thread.sleep(10000);
     }
 
     @Step("Click on Modify button")
     public void clickOnModify() throws InterruptedException {
-        elementUtils.waitAndClickElement(modifyButton, 50);
+        elementUtils.waitAndClickElement(modifyButton, ConstantClass.LONG_WAIT_180);
 //        System.out.println("Clicking Modify");
 //        driver.findElement(By.xpath("//android.widget.TextView[@text=\"Modify\"]")).click();
 //        Thread.sleep(10000);
@@ -100,27 +101,27 @@ public class ModifyPage {
 
     @Step("Click on change flight Button")
     public void clickOnChangeFlightButton() {
-        elementUtils.waitAndClickElement(changeFlightButton, 50);
+        elementUtils.waitAndClickElement(changeFlightButton, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click on Check Box")
     public void clickOnCheckBox() {
-        elementUtils.waitAndClickElement(checkBox, 50);
+        elementUtils.waitAndClickElement(checkBox, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click on Check Box")
     public void clickOnProceedButton() {
-        elementUtils.waitAndClickElement(proceedButton, 50);
+        elementUtils.waitAndClickElement(proceedButton, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click on Check Box")
     public void clickOnFlightList() {
-        elementUtils.waitAndClickElement(selectFlight, 50);
+        elementUtils.waitAndClickElement(selectFlight, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click on Check Box")
     public void clickOnNxtButton() {
-        elementUtils.waitAndClickElement(nxtButton, 20);
+        elementUtils.waitAndClickElement(nxtButton, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click on Next Button")
@@ -161,9 +162,10 @@ public class ModifyPage {
             } catch (Exception e) {
 
                 WebElement ele = driver.findElement(By.xpath("//*[@text ='Next']"));
-                ele.click();
+                elementUtils.waitAndClickElement(ele,ConstantClass.LONG_WAIT_180);
+                //ele.click();
 
-                Thread.sleep(2000);
+                //Thread.sleep(2000);
             }
         }
 
@@ -181,14 +183,16 @@ public class ModifyPage {
 
             System.out.println("Modify Seat Name " + seat.getText());
             if (seat.isEnabled()) {
-                seat.click();
+                elementUtils.waitAndClickElement(seat,ConstantClass.LONG_WAIT_180);
+               // seat.click();
                 break;
             }
         }
         Thread.sleep(5000);
         WebElement elem = driver.findElement(By.xpath("//com.horcrux.svg.CircleView"));
-        Thread.sleep(2000);
-        elem.click();
+        //Thread.sleep(2000);
+        //elem.click();
+
 
         System.out.println(driver.findElement(By.xpath("//android.widget.TextView[@text=\"1 Seats Added\"]")).getText());
         Thread.sleep(2000);

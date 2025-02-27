@@ -1,5 +1,7 @@
 package pages;
 
+import constant.ConstantClass;
+import constant.ThreadWaitClass;
 import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Step;
 import org.jspecify.annotations.Nullable;
@@ -68,25 +70,28 @@ public class RegistrationPage {
 
     @Step("Enter First Name: {first name}")
     public void enterFirstName(String firstName) {
-        elementUtils.waitAndClickElement(enterFirstName, 20);
-        elementUtils.sendKeys(enterFirstName, firstName, 20);
+        elementUtils.waitAndClickElement(enterFirstName, ConstantClass.LONG_WAIT_180);
+        elementUtils.sendKeys(enterFirstName, firstName, ConstantClass.LONG_WAIT_180);
+        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);  // Waits for 5 seconds
         Assert.assertEquals(validCheckFirstName.getText(), "surender", "First name input should be correct");
     }
     @Step("Enter last Name: {last name}")
     public void enterValidLastName(String lastName) {
-        elementUtils.waitAndClickElement(enterLastName, 20);
-        elementUtils.sendKeys(enterLastName, lastName, 20);
+        elementUtils.waitAndClickElement(enterLastName, ConstantClass.LONG_WAIT_180);
+        elementUtils.sendKeys(enterLastName, lastName, ConstantClass.LONG_WAIT_180);
+        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);  // Waits for 5 seconds
         Assert.assertEquals(checkValidLastname.getText(), "pal", "Last name input should be correct");
     }
 
     @Step("Enter valid dob: {dob}")
     public void enterValidDob(String validDob) {
-        elementUtils.waitAndClickElement(enterValidDob, 20);
-        elementUtils.sendKeys(enterValidDob, validDob, 20);
+        elementUtils.waitAndClickElement(enterValidDob, ConstantClass.LONG_WAIT_180);
+        elementUtils.sendKeys(enterValidDob, validDob, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Enter valid dob: {dob}")
     public void checkValidDateOfBirth() {
+        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);  // Waits for 5 seconds
         Assert.assertEquals(validDobCheck.getText(), "01-01-1991", "Data of birth input should be correct");
 
     }
@@ -94,8 +99,9 @@ public class RegistrationPage {
 
     @Step("Enter Invalid dob: {dob}")
     public void enterInvalidDob(String invalidDob) {
-        elementUtils.waitAndClickElement(clickDob, 20);
-        elementUtils.sendKeys(clickDob, invalidDob, 20);
+        elementUtils.waitAndClickElement(clickDob, ConstantClass.LONG_WAIT_180);
+        elementUtils.sendKeys(clickDob, invalidDob, ConstantClass.LONG_WAIT_180);
+        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
         Assert.assertEquals(invalidDobCheck.getText(), "Please enter valid date of birth", "Data of birth input is incorrect");
 
     }

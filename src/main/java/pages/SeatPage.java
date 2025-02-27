@@ -1,5 +1,6 @@
 package pages;
 
+import constant.ConstantClass;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.WebElement;
@@ -85,7 +86,8 @@ public class SeatPage {
        // nextButtonWithAccessbility.click();
         WebElement nextButton2 = driver.findElement(AppiumBy.androidUIAutomator(
           "new UiSelector().description(\"When press next button open new screen\")"));
-        nextButton2.click();
+        elementUtils.waitAndClickElement(nextButton2,ConstantClass.LONG_WAIT_180);
+       // nextButton2.click();
     }
 
 
@@ -123,10 +125,8 @@ public class SeatPage {
             } catch (Exception e) {
 
               WebElement ele =   driver.findElement(By.xpath("//*[@text ='Next']"));
-              Thread.sleep(2000);
-              elementUtils.waitAndClickElement(ele, 50);
-
-
+              //Thread.sleep(2000);
+              elementUtils.waitAndClickElement(ele, ConstantClass.LONG_WAIT_180);
 
             }
 

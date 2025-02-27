@@ -1,5 +1,7 @@
 package pages;
 
+import constant.ConstantClass;
+import constant.ThreadWaitClass;
 import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -17,6 +19,8 @@ public class ValidFarePage {
     private ElementUtils elementUtils;
     List<WebElement> elements;
     List<WebElement> elements1;
+    private ThreadWaitClass threadWaitClass;
+
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"Multi city\"]")
     private WebElement selectMultiCity;
@@ -24,9 +28,6 @@ public class ValidFarePage {
     private WebElement getFareText;
     @FindBy(xpath = "//android.widget.TextView[@content-desc='clk_text' and starts-with(@text, '₹')]")
     private WebElement getExpectedText;
-
-
-
 
 
     public ValidFarePage(AndroidDriver driver) {
@@ -41,7 +42,7 @@ public class ValidFarePage {
         elements = driver.findElements(By.xpath("//android.widget.TextView[contains(@text,\"DEL, T\")]"));
         System.out.println("xpath list " + elements);
         if (!elements.isEmpty()) {
-            Thread.sleep(2000);
+            // Thread.sleep(2000);
             elements.get(0).click();
             System.out.println("Clicked on the first matching element.");
 
@@ -56,7 +57,8 @@ public class ValidFarePage {
         elements1 = driver.findElements(By.xpath("//android.widget.TextView[contains(@text,\"BOM, T\")]"));
         System.out.println("xpath list " + elements1);
         if (!elements1.isEmpty()) {
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
+            threadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
             elements1.get(0).click();
             System.out.println("Clicked on the first matching element.");
 
@@ -92,18 +94,21 @@ public class ValidFarePage {
         System.out.println("Current Month: " + currentMonth);
         System.out.println("Future Month: " + futureMonth);
         if (!currentMonth.equals(futureMonth)) {
-            driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc=\"Next Month\"]/com.horcrux.svg.SvgView")).click();
-            Thread.sleep(2000);
-        }
-        Thread.sleep(2000);
-        List<WebElement> dateElements = driver.findElements(By.xpath("//android.widget.TextView[@text='" + date + "']"));
 
+
+            WebElement nextButton = driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc=\"Next Month\"]/com.horcrux.svg.SvgView"));
+            elementUtils.waitAndClickElement(nextButton, ConstantClass.LONG_WAIT_180);
+            ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
+
+            //Thread.sleep(5000);
+        }
+        List<WebElement> dateElements = driver.findElements(By.xpath("//android.widget.TextView[@text='" + date + "']"));
         for (int i = 0; i < dateElements.size(); i++) {
             List<WebElement> updatedDateElements = driver.findElements(By.xpath("//android.widget.TextView[@text='" + date + "']"));
             if (!updatedDateElements.isEmpty() && i < updatedDateElements.size()) {
                 System.out.println("Clicking date: " + date);
-                elementUtils.waitAndClickElement(updatedDateElements.get(i),50);
-                Thread.sleep(1000);
+                elementUtils.waitAndClickElement(updatedDateElements.get(i), ConstantClass.LONG_WAIT_180);
+                //Thread.sleep(1000);
             }
         }
     }

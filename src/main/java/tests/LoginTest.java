@@ -36,7 +36,7 @@ public class LoginTest extends BaseTest {
     @Story("Enter valid email  and click on Continue button")
     public void testEnterValidEmailAndContinue() {
         loginPage = new LoginPage(driver);
-        loginPage.enterMobileNumber("test@gmail.com");
+        loginPage.enterMobileNumber("surendra.pal578@gmail.com");
         loginPage.clickOnContinue();
         loginPage.verifyElementTextVisibility();
     }

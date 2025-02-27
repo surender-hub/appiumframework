@@ -1,28 +1,20 @@
 package pages;
 
+import constant.ConstantClass;
+import constant.ThreadWaitClass;
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
-import listener.RetryAnalyzerLocal;
-import listener.RetryAnalyzerResponse;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import utils.ElementUtils;
-import utils.RetryAnalyzer;
 
 import java.time.Duration;
 import java.util.List;
@@ -73,14 +65,19 @@ public class SearchPage {
     @FindBy(xpath = "//android.widget.EditText[@resource-id='dateofbirth']")
     private WebElement dob;
 
-    @FindBy(xpath = "//android.widget.EditText[@text=\"Flyer’s contact number\"]")
+    //@FindBy(xpath = "//android.widget.EditText[@text=\"Flyer’s contact number\"]")
+    @FindBy(xpath = "//android.widget.EditText[contains(@text, 'contact number')]")
     private WebElement mobileNumber;
+    @FindBy(xpath = "//android.widget.EditText[@text=\"Flyer’s contact number\"]")
+    private WebElement mobileNumber1;
+
+
 
     @FindBy(xpath = "//android.widget.EditText[@resource-id=\"primaryEmail\"]")
     private WebElement emailId;
 
-    // @FindBy(xpath = "//android.widget.TextView[@text="Skip To Payment"]")
-    @FindBy(xpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[7]/android.view.ViewGroup[2]/android.view.ViewGroup[2]/android.view.ViewGroup[2]/android.view.ViewGroup")
+     @FindBy(xpath = "//android.widget.TextView[@text=\"Skip To Payment\"]")
+   // @FindBy(xpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[7]/android.view.ViewGroup[2]/android.view.ViewGroup[2]/android.view.ViewGroup[2]/android.view.ViewGroup")
     private WebElement skipToPayment;
 
     @FindBy(xpath = "//android.widget.TextView[@content-desc=\"msg_first_line_one\" and @text=\"Net banking\"]")
@@ -107,27 +104,25 @@ public class SearchPage {
 
     @Step("Click on Destination Button")
     public void clickOnTo() {
-        elementUtils.waitAndClickElement(searchOnTo, 50);
+        elementUtils.waitAndClickElement(searchOnTo, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Search Place: {placeName}")
     public void searchPlace(String placeName) {
-        elementUtils.waitAndClickElement(searchPlace, 50);
-        elementUtils.sendKeys(searchPlace, placeName, 50);
+        elementUtils.waitAndClickElement(searchPlace, ConstantClass.LONG_WAIT_180);
+        elementUtils.sendKeys(searchPlace, placeName, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Select Destination Mumbai from List")
     @Story("Searching a flight")
     public void clickOnMumbaiFlight() {
-        elementUtils.waitAndClickElement(mumbaiFlight, 50);
+        elementUtils.waitAndClickElement(mumbaiFlight, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click on first in booking List")
     public void clickOnBookingList() throws InterruptedException {
-        Thread.sleep(5000);
-       // elementUtils.waitAndClickElement(bookingList, 50);
-        bookingList.click();
-
+        //Thread.sleep(5000);
+        elementUtils.waitAndClickElement(bookingList, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click on Booking")
@@ -137,12 +132,12 @@ public class SearchPage {
 
     @Step("Search the available city")
     public void clickOnSearchButton() {
-        elementUtils.waitAndClickElement(searchButton, 50);
+        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
+        elementUtils.waitAndClickElement(searchButton, ConstantClass.LONG_WAIT_180);
     }
 
     @FindBy(xpath = "//android.view.ViewGroup[@resource-id=\"seatSelectionSectorTestID1\"]")
     private WebElement selectReturnSeat;
-
 
 
     //Select Seat method
@@ -163,75 +158,79 @@ public class SearchPage {
     private WebElement seatAddedText;
 
 
-
     @Step("Select Next for Payment")
     public void bookingNextButton() throws InterruptedException {
-        Thread.sleep(5000);
-        elementUtils.waitAndClickElement(nextButton, 50);
+        //Thread.sleep(5000);
+        elementUtils.waitAndClickElement(nextButton, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Enter User Details")
     public void enterUserDetails(String firstname, String lastname, String Dob, String MobileNumber, String mailId) throws InterruptedException {
-        Thread.sleep(2000);
-        elementUtils.waitAndClickElement(firstName, 20);
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
+        elementUtils.waitAndClickElement(firstName, ConstantClass.LONG_WAIT_180);
+        //Thread.sleep(2000);
         firstName.sendKeys(firstname);
-        Thread.sleep(2000);
+        // Thread.sleep(2000);
         elementUtils.scrollToElementByResourceId("lastName");
         lastName.sendKeys(lastname);
         elementUtils.scrollToElementByResourceId("dateofbirth");
         //elementUtils.waitAndClickElement(dob, 20);
         dob.sendKeys(Dob);
         elementUtils.scrollToElementByText("Flyer’s contact number");
-        elementUtils.waitAndClickElement(mobileNumber, 20);
-        mobileNumber.sendKeys(MobileNumber);
+       // elementUtils.scrollToElementByText("contact number");
+        elementUtils.waitAndClickElement(mobileNumber1, ConstantClass.LONG_WAIT_180);
+        mobileNumber1.sendKeys(MobileNumber);
         elementUtils.scrollToElementByResourceId("primaryEmail");
         emailId.sendKeys(mailId);
     }
 
     @Step("Click on Skip To Payment")
     public void clickOnSkipToPayment() {
+        // ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
+        // elementUtils.waitAndClickElement(skipToPayment, ConstantClass.LONG_WAIT_180);
         if (!skipToPayment.isDisplayed()) {
             //elementUtils.waitForElement(nextButton, 50);
             nextButton.click();
         } else {
-            elementUtils.waitAndClickElement(skipToPayment, 50);
+            ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_50);
+            elementUtils.waitAndClickElement(skipToPayment, ConstantClass.LONG_WAIT_180);
         }
     }
 
-    @Test(retryAnalyzer = RetryAnalyzer.class)
+    //@Test(retryAnalyzer = RetryAnalyzer.class)
     public void clickOnNetBanking() {
         elementUtils.scrollToElementByText("Net banking");
-        elementUtils.waitAndClickElement(netBanking, 50);
+        elementUtils.waitAndClickElement(netBanking, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click on Add  Bank")
     public void clickOnAddBank() {
         elementUtils.scrollToElementByText("+MORE BANKS");
-        elementUtils.waitAndClickElement(addBank, 50);
+        elementUtils.waitAndClickElement(addBank, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Search Avenue Payment Method: {Avenue Payment Method}")
     public void searchAvenue(String avenuePayment) {
-        elementUtils.waitAndClickElement(searchPaymentMethod, 50);
-        elementUtils.sendKeys(searchPaymentMethod, avenuePayment, 50);
+        elementUtils.waitAndClickElement(searchPaymentMethod, ConstantClass.LONG_WAIT_180);
+        elementUtils.sendKeys(searchPaymentMethod, avenuePayment, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Select Avenue Method")
     public void clickOnAvenuePayment() {
-        elementUtils.waitAndClickElement(addAvenuePayment, 50);
+        elementUtils.waitAndClickElement(addAvenuePayment, ConstantClass.LONG_WAIT_180);
     }
 
 
     @Step("Click On Avenue Button pay")
     public void clickOnAvenueButtonPay() {
-        elementUtils.waitAndClickElement(buttonAvenuePay, 50);
+        elementUtils.waitAndClickElement(buttonAvenuePay, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click On Click on Response")
     //@Test(retryAnalyzer = RetryAnalyzerResponse.class)
     public void clickOnButtonResponse() throws InterruptedException {
-        Thread.sleep(5000);
+        //Thread.sleep(5000);
+        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
             wait.until(ExpectedConditions.elementToBeClickable(buttonResponse)).click();
@@ -243,7 +242,7 @@ public class SearchPage {
     }
 
     public void getPnrDetails() throws InterruptedException {
-        Thread.sleep(20000);
+        //Thread.sleep(20000);
         WebElement pnr1 = driver.findElements(By.className("android.widget.TextView")).get(1);
         WebElement pnr2 = driver.findElements(By.className("android.widget.TextView")).get(2);
         WebElement pnr3 = driver.findElements(By.className("android.widget.TextView")).get(3);
@@ -254,7 +253,7 @@ public class SearchPage {
         WebElement pnr8 = driver.findElements(By.className("android.widget.TextView")).get(8);
         WebElement pnr9 = driver.findElements(By.className("android.widget.TextView")).get(9);
         WebElement pnr10 = driver.findElements(By.className("android.widget.TextView")).get(10);
-        elementUtils.waitAndClickElement(pnr1, 50);
+        elementUtils.waitAndClickElement(pnr1, ConstantClass.LONG_WAIT_180);
         String pnrDetails = pnr1.getText();
         System.out.println("PNR Details: " + pnrDetails);
 
@@ -304,8 +303,9 @@ public class SearchPage {
         // Confirm seat selection
         Thread.sleep(3000);
         confirmSeatButton.click();
-        System.out.println("Seat selected from Delhi to Mumbai: "+seatAddedText.getText());
+        System.out.println("Seat selected from Delhi to Mumbai: " + seatAddedText.getText());
     }
+
     public void selectSeatMumbaiToDelhi() throws InterruptedException {
         Thread.sleep(5000);
         elementUtils.scrollToElementByResourceId("seatSelectionSectorTestID1");
