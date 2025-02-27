@@ -49,8 +49,8 @@ public class BaseTest {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName(ConfigReader.getProperty("platform.name"));
         options.setDeviceName(ConfigReader.getProperty("device.name"));
-        options.setApp(ConfigReader.getProperty("app.path"));
-        //options.setApp(ConfigReader.getProperty("app.path2"));
+        //options.setApp(ConfigReader.getProperty("app.path"));
+        options.setApp(ConfigReader.getProperty("app.path2"));
         options.setAutoGrantPermissions(true);
         options.setNewCommandTimeout(Duration.ofSeconds(300)); // Prevent session timeout
 

@@ -10,8 +10,8 @@
             <class name="tests.PrivacyPolicyTest"/>
             <class name="tests.TermsAndConditons"/>
             <class name="tests.RegistrationTest"/>
-          <!--  <class name="tests.IndigoTest"/>
-            <class name="tests.Validate"/>-->
+            <class name="tests.IndigoTest"/>
+            <class name="tests.Validate"/>
         </classes>
     </test>
 </suite>
