@@ -1,18 +1,8 @@
 package utils;
 
-import base.BaseTest;
-
-import ch.qos.logback.core.util.FileUtil;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import org.testng.Reporter;
-
-import java.io.*;
-import java.nio.file.Files;
 
 
 public class ListenerImplement implements ITestListener

@@ -10,9 +10,6 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static base.BaseTest.driver;
-
-
 public class ElementUtils {
     public AppiumDriver driver;
     //public static int dat;

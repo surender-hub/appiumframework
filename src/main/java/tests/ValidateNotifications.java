@@ -1,6 +1,6 @@
 package tests;
 
-import base.BaseTest;
+import base.BaseTestLoginUser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class ValidateNotifications extends BaseTest {
+public class ValidateNotifications extends BaseTestLoginUser {
     @Test
     public void openNotification() throws InterruptedException {
         driver.openNotifications();
@@ -29,6 +29,28 @@ public class ValidateNotifications extends BaseTest {
 
        // System.out.println("Retrieved OTP: " + otp);
         Assert.assertEquals(true,false);
+
+        String first = otp.substring(0, 1);
+        String Secound = otp.substring(1, 2);
+        String third = otp.substring(2, 3);
+        String four = otp.substring(3, 4);
+        String five = otp.substring(4, 5);
+        String six = otp.substring(5, 6);
+
+
+       List<WebElement>  otpFounds = driver.findElements(By.xpath("//android.view.View[@resource-id='otpField']//android.widget.EditText"));
+
+       for(WebElement otpField2:otpFounds)
+       {
+           otpField2.sendKeys(first);
+           otpField2.sendKeys(Secound);
+           otpField2.sendKeys(third);
+           otpField2.sendKeys(four);
+           otpField2.sendKeys(five);
+           otpField2.sendKeys(six);
+
+       }
+
 
         // Enter OTP in the app's input field
         // WebElement otpField = driver.findElement("your.app.otp_field_id");

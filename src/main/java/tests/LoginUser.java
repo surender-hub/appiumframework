@@ -1,9 +1,7 @@
 package tests;
 
-import base.BaseTest;
-import io.appium.java_client.android.AndroidDriver;
+import base.BaseTestLoginUser;
 import io.qameta.allure.*;
-import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
@@ -11,7 +9,7 @@ import pages.*;
 import utils.ElementUtils;
 import utils.LogUtils;
 
-public class LoginUser extends BaseTest
+public class LoginUser extends BaseTestLoginUser
 {
     private static final Logger log = LoggerFactory.getLogger(LoginUser.class);
     private ElementUtils elementUtils;

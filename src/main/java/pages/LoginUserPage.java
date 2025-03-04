@@ -77,7 +77,7 @@ public class LoginUserPage
     }
 
     @Step("Click on Login Button")
-    public void loginButton() throws InterruptedException {
+    public void loginButton(){
         elementUtils.waitAndClickElement(loginButton, 20);
     }
 

@@ -8,26 +8,36 @@ import java.util.Properties;
 public class ConfigReader {
     private static Properties properties;
 
-    static {
-        try {
-            FileInputStream file = new FileInputStream("src/main/resources/config.properties");
-            properties = new Properties();
-            properties.load(file);
-        } catch (IOException e) {
-            e.printStackTrace();
+    /**
+     * Loads properties file when first accessed
+     */
+    private static void loadProperties() {
+        if (properties == null) {
+            try {
+                FileInputStream file = new FileInputStream("src/main/resources/config.properties");
+                properties = new Properties();
+                properties.load(file);
+                file.close();
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to load config.properties file", e);
+            }
         }
     }
 
+    /**
+     * Fetches property value by key
+     * @param key property key
+     * @return property value
+     */
     public static String getProperty(String key) {
-        String value = properties.getProperty(key);
+        loadProperties();  // Ensure properties are loaded
 
-        // Convert relative path to absolute path (for APK file)
-        if (key.equals("app.path")) {
-            File file = new File(value);
-            return file.getAbsolutePath();
+        String value = properties.getProperty(key);
+        if (value == null) {
+            throw new RuntimeException("Property not found: " + key);
         }
-        else if(key.equals("app.path2"))
-        {
+        // Convert relative path to absolute path (for APK file paths)
+        if (key.startsWith("app.path")) {
             File file = new File(value);
             return file.getAbsolutePath();
         }

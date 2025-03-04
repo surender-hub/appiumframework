@@ -1,16 +1,15 @@
 package tests;
 
-import base.BaseTest;
+import base.BaseTestLoginUser;
 import io.qameta.allure.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
 import utils.ElementUtils;
 import utils.LogUtils;
 
-public class Validate extends BaseTest {
+public class GuestUserValidateEndToEndFlowTest extends BaseTestLoginUser {
     private WelcomePage welcomePage;
     public SearchPage searchPage;
     private SeatPage seatPage;

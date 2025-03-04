@@ -1,8 +1,10 @@
 package pages;
 
 import constant.ConstantClass;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,11 +17,14 @@ import utils.ElementUtils;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class LoginPage {
     public AndroidDriver driver;
     private ElementUtils elementUtils;
 
+    String inputText = "Enter Mobile No. / Email Id";
+    String dynamicXPath = "//android.widget.EditText[@text='" + inputText + "']";
     @FindBy(xpath = "//android.widget.EditText[@text=\"Enter Mobile No. / Email Id\"]")
     private WebElement enterMobile;
 
@@ -40,7 +45,6 @@ public class LoginPage {
     private WebElement otpPage;
 
 
-
     @FindBy(xpath = "//android.widget.TextView[@text=\"*Please enter a valid phone number\"]")
     private WebElement enterValidNumber;
     @FindBy(xpath = "//android.widget.TextView[@text=\"*Please enter a valid email ID\"]")
@@ -53,6 +57,32 @@ public class LoginPage {
     private WebElement termButton;
     @FindBy(xpath = "//android.widget.TextView[@text=\"INDIGO BLUCHIP PROGRAM – TERMS &CONDITIONS\"]")
     private WebElement indigoTextButton;
+    @FindBy(xpath = "//android.view.View[@resource-id='otpField']//android.widget.EditText")
+    private WebElement OtpField;
+
+    @FindBy(xpath = "//android.view.View[@resource-id='otpField']//android.widget.EditText[1]")
+    private WebElement OtpFieldOne;
+    @FindBy(xpath = "//android.view.View[@resource-id='otpField']//android.widget.EditText[2]")
+    private WebElement OtpFieldTwo;
+    @FindBy(xpath = "//android.view.View[@resource-id='otpField']//android.widget.EditText[3]")
+    private WebElement OtpFieldThree;
+    @FindBy(xpath = "//android.view.View[@resource-id='otpField']//android.widget.EditText[4]")
+    private WebElement OtpFieldFour;
+    @FindBy(xpath = "//android.view.View[@resource-id='otpField']//android.widget.EditText[5]")
+    private WebElement OtpFieldFifth;
+    @FindBy(xpath = "//android.view.View[@resource-id='otpField']//android.widget.EditText[6]")
+    private WebElement OtpFieldSix;
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Add details for an improved experience.\"]")
+    private WebElement displayText;
+    @FindBy(xpath = "//android.widget.TextView[@text=\" Male\"]")
+    private WebElement maleText;
+
+
+
+
+
+
+
 
 
     public LoginPage(AndroidDriver driver) {
@@ -76,7 +106,7 @@ public class LoginPage {
     @Step("Enter password: {password}")
     public void enterPassword(String enterPassword) {
         enterPass.click();
-       // elementUtils.waitAndClickElement(enterPass, 50);
+        // elementUtils.waitAndClickElement(enterPass, 50);
         elementUtils.sendKeys(enterPass, enterPassword, 50);
     }
 
@@ -88,8 +118,8 @@ public class LoginPage {
     }
 
     public void verifyElementTextVisibility() {
-        List<WebElement> elements = Arrays.asList(loginButton, personalText, otpPage);
-        List<String> expectedTexts = Arrays.asList("Login", "Personal Information", "Login or Sign up for IndiGo BluChip");
+        List<WebElement> elements = Arrays.asList(loginButton, maleText);
+        List<String> expectedTexts = Arrays.asList("Login","Male");
 
         boolean isElementVisible = elements.stream().anyMatch(element -> {
             try {
@@ -101,14 +131,6 @@ public class LoginPage {
 
         Assert.assertTrue(isElementVisible, "None of the expected elements are visible on the page.");
     }
-
-
-
-
-
-
-
-
 
 
     public void verifyInvalidNumberMessage() {
@@ -155,6 +177,7 @@ public class LoginPage {
         elementUtils.waitAndClickElement(continueAsGuestButton, 50);
 
     }
+
     @Step("Click on Terms and condition link text")
     public void clickOnTermsAndConditionButton() {
         elementUtils.waitAndClickElement(termButton, 50);
@@ -162,9 +185,12 @@ public class LoginPage {
     }
 
 
+    @Step("Click on Continue As a Guest User Button")
+    public void clickOnLoginButton() {
+        elementUtils.waitAndClickElement(loginButton, ConstantClass.LONG_WAIT_180);
+    }
 
-    public void verifyTextInWebView()
-    {
+    public void verifyTextInWebView() {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
             // Wait for the error message to be visible
@@ -177,4 +203,41 @@ public class LoginPage {
             Assert.fail("Failed to find the validation message: " + e.getMessage());
         }
     }
+
+
+    @Step("Enter  Otp: {Otp}")
+    public void enterOtpNumber(String otpField2) {
+        elementUtils.waitAndClickElement(OtpField, ConstantClass.LONG_WAIT_180);
+        elementUtils.sendKeys(OtpField, otpField2, ConstantClass.LONG_WAIT_180);
+    }
+
+
+    public void enterOTP(AndroidDriver driver, String otp) {
+        List<WebElement> otpFields = driver.findElements(By.xpath("//android.view.View[@resource-id='otpField']//android.widget.EditText"));
+
+        if (otpFields.isEmpty()) {
+            throw new NoSuchElementException("OTP input fields not found!");
+        }
+        // Ensure only valid OTP length is used
+        char[] otpDigits = otp.toCharArray();
+        int length = Math.min(otpDigits.length, otpFields.size());
+        for (int i = 0; i < length; i++) {
+            WebElement field = otpFields.get(i);
+
+            // Click the field to focus (important for some apps)
+            field.click();
+
+            // Clear any pre-filled values (optional)
+            //field.clear();
+            // Enter OTP digit
+            field.sendKeys(String.valueOf(otpDigits[i]));
+        }
+        // Hide keyboard if needed
+        try {
+            driver.hideKeyboard();
+        } catch (Exception e) {
+            System.out.println("Keyboard not visible, skipping hide.");
+        }
+    }
+
 }

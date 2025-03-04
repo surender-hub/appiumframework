@@ -19,7 +19,7 @@ public class RegistrationPage {
 
     @FindBy(xpath = "//android.view.ViewGroup[contains(@content-desc, 'Male')]//android.widget.RadioButton")
     private WebElement maleRadio;
-    @FindBy(xpath = "//android.widget.EditText[@text=\"First and Middle Name\"]")
+    @FindBy(xpath = "//android.widget.EditText[@text=\"First Name\"]")
     private WebElement enterFirstName;
     @FindBy(xpath = "//android.widget.EditText[@text=\"Last Name\"]")
     private WebElement enterLastName;
@@ -42,6 +42,32 @@ public class RegistrationPage {
     private WebElement validCheckFirstName;
     @FindBy(xpath = "//android.widget.TextView[@text=\"Please enter valid date of birth\"]")
     private WebElement invalidDobCheck;
+    @FindBy(xpath = "//android.view.ViewGroup[@content-desc='Male Unselected']/android.view.ViewGroup/android.widget.RadioButton")
+    private WebElement checkMaleRadioButton;
+    @FindBy(xpath = "//android.widget.TextView[@text=\" Male\"]")
+    private WebElement checkMaleText;
+    @FindBy(xpath = "//android.view.ViewGroup[@content-desc=\"Female Unselected\"]/android.view.ViewGroup/android.widget.RadioButton")
+    private WebElement checkFemaleRadioButton;
+    @FindBy(xpath = "//android.widget.TextView[@text=\" Female\"]")
+    private WebElement checkFemaleText;
+    @FindBy(xpath = "//android.widget.Button[@content-desc=\"TNC\"]")
+    private WebElement linkTextTnc;
+    @FindBy(xpath = "//android.view.View[contains(@text, 'Privacy Policy')]")
+    private WebElement privacyPolicyText;
+    @FindBy(xpath = "//android.widget.Button[@content-desc=\"Privacy Policy\"]")
+    private WebElement privacyPolicyLinkText;
+    @FindBy(xpath = "//android.widget.Button[@content-desc=\"T&C.\"]")
+    private WebElement tcLinkText;
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -122,6 +148,45 @@ public class RegistrationPage {
 //            System.out.println("radio button is not selected");
 //        }
        // Assert.assertEquals(enterInvalidDob.getText(), "Please enter valid date of birth", "First name input should be correct");
+    }
+
+    public void verifyMaleRadioButton() {
+        Assert.assertTrue(checkMaleRadioButton.isDisplayed(), "Check male Radio button is not displayed!");
+    }
+
+    public void verifyMaleText() {
+        Assert.assertTrue(checkMaleText.isDisplayed(), "Check male text  is not displayed!");
+    }
+    public void verifyFemaleRadioButton() {
+        Assert.assertTrue(checkFemaleRadioButton.isDisplayed(), "Female Radio button is not displayed!");
+    }
+    public void verifyFemaleText() {
+        Assert.assertTrue(checkFemaleText.isDisplayed(), "Female text is not displayed!");
+    }
+    public void verifyLinkTextTnc() {
+        Assert.assertTrue(linkTextTnc.isDisplayed(), "LinkTNC link text is not displayed!");
+    }
+
+    public void verifyLinkTextTncIsClickable() {
+        elementUtils.waitAndClickElement(linkTextTnc,ConstantClass.LONG_WAIT_10);
+        Assert.assertTrue(privacyPolicyText.isDisplayed(), "Privacy PolicyText is not displayed!");
+    }
+
+    public void verifyLinkTextPrivacy() {
+        Assert.assertTrue(privacyPolicyLinkText.isDisplayed(), "LinkTNC link text is not displayed!");
+    }
+
+    public void verifyLinkTextPrivacyIsClickable() {
+        elementUtils.waitAndClickElement(privacyPolicyLinkText,ConstantClass.LONG_WAIT_10);
+        Assert.assertTrue(privacyPolicyText.isDisplayed(), "Privacy PolicyText is not displayed!");
+    }
+    public void verifyLinkTextTc() {
+        Assert.assertTrue(tcLinkText.isDisplayed(), "LinkTNC link text is not displayed!");
+    }
+
+    public void verifyLinkTextTcIsClickable() {
+        elementUtils.waitAndClickElement(tcLinkText,ConstantClass.LONG_WAIT_10);
+        Assert.assertTrue(privacyPolicyText.isDisplayed(), "Privacy PolicyText is not displayed!");
     }
 
 }

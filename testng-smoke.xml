@@ -1,0 +1,35 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Appium Test Suite">
+    <listeners>
+        <listener class-name="listener.TestListener" />
+    </listeners>
+
+    <!-- Run tests with PREPROD APK -->
+    <test name="SmokeTests - PREPROD">
+        <parameter name="appEnv" value="PREPROD"/>
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.GuestUserLoginTest" />
+            <class name="tests.GuestUserRegistrationTest" />
+        </classes>
+    </test>
+
+    <!-- Run tests with UAT APK -->
+    <test name="SmokeTests - UAT">
+        <parameter name="appEnv" value="UAT"/>
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.GuestUserLoginTest" />
+            <class name="tests.GuestUserRegistrationTest" />
+        </classes>
+    </test>
+
+</suite>

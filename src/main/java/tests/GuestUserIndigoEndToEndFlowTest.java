@@ -1,7 +1,7 @@
 package tests;
 
 
-import base.BaseTest;
+import base.BaseTestLoginUser;
 import constant.ConstantClass;
 import constant.ThreadWaitClass;
 import io.qameta.allure.*;
@@ -10,9 +10,7 @@ import pages.*;
 import utils.ElementUtils;
 import utils.LogUtils;
 
-import java.rmi.server.ExportException;
-
-public class IndigoTest extends BaseTest {
+public class GuestUserIndigoEndToEndFlowTest extends BaseTestLoginUser {
 
     private WelcomePage welcomePage;
     private SearchPage searchPage;
