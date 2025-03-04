@@ -3,18 +3,13 @@ package tests;
 import base.BaseTest;
 import constant.ThreadWaitClass;
 import io.qameta.allure.*;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
-import utils.ElementUtils;
-import utils.LogUtils;
 
-import java.time.Duration;
-
-public class HomePageTest extends BaseTest {
+public class BookPageTest extends BaseTest {
 
     private WelcomePage welcomePage;
-    private HomePage homePage;
+    private BookPage homePage;
     private ThreadWaitClass threadWaitClass;
 
 
@@ -25,7 +20,7 @@ public class HomePageTest extends BaseTest {
     @Story("Guest User should be able to  see the My Trips button")
     public void verifyMyTripsButtonIsDisplayed() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.displayMyTripButton();
 
@@ -39,7 +34,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the My Trips button is enabled for Guest user.")
     public void verifyMyTripsButtonIsEnabled() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.enabledMyTripButton();
 
@@ -52,7 +47,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Book button is Clickable for the Guest user")
     public void verifyMyTripsButtonIsWorking() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.clickMyTripButton();
 
@@ -66,7 +61,7 @@ public class HomePageTest extends BaseTest {
     @Story("Guest User should be able to  see the Book button")
     public void verifyBookButtonIsDisplayed() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.displayBookButton();
 
@@ -80,7 +75,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Book button is enabled for Guest user.")
     public void verifyBookButtonIsEnabled() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.enabledBookButton();
     }
@@ -92,7 +87,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Book button is Clickable for the Guest user")
     public void verifyBookButtonIsWorking() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.clickBookButton();
     }
@@ -104,7 +99,7 @@ public class HomePageTest extends BaseTest {
     @Story("Guest User should be able to  see the Check-In  button")
     public void verifyCheckInButtonIsDisplayed() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.displayCheckInButton();
 
@@ -117,7 +112,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify the Check-In button is enabled for Guest user")
     public void verifyCheckInButtonIsEnabled() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.enabledCheckInButton();
     }
@@ -130,7 +125,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Check-In  button is Clickable for the Guest user or not ")
     public void verifyCheckInButtonIsWorking() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.clickCheckInButton();
 
@@ -144,7 +139,7 @@ public class HomePageTest extends BaseTest {
     @Story("Guest User should be able to  see the Profile  button")
     public void verifyProfileButtonIsDisplayed() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.displayProfileButton();
 
@@ -157,7 +152,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Profile button is enabled for Guest user.or not ")
     public void verifyProfileButtonIsEnabled() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.enabledProfileButton();
     }
@@ -169,7 +164,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Profile  button is Clickable for the Guest user or not ")
     public void verifyProfileButtonIsWorking() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.clickProfileButton();
 
@@ -183,7 +178,7 @@ public class HomePageTest extends BaseTest {
     @Story("Guest User should be able to  see the  Explore button")
     public void verifyExploreButtonIsDisplayed() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.displayExploreButton();
 
@@ -197,7 +192,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Explore button is enabled for Guest user.or not ")
     public void verifyExploreButtonIsEnabled() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.enabledExploreButton();
     }
@@ -210,7 +205,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Explore  button is Clickable for the Guest user or not ")
     public void verifyExploreButtonWorking() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.clickExploreButton();
 
@@ -223,7 +218,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Leisure  button is display for the Guest user or not ")
     public void verifyLeisureButtonDisplay() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.displayLeisureButton();
 
@@ -236,7 +231,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Leisure  button is Clickable for the Guest user or not ")
     public void verifyLeisureButtonWorking() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.workingLeisureButton();
 
@@ -250,7 +245,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Work Radio  button is display for the Guest user or not ")
     public void verifyWorkRadioButtonDisplay() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.displayWorkButton();
     }
@@ -262,7 +257,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Work Radio  button is Clickable for the Guest user or not ")
     public void verifyWorkRadioButtonWorking() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.workRadioButton();
 
@@ -276,7 +271,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Medical Radio  button is display for the Guest user or not ")
     public void verifyMedicalRadioButtonDisplay() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.displayMedicalButton();
     }
@@ -289,7 +284,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Medical Radio  button is Clickable for the Guest user or not ")
     public void verifyMedicalRadioButtonWorking() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.workMedicalRadioButton();
 
@@ -303,7 +298,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the RoundTrip Radio  button is Clickable for the Guest user or not ")
     public void verifyRoundTripRadioButtonWorking() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.selectRoundRadioButton();
 
@@ -317,7 +312,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the MultiCity Radio  button is display for the Guest user or not ")
     public void verifyMultiCityRadioButtonDisplay() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.displayMultiCityRadioButton();
     }
@@ -329,7 +324,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the MultiCity Radio  button is Working for the Guest user or not ")
     public void verifyMultiCityRadioButtonWorking() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.workingMultiCityButton();
     }
@@ -342,7 +337,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Passenger Selection  button is Working for the Guest user or not ")
     public void verifyPassengerSelectionButtonDisplay() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.displayPassengerSelectionButton();
     }
@@ -355,7 +350,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Passenger Selection  button is Working for the Guest user or not ")
     public void verifyPassengerSelectionButtonWorking() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.workingPassengerSelectionButton();
     }
@@ -368,7 +363,7 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Close Passenger Selection  button is Display for the Guest user or not ")
     public void verifyClosePassengerSelectionButtonDisplay() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.displayClosePassengerSelectionButton();
     }
@@ -381,10 +376,107 @@ public class HomePageTest extends BaseTest {
     @Story("Verify whether the Close Passenger Selection button is Working for the Guest user or not ")
     public void verifyClosePassengerSelectionButtonWorking() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        homePage = new HomePage(driver);
+        homePage = new BookPage(driver);
         welcomePage.clickLogin();
         homePage.workingClosePassengerSelectionButton();
     }
+
+
+    @Test(priority = 29, groups = {"regression"}, description = "TC_0029 - Verify the Choose Currency Selection button is Display or not ")
+    @Description("Verify Choose Currency Selection  button is Displaying for the guest user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("HomePage")
+    @Story("Verify whether the Choose Currency Selection button is Displaying for the Guest user or not ")
+    public void displayCurrencySelectionButton() throws InterruptedException {
+        welcomePage = new WelcomePage(driver);
+        homePage = new BookPage(driver);
+        welcomePage.clickLogin();
+        homePage.displayChooseCurrencyButton();
+    }
+
+
+    @Test(priority = 30, groups = {"regression"}, description = "TC_0030 - Verify the  Choose Currency Selection  button is Working or not ")
+    @Description("Verify   Choose Currency Selection button is Working for the guest user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("HomePage")
+    @Story("Verify whether the   Choose Currency Selection button is Working for the Guest user or not ")
+    public void verifyChooseCurrencySelectionButtonWorking() throws InterruptedException {
+        welcomePage = new WelcomePage(driver);
+        homePage = new BookPage(driver);
+        welcomePage.clickLogin();
+        homePage.workingChooseCurrencySelectionButton();
+    }
+
+    @Test(priority = 31, groups = {"smoke","regression"}, description = "TC_0031 - Verify the  Quest User Link is Displaying or not ")
+    @Description("Verify Quest User Link is Displaying for the guest user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("HomePage")
+    @Story("Verify whether the Quest User Link is Displaying for the Guest user or not ")
+    public void displayQuestUserLink() throws InterruptedException {
+        welcomePage = new WelcomePage(driver);
+        homePage = new BookPage(driver);
+        homePage.displayLoginAsQuestLink();
+    }
+
+    @Test(priority = 32, groups = {"smoke","regression"}, description = "TC_0032 - Verify the  Quest User Link is Working or not ")
+    @Description("Verify Quest User Link is Working for the guest user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("HomePage")
+    @Story("Verify whether the Quest User Link is Working for the Guest user or not ")
+    public void workingQuestUserLink() throws InterruptedException {
+        welcomePage = new WelcomePage(driver);
+        homePage = new BookPage(driver);
+        homePage.workingQuestUserLink();
+    }
+
+    @Test(priority = 33, groups = {"smoke","regression"}, description = "TC_0033 - Verify the  flying from Link is Displaying or not ")
+    @Description("Verify Flying From Link is Displaying for the guest user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("HomePage")
+    @Story("Verify whether the Flying From Link is Displaying for the Guest user or not ")
+    public void displayFlyingFromLink() throws InterruptedException {
+        welcomePage = new WelcomePage(driver);
+        homePage = new BookPage(driver);
+        welcomePage.clickLogin();
+        homePage.displayFlyingFromLink();
+    }
+
+    @Test(priority = 34, groups = {"smoke","regression"}, description = "TC_0034 - Verify the flying from  Link is Working or not ")
+    @Description("Verify flying from  Link is Working for the guest user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("HomePage")
+    @Story("Verify whether the flying from  Link is Working for the Guest user or not ")
+    public void workingFlyingFromLink() throws InterruptedException {
+        welcomePage = new WelcomePage(driver);
+        homePage = new BookPage(driver);
+        welcomePage.clickLogin();
+        homePage.workingFlyingFromLink();
+    }
+
+    @Test(priority = 35, groups = {"smoke","regression"}, description = "TC_0035 - Verify the  Going To Link is Displaying or not ")
+    @Description("Verify Going To Link is Displaying for the guest user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("BookPage")
+    @Story("Verify whether the Going To Link is Displaying for the Guest user or not ")
+    public void displayGoingToLink() throws InterruptedException {
+        welcomePage = new WelcomePage(driver);
+        homePage = new BookPage(driver);
+        welcomePage.clickLogin();
+        homePage.displayGoingToLink();
+    }
+
+    @Test(priority = 36, groups = {"smoke","regression"}, description = "TC_0036 - Verify the Going To  Link is Working or not ")
+    @Description("Verify flying from  Link is Working for the guest user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("HomePage")
+    @Story("Verify whether the Going To  Link is Working for the Guest user or not ")
+    public void workingGoingToLink() throws InterruptedException {
+        welcomePage = new WelcomePage(driver);
+        homePage = new BookPage(driver);
+        welcomePage.clickLogin();
+        homePage.workingGoingToLink();
+    }
+
 
 //    @Test(priority = 37, groups = {"regression"}, description = "TC_0027 - Verify the book a stay  button is working or not ")
 //    @Description("Verify book a stay button is display for the guest user")

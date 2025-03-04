@@ -78,9 +78,6 @@ public class BaseTest {
         //System.out.println("Test Suite Setup - Run Once Before Suite");
     }
 
-
-
-
     @BeforeMethod(groups= {"regression"})
     public void startAppiumServer() throws MalformedURLException {
         options = new UiAutomator2Options();
@@ -111,13 +108,12 @@ public class BaseTest {
             String currentPackage = BaseTest.driver.getCurrentPackage();
             BaseTest.driver.terminateApp(currentPackage);
             System.out.println("🛑 Terminated App: " + currentPackage);
-               driver.quit();
+            BaseTest.driver.quit();
             System.out.println("🚪 Closed the session.");
         }
     }
 
 
-//    System.out.println("Driver initiate" +driver);
     @AfterSuite(groups= {"regression"})
     public void cleanupSuite() throws IOException, InterruptedException {
 

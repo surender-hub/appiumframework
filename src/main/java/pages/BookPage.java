@@ -1,22 +1,26 @@
 package pages;
 
+import io.appium.java_client.MobileCommand;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.By;
+import io.appium.java_client.android.nativekey.KeyEvent;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v85.page.Page;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import utils.ElementUtils;
 
-public class HomePage {
+public class BookPage {
 
     public AndroidDriver driver;
 
-    public HomePage(AndroidDriver driver) {
+    public BookPage(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
+    @FindBy(xpath = "//android.view.View[@resource-id=\"a\"]")
+    public WebElement guestUser;
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"My Trips\"]")
     public WebElement myTripsButton;
@@ -79,8 +83,34 @@ public class HomePage {
     @FindBy(xpath = ("//android.widget.TextView[@text=\"Discover and book a perfect stay from over 7 lakh hotels worldwide!\"]"))
     public WebElement verifyBookStay;
 
+    @FindBy(xpath = ("//android.widget.TextView[@text=\"Flying from?\"]/following-sibling::android.widget.TextView[1]"))
+    public WebElement flyingFrom;
 
-    public void newbuttonbook() {
+    @FindBy(xpath = ("//android.widget.TextView[@text=\"Where are you flying from?\"]"))
+    public WebElement validateFlyingFrom;
+
+    @FindBy(xpath = ("//android.view.ViewGroup[@content-desc=\"Close Airport List\"]/com.horcrux.svg.SvgView/com.horcrux.svg.GroupView/com.horcrux.svg.GroupView/com.horcrux.svg.PathView[2]"))
+    public WebElement closeButtonFlyingFrom;
+
+    @FindBy(xpath = ("//android.widget.TextView[@text=\"Going to?\"]/following-sibling::android.widget.TextView[1]"))
+    public WebElement goingTo;
+
+    @FindBy(xpath = ("//android.widget.TextView[@text=\"Where are you going to?\"]"))
+    public WebElement validateGoingTo;
+
+    @FindBy(xpath = ("//android.widget.TextView[@text=\"Departure\"]/following-sibling::android.widget.TextView[1]"))
+    public WebElement selectDepartureDateLink;
+
+    @FindBy(xpath = ("//android.widget.TextView[@text=\"Select Departure Date\"]"))
+    public WebElement validateDepartureDateLink;
+
+    @FindBy(xpath = ("//android.view.ViewGroup[@content-desc=\"Close Calender\"]/com.horcrux.svg.SvgView"))
+    public WebElement closeDateLink;
+
+    @FindBy(xpath = ("//android.widget.TextView[@text=\"Travellers + Special Fares\"]/following-sibling::android.widget.TextView[1]"))
+    public WebElement selectPassengerLink;
+
+    public void clickOnBookStayButton() {
         bookastaybutton.click();
     }
 
@@ -275,8 +305,9 @@ public class HomePage {
 
     public void workingLeisureButton() {
         if (LeisureRadioButton.isDisplayed()) {
+            ElementUtils ec = new ElementUtils(driver);
+            ec.scrollToElementByText("Leisure");
             LeisureRadioButton.click();
-
             System.out.println("Leisure radio Button is Select ");
         } else {
             System.out.println("Leisure radio  is not Select ");
@@ -308,6 +339,8 @@ public class HomePage {
 
     public void workRadioButton() {
         if (workRadioButton.isDisplayed()) {
+            ElementUtils ec = new ElementUtils(driver);
+            ec.scrollToElementByText("Work");
             workRadioButton.click();
             System.out.println("Work radio Button is Selected ");
         } else {
@@ -328,6 +361,8 @@ public class HomePage {
 
     public void workMedicalRadioButton() {
         if (medicalRadioButton.isDisplayed()) {
+            ElementUtils ec = new ElementUtils(driver);
+            ec.scrollToElementByText("Medical");
             medicalRadioButton.click();
             System.out.println("Medical radio Button is Selected ");
         } else {
@@ -365,7 +400,6 @@ public class HomePage {
             System.out.println("Passenger Selection Button is not Displayed ");
             Assert.fail();
         }
-
     }
 
     public void workingPassengerSelectionButton() {
@@ -378,7 +412,6 @@ public class HomePage {
         } catch (Exception e) {
             Assert.fail();
             System.out.println("Passenger Selection Button is Not Working ");
-
         }
     }
 
@@ -392,9 +425,7 @@ public class HomePage {
             System.out.println("Close Passenger Selection Button is not Displayed ");
             Assert.fail();
         }
-
     }
-
 
     public void workingClosePassengerSelectionButton() {
 
@@ -409,7 +440,6 @@ public class HomePage {
         } catch (Exception e) {
             Assert.fail();
             System.out.println("Close Passenger Selection Button is Not Working ");
-
         }
     }
 
@@ -427,15 +457,12 @@ public class HomePage {
             System.out.println("Choose Currency Button is not Displayed ");
             Assert.fail();
         }
-
     }
 
     public void workingChooseCurrencySelectionButton() {
-
         chooseCurrencyButton.click();
         try {
             if (chooseCurrencyButton.isDisplayed()) {
-
                 chooseCurrencyButton.click();
                 Assert.assertEquals(verifyCurrencyButton.isDisplayed(), true);
                 System.out.println("Choose Currency Button  is Working ");
@@ -443,7 +470,93 @@ public class HomePage {
         } catch (Exception e) {
             Assert.fail();
             System.out.println("Choose Currency Button Button is Not Working ");
-
         }
     }
+
+
+    public void displayLoginAsQuestLink() {
+        if (guestUser.isDisplayed())
+        {
+            Assert.assertEquals(true, guestUser.isDisplayed());
+            System.out.println("Quest User Link  is Displayed ");
+        }
+        else
+        {
+            System.out.println("Quest User Link  is not Displayed ");
+            Assert.fail();
+        }
+    }
+
+
+    public void workingQuestUserLink() {
+        guestUser.click();
+        try {
+            if (bookButton.isDisplayed()) {
+                Assert.assertEquals(bookButton.isDisplayed(), true);
+                System.out.println("Quest User Link  is Working ");
+            }
+        } catch (Exception e) {
+            Assert.fail();
+            System.out.println("Quest User Link is Not Working ");
+        }
+    }
+
+    public void displayFlyingFromLink() {
+        if (flyingFrom.isDisplayed())
+        {
+            Assert.assertEquals(true, flyingFrom.isDisplayed());
+            System.out.println("Flying From Link  is Displayed ");
+        }
+        else
+        {
+            System.out.println("Flying From Link  is not Displayed ");
+            Assert.fail();
+        }
+    }
+
+    public void workingFlyingFromLink() {
+        flyingFrom.click();
+        try {
+            if (validateFlyingFrom.isDisplayed()) {
+                Assert.assertEquals(validateFlyingFrom.isDisplayed(), true);
+                System.out.println("Flying From Link is Working ");
+            }
+        } catch (Exception e) {
+            Assert.fail();
+            System.out.println("Flying From Link is Not Working ");
+        }
+        closeButtonFlyingFrom.click();
+    }
+
+
+
+    public void displayGoingToLink() {
+        if (goingTo.isDisplayed())
+        {
+            Assert.assertEquals(true, goingTo.isDisplayed());
+            System.out.println("Going To Link is Displayed ");
+        }
+
+        else
+        {
+            System.out.println("Going To Link is not Displayed ");
+            Assert.fail();
+        }
+    }
+
+
+    public void workingGoingToLink() {
+        goingTo.click();
+        try {
+            if (validateGoingTo.isDisplayed()) {
+                Assert.assertEquals(validateGoingTo.isDisplayed(), true);
+                System.out.println("GoingTo Link is Working ");
+            }
+        } catch (Exception e) {
+            Assert.fail();
+            System.out.println("GoingTo Link is Not Working ");
+        }
+        closeButtonFlyingFrom.click();
+    }
+
 }

@@ -3,9 +3,7 @@ package tests;
 import base.BaseTest;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
-import pages.HomePage;
 import pages.PrivacyPolicyPage;
-import pages.WelcomePage;
 
 public class PrivacyPolicyTest extends BaseTest {
 

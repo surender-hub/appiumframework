@@ -12,7 +12,7 @@
         </groups>
         <classes>
 
-            <class name="tests.HomePageTest"/>
+            <class name="tests.BookPageTest"/>
         </classes>
 
     </test>
