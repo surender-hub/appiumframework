@@ -2,7 +2,6 @@ package tests;
 
 import base.BaseTest;
 import io.qameta.allure.*;
-import listener.RetryAnalyzerLocal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;

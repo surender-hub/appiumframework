@@ -2,7 +2,6 @@ package tests;
 
 import base.BaseTest;
 import io.qameta.allure.*;
-import listener.RetryAnalyzerLocal;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
@@ -277,8 +276,8 @@ public class Validate extends BaseTest {
             validFarePage.clickOnFutureDate(5);
             String expectedDate2 = validFarePage.getFutureDate(5).trim();
             System.out.println("print expected Date 5 days ahead" + expectedDate2);
-            Thread.sleep(5000);
-            searchPage.clickOnSearchButton();
+           // Thread.sleep(5000);
+            roundPage.clickOnSearchButton();
             validFarePage.clickOnFlightList();
             Thread.sleep(5000);
             flightFare = validFarePage.getActualText();
@@ -286,6 +285,8 @@ public class Validate extends BaseTest {
             Thread.sleep(5000);
             validFarePage.clickOnFlightReturn();
             searchPage.bookingNextButton();
+            //searchPage.clickOnBookingList();
+           // roundPage.nextButton();
             Thread.sleep(5000);
             searchPage.enterUserDetails("surender", "pal", "01/04/1993", "6474634463", "surende@gmail.com");
             Thread.sleep(5000);
@@ -323,6 +324,7 @@ public class Validate extends BaseTest {
         } catch (Exception e) {
             LogUtils.error(e.getMessage());
             System.out.println("TestCase failed");
+            Assert.fail();
         }
 
     }
@@ -351,7 +353,7 @@ public class Validate extends BaseTest {
             searchPage.clickOnMumbaiFlight();
             validFarePage.clickOnFutureDate(3);
             String expectedDate = validFarePage.getFutureDate(3).trim();
-            System.out.println("print expected Date 3 days ahead" + expectedDate);
+            System.out.println(expectedDate);
             multiCity.clickOnTo2();
             searchPage.searchPlace("Agra");
             LogUtils.info("Select Destination city");
@@ -359,19 +361,19 @@ public class Validate extends BaseTest {
             validFarePage.clickOnFutureDate(5);
             String expectedDate2 = validFarePage.getFutureDate(5).trim();
             System.out.println("print expected Date 5 days ahead" + expectedDate2);
-            Thread.sleep(10000);
+            //Thread.sleep(10000);
             elementUtils.scrollToElementByText("Search");
             roundPage.clickOnSearchButton();
             validFarePage.clickOnFlightList();
-            Thread.sleep(5000);
             validFarePage.clickOnFlightReturn();
             searchPage.bookingNextButton();
-            Thread.sleep(5000);
+        searchPage.clickOnBookingList();
+        roundPage.nextButton();
             searchPage.enterUserDetails("surender", "pal", "01/04/1993", "6474634463", "surende@gmail.com");
-            Thread.sleep(5000);
+           // Thread.sleep(5000);
             LogUtils.info("Enter User Details");
             searchPage.clickOnSkipToPayment();
-            Thread.sleep(5000);
+            //Thread.sleep(5000);
             //  Assert.assertEquals(actualMultiFare, totalExpectedFares, "Fare mismatch! Test Case Failed.");
             searchPage.clickOnNetBanking();
             searchPage.clickOnAddBank();
@@ -379,11 +381,7 @@ public class Validate extends BaseTest {
             LogUtils.info("Select Avenue payment method");
             searchPage.clickOnAvenuePayment();
             searchPage.clickOnAvenueButtonPay();
-//            searchPage.clickOnButtonResponse();
-            Thread.sleep(10000);
-            driver.findElement(By.xpath("//android.widget.Button[@text=\"Send Response \"]")).click();
-            Thread.sleep(5000);
-
+            searchPage.clickOnButtonResponse();
             searchPage.getPnrDetails();
             LogUtils.info("PNR Details Generated");
             Thread.sleep(5000);
@@ -404,9 +402,10 @@ public class Validate extends BaseTest {
             LogUtils.info("Validate Date Succesfully");
         } catch (RuntimeException e) {
             System.out.println("Testcase failed Due to MultiCity testcase is failing");
+            Assert.fail();
         }
 
     }
 
-    //, retryAnalyzer = RetryAnalyzerLocal.class
+
 }

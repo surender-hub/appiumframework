@@ -140,11 +140,17 @@ public class ElementUtils {
             }
         }
         System.out.println("Element not found within timeout.");*/
-}
 
-//public void waitForElement(WebElement element, int timeout) {
+
+    public void waitFprElementVisible(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+        WebElement textElement = wait.until(ExpectedConditions.visibilityOfElementLocated(locator)); // Replace with the element locator
+
+    }
 //    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 //    //wait.until(ExpectedConditions.visibilityOf(element));
 //    wait.until(ExpectedConditions.elementToBeClickable(element));
 //}
 
+}

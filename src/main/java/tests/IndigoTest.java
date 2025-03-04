@@ -5,7 +5,6 @@ import base.BaseTest;
 import constant.ConstantClass;
 import constant.ThreadWaitClass;
 import io.qameta.allure.*;
-import listener.RetryAnalyzerLocal;
 import org.testng.annotations.Test;
 import pages.*;
 import utils.ElementUtils;
@@ -210,7 +209,6 @@ public class IndigoTest extends BaseTest {
         multiCity.clickOnMultiCity();
         Thread.sleep(2000);
         try {
-
             multiCity.clickOnTo1();
             searchPage.searchPlace("Mumbai");
             LogUtils.info("Select Destination city");
@@ -221,12 +219,11 @@ public class IndigoTest extends BaseTest {
             LogUtils.info("Select Destination city");
             multiCity.clickOnAgraFlight();
             validFarePage.clickOnFutureDate(5);
-            Thread.sleep(10000);
+            //Thread.sleep(10000);
             elementUtils.scrollToElementByText("Search");
             roundPage.clickOnSearchButton();
             //roundPage.clickOnReturnFlight();
             //validFarePage.clickOnFlightReturn();
-
             Thread.sleep(6000);
             roundPage.nextButton();
             validFarePage.clickOnFlightReturn();

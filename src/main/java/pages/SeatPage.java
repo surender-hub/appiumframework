@@ -44,19 +44,18 @@ public class SeatPage {
     @FindBy(xpath = "//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup")
     private List<WebElement> viewGroups;
 
-    @AndroidFindBy (accessibility="When press next button open new screen")
-    private WebElement nextButtonWithAccessbility;
+    @FindBy(xpath = "//android.widget.TextView[@text='All seat']")
+    private WebElement allSeat;
 
+    @FindBy(xpath = "//com.horcrux.svg.CircleView")
+    private WebElement clickOnSeatImage;
 
+    @FindBy(xpath = "//*[@text ='Next']")
+    private WebElement nextButton;
 
+    @FindBy(xpath = "//*[@class='android.widget.ScrollView']/descendant::android.view.ViewGroup[contains(@resource-id,\"seatSelectionSeatSelectTestID\")]/descendant::android.widget.TextView")
+    private List<WebElement> totalSeat;
 
-
-//accessibility id
-    //When press next button open new screen
-
-    //new UiSelector().description("When press next button open new screen")
-
-    //List<WebElement> viewGroups = driver.findElements(AppiumBy.xpath("//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup"));
     int indexToClick = 3;
 
     //android.widget.TextView
@@ -83,11 +82,9 @@ public class SeatPage {
 
     public void clickOnNextButton()
     {
-       // nextButtonWithAccessbility.click();
         WebElement nextButton2 = driver.findElement(AppiumBy.androidUIAutomator(
           "new UiSelector().description(\"When press next button open new screen\")"));
-        elementUtils.waitAndClickElement(nextButton2,ConstantClass.LONG_WAIT_180);
-       // nextButton2.click();
+        elementUtils.waitAndClickElement(nextButton2,ConstantClass.LONG_WAIT_100);
     }
 
 
@@ -110,30 +107,20 @@ public class SeatPage {
 
 
     public void selectSeat() throws InterruptedException {
-
         boolean value = driver.findElement(By.className("android.view.ViewGroup")).isEnabled();
-
-
         while (value) {
-
             try {
-                boolean elememnt = driver.findElement(By.xpath("//android.widget.TextView[@text=\"All seat\"]")).isDisplayed();
+                boolean elememnt = allSeat.isDisplayed();
                 if (elememnt == true) {
                     break;
                 }
 
             } catch (Exception e) {
-
-              WebElement ele =   driver.findElement(By.xpath("//*[@text ='Next']"));
-              //Thread.sleep(2000);
-              elementUtils.waitAndClickElement(ele, ConstantClass.LONG_WAIT_180);
-
+              elementUtils.waitAndClickElement(nextButton, ConstantClass.LONG_WAIT_100);
             }
-
         }
 
         //code to select seat
-
         driver.findElement(AppiumBy.androidUIAutomator(
                 "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"
         ));
@@ -141,14 +128,10 @@ public class SeatPage {
 
 
         List<WebElement> seats = driver.findElements(By.xpath("//*[@class='android.widget.ScrollView']/descendant::android.view.ViewGroup[contains(@resource-id,\"seatSelectionSeatSelectTestID\")]/descendant::android.widget.TextView"));
-
-        //System.out.println("Total seats found: " + seats.size());
         System.out.println("Total: " + seats);
 
         for (WebElement seat : seats) {
 
-
-            //System.out.println( "Seat Name "+seat.getText());
             System.out.println(" Seat Name "+seat.getText());
             if(seat.isEnabled()) {
                 Thread.sleep(2000);
@@ -158,7 +141,7 @@ public class SeatPage {
         }
         Thread.sleep(5000);
         WebElement elem = driver.findElement(By.xpath("//com.horcrux.svg.CircleView"));
-        elementUtils.waitAndClickElement(elem, 50);
+        elementUtils.waitAndClickElement(elem, ConstantClass.LONG_WAIT_100);
         //seatPage.clickOnSeat();
         Thread.sleep(5000);
         System.out.println(driver.findElement(By.xpath("//android.widget.TextView[@text=\"1 Seats Added\"]")).getText());
@@ -166,46 +149,13 @@ public class SeatPage {
     }
 
     public void modifySeat(){
-//        boolean value = driver.findElement(By.className("android.view.ViewGroup")).isEnabled();
-//
-//
-//        while (value) {
-//
-//            try {
-//                boolean elememnt = driver.findElement(By.xpath("//android.widget.TextView[@text=\"All seat\"]")).isDisplayed();
-//                if (elememnt == true) {
-//                    break;
-//                }
-//
-//            } catch (Exception e) {
-//
-//                WebElement ele =   driver.findElement(By.xpath("//*[@text ='Next']"));
-//                Thread.sleep(2000);
-//                elementUtils.waitAndClickElement(ele, 50);
-//
-//
-//
-//            }
-//
-//        }
-
-        //code to select seat
-
-
-
 
         driver.findElement(AppiumBy.androidUIAutomator(
                 "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"
         ));
-        List<WebElement> seats = driver.findElements(By.xpath("//*[@class='android.widget.ScrollView']/descendant::android.view.ViewGroup[contains(@resource-id,\"seatSelectionSeatSelectTestID\")]/descendant::android.widget.TextView"));
-
-        //System.out.println("Total seats found: " + seats.size());
-        System.out.println("Total: " + seats);
-
-        for (WebElement seat : seats) {
-
-
-            //System.out.println( "Seat Name "+seat.getText());
+//        List<WebElement> seats = driver.findElements(By.xpath("//*[@class='android.widget.ScrollView']/descendant::android.view.ViewGroup[contains(@resource-id,\"seatSelectionSeatSelectTestID\")]/descendant::android.widget.TextView"));
+//        System.out.println("Total: " + seats);
+        for (WebElement seat : totalSeat) {
             System.out.println("Modify Seat Name "+seat.getText());
             if(seat.isEnabled()) {
                 seat.click();
@@ -213,10 +163,9 @@ public class SeatPage {
             }
         }
 
-        WebElement elem = driver.findElement(By.xpath("//com.horcrux.svg.CircleView"));
-        elementUtils.waitAndClickElement(elem, 50);
-        //seatPage.clickOnSeat();
-
+//        WebElement elem = driver.findElement(By.xpath("//com.horcrux.svg.CircleView"));
+        elementUtils.waitAndClickElement(clickOnSeatImage, ConstantClass.LONG_WAIT_100);
+        //PRINT MESSAGE AFTER SELECTING SEAT
         System.out.println(driver.findElement(By.xpath("//android.widget.TextView[@text=\"1 Seats Added\"]")).getText());
 
     }

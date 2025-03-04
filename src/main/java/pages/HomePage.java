@@ -1,11 +1,13 @@
 package pages;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.devtools.v85.page.Page;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import utils.ElementUtils;
 
 public class HomePage {
 
@@ -51,11 +53,53 @@ public class HomePage {
     @FindBy(xpath = "//android.widget.RadioButton[@content-desc=\"Round trip unselected\"]/android.view.ViewGroup")
     public WebElement roundRadioButton;
 
+    @FindBy(xpath = "//android.widget.RadioButton[@content-desc=\"Multi city unselected\"]/android.view.ViewGroup")
+    public WebElement multiCityRadioButton;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Book a Stay\"]")
+    public WebElement bookastaybutton;
+
+    @FindBy(xpath = ("//android.view.ViewGroup[@content-desc=\"Who you are travelling with?\"]/com.horcrux.svg.SvgView"))
+    public WebElement passengerSelectionButton;
+
+
+    @FindBy(xpath = ("//android.view.ViewGroup[@content-desc=\"Choose your Currency\"]/com.horcrux.svg.SvgView/com.horcrux.svg.GroupView/"))
+    public WebElement chooseCurrencyButton;
+
+    @FindBy(xpath = ("//android.widget.TextView[@text=\"Who are you travelling with?\"]"))
+    public WebElement verifyPassengerSelectionButton;
+
+
+    @FindBy(xpath = ("//android.view.ViewGroup[@content-desc=\"Close Add Passenger Bottom Sheet\"]/com.horcrux.svg.SvgView"))
+    public WebElement closeSelectionButton;
+
+    @FindBy(xpath = ("//android.widget.EditText[@text=\"Search\"]"))
+    public WebElement verifyCurrencyButton;
+
+    @FindBy(xpath = ("//android.widget.TextView[@text=\"Discover and book a perfect stay from over 7 lakh hotels worldwide!\"]"))
+    public WebElement verifyBookStay;
+
+
+    public void newbuttonbook() {
+        bookastaybutton.click();
+    }
+
+
     public void displayMyTripButton() {
         if (myTripsButton.isDisplayed()) {
             System.out.println("My Trips Button is Displayed ");
         } else {
             System.out.println("My Trips Button is not Displayed ");
+            Assert.fail();
+        }
+    }
+
+
+    public void displayMultiCityRadioButton() {
+        if (multiCityRadioButton.isDisplayed()) {
+            System.out.println("MultiCity Button is Displayed ");
+        } else {
+            System.out.println("MultiCity  Button is not Displayed ");
             Assert.fail();
         }
     }
@@ -72,7 +116,7 @@ public class HomePage {
 
 
     public void clickMyTripButton() {
-        if (myTripsButton.isEnabled()) {
+        if (myTripsButton.isDisplayed()) {
             myTripsButton.click();
             boolean button = validateMyTripsButton.isDisplayed();
             Assert.assertEquals(button, true);
@@ -212,9 +256,7 @@ public class HomePage {
             exploreButton.click();
 
             System.out.println("Explore Button is working ");
-        }
-
-        else {
+        } else {
 
             System.out.println("Explore Button is not working ");
             Assert.fail();
@@ -232,18 +274,26 @@ public class HomePage {
 
 
     public void workingLeisureButton() {
-        if (LeisureRadioButton.isEnabled()) {
+        if (LeisureRadioButton.isDisplayed()) {
             LeisureRadioButton.click();
 
             System.out.println("Leisure radio Button is Select ");
-        }
-
-        else {
+        } else {
             System.out.println("Leisure radio  is not Select ");
             Assert.fail();
         }
     }
 
+    public void workingMultiCityButton() {
+        if (multiCityRadioButton.isDisplayed()) {
+            multiCityRadioButton.click();
+
+            System.out.println("MultiCity radio Button is Select ");
+        } else {
+            System.out.println("MultiCity radio Button is not Select ");
+            Assert.fail();
+        }
+    }
 
 
     public void displayWorkButton() {
@@ -256,13 +306,11 @@ public class HomePage {
     }
 
 
-
     public void workRadioButton() {
-        if (workRadioButton.isEnabled()) {
+        if (workRadioButton.isDisplayed()) {
             workRadioButton.click();
             System.out.println("Work radio Button is Selected ");
-        }
-        else {
+        } else {
             System.out.println("Work radio  is not Selected ");
             Assert.fail();
         }
@@ -279,7 +327,7 @@ public class HomePage {
 
 
     public void workMedicalRadioButton() {
-        if (medicalRadioButton.isEnabled()) {
+        if (medicalRadioButton.isDisplayed()) {
             medicalRadioButton.click();
             System.out.println("Medical radio Button is Selected ");
         } else {
@@ -289,21 +337,113 @@ public class HomePage {
 
 
     }
-        public void displayRoundCityButton() {
-            if (roundRadioButton.isDisplayed()) {
-                System.out.println("RoundTrip Radio Button is Displayed ");
-            } else {
-                System.out.println("RoundTrip Radio Button is not Displayed ");
-                Assert.fail();
-            }
+
+    public void displayRoundCityButton() {
+        if (roundRadioButton.isDisplayed()) {
+            System.out.println("RoundTrip Radio Button is Displayed ");
+        } else {
+            System.out.println("RoundTrip Radio Button is not Displayed ");
+            Assert.fail();
         }
+    }
 
     public void selectRoundRadioButton() {
-        if (roundRadioButton.isEnabled()) {
+        if (roundRadioButton.isDisplayed()) {
             roundRadioButton.click();
             System.out.println("RoundTrip radio Button is Selected ");
         } else {
             System.out.println("RoundTrip radio  is not Selected ");
             Assert.fail();
         }
-}}
+
+    }
+
+    public void displayPassengerSelectionButton() {
+        if (passengerSelectionButton.isDisplayed()) {
+            System.out.println("Passenger Selection Button  is Displayed ");
+        } else {
+            System.out.println("Passenger Selection Button is not Displayed ");
+            Assert.fail();
+        }
+
+    }
+
+    public void workingPassengerSelectionButton() {
+        try {
+            if (passengerSelectionButton.isDisplayed()) {
+                passengerSelectionButton.click();
+                Assert.assertEquals(verifyPassengerSelectionButton.isDisplayed(), true);
+                System.out.println("Passenger Selection Button is Working ");
+            }
+        } catch (Exception e) {
+            Assert.fail();
+            System.out.println("Passenger Selection Button is Not Working ");
+
+        }
+    }
+
+
+    public void displayClosePassengerSelectionButton() {
+        passengerSelectionButton.click();
+        if (closeSelectionButton.isDisplayed()) {
+            Assert.assertEquals(true, closeSelectionButton.isDisplayed());
+            System.out.println("Close Passenger Selection Button  is Displayed ");
+        } else {
+            System.out.println("Close Passenger Selection Button is not Displayed ");
+            Assert.fail();
+        }
+
+    }
+
+
+    public void workingClosePassengerSelectionButton() {
+
+        passengerSelectionButton.click();
+        try {
+            if (closeSelectionButton.isDisplayed()) {
+
+                closeSelectionButton.click();
+                Assert.assertEquals(bookButton.isDisplayed(), true);
+                System.out.println("Close Passenger Selection Button is Working ");
+            }
+        } catch (Exception e) {
+            Assert.fail();
+            System.out.println("Close Passenger Selection Button is Not Working ");
+
+        }
+    }
+
+
+    public void displayChooseCurrencyButton() {
+
+        if (chooseCurrencyButton.isDisplayed())
+        {
+            Assert.assertEquals(true, chooseCurrencyButton.isDisplayed());
+            System.out.println("Choose Currency Button  is Displayed ");
+        }
+
+        else
+        {
+            System.out.println("Choose Currency Button is not Displayed ");
+            Assert.fail();
+        }
+
+    }
+
+    public void workingChooseCurrencySelectionButton() {
+
+        chooseCurrencyButton.click();
+        try {
+            if (chooseCurrencyButton.isDisplayed()) {
+
+                chooseCurrencyButton.click();
+                Assert.assertEquals(verifyCurrencyButton.isDisplayed(), true);
+                System.out.println("Choose Currency Button  is Working ");
+            }
+        } catch (Exception e) {
+            Assert.fail();
+            System.out.println("Choose Currency Button Button is Not Working ");
+
+        }
+    }
+}

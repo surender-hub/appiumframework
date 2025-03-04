@@ -3,6 +3,7 @@ package tests;
 import base.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -26,7 +27,8 @@ public class ValidateNotifications extends BaseTest {
             }
         }
 
-        System.out.println("Retrieved OTP: " + otp);
+       // System.out.println("Retrieved OTP: " + otp);
+        Assert.assertEquals(true,false);
 
         // Enter OTP in the app's input field
         // WebElement otpField = driver.findElement("your.app.otp_field_id");

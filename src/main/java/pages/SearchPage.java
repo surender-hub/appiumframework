@@ -76,8 +76,8 @@ public class SearchPage {
     @FindBy(xpath = "//android.widget.EditText[@resource-id=\"primaryEmail\"]")
     private WebElement emailId;
 
-     @FindBy(xpath = "//android.widget.TextView[@text=\"Skip To Payment\"]")
-   // @FindBy(xpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[7]/android.view.ViewGroup[2]/android.view.ViewGroup[2]/android.view.ViewGroup[2]/android.view.ViewGroup")
+    @FindBy(xpath = "//android.widget.TextView[@text='Skip To Payment']")
+    //@FindBy(xpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[7]/android.view.ViewGroup[2]/android.view.ViewGroup[2]/android.view.ViewGroup[2]/android.view.ViewGroup")
     private WebElement skipToPayment;
 
     @FindBy(xpath = "//android.widget.TextView[@content-desc=\"msg_first_line_one\" and @text=\"Net banking\"]")
@@ -134,6 +134,7 @@ public class SearchPage {
     public void clickOnSearchButton() {
         ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
         elementUtils.waitAndClickElement(searchButton, ConstantClass.LONG_WAIT_180);
+        elementUtils.waitAndClickElement(searchButton, 500);
     }
 
     @FindBy(xpath = "//android.view.ViewGroup[@resource-id=\"seatSelectionSectorTestID1\"]")
@@ -197,7 +198,7 @@ public class SearchPage {
         }
     }
 
-    //@Test(retryAnalyzer = RetryAnalyzer.class)
+
     public void clickOnNetBanking() {
         elementUtils.scrollToElementByText("Net banking");
         elementUtils.waitAndClickElement(netBanking, ConstantClass.LONG_WAIT_180);
@@ -303,9 +304,8 @@ public class SearchPage {
         // Confirm seat selection
         Thread.sleep(3000);
         confirmSeatButton.click();
-        System.out.println("Seat selected from Delhi to Mumbai: " + seatAddedText.getText());
+        System.out.println("Seat selected from Delhi to Mumbai: "+seatAddedText.getText());
     }
-
     public void selectSeatMumbaiToDelhi() throws InterruptedException {
         Thread.sleep(5000);
         elementUtils.scrollToElementByResourceId("seatSelectionSectorTestID1");

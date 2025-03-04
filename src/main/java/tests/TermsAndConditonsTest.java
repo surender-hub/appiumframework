@@ -6,11 +6,11 @@ import org.testng.annotations.Test;
 import pages.TermsAndConditionPage;
 import utils.LogUtils;
 
-public class TermsAndConditons extends BaseTest {
+public class TermsAndConditonsTest extends BaseTest {
 
 
 
-     @Test(priority = 1, description = "TC_001 -Validate the Terms And Condition Link in Clickable or not ")
+     @Test(groups = {"regression"},priority = 1, description = "TC_001 -Validate the Terms And Condition Link in Clickable or not ")
     @Description("Validate the Terms And Condition Link in Clickable or not")
     @Feature("GuestUser compare fare on payment screen")
     public void validateTermsAndConditionLink() throws InterruptedException {
@@ -23,9 +23,8 @@ public class TermsAndConditons extends BaseTest {
     }
 
 
-    @Test(priority = 2, description = "TC_002 -Validate the Terms And Condition Page Text")
-
-    @Description("Validate the Terms And Condition Page Text")
+    @Test(groups = {"regression"},priority = 2, description = "TC_002 -Validate the Terms And Condition Page Text")
+    @Description("Validate the Terms And Condition Page Title Text is Visible or not")
     @Feature("GuestUser compare fare on payment screen")
     public void validateTermsAndConditionsPage() throws InterruptedException {
         TermsAndConditionPage termsAndConditionPage = new TermsAndConditionPage(driver);

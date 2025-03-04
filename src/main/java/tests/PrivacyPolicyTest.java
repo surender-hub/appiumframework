@@ -11,9 +11,9 @@ public class PrivacyPolicyTest extends BaseTest {
 
     private PrivacyPolicyPage policyPage;
 
-    @Test(priority = 1, description = "TC_001 - Verify the Privacy Policy link is Displayed or not ")
+    @Test(priority = 1, description = "TC_001 - Verify the Privacy Policy link is Displayed or not ",groups = {"regression"})
     @Description("Verify  Privacy Policy link is visible for  Guest user ")
-    @Severity(SeverityLevel.CRITICAL)
+    @Severity(SeverityLevel.NORMAL)
     @Feature("HomePage")
     @Story("Guest User should be able to  see the Privacy Policy link ")
     public void verifyPrivacyPolicylinkIsDisplayed()
@@ -22,9 +22,9 @@ public class PrivacyPolicyTest extends BaseTest {
         policyPage.displayPrivacyPolicy();
     }
 
-    @Test(priority = 2, description = "TC_002 - Verify the Privacy Policy link is Working or not ")
+    @Test(priority = 2, description = "TC_002 - Verify the Privacy Policy link is Working or not ",groups = {"regression"})
     @Description("Verify  Privacy Policy link is Clickable for  Guest user ")
-    @Severity(SeverityLevel.CRITICAL)
+    @Severity(SeverityLevel.NORMAL)
     @Feature("HomePage")
     @Story("Guest User should be able to  Click on the Privacy Policy link ")
     public void verifyPrivacyPolicyLinkIsWorking() throws InterruptedException {
