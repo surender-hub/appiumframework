@@ -20,6 +20,7 @@ public class ConfigReader {
 
     public static String getProperty(String key) {
         String value = properties.getProperty(key);
+        String value2 = properties.getProperty(key);
 
         // Convert relative path to absolute path (for APK file)
         if (key.equals("app.path")) {

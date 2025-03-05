@@ -31,13 +31,13 @@ public class BaseTest {
 
 
         // Suppress output by redirecting System.out to a dummy stream
-        PrintStream dummyStream = new PrintStream(new OutputStream() {
-            @Override
-            public void write(int b) {
-                // Do nothing
-            }
-        });
-        System.setOut(dummyStream);
+//        PrintStream dummyStream = new PrintStream(new OutputStream() {
+//            @Override
+//            public void write(int b) {
+//                // Do nothing
+//            }
+//        });
+//        System.setOut(dummyStream);
 
         service = new AppiumServiceBuilder()
                 .withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js")) // Update Appium Path
