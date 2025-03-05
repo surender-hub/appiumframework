@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import utils.ConfigReader;
 import utils.ElementUtils;
 
 public class BookPage {
@@ -549,7 +550,8 @@ public class BookPage {
         goingTo.click();
         try {
             if (validateGoingTo.isDisplayed()) {
-                Assert.assertEquals(validateGoingTo.isDisplayed(), true);
+                System.out.println(validateGoingTo.getText());
+               // Assert.assertEquals(ConfigReader.getProperty("Expected(FlyingFromLink)"), validateFlyingFrom.getText());
                 System.out.println("GoingTo Link is Working ");
             }
         } catch (Exception e) {
