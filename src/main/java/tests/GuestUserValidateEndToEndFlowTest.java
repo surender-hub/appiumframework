@@ -38,7 +38,7 @@ public class GuestUserValidateEndToEndFlowTest extends BaseTestLoginUser {
         roundPage = new RoundPage(driver);
         validFarePage = new ValidFarePage(driver);
         elementUtils = new ElementUtils(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         searchPage.clickOnTo();
         searchPage.searchPlace("Mumbai");
         LogUtils.info("Select Destination city");
@@ -84,7 +84,7 @@ public class GuestUserValidateEndToEndFlowTest extends BaseTestLoginUser {
         roundPage = new RoundPage(driver);
         validFarePage = new ValidFarePage(driver);
         elementUtils = new ElementUtils(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         roundPage.selectRoundTrip();
         roundPage.clickOnToRoundTrip();
         roundPage.searchCity("Mumbai");
@@ -122,7 +122,7 @@ public class GuestUserValidateEndToEndFlowTest extends BaseTestLoginUser {
         searchPage.clickOnAvenueButtonPay();
         searchPage.clickOnButtonResponse();
         Thread.sleep(5000);
-        elementUtils.scrollToElementByText("Total fare");
+        ElementUtils.scrollToElementByText("Total fare");
         String totalFareOnPnrScreen = validFarePage.getTotalFare();
         Assert.assertEquals(fareString, totalFareOnPnrScreen, "Test Failed: Fares do NOT match!");
         System.out.println("Actual Text " + actualtotalFare + " " + " Expected text " + totalFareOnPnrScreen);
@@ -141,7 +141,7 @@ public class GuestUserValidateEndToEndFlowTest extends BaseTestLoginUser {
         roundPage = new RoundPage(driver);
         validFarePage = new ValidFarePage(driver);
         elementUtils = new ElementUtils(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         multiCity.clickOnMultiCity();
         Thread.sleep(2000);
         multiCity.clickOnTo1();
@@ -155,7 +155,7 @@ public class GuestUserValidateEndToEndFlowTest extends BaseTestLoginUser {
         multiCity.clickOnAgraFlight();
         validFarePage.clickOnFutureDate(5);
         Thread.sleep(10000);
-        elementUtils.scrollToElementByText("Search");
+        ElementUtils.scrollToElementByText("Search");
         roundPage.clickOnSearchButton();
         validFarePage.clickOnFlightList();
         Thread.sleep(5000);
@@ -184,7 +184,7 @@ public class GuestUserValidateEndToEndFlowTest extends BaseTestLoginUser {
         searchPage.clickOnAvenueButtonPay();
         searchPage.clickOnButtonResponse();
         Thread.sleep(5000);
-        elementUtils.scrollToElementByText("Total fare");
+        ElementUtils.scrollToElementByText("Total fare");
         String totalFareOnPnrScreen = validFarePage.getTotalFare();
         Assert.assertEquals(fareString, totalFareOnPnrScreen, "Test Failed: Fares do NOT match!");
         System.out.println("Actual Text " + fareString + " " + " Expected text " + totalFareOnPnrScreen);
@@ -203,7 +203,7 @@ public class GuestUserValidateEndToEndFlowTest extends BaseTestLoginUser {
         try {
             validFarePage = new ValidFarePage(driver);
             try {
-                welcomePage.clickLogin();
+                welcomePage.clickLoginAsQuest();
                 searchPage.clickOnTo();
                 searchPage.searchPlace("Mumbai");
                 LogUtils.info("Select Destination city");
@@ -231,7 +231,7 @@ public class GuestUserValidateEndToEndFlowTest extends BaseTestLoginUser {
                 driver.findElement(By.xpath("//android.widget.Button[@text=\"Send Response \"]")).click();
                 searchPage.getPnrDetails();
                 LogUtils.info("PNR Details Generated");
-                elementUtils.scrollToElementByText("Departure Flight");
+                ElementUtils.scrollToElementByText("Departure Flight");
                 String DestinationDate = driver.findElement(By.xpath(" (//android.widget.TextView[@text=\"Departure Flight\"]/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup//android.widget.TextView)[1]")).getText();
                 System.out.println(DestinationDate);
                 String ActualDate1 = DestinationDate.substring(5, 8).trim();
@@ -261,7 +261,7 @@ public class GuestUserValidateEndToEndFlowTest extends BaseTestLoginUser {
         validFarePage = new ValidFarePage(driver);
         elementUtils = new ElementUtils(driver);
         try {
-            welcomePage.clickLogin();
+            welcomePage.clickLoginAsQuest();
             roundPage.selectRoundTrip();
             roundPage.clickOnToRoundTrip();
             roundPage.searchCity("Mumbai");
@@ -305,19 +305,18 @@ public class GuestUserValidateEndToEndFlowTest extends BaseTestLoginUser {
             searchPage.getPnrDetails();
             LogUtils.info("PNR Details Generated");
             Thread.sleep(5000);
-            elementUtils.scrollToElementByText("Departure Flight");
+            ElementUtils.scrollToElementByText("Departure Flight");
             String DestinationDate = driver.findElement(By.xpath(" (//android.widget.TextView[@text=\"Departure Flight\"]/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup//android.widget.TextView)[1]")).getText();
             System.out.println(DestinationDate);
             String ActualDate1 = DestinationDate.substring(5, 8).trim();
             System.out.println(DestinationDate);
             System.out.println(ActualDate1);
             Assert.assertEquals(expectedDate, ActualDate1, "Date is correct");
-            elementUtils.scrollToElementByText("Return Flight");
+            ElementUtils.scrollToElementByText("Return Flight");
             String DestinationDate2 = driver.findElement(By.xpath(" (//android.widget.TextView[@text=\"Return Flight\"]/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup//android.widget.TextView)[1]")).getText();
             System.out.println(DestinationDate2);
             String ActualDate2 = DestinationDate2.substring(5, 8).trim();
             System.out.println(ActualDate2);
-
             Assert.assertEquals(expectedDate2, ActualDate2, "Date is correct ");
             LogUtils.info("Validate Date Succesfully");
         } catch (Exception e) {
@@ -342,7 +341,7 @@ public class GuestUserValidateEndToEndFlowTest extends BaseTestLoginUser {
         roundPage = new RoundPage(driver);
         validFarePage = new ValidFarePage(driver);
         elementUtils = new ElementUtils(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         multiCity.clickOnMultiCity();
         try {
             Thread.sleep(2000);

@@ -8,11 +8,15 @@
         <groups>
             <run>
                 <include name="regression"/>
+                <include name="smoke"/>
             </run>
         </groups>
         <classes>
 
             <class name="tests.BookPageTest"/>
+            <class name="tests.LoginUserBookPageTest">
+
+            </class>
         </classes>
 
     </test>

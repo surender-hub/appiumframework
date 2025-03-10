@@ -1,9 +1,12 @@
 package pages;
 
+import constant.ConstantClass;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import utils.ConfigReader;
 import utils.ElementUtils;
 
 public class TermsAndConditionPage {
@@ -17,29 +20,29 @@ public class TermsAndConditionPage {
         PageFactory.initElements(driver, this);
     }
 
+    @FindBy(xpath = "//android.widget.Button[@content-desc='Terms & Conditions']")
+    public WebElement termsAndConditionsLink;
 
-    @FindBy(xpath ="//android.widget.Button[@content-desc='Terms & Conditions']")
-    public WebElement termsAndCondtionLink;
+    @FindBy(xpath = "//android.view.View[@content-desc=\"Home\"]/ancestor::android.widget.ListView/descendant::android.view.View[@text=\"Terms and Conditions\"]")
+    public WebElement verifyTermsAndConditionsText;
 
-@FindBy(xpath = "//android.widget.TextView[@text=\"INDIGO BLUCHIP PROGRAM – TERMS &CONDITIONS\"]")
-public WebElement verifyTermsAndConditionsText;
-
-    public void validateTermsAndConditonLink() throws InterruptedException {
-
-        if (termsAndCondtionLink.isEnabled()) {
-            Thread.sleep(5000);
-            termsAndCondtionLink.click();
+    public void validateTermsAndConditionsLink() throws InterruptedException {
+        if (termsAndConditionsLink.isDisplayed()) {
+            ElementUtils.waitAndClickElement(termsAndConditionsLink, ConstantClass.MEDIUM_WAIT_5);
+            Assert.assertEquals(verifyTermsAndConditionsText.getText(), ConfigReader.getProperty("Expected(TermsAndConditions)"));
             System.out.println("Terms And Condition link is working");
         } else {
             System.out.println("Terms And Condition link is  not working");
+            Assert.fail();
         }
     }
 
-        public void  verifyText()
-        {
-            termsAndCondtionLink.click();
-String text = verifyTermsAndConditionsText.getText();
-            System.out.println(text);
-        }
-    }
+//        public void  verifyText()
+//        {
+//            termsAndCondtionLink.click();
+//String text = verifyTermsAndConditionsText.getText();
+//            System.out.println(text);
+//        }
+//    }
 
+}

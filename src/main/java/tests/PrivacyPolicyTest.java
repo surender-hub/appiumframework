@@ -1,11 +1,12 @@
 package tests;
 
 import base.BaseTest;
+import base.BaseTestLoginUser;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import pages.PrivacyPolicyPage;
 
-public class PrivacyPolicyTest extends BaseTest {
+public class PrivacyPolicyTest extends BaseTestLoginUser {
 
     private PrivacyPolicyPage policyPage;
 
@@ -21,13 +22,12 @@ public class PrivacyPolicyTest extends BaseTest {
     }
 
     @Test(priority = 2, description = "TC_002 - Verify the Privacy Policy link is Working or not ",groups = {"regression"})
-    @Description("Verify  Privacy Policy link is Clickable for  Guest user ")
+    @Description("Verify  Privacy Policy link is Working for Guest user ")
     @Severity(SeverityLevel.NORMAL)
     @Feature("HomePage")
     @Story("Guest User should be able to  Click on the Privacy Policy link ")
     public void verifyPrivacyPolicyLinkIsWorking() throws InterruptedException {
         policyPage = new PrivacyPolicyPage(driver);
         policyPage.clickPrivacyPolicyLink();
-        Thread.sleep(5000);
     }
 }

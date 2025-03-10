@@ -97,7 +97,7 @@ public class ValidFarePage {
 
 
             WebElement nextButton = driver.findElement(By.xpath("//android.view.ViewGroup[@content-desc=\"Next Month\"]/com.horcrux.svg.SvgView"));
-            elementUtils.waitAndClickElement(nextButton, ConstantClass.LONG_WAIT_180);
+            ElementUtils.waitAndClickElement(nextButton, ConstantClass.LONG_WAIT_180);
             ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
 
             //Thread.sleep(5000);
@@ -107,7 +107,7 @@ public class ValidFarePage {
             List<WebElement> updatedDateElements = driver.findElements(By.xpath("//android.widget.TextView[@text='" + date + "']"));
             if (!updatedDateElements.isEmpty() && i < updatedDateElements.size()) {
                 System.out.println("Clicking date: " + date);
-                elementUtils.waitAndClickElement(updatedDateElements.get(i), ConstantClass.LONG_WAIT_180);
+                ElementUtils.waitAndClickElement(updatedDateElements.get(i), ConstantClass.LONG_WAIT_180);
                 //Thread.sleep(1000);
             }
         }

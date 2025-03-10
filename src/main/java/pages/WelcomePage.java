@@ -38,7 +38,7 @@ public class WelcomePage {
     public WebElement guestUser;
 
 
-    public void clickLogin() throws InterruptedException {
+    public void clickLoginAsQuest() throws InterruptedException {
         System.out.println("Login page");
         ElementUtils utils = new ElementUtils(driver);
         utils.waitAndClickElement(guestUser, ConstantClass.LONG_WAIT_180);
@@ -52,4 +52,33 @@ public class WelcomePage {
         loginUserPage.loginButton();
         Thread.sleep(10000);*/
     }
-}
+
+    public void loginByOtp() throws InterruptedException {
+        System.out.println("Login page");
+        ElementUtils utils = new ElementUtils(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        LoginUserPage loginUserPage = new LoginUserPage(driver);
+        loginPage.enterMobileNumber("9977141550");
+        loginPage.clickOnContinue();
+        Thread.sleep(2000);
+        loginPage.enterPassword("Sanu180295@");
+        loginUserPage.loginButton();
+        Thread.sleep(20000);
+
+//        String currentPackage = driver.getCurrentPackage();
+//        boolean ele = driver.activateApp(currentPackage);
+//        if(ele == true)
+//        {
+//            driver.activateApp(currentPackage);
+//            loginPage.enterMobileNumber("9977141550");
+//            loginPage.clickOnContinue();
+//            Thread.sleep(2000);
+//            loginPage.enterPassword("Sanu180295@");
+//            loginUserPage.loginButton();
+//            Thread.sleep(20000);
+//        }
+    }
+
+
+    }
+

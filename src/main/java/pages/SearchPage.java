@@ -3,6 +3,8 @@ package pages;
 import constant.ConstantClass;
 import constant.ThreadWaitClass;
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
@@ -70,9 +72,7 @@ public class SearchPage {
     private WebElement mobileNumber;
     @FindBy(xpath = "//android.widget.EditText[@text=\"Flyer’s contact number\"]")
     private WebElement mobileNumber1;
-
-
-
+    
     @FindBy(xpath = "//android.widget.EditText[@resource-id=\"primaryEmail\"]")
     private WebElement emailId;
 
@@ -101,40 +101,45 @@ public class SearchPage {
     @FindBy(xpath = "//android.widget.TextView[@text=\"Fri, 07 Feb | 04h 15m | YV2M7G\"]")
     private WebElement pnr;
 
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Quick actions\"]")
+    private WebElement quickActions;
+
+
 
     @Step("Click on Destination Button")
     public void clickOnTo() {
-        elementUtils.waitAndClickElement(searchOnTo, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(searchOnTo, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Search Place: {placeName}")
     public void searchPlace(String placeName) {
-        elementUtils.waitAndClickElement(searchPlace, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(searchPlace, ConstantClass.LONG_WAIT_180);
         elementUtils.sendKeys(searchPlace, placeName, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Select Destination Mumbai from List")
     @Story("Searching a flight")
     public void clickOnMumbaiFlight() {
-        elementUtils.waitAndClickElement(mumbaiFlight, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(mumbaiFlight, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click on first in booking List")
     public void clickOnBookingList() throws InterruptedException {
         //Thread.sleep(5000);
-        elementUtils.waitAndClickElement(bookingList, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitForElementVisible(By.xpath("(//android.widget.TextView[@text=\"Starts at\"])[1]"),ConstantClass.LONG_WAIT_100);
+        ElementUtils.waitAndClickElement(bookingList, ConstantClass.MEDIUM_WAIT_5);
     }
 
     @Step("Click on Booking")
     public void clickOnBooking() {
-        elementUtils.waitAndClickElement(desBook, 50);
+        ElementUtils.waitAndClickElement(desBook, 50);
     }
 
     @Step("Search the available city")
     public void clickOnSearchButton() {
         ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
-        elementUtils.waitAndClickElement(searchButton, ConstantClass.LONG_WAIT_180);
-        elementUtils.waitAndClickElement(searchButton, 500);
+        ElementUtils.waitAndClickElement(searchButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(searchButton, 500);
     }
 
     @FindBy(xpath = "//android.view.ViewGroup[@resource-id=\"seatSelectionSectorTestID1\"]")
@@ -162,26 +167,28 @@ public class SearchPage {
     @Step("Select Next for Payment")
     public void bookingNextButton() throws InterruptedException {
         //Thread.sleep(5000);
-        elementUtils.waitAndClickElement(nextButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(nextButton, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Enter User Details")
     public void enterUserDetails(String firstname, String lastname, String Dob, String MobileNumber, String mailId) throws InterruptedException {
         //Thread.sleep(2000);
-        elementUtils.waitAndClickElement(firstName, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitForElementVisible(By.xpath("//android.widget.EditText[@resource-id='firstName']"),ConstantClass.LONG_WAIT_100);
+        ElementUtils.scrollToElementByResourceId("firstName");
+        ElementUtils.waitAndClickElement(firstName, ConstantClass.LONG_WAIT_180);
         //Thread.sleep(2000);
         firstName.sendKeys(firstname);
         // Thread.sleep(2000);
-        elementUtils.scrollToElementByResourceId("lastName");
+        ElementUtils.scrollToElementByResourceId("lastName");
         lastName.sendKeys(lastname);
-        elementUtils.scrollToElementByResourceId("dateofbirth");
+        ElementUtils.scrollToElementByResourceId("dateofbirth");
         //elementUtils.waitAndClickElement(dob, 20);
         dob.sendKeys(Dob);
-        elementUtils.scrollToElementByText("Flyer’s contact number");
+        ElementUtils.scrollToElementByText("Flyer’s contact number");
        // elementUtils.scrollToElementByText("contact number");
-        elementUtils.waitAndClickElement(mobileNumber1, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(mobileNumber1, ConstantClass.LONG_WAIT_180);
         mobileNumber1.sendKeys(MobileNumber);
-        elementUtils.scrollToElementByResourceId("primaryEmail");
+        ElementUtils.scrollToElementByResourceId("primaryEmail");
         emailId.sendKeys(mailId);
     }
 
@@ -194,56 +201,60 @@ public class SearchPage {
             nextButton.click();
         } else {
             ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_50);
-            elementUtils.waitAndClickElement(skipToPayment, ConstantClass.LONG_WAIT_180);
+            ElementUtils.waitAndClickElement(skipToPayment, ConstantClass.LONG_WAIT_180);
         }
     }
 
 
-    public void clickOnNetBanking() {
-        elementUtils.scrollToElementByText("Net banking");
-        elementUtils.waitAndClickElement(netBanking, ConstantClass.LONG_WAIT_180);
+    public void clickOnNetBanking() throws InterruptedException {
+//        ElementUtils.scrollToElementByText("Net banking");
+        ElementUtils.waitAndClickElement(netBanking, ConstantClass.LONG_WAIT_100);
     }
 
     @Step("Click on Add  Bank")
     public void clickOnAddBank() {
-        elementUtils.scrollToElementByText("+MORE BANKS");
-        elementUtils.waitAndClickElement(addBank, ConstantClass.LONG_WAIT_180);
+//        ElementUtils.scrollToElementByText("+MORE BANKS");
+        ElementUtils.waitAndClickElement(addBank, ConstantClass.MEDIUM_WAIT_5);
     }
 
     @Step("Search Avenue Payment Method: {Avenue Payment Method}")
     public void searchAvenue(String avenuePayment) {
-        elementUtils.waitAndClickElement(searchPaymentMethod, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(searchPaymentMethod, ConstantClass.LONG_WAIT_180);
         elementUtils.sendKeys(searchPaymentMethod, avenuePayment, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Select Avenue Method")
     public void clickOnAvenuePayment() {
-        elementUtils.waitAndClickElement(addAvenuePayment, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(addAvenuePayment, ConstantClass.LONG_WAIT_180);
     }
 
 
     @Step("Click On Avenue Button pay")
     public void clickOnAvenueButtonPay() {
-        elementUtils.waitAndClickElement(buttonAvenuePay, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(buttonAvenuePay, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click On Click on Response")
     //@Test(retryAnalyzer = RetryAnalyzerResponse.class)
     public void clickOnButtonResponse() throws InterruptedException {
         //Thread.sleep(5000);
-        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(buttonResponse)).click();
-            System.out.println("Button clicked successfully.");
-        } catch (Exception e) {
-            System.out.println("Failed to click button: " + e.getMessage());
-            throw e;
-        }
+//        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        try {
+//            wait.until(ExpectedConditions.elementToBeClickable(buttonResponse)).click();
+//            System.out.println("Button clicked successfully.");
+//        } catch (Exception e) {
+//            System.out.println("Failed to click button: " + e.getMessage());
+//            throw e;
+//        }
+
+        ElementUtils.waitAndClickElement(buttonResponse,ConstantClass.LONG_WAIT_180);
     }
 
     public void getPnrDetails() throws InterruptedException {
-        //Thread.sleep(20000);
+
+        ElementUtils.waitForElementVisible(By.xpath("//android.widget.TextView[@text=\"Quick actions\"]"),ConstantClass.LONG_WAIT_180);
+        BookPage bp = new BookPage(driver);
         WebElement pnr1 = driver.findElements(By.className("android.widget.TextView")).get(1);
         WebElement pnr2 = driver.findElements(By.className("android.widget.TextView")).get(2);
         WebElement pnr3 = driver.findElements(By.className("android.widget.TextView")).get(3);
@@ -254,29 +265,30 @@ public class SearchPage {
         WebElement pnr8 = driver.findElements(By.className("android.widget.TextView")).get(8);
         WebElement pnr9 = driver.findElements(By.className("android.widget.TextView")).get(9);
         WebElement pnr10 = driver.findElements(By.className("android.widget.TextView")).get(10);
-        elementUtils.waitAndClickElement(pnr1, ConstantClass.LONG_WAIT_180);
+
         String pnrDetails = pnr1.getText();
-        System.out.println("PNR Details: " + pnrDetails);
-
-
         String pnrDetails2 = pnr2.getText();
         String pnrDetails3 = pnr3.getText();
         String pnrDetails4 = pnr4.getText();
         String pnrDetails5 = pnr5.getText();
         String pnrDetails6 = pnr6.getText();
-        String pnrDetails7 = pnr6.getText();
-        String pnrDetails8 = pnr6.getText();
-        String pnrDetails9 = pnr6.getText();
-        String pnrDetails10 = pnr6.getText();
-
-        //String pnrDetails =  pnr1.getText();
-        //System.out.println("PNR Details: "+pnrDetails);
+        String pnrDetails7 = pnr7.getText();
+        String pnrDetails8 = pnr8.getText();
+        String pnrDetails9 = pnr9.getText();
+        String pnrDetails10 = pnr10.getText();
+        System.out.println("PNR Details: "+pnrDetails);
         System.out.println("PNR Details: " + pnrDetails2);
         System.out.println("PNR Details: " + pnrDetails3);
         System.out.println("PNR Details: " + pnrDetails4);
         System.out.println("PNR Details: " + pnrDetails5);
         System.out.println("PNR Details: " + pnrDetails6);
+        System.out.println("PNR Details: " + pnrDetails7);
+        System.out.println("PNR Details: " + pnrDetails8);
+        System.out.println("PNR Details: " + pnrDetails9);
+        System.out.println("PNR Details: " + pnrDetails10);
 
+      driver.navigate().back();
+      bp.bookButton.click();
     }
 
     public void selectSeatDelhiToMumbai() throws InterruptedException {
@@ -303,14 +315,15 @@ public class SearchPage {
         }
         // Confirm seat selection
         Thread.sleep(3000);
-        confirmSeatButton.click();
+        //confirmSeatButton.click();
+        ElementUtils.waitAndClickElement(confirmSeatButton,ConstantClass.MEDIUM_WAIT_5);
         System.out.println("Seat selected from Delhi to Mumbai: "+seatAddedText.getText());
     }
     public void selectSeatMumbaiToDelhi() throws InterruptedException {
-        Thread.sleep(5000);
-        elementUtils.scrollToElementByResourceId("seatSelectionSectorTestID1");
+       // Thread.sleep(5000);
+        ElementUtils.scrollToElementByResourceId("seatSelectionSectorTestID1");
         Thread.sleep(4000);
-        System.out.println("click on bon to delhi button");
+        System.out.println("click on bombay to delhi button");
         selectReturnSeat.click();
         //elementUtils.waitAndClickElement(selectReturnSeat, 50);
         while (true) {
@@ -336,8 +349,10 @@ public class SearchPage {
             }
         }
         Thread.sleep(5000);
-        confirmSeatButton.click();
+        //confirmSeatButton.click();
+        ElementUtils.waitAndClickElement(confirmSeatButton,ConstantClass.MEDIUM_WAIT_5);
         //System.out.println("Seat selected from Mumbai to Delhi: "+seatAddedText.getText());
         nextButton.click();
     }
+
 }

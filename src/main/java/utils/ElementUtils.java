@@ -1,7 +1,7 @@
 package utils;
 
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,11 +11,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class ElementUtils {
-    public AppiumDriver driver;
+    public  static AndroidDriver driver;
     //public static int dat;
 
-    public ElementUtils(AppiumDriver driver) {
-        this.driver = driver;
+    public ElementUtils(AndroidDriver driver) {
+        ElementUtils.driver = driver;
     }
 
     public void sendKeys(WebElement element, String text, int timeout) {
@@ -74,49 +74,25 @@ public class ElementUtils {
 
     }
 
-
-    public void scrollDown() {
-        /*int screenHeight = driver.manage().window().getSize().height;
-        int screenWidth = driver.manage().window().getSize().width;
-
-        int startX = screenWidth / 2;
-        int startY = (int) (screenHeight * 0.8);
-        int endY = (int) (screenHeight * 0.2);
-
-        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
-        Sequence scroll = new Sequence(finger, 1);
-        scroll.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), startX, startY));
-        scroll.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        scroll.addAction(finger.createPointerMove(Duration.ofMillis(600), PointerInput.Origin.viewport(), startX, endY));
-        scroll.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-
-        driver.perform(Collections.singletonList(scroll)); */
-
-
-//        Point p1 = emailId.getLocation();
-//        int x = p1.getX();
-//        int y = p1.getY();
-//
-//        JavascriptExecutor js = driver;
-//        js.executeScript("window.scrollBy(0, "+y+")");
-
-
+public static String  getText(WebElement element)
+  {
+    return element.getText();
     }
 
     //Using resource ID
-    public WebElement scrollToElementByResourceId(String resourceId) {
-        return driver.findElement(AppiumBy.androidUIAutomator(
+    public static void scrollToElementByResourceId(String resourceId) {
+        driver.findElement(AppiumBy.androidUIAutomator(
                 "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().resourceId(\"" + resourceId + "\"))"));
     }
 
     // By using text
-    public WebElement scrollToElementByText(String text) {
+    public  static WebElement scrollToElementByText(String text) {
         return driver.findElement(AppiumBy.androidUIAutomator(
                 "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + text + "\"))"));
     }
 
-    public void waitAndClickElement(WebElement element, int timeout) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+    public  static void waitAndClickElement(WebElement element, int timeout) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(timeout));
         wait.until(ExpectedConditions.visibilityOf(element));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
@@ -139,15 +115,22 @@ public class ElementUtils {
         System.out.println("Element not found within timeout.");*/
 
 
-    public void waitFprElementVisible(By locator) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
+    public static void waitForElementVisible(By locator,int timeOut) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(timeOut));
         WebElement textElement = wait.until(ExpectedConditions.visibilityOfElementLocated(locator)); // Replace with the element locator
-
     }
-//    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
-//    //wait.until(ExpectedConditions.visibilityOf(element));
-//    wait.until(ExpectedConditions.elementToBeClickable(element));
-//}
+
+    public static void scrollToEnd()
+    {
+        driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(10)"));
+    }
+
+
+    public static void scrollToText( String text) {
+        driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text('"+text+"'))"));
+    }
+
 
 }

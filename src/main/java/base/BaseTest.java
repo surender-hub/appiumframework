@@ -1,5 +1,6 @@
 package base;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
@@ -28,7 +29,6 @@ public class BaseTest {
     @BeforeSuite(groups= {"regression"})
     public void setupSuite() {
         System.out.println("Test Suite Setup - Run Once Before Suite");
-
 
         // Suppress output by redirecting System.out to a dummy stream
 //        PrintStream dummyStream = new PrintStream(new OutputStream() {
@@ -83,7 +83,7 @@ public class BaseTest {
         options = new UiAutomator2Options();
         options.setPlatformName(ConfigReader.getProperty("platform.name"));
         options.setDeviceName(ConfigReader.getProperty("device.name"));
-        options.setApp(ConfigReader.getProperty("app.path_PREPOD"));
+        options.setApp(ConfigReader.getProperty("app.path.UAT2"));
         // options.setApp(ConfigReader.getProperty("app.path_UAT"));
         options.setAutoGrantPermissions(true);
         options.setNewCommandTimeout(Duration.ofSeconds(300)); // Prevent session timeout
@@ -94,7 +94,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         String currentPackage = driver.getCurrentPackage();
         driver.activateApp(currentPackage);
-
+     driver.installApp(currentPackage);
     }
 
     @AfterMethod(groups= {"regression"})

@@ -2,6 +2,7 @@ package pages;
 
 import constant.ConstantClass;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import org.openqa.selenium.By;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class RoundPage {
 
-    private AppiumDriver driver;
+    private AndroidDriver driver;
     private ElementUtils elementUtils;
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"Round trip\"]")
@@ -35,7 +36,7 @@ public class RoundPage {
     private WebElement nxtButton;
     List<WebElement> elements;
 
-    public RoundPage(AppiumDriver driver) {
+    public RoundPage(AndroidDriver driver) {
         this.driver = driver;
         this.elementUtils = new ElementUtils(driver);
         PageFactory.initElements(driver, this);
@@ -102,6 +103,7 @@ public class RoundPage {
 
     @Step("Select Next for Payment")
     public void nextButton() throws InterruptedException {
-        elementUtils.waitAndClickElement(nxtButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitForElementVisible(By.xpath("//android.view.ViewGroup[@content-desc=\"When press next button open new screen\"]"),ConstantClass.LONG_WAIT_100);
+        ElementUtils.waitAndClickElement(nxtButton, ConstantClass.LONG_WAIT_180);
     }
 }

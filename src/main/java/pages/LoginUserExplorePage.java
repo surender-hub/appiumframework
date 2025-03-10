@@ -54,14 +54,14 @@ public class LoginUserExplorePage {
     }
 
     public void pressBookStay() {
-        elementUtils.waitAndClickElement(verifyBookStay, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(verifyBookStay, ConstantClass.LONG_WAIT_180);
         Assert.assertTrue(verifySearchText.isDisplayed(), "Search  text is not displayed!");
-        elementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
     }
 
     public void pressBookFlight() {
-        elementUtils.waitAndClickElement(verifyBookFlight, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(verifyBookFlight, ConstantClass.LONG_WAIT_180);
         Assert.assertTrue(verifyOneWayText.isDisplayed(), "Search  text is not displayed!");
-        elementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
     }
 }

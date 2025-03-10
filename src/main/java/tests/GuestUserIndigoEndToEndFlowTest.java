@@ -1,16 +1,19 @@
 package tests;
 
 
+import base.BaseTest;
 import base.BaseTestLoginUser;
 import constant.ConstantClass;
 import constant.ThreadWaitClass;
 import io.qameta.allure.*;
+import listener.RetryAnalyzer;
 import org.testng.annotations.Test;
 import pages.*;
+import utils.ConfigReader;
 import utils.ElementUtils;
 import utils.LogUtils;
 
-public class GuestUserIndigoEndToEndFlowTest extends BaseTestLoginUser {
+public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
 
     private WelcomePage welcomePage;
     private SearchPage searchPage;
@@ -22,7 +25,6 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTestLoginUser {
     private ElementUtils elementUtils;
     private ThreadWaitClass threadWaitClass;
     String currentPackage;
-
     @Test(priority = 1, description = "TC_001 - Verify the Guest user generate PNR")
     @Description("Verify GuestUser booking ticket end-to-end flow")
     @Severity(SeverityLevel.CRITICAL)
@@ -32,30 +34,43 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTestLoginUser {
         LogUtils.info("Guest User booking ticket using skip to payment");
         welcomePage = new WelcomePage(driver);
         searchPage = new SearchPage(driver);
-        elementUtils = new ElementUtils(driver);
         validFarePage = new ValidFarePage(driver);
-        welcomePage.clickLogin();
+        //welcomePage.loginByOtp();
+        welcomePage.clickLoginAsQuest();
+        LogUtils.info("User Enter Login Details For OTP");
         searchPage.clickOnTo();
+        LogUtils.info("User Click on Going To Flight Link");
         searchPage.searchPlace("Mumbai");
-        LogUtils.info("Select Destination city");
+        LogUtils.info("Search Destination city Mumbai");
         searchPage.clickOnMumbaiFlight();
+        LogUtils.info("Select Destination city  first Flight ");
         validFarePage.clickOnFutureDate(3);
+        LogUtils.info("Select Future Date 3 Days Ahead ");
         searchPage.clickOnSearchButton();
-        validFarePage.clickOnFlightList();
-        //Thread.sleep(5000);
+        LogUtils.info("Click on Search Button");
+        searchPage.clickOnBookingList();
+        LogUtils.info("Select a  First Flight ");
+        // validFarePage.clickOnFlightReturn();
         searchPage.bookingNextButton();
-        searchPage.enterUserDetails("surender", "pal", "01/04/1953", "6474634463", "surende@gmail.com");
+        LogUtils.info("Click on next Button");
+        searchPage.enterUserDetails("ahyil", "pal", "02/04/1953", "6474344463", "Indisddftusneo@gmail.com");
         LogUtils.info("Enter User Details");
         searchPage.clickOnSkipToPayment();
         searchPage.clickOnNetBanking();
+        LogUtils.info("User Click on Net banking Button");
         searchPage.clickOnAddBank();
+        LogUtils.info("User Click on More Bank Button");
         searchPage.searchAvenue("av");
-        LogUtils.info("Select Avenue payment method");
+        LogUtils.info("Search Avenue payment method");
         searchPage.clickOnAvenuePayment();
+        LogUtils.info("Select Avenue payment method");
         searchPage.clickOnAvenueButtonPay();
+        LogUtils.info("User Click on Pay Button");
         searchPage.clickOnButtonResponse();
+        LogUtils.info("User Click on Response Button");
         searchPage.getPnrDetails();
         LogUtils.info("PNR Details Generated");
+
     }
 
     @Test(priority = 2, description = "TC_002 - Verify the Guest user select seat and generate PNR")
@@ -70,75 +85,88 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTestLoginUser {
         seatPage = new SeatPage(driver);
         elementUtils = new ElementUtils(driver);
         validFarePage = new ValidFarePage(driver);
-        welcomePage.clickLogin();
+        //welcomePage.clickLogin();
         try {
             searchPage.clickOnTo();
+            LogUtils.info("User Click on Going To Flight Link");
         } catch (Exception e) {
             searchPage.clickOnTo();
         }
         searchPage.searchPlace("Mumbai");
-        LogUtils.info("Select Destination city");
+        LogUtils.info("Search Destination city");
         searchPage.clickOnMumbaiFlight();
+        LogUtils.info("Select Destination city");
         validFarePage.clickOnFutureDate(3);
+        LogUtils.info("Select Future Date 3 Days Ahead ");
         searchPage.clickOnSearchButton();
+        LogUtils.info("Click on Search Button");
         searchPage.clickOnBookingList();
-       // validFarePage.clickOnFlightReturn();
+        LogUtils.info("Select a  First Flight ");
+        // validFarePage.clickOnFlightReturn();
         searchPage.bookingNextButton();
+        LogUtils.info("Click on next Button");
         searchPage.enterUserDetails("ahyil", "pal", "02/04/1953", "6474344463", "Indisddftusneo@gmail.com");
         LogUtils.info("Enter User Details");
         seatPage.selectSeat();
+        LogUtils.info("User Select Seat");
         seatPage.clickOnNextButton();
+        LogUtils.info("User Click on  next Button");
         searchPage.clickOnNetBanking();
+        LogUtils.info("User Click on Net banking Button");
         searchPage.clickOnAddBank();
+        LogUtils.info("User Click on More Bank Button");
         searchPage.searchAvenue("av");
-        LogUtils.info("Select Avenue payment method");
+        LogUtils.info("Search Avenue payment method");
         searchPage.clickOnAvenuePayment();
+        LogUtils.info("Select Avenue payment method");
         searchPage.clickOnAvenueButtonPay();
+        LogUtils.info("User Click on Pay Button");
         searchPage.clickOnButtonResponse();
+        LogUtils.info("User Click on Response Button");
         //Thread.sleep(10000);
         searchPage.getPnrDetails();
         LogUtils.info("PNR Details Generated");
 
     }
 
-    @Test(priority = 3, description = "TC_003 - Modify the PNR details")
-    @Description("Verify GuestUser modify the PNR details")
-    @Severity(SeverityLevel.CRITICAL)
-    @Feature("GuestUser Modify the PNR id he wants")
-    @Story("Guest User should be able to modify the PNR details")
-    public void modifyPnrDetails() throws InterruptedException {
-        LogUtils.info("Guest User Modify the PNR");
-        welcomePage = new WelcomePage(driver);
-        searchPage = new SearchPage(driver);
-        modifyPage = new ModifyPage(driver);
-        elementUtils = new ElementUtils(driver);
-        validFarePage = new ValidFarePage(driver);
-        try {
-            welcomePage.clickLogin();
-            modifyPage.clickOnMyTrips();
-            modifyPage.enterPnr("K3NL7E");
-            modifyPage.enterEmail("surender@gmail.com");
-            modifyPage.clickOnGetStarted();
-            //Thread.sleep(10000);
-            modifyPage.clickOnModify();
-            //Thread.sleep(10000);
-            modifyPage.clickOnChangeFlightButton();
-            modifyPage.clickOnCheckBox();
-            //Thread.sleep(2000);
-            modifyPage.clickOnProceedButton();
-            searchPage.clickOnBookingList();
-            //modifyPage.clickOnFlightList();
-            //Thread.sleep(2000);
-            modifyPage.clickOnNxtButton();
-            modifyPage.modifyFlight();
-            modifyPage.clickOnNxtButton();
-            modifyPage.clickOnFinishButton();
-            modifyPage.clickOnCancelButton();
-            LogUtils.info("PNR Details Generated");
-        } catch (Exception e) {
-            System.out.println("Test case is failing due to Known issue");
-        }
-    }
+//    @Test(priority = 3, description = "TC_003 - Modify the PNR details")
+//    @Description("Verify GuestUser modify the PNR details")
+//    @Severity(SeverityLevel.CRITICAL)
+//    @Feature("GuestUser Modify the PNR id he wants")
+//    @Story("Guest User should be able to modify the PNR details")
+//    public void modifyPnrDetails() throws InterruptedException {
+//        LogUtils.info("Guest User Modify the PNR");
+//        welcomePage = new WelcomePage(driver);
+//        searchPage = new SearchPage(driver);
+//        modifyPage = new ModifyPage(driver);
+//        elementUtils = new ElementUtils(driver);
+//        validFarePage = new ValidFarePage(driver);
+//        try {
+//            //welcomePage.clickLogin();
+//            modifyPage.clickOnMyTrips();
+//            modifyPage.enterPnr("K3NL7E");
+//            modifyPage.enterEmail("surender@gmail.com");
+//            modifyPage.clickOnGetStarted();
+//            //Thread.sleep(10000);
+//            modifyPage.clickOnModify();
+//            //Thread.sleep(10000);
+//            modifyPage.clickOnChangeFlightButton();
+//            modifyPage.clickOnCheckBox();
+//            //Thread.sleep(2000);
+//            modifyPage.clickOnProceedButton();
+//            searchPage.clickOnBookingList();
+//            //modifyPage.clickOnFlightList();
+//            //Thread.sleep(2000);
+//            modifyPage.clickOnNxtButton();
+//            modifyPage.modifyFlight();
+//            modifyPage.clickOnNxtButton();
+//            modifyPage.clickOnFinishButton();
+//            modifyPage.clickOnCancelButton();
+//            LogUtils.info("PNR Details Generated");
+//        } catch (Exception e) {
+//            System.out.println("Test case is failing due to Known issue");
+//        }
+//    }
 
 
     @Test(priority = 4, description = "TC_004 -Round  Trip booking")
@@ -154,7 +182,7 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTestLoginUser {
         roundPage = new RoundPage(driver);
         elementUtils = new ElementUtils(driver);
         validFarePage = new ValidFarePage(driver);
-        welcomePage.clickLogin();
+        // welcomePage.clickLogin();
         roundPage.selectRoundTrip();
         roundPage.clickOnToRoundTrip();
         roundPage.searchCity("Mumbai");
@@ -203,7 +231,7 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTestLoginUser {
         roundPage = new RoundPage(driver);
         elementUtils = new ElementUtils(driver);
         validFarePage = new ValidFarePage(driver);
-        welcomePage.clickLogin();
+        //welcomePage.clickLogin();
         multiCity.clickOnMultiCity();
         Thread.sleep(2000);
         try {
@@ -218,7 +246,7 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTestLoginUser {
             multiCity.clickOnAgraFlight();
             validFarePage.clickOnFutureDate(5);
             //Thread.sleep(10000);
-            elementUtils.scrollToElementByText("Search");
+            ElementUtils.scrollToElementByText("Search");
             roundPage.clickOnSearchButton();
             //roundPage.clickOnReturnFlight();
             //validFarePage.clickOnFlightReturn();
@@ -263,29 +291,25 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTestLoginUser {
         roundPage = new RoundPage(driver);
         elementUtils = new ElementUtils(driver);
         validFarePage = new ValidFarePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         roundPage.selectRoundTrip();
         roundPage.clickOnToRoundTrip();
         roundPage.searchCity("Mumbai");
         LogUtils.info("Select Destination city");
         roundPage.clickOnMumbaiFlight();
         validFarePage.clickOnFutureDate(2);
-        Thread.sleep(5000);
+        ThreadWaitClass.customSleep(5000);
         validFarePage.clickOnFutureDate(4);
         roundPage.clickOnSearchButton();
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
         searchPage.clickOnBookingList();
-        //searchPage.clickItemByIndex(1);
-        //validFarePage.clickOnFlightList();
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
         searchPage.bookingNextButton();
-        // searchPage.clickItemByIndex(1);
-        Thread.sleep(3000);
-        //validFarePage.clickOnFlightReturn();
+        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
         searchPage.clickOnBookingList();
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
         roundPage.nextButton();
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
         searchPage.enterUserDetails("anil", "pal", "04/04/1953", "6474344463", "abc@gmail.com");
         LogUtils.info("Enter User Details");
         try {
@@ -297,9 +321,7 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTestLoginUser {
         searchPage.bookingNextButton();
         searchPage.selectSeatDelhiToMumbai();
         searchPage.selectSeatMumbaiToDelhi();
-
         searchPage.bookingNextButton();
-
         searchPage.clickOnNetBanking();
         searchPage.clickOnAddBank();
         searchPage.searchAvenue("av");

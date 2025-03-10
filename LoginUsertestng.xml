@@ -6,7 +6,9 @@
     </listeners>
     <test name="Appium Android Tests">
         <classes>
-            <class name="tests.BookPageTest"/>
+
+<!--            <class name="tests.LoginUserBookPageTest"/>-->
+            <class name="tests.LoginUserIndigoEndToEndFlowTest"/>
           <!--  <class name="tests.IndigoTest"/>
             <class name="tests.Validate"/>-->
         </classes>
