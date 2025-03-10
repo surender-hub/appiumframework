@@ -204,8 +204,6 @@ public class GuestUserRegistrationTest extends BaseTest {
     }
 
 
-
-
    /* @Test(priority = 5, description = "TC_005 -Registration page")
     @Description("Select Radio button")
     @Severity(SeverityLevel.CRITICAL)

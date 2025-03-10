@@ -58,7 +58,7 @@ public class ValidFarePage {
         System.out.println("xpath list " + elements1);
         if (!elements1.isEmpty()) {
             //Thread.sleep(2000);
-            threadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
+            ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
             elements1.get(0).click();
             System.out.println("Clicked on the first matching element.");
 
