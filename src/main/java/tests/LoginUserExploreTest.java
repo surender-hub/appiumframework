@@ -24,7 +24,7 @@ public class LoginUserExploreTest extends BaseTestLoginUser
     @Story("Login User should be able to redirect on Explore Page")
     public void verifyExploreDisplayed() {
         loginUserExplorePage = new LoginUserExplorePage(driver);
-       // loginUserExplorePage.loginUser();
+        loginUserExplorePage.loginUser();
         loginUserExplorePage.pressExploreButton();
     }
 
@@ -36,7 +36,6 @@ public class LoginUserExploreTest extends BaseTestLoginUser
     public void verifyBookFlightText()  {
         loginUserExplorePage = new LoginUserExplorePage(driver);
         loginUserExplorePage.verifyBookFlightText();
-
     }
 
     @Test(priority = 3, description = "TC_003 - Verify Explore Page functionality after Login.", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
@@ -48,7 +47,6 @@ public class LoginUserExploreTest extends BaseTestLoginUser
         loginUserExplorePage = new LoginUserExplorePage(driver);
         loginUserExplorePage.verifyStayText();
     }
-
     @Test(priority = 4, description = "TC_004 - Verify Explore Page functionality after Login.", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
     @Description("Check Explore page functionality after successfully Logged In.")
     @Severity(SeverityLevel.CRITICAL)
@@ -59,7 +57,6 @@ public class LoginUserExploreTest extends BaseTestLoginUser
         loginUserExplorePage.pressBookStay();
     }
 
-
     @Test(priority = 5, description = "TC_005 - Verify Explore Page functionality after Login.", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
     @Description("Check Explore page functionality after successfully Logged In.")
     @Severity(SeverityLevel.CRITICAL)
@@ -69,7 +66,6 @@ public class LoginUserExploreTest extends BaseTestLoginUser
         loginUserExplorePage = new LoginUserExplorePage(driver);
         loginUserExplorePage.verifyWhereTInStay();
     }
-
     @Test(priority = 6, description = "TC_006 - Verify Explore Page functionality after Login.", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
     @Description("Check Explore page functionality after successfully Logged In.")
     @Severity(SeverityLevel.CRITICAL)
@@ -233,7 +229,5 @@ public class LoginUserExploreTest extends BaseTestLoginUser
         loginUserExplorePage = new LoginUserExplorePage(driver);
         loginUserExplorePage.whatsNewImageLoading();
     }
-
-
 
 }

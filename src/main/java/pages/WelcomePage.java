@@ -38,10 +38,9 @@ public class WelcomePage {
     public WebElement guestUser;
 
 
-    public void clickLoginAsQuest() throws InterruptedException {
+    public void clickLoginAsQuest() {
         System.out.println("Login page");
-        ElementUtils utils = new ElementUtils(driver);
-        utils.waitAndClickElement(guestUser, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(guestUser, ConstantClass.LONG_WAIT_180);
         /*//ElementUtils utils = new ElementUtils(driver);
         LoginPage loginPage = new LoginPage(driver);
         LoginUserPage loginUserPage = new LoginUserPage(driver);

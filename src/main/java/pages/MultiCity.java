@@ -35,23 +35,23 @@ public class MultiCity
 
     @Step("Click on Multi City Text")
     public void clickOnMultiCity() {
-        elementUtils.waitAndClickElement(selectMultiCity, 20);
+        ElementUtils.waitAndClickElement(selectMultiCity, 20);
     }
 
     @Step("Click on To(City 1)")
     public void clickOnTo1() {
-        elementUtils.waitAndClickElement(toClick1, 20);
+        ElementUtils.waitAndClickElement(toClick1, 20);
     }
 
     @Step("Click on To(City 2)")
     public void clickOnTo2() {
-        elementUtils.waitAndClickElement(toClick1, 20);
+        ElementUtils.waitAndClickElement(toClick1, 20);
     }
 
     @Step("Select Destination Agra from List")
     @Story("Searching a flight")
     public void clickOnAgraFlight() {
-        elementUtils.waitAndClickElement(agraFlight, 50);
+        ElementUtils.waitAndClickElement(agraFlight, 50);
     }
 
     public void clickOnDate() throws InterruptedException {

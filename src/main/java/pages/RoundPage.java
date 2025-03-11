@@ -45,23 +45,23 @@ public class RoundPage {
 
     @Step("Select Round Trip")
     public void selectRoundTrip() {
-        elementUtils.waitAndClickElement(selectRoundTrip, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(selectRoundTrip, ConstantClass.LONG_WAIT_180);
     }
     @Step("Select city in round trip")
     public void clickOnToRoundTrip() {
-        elementUtils.waitAndClickElement(searchOnTo, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(searchOnTo, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Search City: {placeName}")
     public void searchCity(String cityName) {
-        elementUtils.waitAndClickElement(searchCity, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(searchCity, ConstantClass.LONG_WAIT_180);
         elementUtils.sendKeys(searchCity, cityName, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Select Destination Mumbai from List")
     @Story("Searching a flight")
     public void clickOnMumbaiFlight() {
-        elementUtils.waitAndClickElement(mumbaiFlight, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(mumbaiFlight, ConstantClass.LONG_WAIT_180);
     }
 
     public void clickOnDate() throws InterruptedException {
@@ -80,7 +80,7 @@ public class RoundPage {
 
     @Step("Search the available city")
     public void clickOnSearchButton() {
-        elementUtils.waitAndClickElement(searchButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(searchButton, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click the return city")

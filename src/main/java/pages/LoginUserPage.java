@@ -44,12 +44,12 @@ public class LoginUserPage
     }
     @Step("Click on Destination Button")
     public void clickOnTo() {
-        elementUtils.waitAndClickElement(searchOnTo, 50);
+        ElementUtils.waitAndClickElement(searchOnTo, 50);
     }
 
     @Step("Search Place: {placeName}")
     public void searchPlace(String placeName) {
-        elementUtils.waitAndClickElement(searchPlace, 50);
+        ElementUtils.waitAndClickElement(searchPlace, 50);
         elementUtils.sendKeys(searchPlace, placeName, 50);
     }
 
@@ -78,28 +78,28 @@ public class LoginUserPage
 
     @Step("Click on Login Button")
     public void loginButton(){
-        elementUtils.waitAndClickElement(loginButton, 20);
+        ElementUtils.waitAndClickElement(loginButton, 20);
     }
 
     @Step("Select Destination Mumbai from List")
     @Story("Searching a flight")
     public void clickOnMumbaiFlight() {
-        elementUtils.waitAndClickElement(mumbaiFlight, 50);
+        ElementUtils.waitAndClickElement(mumbaiFlight, 50);
     }
 
     @Step("Search the available city")
     public void clickOnSearchButton() {
-        elementUtils.waitAndClickElement(searchButton, 50);
+        ElementUtils.waitAndClickElement(searchButton, 50);
     }
 
     @Step("Select Next for Payment")
     public void bookingNextButton() throws InterruptedException {
         Thread.sleep(5000);
-        elementUtils.waitAndClickElement(nextButton, 50);
+        ElementUtils.waitAndClickElement(nextButton, 50);
     }
     @Step("Select Next for Payment")
     public void clickCheckbox() throws InterruptedException {
-        elementUtils.waitAndClickElement(checkBox, 50);
+        ElementUtils.waitAndClickElement(checkBox, 50);
     }
 
 }

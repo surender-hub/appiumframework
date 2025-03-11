@@ -12,6 +12,8 @@ import java.time.format.DateTimeFormatter;
 
 public class ElementUtils {
     public  static AndroidDriver driver;
+    private static WebElement element;
+    private static int timeout;
     //public static int dat;
 
     public ElementUtils(AndroidDriver driver) {
@@ -91,13 +93,33 @@ public static String  getText(WebElement element)
                 "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + text + "\"))"));
     }
 
-    public  static void waitAndClickElement(WebElement element, int timeout) {
+   /* public  static void waitAndClickElement(WebElement element, int timeout) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(timeout));
         wait.until(ExpectedConditions.visibilityOf(element));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
         // System.out.println("Element clicked successfully!");
     }
+*/
+
+    public static void waitAndClickElement(WebElement element, int timeout) {
+        try {
+            // Check if the element is present in the DOM
+            if (element == null || !element.isDisplayed()) {
+                throw new NoSuchElementException("Element is not present in the DOM.");
+            }
+
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+            wait.until(ExpectedConditions.visibilityOf(element));
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+            element.click();
+
+        } catch (NoSuchElementException | TimeoutException e) {
+            throw new NoSuchElementException("Element not found or not clickable within timeout.");
+        }
+    }
+
+
        /* long endTime = System.currentTimeMillis() + (timeout * 1000);
         while (System.currentTimeMillis() < endTime) {
             try {

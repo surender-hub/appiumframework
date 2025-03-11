@@ -67,15 +67,15 @@ public class SeatPage {
 
     @Step("Click on Next to Select Seat")
     public void clickOnNextForSeat() {
-        elementUtils.waitAndClickElement(nextSeat, 50);
+        ElementUtils.waitAndClickElement(nextSeat, 50);
     }
     @Step("Click on Next Fare screen")
     public void clickOnNextFare() {
-        elementUtils.waitAndClickElement(nextFare, 50);
+        ElementUtils.waitAndClickElement(nextFare, 50);
     }
     @Step("Click on Free Button")
     public void clickOnFreeButton() {
-        elementUtils.waitAndClickElement(freeSeat, 50);
+        ElementUtils.waitAndClickElement(freeSeat, 50);
     }
 
 
@@ -84,7 +84,7 @@ public class SeatPage {
     {
         WebElement nextButton2 = driver.findElement(AppiumBy.androidUIAutomator(
           "new UiSelector().description(\"When press next button open new screen\")"));
-        elementUtils.waitAndClickElement(nextButton2,ConstantClass.LONG_WAIT_100);
+        ElementUtils.waitAndClickElement(nextButton2,ConstantClass.LONG_WAIT_100);
     }
 
 
@@ -99,7 +99,7 @@ public class SeatPage {
             System.out.println(viewGroups.size());
             WebElement targetElement = viewGroups.get(indexToClick);
 
-            elementUtils.waitAndClickElement(targetElement, 50);
+            ElementUtils.waitAndClickElement(targetElement, 50);
         } else {
             System.out.println("Element at the specified index is not found.");
         }
@@ -116,7 +116,7 @@ public class SeatPage {
                 }
 
             } catch (Exception e) {
-              elementUtils.waitAndClickElement(nextButton, ConstantClass.LONG_WAIT_100);
+              ElementUtils.waitAndClickElement(nextButton, ConstantClass.LONG_WAIT_100);
             }
         }
 
@@ -141,7 +141,7 @@ public class SeatPage {
         }
         Thread.sleep(5000);
         WebElement elem = driver.findElement(By.xpath("//com.horcrux.svg.CircleView"));
-        elementUtils.waitAndClickElement(elem, ConstantClass.LONG_WAIT_100);
+        ElementUtils.waitAndClickElement(elem, ConstantClass.LONG_WAIT_100);
         //seatPage.clickOnSeat();
         Thread.sleep(5000);
         System.out.println(driver.findElement(By.xpath("//android.widget.TextView[@text=\"1 Seats Added\"]")).getText());
@@ -164,7 +164,7 @@ public class SeatPage {
         }
 
 //        WebElement elem = driver.findElement(By.xpath("//com.horcrux.svg.CircleView"));
-        elementUtils.waitAndClickElement(clickOnSeatImage, ConstantClass.LONG_WAIT_100);
+        ElementUtils.waitAndClickElement(clickOnSeatImage, ConstantClass.LONG_WAIT_100);
         //PRINT MESSAGE AFTER SELECTING SEAT
         System.out.println(driver.findElement(By.xpath("//android.widget.TextView[@text=\"1 Seats Added\"]")).getText());
 

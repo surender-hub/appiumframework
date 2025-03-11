@@ -60,30 +60,30 @@ public class ModifyPage {
 
     @Step("Click on  My Trips on Bottom Bar ")
     public void clickOnMyTrips() {
-        elementUtils.waitAndClickElement(myTrips, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(myTrips, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Enter PNR {Pnr details}")
     public void enterPnr(String pnrDetail) {
-        elementUtils.waitAndClickElement(pnrDetails, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(pnrDetails, ConstantClass.LONG_WAIT_180);
         elementUtils.sendKeys(pnrDetails, pnrDetail, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Enter EmailId {Pnr details}")
     public void enterEmail(String email) {
-        elementUtils.waitAndClickElement(emailId, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(emailId, ConstantClass.LONG_WAIT_180);
         elementUtils.sendKeys(emailId, email, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click on  Get Started Button after pnr details ")
     public void clickOnGetStarted() throws InterruptedException {
-        elementUtils.waitAndClickElement(getStarted, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(getStarted, ConstantClass.LONG_WAIT_180);
         Thread.sleep(10000);
     }
 
     @Step("Click on Modify button")
     public void clickOnModify() throws InterruptedException {
-        elementUtils.waitAndClickElement(modifyButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(modifyButton, ConstantClass.LONG_WAIT_180);
 //        System.out.println("Clicking Modify");
 //        driver.findElement(By.xpath("//android.widget.TextView[@text=\"Modify\"]")).click();
 //        Thread.sleep(10000);
@@ -101,32 +101,32 @@ public class ModifyPage {
 
     @Step("Click on change flight Button")
     public void clickOnChangeFlightButton() {
-        elementUtils.waitAndClickElement(changeFlightButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(changeFlightButton, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click on Check Box")
     public void clickOnCheckBox() {
-        elementUtils.waitAndClickElement(checkBox, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(checkBox, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click on Check Box")
     public void clickOnProceedButton() {
-        elementUtils.waitAndClickElement(proceedButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(proceedButton, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click on Check Box")
     public void clickOnFlightList() {
-        elementUtils.waitAndClickElement(selectFlight, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(selectFlight, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click on Check Box")
     public void clickOnNxtButton() {
-        elementUtils.waitAndClickElement(nxtButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(nxtButton, ConstantClass.LONG_WAIT_180);
     }
 
     @Step("Click on Next Button")
     public void clickOnNxtFareButton() {
-        elementUtils.waitAndClickElement(nxtButton, 50);
+        ElementUtils.waitAndClickElement(nxtButton, 50);
 
         Actions actions = new Actions(driver);
         actions.moveToElement(nxtButtonFare).click().perform();
@@ -137,12 +137,12 @@ public class ModifyPage {
 
     @Step("Click on finish")
     public void clickOnFinishButton() {
-        elementUtils.waitAndClickElement(finishButton, 20);
+        ElementUtils.waitAndClickElement(finishButton, 20);
     }
 
     @Step("Click on Check Box")
     public void clickOnCancelButton() {
-        elementUtils.waitAndClickElement(cancelButton, 20);
+        ElementUtils.waitAndClickElement(cancelButton, 20);
     }
 
 
@@ -162,7 +162,7 @@ public class ModifyPage {
             } catch (Exception e) {
 
                 WebElement ele = driver.findElement(By.xpath("//*[@text ='Next']"));
-                elementUtils.waitAndClickElement(ele,ConstantClass.LONG_WAIT_180);
+                ElementUtils.waitAndClickElement(ele,ConstantClass.LONG_WAIT_180);
                 //ele.click();
 
                 //Thread.sleep(2000);
@@ -183,7 +183,7 @@ public class ModifyPage {
 
             System.out.println("Modify Seat Name " + seat.getText());
             if (seat.isEnabled()) {
-                elementUtils.waitAndClickElement(seat,ConstantClass.LONG_WAIT_180);
+                ElementUtils.waitAndClickElement(seat,ConstantClass.LONG_WAIT_180);
                // seat.click();
                 break;
             }

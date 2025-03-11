@@ -28,12 +28,10 @@ public class GuestUserExploreTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Explore Page")
     @Story("Guest User should be able to redirect on Explore Page")
-    public void verifyExploreDisplayed() {
+    public void verifyExploreDisplayed()  {
         guestUserExplorePage = new GuestUserExplorePage(driver);
-        // loginPage = new LoginPage(driver);
-        // loginUserExplorePage.loginUser();
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         //loginPage.clickOnContinue();
         guestUserExplorePage.pressExploreButton();
     }
@@ -46,7 +44,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyBookFlightText() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.verifyBookFlightText();
 
     }
@@ -59,7 +57,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyBookStayText() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.verifyStayText();
     }
 
@@ -71,7 +69,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyBookStayClickable() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.pressBookStay();
     }
 
@@ -84,7 +82,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyWhereTextInStay() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.verifyWhereTInStay();
     }
 
@@ -96,7 +94,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyDesTInStay() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.verifyDesTInStay();
     }
 
@@ -108,7 +106,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyClickAwayText() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.verifyClickAway();
     }
 
@@ -120,7 +118,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyLowestFareText() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.verifyLowestFare();
     }
 
@@ -132,7 +130,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifySvgView() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.verifySvgView();
     }
 
@@ -155,7 +153,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyFromText() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.verifyFromT();
     }
 
@@ -167,7 +165,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyWhereToText() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         // WebElement element = driver.findElement(By.xpath("//android.widget.TextView[@text=\"Explore\"]"));
         //element.click();
         guestUserExplorePage.verifyWhereT();
@@ -181,7 +179,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifySearchByPlaceText() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.verifySearchT();
     }
 
@@ -193,7 +191,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyWhereTextClickable() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.verifySearchT();
     }
 
@@ -205,7 +203,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyWhatsNewText() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.verifyWhatsNewText();
     }
 
@@ -217,7 +215,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyAllOffersText() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.verifyAllOfferText();
     }
 
@@ -229,7 +227,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyExploreText() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.verifyExploreText();
     }
 
@@ -241,7 +239,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyAllOffersTextClickable() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.pressAllOfferText();
     }
 
@@ -253,7 +251,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyExploreTextClickable() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.pressExploreText();
     }
 
@@ -265,7 +263,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyViewMoreText() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.verifyViewMoreText();
     }
     @Test(priority = 20, description = "TC_020 - Verify Explore Page functionality with Guest User")
@@ -276,7 +274,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyViewMoreClickable() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.pressViewMoreText();
     }
 
@@ -288,7 +286,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyAddMore() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.verifyAddMoreText();
     }
     @Test(priority = 22, description = "TC_022 - Verify Explore Page functionality with Guest User")
@@ -299,7 +297,7 @@ public class GuestUserExploreTest extends BaseTest {
     public void verifyImageLoading() {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
-        welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         guestUserExplorePage.whatsNewImageLoading();
     }
 }

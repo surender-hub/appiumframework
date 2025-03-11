@@ -87,7 +87,7 @@ public class LoginUserExplorePage {
     }
 
     public void pressExploreButton() {
-        elementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
     }
 
     public void verifyBookFlightText() {
@@ -100,32 +100,32 @@ public class LoginUserExplorePage {
     }
 
     public void pressBookStay() {
-        elementUtils.waitAndClickElement(verifyBookStay, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(verifyBookStay, ConstantClass.LONG_WAIT_180);
         try {
-            elementUtils.waitAndClickElement(closePopUp, ConstantClass.SHORT_WAIT_2);
+            ElementUtils.waitAndClickElement(closePopUp, ConstantClass.SHORT_WAIT_2);
         } catch (Exception e) {
             System.out.println("closePopUp not found, continuing...");
         }
         Assert.assertTrue(verifySearchText.isDisplayed(), "Search  text is not displayed!");
-        elementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
 
 
     }
 
     public void pressBookFlight() {
-        elementUtils.waitAndClickElement(verifyBookFlight, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(verifyBookFlight, ConstantClass.LONG_WAIT_180);
         try {
-            elementUtils.waitAndClickElement(closePopUp, ConstantClass.SHORT_WAIT_2);
+            ElementUtils.waitAndClickElement(closePopUp, ConstantClass.SHORT_WAIT_2);
         } catch (Exception e) {
             System.out.println("closePopUp not found, continuing...");
         }
-        elementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(whereText.isDisplayed(), "From  text is not displayed!");
-        elementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
     }
 
     public void verifyFromT() {
-        elementUtils.waitAndClickElement(verifyBookFlight, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(verifyBookFlight, ConstantClass.LONG_WAIT_180);
         Assert.assertTrue(fromText.isDisplayed(), "Book a Stay text is not displayed!");
     }
 
@@ -135,18 +135,18 @@ public class LoginUserExplorePage {
 
     public void verifySearchT() {
         Assert.assertTrue(searchText.isDisplayed(), "Book a Stay text is not displayed!");
-        elementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
     }
 
     public void pressWhereText() {
-        elementUtils.waitAndClickElement(whereText, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(whereText, ConstantClass.LONG_WAIT_180);
         Assert.assertTrue(verifyWhereAreYouText.isDisplayed(), "Search  text is not displayed!");
         try {
-            elementUtils.waitAndClickElement(closePopUp, ConstantClass.SHORT_WAIT_2);
+            ElementUtils.waitAndClickElement(closePopUp, ConstantClass.SHORT_WAIT_2);
         } catch (Exception e) {
             System.out.println("closePopUp not found, continuing...");
         }
-        elementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
     }
 
     public void verifyWhereTInStay() {
@@ -175,49 +175,49 @@ public class LoginUserExplorePage {
     }
 
     public void verifyAllOfferText() {
-        elementUtils.scrollToElementByText("View All Offer");
+        ElementUtils.scrollToElementByText("View All Offer");
         Assert.assertTrue(viewAllOfferText.isDisplayed(), "View All Offers text is not displayed!");
     }
 
     public void verifyExploreText() {
-        elementUtils.scrollToElementByText("Embark on a journey of inspiration with IndiGo, where discovery meets the sky");
+        ElementUtils.scrollToElementByText("Embark on a journey of inspiration with IndiGo, where discovery meets the sky");
         Assert.assertTrue(exploreText.isDisplayed(), "View All Offers text is not displayed!");
     }
 
     public void pressAllOfferText() {
-        elementUtils.scrollToElementByText("View All Offer");
-        elementUtils.waitAndClickElement(viewAllOfferText, ConstantClass.LONG_WAIT_10);
+        ElementUtils.scrollToElementByText("View All Offer");
+        ElementUtils.waitAndClickElement(viewAllOfferText, ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(allOfferText.isDisplayed(), "View All Offers text is not displayed!");
         //elementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
         driver.navigate().back();
     }
 
     public void pressExploreText() {
-        elementUtils.scrollToElementByText("Embark on a journey of inspiration with IndiGo, where discovery meets the sky");
-        elementUtils.waitAndClickElement(exploreText, ConstantClass.LONG_WAIT_10);
+        ElementUtils.scrollToElementByText("Embark on a journey of inspiration with IndiGo, where discovery meets the sky");
+        ElementUtils.waitAndClickElement(exploreText, ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(guideText.isDisplayed(), "View All Offers text is not displayed!");
         driver.navigate().back();
     }
 
     public void verifyViewMoreText() {
-        elementUtils.scrollToElementByText("View more");
+        ElementUtils.scrollToElementByText("View more");
         Assert.assertTrue(viewMoreText.isDisplayed(), "View More text is not displayed!");
     }
 
     public void pressViewMoreText() {
-        elementUtils.scrollToElementByText("View more");
-        elementUtils.waitAndClickElement(viewMoreText, ConstantClass.LONG_WAIT_10);
+        ElementUtils.scrollToElementByText("View more");
+        ElementUtils.waitAndClickElement(viewMoreText, ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(verifyIndigoText.isDisplayed(), "View More text is not displayed!");
         driver.navigate().back();
     }
 
     public void verifyAddMoreText() {
-        elementUtils.scrollToElementByText("View more");
+        ElementUtils.scrollToElementByText("View more");
         Assert.assertTrue(addMoreText.isDisplayed(), "Add More text is not displayed!");
     }
 
     public void whatsNewImageLoading() {
-        elementUtils.scrollToElementByText("Find exclusive offers and the best deals available for you.");
+        ElementUtils.scrollToElementByText("Find exclusive offers and the best deals available for you.");
         for (WebElement subChild : subChildElements) {
             try {
                 // Find the image element within each subchild

@@ -11,6 +11,7 @@ import org.apache.commons.mail.resolver.DataSourceUrlResolver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import utils.ConfigReader;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -26,7 +27,7 @@ public class BaseTest {
     public static UiAutomator2Options options;
     private static AppiumDriverLocalService service;
 
-    @BeforeSuite(groups= {"regression"})
+    @BeforeSuite(groups = {"regression"})
     public void setupSuite() {
         System.out.println("Test Suite Setup - Run Once Before Suite");
 
@@ -78,12 +79,12 @@ public class BaseTest {
         //System.out.println("Test Suite Setup - Run Once Before Suite");
     }
 
-    @BeforeMethod(groups= {"regression"})
+    @BeforeMethod(groups = {"regression"})
     public void startAppiumServer() throws MalformedURLException {
         options = new UiAutomator2Options();
         options.setPlatformName(ConfigReader.getProperty("platform.name"));
         options.setDeviceName(ConfigReader.getProperty("device.name"));
-        options.setApp(ConfigReader.getProperty("app.path.UAT2"));
+        options.setApp(ConfigReader.getProperty("app.path.UAT"));
         // options.setApp(ConfigReader.getProperty("app.path_UAT"));
         options.setAutoGrantPermissions(true);
         options.setNewCommandTimeout(Duration.ofSeconds(300)); // Prevent session timeout
@@ -94,10 +95,10 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         String currentPackage = driver.getCurrentPackage();
         driver.activateApp(currentPackage);
-     driver.installApp(currentPackage);
+        //driver.installApp(currentPackage);
     }
 
-    @AfterMethod(groups= {"regression"})
+    @AfterMethod(groups = {"regression"})
     public void tearDown(ITestResult result) throws InterruptedException {
         if (result.getStatus() == ITestResult.FAILURE) {
             // Implement screenshot capture if needed (AllureUtils or another utility)
@@ -114,22 +115,22 @@ public class BaseTest {
     }
 
 
-    @AfterSuite(groups= {"regression"})
+    @AfterSuite(groups = {"regression"})
     public void cleanupSuite() throws IOException, InterruptedException {
 
-            // Generate the Allure report after ensuring allure-results is populated
-            try {
+        // Generate the Allure report after ensuring allure-results is populated
+        try {
 
-               ProcessBuilder builder = new ProcessBuilder("/opt/homebrew/bin/allure", "serve", "allure-results");
-                builder.inheritIO();
-                Process process = builder.start();
-               //process.waitFor();
-                System.out.println("Successfully to serve the report.");
+            ProcessBuilder builder = new ProcessBuilder("/opt/homebrew/bin/allure", "serve", "allure-results");
+            builder.inheritIO();
+            Process process = builder.start();
+            //process.waitFor();
+            System.out.println("Successfully to serve the report.");
 
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.out.println("Failed to serve the report.");
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to serve the report.");
+        }
 
             /*try{
                // URL url = new  URL("file:///"+System.getProperty("user.dir")+"/Users/Shubham.x.Jain/Desktop/Appium_Project/allure-report");
@@ -161,9 +162,8 @@ public class BaseTest {
         }
 
 
-
-        }
-        }
+    }
+}
 
 
 

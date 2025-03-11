@@ -12,12 +12,9 @@
         </groups>
         <classes>
 
-            <class name="tests.GuestUserLoginTest"/>
-            <class name="tests.GuestUserRegistrationTest"/>
-            <class name="tests.GuestUserExploreTest"/>
-            <class name="tests.BookPageTest"/>
-            <class name="tests.ProfilePageTest"/>
-            <class name="tests.GuestUserIndigoEndToEndFlowTest"/>
+            <class name="tests.LoginUserExploreTest"/>
+            <class name="tests.LoginUserBookPageTest"/>
+            <class name="tests.LoginUserIndigoEndToEndFlowTest"/>
 
         </classes>
 
