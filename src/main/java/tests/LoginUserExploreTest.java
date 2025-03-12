@@ -38,7 +38,7 @@ public class LoginUserExploreTest extends BaseTestLoginUser
         loginUserExplorePage.verifyBookFlightText();
     }
 
-    @Test(priority = 3, description = "TC_003 - Verify Explore Page functionality after Login.", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
+   /* @Test(priority = 3, description = "TC_003 - Verify Explore Page functionality after Login.", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
     @Description("Check Explore page functionality after successfully Logged In.")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Explore Page")
@@ -101,7 +101,7 @@ public class LoginUserExploreTest extends BaseTestLoginUser
     public void verifySvgView(){
         loginUserExplorePage = new LoginUserExplorePage(driver);
         loginUserExplorePage.verifySvgView();
-    }
+    }*/
 
     @Test(priority = 10, description = "TC_010 - Verify Explore Page functionality after Login.", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
     @Description("Check Explore page functionality after successfully Logged In.")

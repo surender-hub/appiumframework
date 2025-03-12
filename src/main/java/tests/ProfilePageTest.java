@@ -9,7 +9,7 @@ import pages.BookPage;
 import pages.ProfilePage;
 import pages.WelcomePage;
 
-public class ProfilePageTest extends BaseTest {
+public class ProfilePageTest extends BaseTestLoginUser {
     private WelcomePage welcomePage;
     private ProfilePage profilePage;
     private ThreadWaitClass threadWaitClass;

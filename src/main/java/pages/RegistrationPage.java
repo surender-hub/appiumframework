@@ -19,7 +19,7 @@ public class RegistrationPage {
 
     @FindBy(xpath = "//android.view.ViewGroup[contains(@content-desc, 'Male')]//android.widget.RadioButton")
     private WebElement maleRadio;
-    @FindBy(xpath = "//android.widget.EditText[@text=\"First Name\"]")
+    @FindBy(xpath = "//android.widget.EditText[contains(@text, 'First')]")
     private WebElement enterFirstName;
     @FindBy(xpath = "//android.widget.EditText[@text=\"Last Name\"]")
     private WebElement enterLastName;
@@ -50,7 +50,7 @@ public class RegistrationPage {
     private WebElement checkFemaleRadioButton;
     @FindBy(xpath = "//android.widget.TextView[@text=\" Female\"]")
     private WebElement checkFemaleText;
-    @FindBy(xpath = "//android.widget.Button[@content-desc=\"TNC\"]")
+    @FindBy(xpath = "//android.widget.Button[@content-desc=\"Terms and Conditions\"]")
     private WebElement linkTextTnc;
     @FindBy(xpath = "//android.view.View[contains(@text, 'Privacy Policy')]")
     private WebElement privacyPolicyText;
@@ -58,6 +58,8 @@ public class RegistrationPage {
     private WebElement privacyPolicyLinkText;
     @FindBy(xpath = "//android.widget.Button[@content-desc=\"T&C.\"]")
     private WebElement tcLinkText;
+    @FindBy(xpath = "//android.widget.EditText[@text=\"First and Middle Name\"]")
+    private WebElement enterFirstN;
 
 
 
@@ -188,4 +190,10 @@ public class RegistrationPage {
         Assert.assertTrue(privacyPolicyText.isDisplayed(), "Privacy PolicyText is not displayed!");
     }
 
+  /*  @Step("Enter FirstName : {Enter FirstName}")
+    public void enterFirstName(String mobileNumber) {
+        ElementUtils.waitAndClickElement(enterFirstN, ConstantClass.LONG_WAIT_180);
+        elementUtils.sendKeys(enterFirstN, mobileNumber, ConstantClass.LONG_WAIT_180);
+    }
+*/
 }

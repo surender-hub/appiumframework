@@ -1,21 +1,15 @@
 package base;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
-import org.apache.commons.mail.DefaultAuthenticator;
-import org.apache.commons.mail.ImageHtmlEmail;
-import org.apache.commons.mail.resolver.DataSourceUrlResolver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import utils.ConfigReader;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -30,7 +24,6 @@ public class BaseTest {
     @BeforeSuite(groups = {"regression"})
     public void setupSuite() {
         System.out.println("Test Suite Setup - Run Once Before Suite");
-
         // Suppress output by redirecting System.out to a dummy stream
 //        PrintStream dummyStream = new PrintStream(new OutputStream() {
 //            @Override
@@ -95,7 +88,6 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         String currentPackage = driver.getCurrentPackage();
         driver.activateApp(currentPackage);
-        //driver.installApp(currentPackage);
     }
 
     @AfterMethod(groups = {"regression"})

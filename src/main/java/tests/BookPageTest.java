@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import pages.*;
 import utils.ElementUtils;
 
-public class BookPageTest extends BaseTest {
+public class BookPageTest extends BaseTestLoginUser {
 
     private WelcomePage welcomePage;
     private BookPage bookPage;

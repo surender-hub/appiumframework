@@ -25,6 +25,7 @@ import java.util.List;
 public class SearchPage {
     private AndroidDriver driver;
     private ElementUtils elementUtils;
+    public static String pnrDetails5;
 
     //android.widget.TextView
     public SearchPage(AndroidDriver driver) {
@@ -72,7 +73,7 @@ public class SearchPage {
     private WebElement mobileNumber;
     @FindBy(xpath = "//android.widget.EditText[@text=\"Flyer’s contact number\"]")
     private WebElement mobileNumber1;
-    
+
     @FindBy(xpath = "//android.widget.EditText[@resource-id=\"primaryEmail\"]")
     private WebElement emailId;
 
@@ -105,7 +106,6 @@ public class SearchPage {
     private WebElement quickActions;
 
 
-
     @Step("Click on Destination Button")
     public void clickOnTo() {
         ElementUtils.waitAndClickElement(searchOnTo, ConstantClass.LONG_WAIT_180);
@@ -126,7 +126,7 @@ public class SearchPage {
     @Step("Click on first in booking List")
     public void clickOnBookingList() throws InterruptedException {
         //Thread.sleep(5000);
-        ElementUtils.waitForElementVisible(By.xpath("(//android.widget.TextView[@text=\"Starts at\"])[1]"),ConstantClass.LONG_WAIT_100);
+        ElementUtils.waitForElementVisible(By.xpath("(//android.widget.TextView[@text=\"Starts at\"])[1]"), ConstantClass.LONG_WAIT_100);
         ElementUtils.waitAndClickElement(bookingList, ConstantClass.MEDIUM_WAIT_5);
     }
 
@@ -173,7 +173,7 @@ public class SearchPage {
     @Step("Enter User Details")
     public void enterUserDetails(String firstname, String lastname, String Dob, String MobileNumber, String mailId) throws InterruptedException {
         //Thread.sleep(2000);
-        ElementUtils.waitForElementVisible(By.xpath("//android.widget.EditText[@resource-id='firstName']"),ConstantClass.LONG_WAIT_100);
+        ElementUtils.waitForElementVisible(By.xpath("//android.widget.EditText[@resource-id='firstName']"), ConstantClass.LONG_WAIT_100);
         ElementUtils.scrollToElementByResourceId("firstName");
         ElementUtils.waitAndClickElement(firstName, ConstantClass.LONG_WAIT_180);
         //Thread.sleep(2000);
@@ -185,7 +185,7 @@ public class SearchPage {
         //elementUtils.waitAndClickElement(dob, 20);
         dob.sendKeys(Dob);
         ElementUtils.scrollToElementByText("Flyer’s contact number");
-       // elementUtils.scrollToElementByText("contact number");
+        // elementUtils.scrollToElementByText("contact number");
         ElementUtils.waitAndClickElement(mobileNumber1, ConstantClass.LONG_WAIT_180);
         mobileNumber1.sendKeys(MobileNumber);
         ElementUtils.scrollToElementByResourceId("primaryEmail");
@@ -202,18 +202,21 @@ public class SearchPage {
         } else {
             ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_50);
             ElementUtils.waitAndClickElement(skipToPayment, ConstantClass.LONG_WAIT_180);
+            ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
+
         }
     }
 
-
     public void clickOnNetBanking() throws InterruptedException {
-//        ElementUtils.scrollToElementByText("Net banking");
+        ElementUtils.waitForElementVisible(By.xpath("//android.widget.TextView[@content-desc=\"msg_first_line_one\" and @text=\"Net banking\"]"), ConstantClass.LONG_WAIT_100);
+        //ElementUtils.scrollToElementByText("Net banking");
         ElementUtils.waitAndClickElement(netBanking, ConstantClass.LONG_WAIT_100);
     }
 
     @Step("Click on Add  Bank")
     public void clickOnAddBank() {
-//        ElementUtils.scrollToElementByText("+MORE BANKS");
+        ElementUtils.scrollToElementByText("Pay with EMI");
+        ThreadWaitClass.customSleep(ConstantClass.SHORT_WAIT_2);
         ElementUtils.waitAndClickElement(addBank, ConstantClass.MEDIUM_WAIT_5);
     }
 
@@ -247,13 +250,17 @@ public class SearchPage {
 //            System.out.println("Failed to click button: " + e.getMessage());
 //            throw e;
 //        }
-
-        ElementUtils.waitAndClickElement(buttonResponse,ConstantClass.LONG_WAIT_180);
+        try {
+            if (buttonResponse.isDisplayed())
+                ElementUtils.waitAndClickElement(buttonResponse, ConstantClass.LONG_WAIT_240);
+        } catch (Exception e) {
+            ElementUtils.waitAndClickElement(buttonResponse, ConstantClass.LONG_WAIT_240);
+        }
     }
 
     public void getPnrDetails() throws InterruptedException {
 
-        ElementUtils.waitForElementVisible(By.xpath("//android.widget.TextView[@text=\"Quick actions\"]"),ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitForElementVisible(By.xpath("//android.widget.TextView[@text=\"Quick actions\"]"), ConstantClass.LONG_WAIT_180);
         BookPage bp = new BookPage(driver);
         WebElement pnr1 = driver.findElements(By.className("android.widget.TextView")).get(1);
         WebElement pnr2 = driver.findElements(By.className("android.widget.TextView")).get(2);
@@ -270,25 +277,25 @@ public class SearchPage {
         String pnrDetails2 = pnr2.getText();
         String pnrDetails3 = pnr3.getText();
         String pnrDetails4 = pnr4.getText();
-        String pnrDetails5 = pnr5.getText();
+        pnrDetails5 = pnr5.getText();
         String pnrDetails6 = pnr6.getText();
         String pnrDetails7 = pnr7.getText();
         String pnrDetails8 = pnr8.getText();
         String pnrDetails9 = pnr9.getText();
         String pnrDetails10 = pnr10.getText();
-        System.out.println("PNR Details: "+pnrDetails);
-        System.out.println("PNR Details: " + pnrDetails2);
-        System.out.println("PNR Details: " + pnrDetails3);
-        System.out.println("PNR Details: " + pnrDetails4);
-        System.out.println("PNR Details: " + pnrDetails5);
-        System.out.println("PNR Details: " + pnrDetails6);
-        System.out.println("PNR Details: " + pnrDetails7);
-        System.out.println("PNR Details: " + pnrDetails8);
-        System.out.println("PNR Details: " + pnrDetails9);
-        System.out.println("PNR Details: " + pnrDetails10);
+        System.out.println("PNR Details 1: " + pnrDetails);
+        System.out.println("PNR Details 2: " + pnrDetails2);
+        System.out.println("PNR Details 3: " + pnrDetails3);
+        System.out.println("PNR Details 4 : " + pnrDetails4);
+        System.out.println("PNR Details 5: " + pnrDetails5);
+        System.out.println("PNR Details 6: " + pnrDetails6);
+        System.out.println("PNR Details 7: " + pnrDetails7);
+        System.out.println("PNR Details 8: " + pnrDetails8);
+        System.out.println("PNR Details 10: " + pnrDetails9);
+        System.out.println("PNR Details 11: " + pnrDetails10);
 
-      driver.navigate().back();
-      bp.bookButton.click();
+        driver.navigate().back();
+        bp.bookButton.click();
     }
 
     public void selectSeatDelhiToMumbai() throws InterruptedException {
@@ -316,11 +323,12 @@ public class SearchPage {
         // Confirm seat selection
         Thread.sleep(3000);
         //confirmSeatButton.click();
-        ElementUtils.waitAndClickElement(confirmSeatButton,ConstantClass.MEDIUM_WAIT_5);
-        System.out.println("Seat selected from Delhi to Mumbai: "+seatAddedText.getText());
+        ElementUtils.waitAndClickElement(confirmSeatButton, ConstantClass.MEDIUM_WAIT_5);
+        System.out.println("Seat selected from Delhi to Mumbai: " + seatAddedText.getText());
     }
+
     public void selectSeatMumbaiToDelhi() throws InterruptedException {
-       // Thread.sleep(5000);
+        // Thread.sleep(5000);
         ElementUtils.scrollToElementByResourceId("seatSelectionSectorTestID1");
         Thread.sleep(4000);
         System.out.println("click on bombay to delhi button");
@@ -350,7 +358,7 @@ public class SearchPage {
         }
         Thread.sleep(5000);
         //confirmSeatButton.click();
-        ElementUtils.waitAndClickElement(confirmSeatButton,ConstantClass.MEDIUM_WAIT_5);
+        ElementUtils.waitAndClickElement(confirmSeatButton, ConstantClass.MEDIUM_WAIT_5);
         //System.out.println("Seat selected from Mumbai to Delhi: "+seatAddedText.getText());
         nextButton.click();
     }

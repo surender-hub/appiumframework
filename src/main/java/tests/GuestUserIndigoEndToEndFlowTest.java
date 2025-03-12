@@ -10,8 +10,11 @@ import listener.RetryAnalyzer;
 import org.testng.annotations.Test;
 import pages.*;
 import utils.ConfigReader;
+import utils.ConfigUatReader;
 import utils.ElementUtils;
 import utils.LogUtils;
+
+import java.io.ByteArrayInputStream;
 
 public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
 
@@ -25,11 +28,13 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
     private ElementUtils elementUtils;
     private ThreadWaitClass threadWaitClass;
     String currentPackage;
+
     @Test(priority = 1, description = "TC_001 - Verify the Guest user generate PNR")
     @Description("Verify GuestUser booking ticket end-to-end flow")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser Booking Ticket Flow")
-    @Story("User should be able to Book Ticket")
+    @Story("User should be able to Book Ticket and Generate Pnr")
+    @Step("{SearchPage.pnrDetails5}")
     public void generatePnrOneWay() throws InterruptedException {
         LogUtils.info("Guest User booking ticket using skip to payment");
         welcomePage = new WelcomePage(driver);
@@ -40,11 +45,11 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
         LogUtils.info("User Enter Login Details For OTP");
         searchPage.clickOnTo();
         LogUtils.info("User Click on Going To Flight Link");
-        searchPage.searchPlace("Mumbai");
+        searchPage.searchPlace(ConfigUatReader.getProperty("source"));
         LogUtils.info("Search Destination city Mumbai");
         searchPage.clickOnMumbaiFlight();
         LogUtils.info("Select Destination city  first Flight ");
-        validFarePage.clickOnFutureDate(3);
+        validFarePage.clickOnFutureDate(ConstantClass.FUTURE_DATE);
         LogUtils.info("Select Future Date 3 Days Ahead ");
         searchPage.clickOnSearchButton();
         LogUtils.info("Click on Search Button");
@@ -53,14 +58,14 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
         // validFarePage.clickOnFlightReturn();
         searchPage.bookingNextButton();
         LogUtils.info("Click on next Button");
-        searchPage.enterUserDetails("ahyil", "pal", "02/04/1953", "6474344463", "Indisddftusneo@gmail.com");
+        searchPage.enterUserDetails(ConfigUatReader.getProperty("firstname"), ConfigUatReader.getProperty("lastname"), ConfigUatReader.getProperty("dob"), ConfigUatReader.getProperty("phone"), ConfigUatReader.getProperty("email"));
         LogUtils.info("Enter User Details");
         searchPage.clickOnSkipToPayment();
         searchPage.clickOnNetBanking();
         LogUtils.info("User Click on Net banking Button");
         searchPage.clickOnAddBank();
         LogUtils.info("User Click on More Bank Button");
-        searchPage.searchAvenue("av");
+        searchPage.searchAvenue(ConfigUatReader.getProperty("search_payment"));
         LogUtils.info("Search Avenue payment method");
         searchPage.clickOnAvenuePayment();
         LogUtils.info("Select Avenue payment method");
@@ -69,8 +74,9 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
         searchPage.clickOnButtonResponse();
         LogUtils.info("User Click on Response Button");
         searchPage.getPnrDetails();
+        elementUtils.attachTextToAllureReport("PNR Details", "Generated PNR: " + SearchPage.pnrDetails5);
+        Allure.step("Generated PNR from Allure.Step: " + SearchPage.pnrDetails5);
         LogUtils.info("PNR Details Generated");
-
     }
 
     @Test(priority = 2, description = "TC_002 - Verify the Guest user select seat and generate PNR")
@@ -86,17 +92,18 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
         elementUtils = new ElementUtils(driver);
         validFarePage = new ValidFarePage(driver);
         //welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         try {
             searchPage.clickOnTo();
             LogUtils.info("User Click on Going To Flight Link");
         } catch (Exception e) {
             searchPage.clickOnTo();
         }
-        searchPage.searchPlace("Mumbai");
+        searchPage.searchPlace(ConfigUatReader.getProperty("source"));
         LogUtils.info("Search Destination city");
         searchPage.clickOnMumbaiFlight();
         LogUtils.info("Select Destination city");
-        validFarePage.clickOnFutureDate(3);
+        validFarePage.clickOnFutureDate(ConstantClass.FUTURE_DATE);
         LogUtils.info("Select Future Date 3 Days Ahead ");
         searchPage.clickOnSearchButton();
         LogUtils.info("Click on Search Button");
@@ -105,7 +112,7 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
         // validFarePage.clickOnFlightReturn();
         searchPage.bookingNextButton();
         LogUtils.info("Click on next Button");
-        searchPage.enterUserDetails("ahyil", "pal", "02/04/1953", "6474344463", "Indisddftusneo@gmail.com");
+        searchPage.enterUserDetails(ConfigUatReader.getProperty("firstname"), ConfigUatReader.getProperty("lastname"), ConfigUatReader.getProperty("dob"), ConfigUatReader.getProperty("phone"), ConfigUatReader.getProperty("email"));
         LogUtils.info("Enter User Details");
         seatPage.selectSeat();
         LogUtils.info("User Select Seat");
@@ -115,7 +122,7 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
         LogUtils.info("User Click on Net banking Button");
         searchPage.clickOnAddBank();
         LogUtils.info("User Click on More Bank Button");
-        searchPage.searchAvenue("av");
+        searchPage.searchAvenue(ConfigUatReader.getProperty("search_payment"));
         LogUtils.info("Search Avenue payment method");
         searchPage.clickOnAvenuePayment();
         LogUtils.info("Select Avenue payment method");
@@ -123,50 +130,46 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
         LogUtils.info("User Click on Pay Button");
         searchPage.clickOnButtonResponse();
         LogUtils.info("User Click on Response Button");
-        //Thread.sleep(10000);
         searchPage.getPnrDetails();
+        elementUtils.attachTextToAllureReport("PNR Details", "Generated PNR: " + SearchPage.pnrDetails5);
+        Allure.step("Generated PNR from Allure.Step: " + SearchPage.pnrDetails5);
         LogUtils.info("PNR Details Generated");
 
     }
 
-//    @Test(priority = 3, description = "TC_003 - Modify the PNR details")
-//    @Description("Verify GuestUser modify the PNR details")
-//    @Severity(SeverityLevel.CRITICAL)
-//    @Feature("GuestUser Modify the PNR id he wants")
-//    @Story("Guest User should be able to modify the PNR details")
-//    public void modifyPnrDetails() throws InterruptedException {
-//        LogUtils.info("Guest User Modify the PNR");
-//        welcomePage = new WelcomePage(driver);
-//        searchPage = new SearchPage(driver);
-//        modifyPage = new ModifyPage(driver);
-//        elementUtils = new ElementUtils(driver);
-//        validFarePage = new ValidFarePage(driver);
-//        try {
-//            //welcomePage.clickLogin();
-//            modifyPage.clickOnMyTrips();
-//            modifyPage.enterPnr("K3NL7E");
-//            modifyPage.enterEmail("surender@gmail.com");
-//            modifyPage.clickOnGetStarted();
-//            //Thread.sleep(10000);
-//            modifyPage.clickOnModify();
-//            //Thread.sleep(10000);
-//            modifyPage.clickOnChangeFlightButton();
-//            modifyPage.clickOnCheckBox();
-//            //Thread.sleep(2000);
-//            modifyPage.clickOnProceedButton();
-//            searchPage.clickOnBookingList();
-//            //modifyPage.clickOnFlightList();
-//            //Thread.sleep(2000);
-//            modifyPage.clickOnNxtButton();
-//            modifyPage.modifyFlight();
-//            modifyPage.clickOnNxtButton();
-//            modifyPage.clickOnFinishButton();
-//            modifyPage.clickOnCancelButton();
-//            LogUtils.info("PNR Details Generated");
-//        } catch (Exception e) {
-//            System.out.println("Test case is failing due to Known issue");
-//        }
-//    }
+ /*   @Test(priority = 3, description = "TC_003 - Modify the PNR details")
+    @Description("Verify GuestUser modify the PNR details")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("GuestUser Modify the PNR id he wants")
+    @Story("Guest User should be able to modify the PNR details")
+    public void modifyPnrDetails() throws InterruptedException {
+        LogUtils.info("Guest User Modify the PNR");
+        welcomePage = new WelcomePage(driver);
+        searchPage = new SearchPage(driver);
+        modifyPage = new ModifyPage(driver);
+        elementUtils = new ElementUtils(driver);
+        validFarePage = new ValidFarePage(driver);
+        welcomePage.clickLoginAsQuest();
+        modifyPage.clickOnMyTrips();
+        modifyPage.enterPnr("K3NL7E");
+        modifyPage.enterEmail("surender@gmail.com");
+        modifyPage.clickOnGetStarted();
+        modifyPage.clickOnModify();
+        modifyPage.clickOnChangeFlightButton();
+        modifyPage.clickOnCheckBox();
+        modifyPage.clickOnProceedButton();
+        searchPage.clickOnBookingList();
+        //modifyPage.clickOnFlightList();
+        //Thread.sleep(2000);
+        modifyPage.clickOnNxtButton();
+        modifyPage.modifyFlight();
+        modifyPage.clickOnNxtButton();
+        modifyPage.clickOnFinishButton();
+        modifyPage.clickOnCancelButton();
+        LogUtils.info("PNR Details Generated");
+        System.out.println("Test case is failing due to Known issue");
+
+    }*/
 
 
     @Test(priority = 4, description = "TC_004 -Round  Trip booking")
@@ -183,14 +186,15 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
         elementUtils = new ElementUtils(driver);
         validFarePage = new ValidFarePage(driver);
         // welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         roundPage.selectRoundTrip();
         roundPage.clickOnToRoundTrip();
-        roundPage.searchCity("Mumbai");
+        roundPage.searchCity(ConfigUatReader.getProperty("source"));
         LogUtils.info("Select Destination city");
         roundPage.clickOnMumbaiFlight();
-        validFarePage.clickOnFutureDate(3);
+        validFarePage.clickOnFutureDate(ConstantClass.FUTURE_DATE);
         Thread.sleep(5000);
-        validFarePage.clickOnFutureDate(5);
+        validFarePage.clickOnFutureDate(ConstantClass.FUTURE_DATE_NEXT);
         roundPage.clickOnSearchButton();
         searchPage.clickOnBookingList();
         //validFarePage.clickOnFlightReturn();
@@ -202,19 +206,20 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
         //Thread.sleep(6000);
         roundPage.nextButton();
         //Thread.sleep(5000);
-        searchPage.enterUserDetails("anil", "pal", "04/04/1953", "6474344463", "abc@gmail.com");
+        searchPage.enterUserDetails(ConfigUatReader.getProperty("firstname"), ConfigUatReader.getProperty("lastname"), ConfigUatReader.getProperty("dob"), ConfigUatReader.getProperty("phone"), ConfigUatReader.getProperty("email"));
         LogUtils.info("Enter User Details");
         searchPage.clickOnSkipToPayment();
         searchPage.clickOnNetBanking();
         searchPage.clickOnAddBank();
-        searchPage.searchAvenue("av");
+        searchPage.searchAvenue(ConfigUatReader.getProperty("search_payment"));
         LogUtils.info("Select Avenue payment method");
         searchPage.clickOnAvenuePayment();
         searchPage.clickOnAvenueButtonPay();
         searchPage.clickOnButtonResponse();
         ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
-        //Thread.sleep(10000);
         searchPage.getPnrDetails();
+        elementUtils.attachTextToAllureReport("PNR Details", "Generated PNR: " + SearchPage.pnrDetails5);
+        Allure.step("Generated PNR from Allure.Step: " + SearchPage.pnrDetails5);
         LogUtils.info("PNR Details Generated");
     }
 
@@ -232,49 +237,46 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
         elementUtils = new ElementUtils(driver);
         validFarePage = new ValidFarePage(driver);
         //welcomePage.clickLogin();
+        welcomePage.clickLoginAsQuest();
         multiCity.clickOnMultiCity();
-        Thread.sleep(2000);
-        try {
-            multiCity.clickOnTo1();
-            searchPage.searchPlace("Mumbai");
-            LogUtils.info("Select Destination city");
-            searchPage.clickOnMumbaiFlight();
-            validFarePage.clickOnFutureDate(3);
-            multiCity.clickOnTo2();
-            searchPage.searchPlace("Agra");
-            LogUtils.info("Select Destination city");
-            multiCity.clickOnAgraFlight();
-            validFarePage.clickOnFutureDate(5);
-            //Thread.sleep(10000);
-            ElementUtils.scrollToElementByText("Search");
-            roundPage.clickOnSearchButton();
-            //roundPage.clickOnReturnFlight();
-            //validFarePage.clickOnFlightReturn();
-            Thread.sleep(6000);
-            roundPage.nextButton();
-            validFarePage.clickOnFlightReturn();
-            //roundPage.clickOnReturnFlight();
-            Thread.sleep(6000);
-            roundPage.nextButton();
-            Thread.sleep(5000);
-            searchPage.enterUserDetails("anil", "pal", "04/04/1953", "6474344463", "abc@gmail.com");
-            LogUtils.info("Enter User Details");
-            searchPage.clickOnSkipToPayment();
-            searchPage.clickOnNetBanking();
-            searchPage.clickOnAddBank();
-            searchPage.searchAvenue("av");
-            LogUtils.info("Select Avenue payment method");
-            searchPage.clickOnAvenuePayment();
-            LogUtils.info("Click on Button pay");
-            searchPage.clickOnAvenueButtonPay();
-            searchPage.clickOnButtonResponse();
-            LogUtils.info("Response Button clicked");
-            Thread.sleep(10000);
-            searchPage.getPnrDetails();
-            LogUtils.info("PNR Details Generated");
-        } catch (Exception e) {
-            System.out.println("Tc failed");
-        }
+        ThreadWaitClass.customSleep(ConstantClass.SHORT_WAIT_2);
+        multiCity.clickOnTo1();
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
+        searchPage.searchPlace(ConfigUatReader.getProperty("source"));
+        LogUtils.info("Select Destination city");
+        searchPage.clickOnMumbaiFlight();
+        validFarePage.clickOnFutureDate(ConstantClass.FUTURE_DATE);
+        multiCity.clickOnTo2();
+        searchPage.searchPlace(ConfigUatReader.getProperty("agra"));
+        LogUtils.info("Select Destination city");
+        multiCity.clickOnAgraFlight();
+        validFarePage.clickOnFutureDate(ConstantClass.FUTURE_DATE_NEXT);
+        ElementUtils.scrollToElementByText("Search");
+        roundPage.clickOnSearchButton();
+        searchPage.clickOnBookingList();
+        roundPage.nextButton();
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
+        searchPage.clickOnBookingList();
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
+        roundPage.nextButton();
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
+        searchPage.enterUserDetails(ConfigUatReader.getProperty("firstname"), ConfigUatReader.getProperty("lastname"), ConfigUatReader.getProperty("dob"), ConfigUatReader.getProperty("phone"), ConfigUatReader.getProperty("email"));
+        LogUtils.info("Enter User Details");
+        searchPage.clickOnSkipToPayment();
+        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
+        searchPage.clickOnNetBanking();
+        searchPage.clickOnAddBank();
+        searchPage.searchAvenue(ConfigUatReader.getProperty("search_payment"));
+        LogUtils.info("Select Avenue payment method");
+        searchPage.clickOnAvenuePayment();
+        LogUtils.info("Click on Button pay");
+        searchPage.clickOnAvenueButtonPay();
+        searchPage.clickOnButtonResponse();
+        LogUtils.info("Response Button clicked");
+        searchPage.getPnrDetails();
+        elementUtils.attachTextToAllureReport("PNR Details", "Generated PNR: " + SearchPage.pnrDetails5);
+        Allure.step("Generated PNR from Allure.Step: " + SearchPage.pnrDetails5);
+        LogUtils.info("PNR Details Generated");
     }
 
 
@@ -294,12 +296,12 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
         welcomePage.clickLoginAsQuest();
         roundPage.selectRoundTrip();
         roundPage.clickOnToRoundTrip();
-        roundPage.searchCity("Mumbai");
+        roundPage.searchCity(ConfigUatReader.getProperty("source"));
         LogUtils.info("Select Destination city");
         roundPage.clickOnMumbaiFlight();
-        validFarePage.clickOnFutureDate(2);
-        ThreadWaitClass.customSleep(5000);
-        validFarePage.clickOnFutureDate(4);
+        validFarePage.clickOnFutureDate(ConstantClass.FUTURE_DATE);
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
+        validFarePage.clickOnFutureDate(ConstantClass.FUTURE_DATE_NEXT);
         roundPage.clickOnSearchButton();
 //        Thread.sleep(5000);
         searchPage.clickOnBookingList();
@@ -310,7 +312,7 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
 //        Thread.sleep(5000);
         roundPage.nextButton();
 //        Thread.sleep(5000);
-        searchPage.enterUserDetails("anil", "pal", "04/04/1953", "6474344463", "abc@gmail.com");
+        searchPage.enterUserDetails(ConfigUatReader.getProperty("firstname"), ConfigUatReader.getProperty("lastname"), ConfigUatReader.getProperty("dob"), ConfigUatReader.getProperty("phone"), ConfigUatReader.getProperty("email"));
         LogUtils.info("Enter User Details");
         try {
             searchPage.bookingNextButton();
@@ -324,15 +326,16 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
         searchPage.bookingNextButton();
         searchPage.clickOnNetBanking();
         searchPage.clickOnAddBank();
-        searchPage.searchAvenue("av");
+        searchPage.searchAvenue(ConfigUatReader.getProperty("search_payment"));
         LogUtils.info("Select Avenue payment method");
         searchPage.clickOnAvenuePayment();
         searchPage.clickOnAvenueButtonPay();
         LogUtils.info("Clicking on Button Response");
         searchPage.clickOnButtonResponse();
         LogUtils.info("CLicked on button Response");
-        Thread.sleep(10000);
         searchPage.getPnrDetails();
+        elementUtils.attachTextToAllureReport("PNR Details", "Generated PNR: " + SearchPage.pnrDetails5);
+        Allure.step("Generated PNR from Allure.Step: " + SearchPage.pnrDetails5);
     }
 }
 

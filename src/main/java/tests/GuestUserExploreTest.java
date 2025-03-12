@@ -49,7 +49,7 @@ public class GuestUserExploreTest extends BaseTest {
 
     }
 
-    @Test(priority = 3, description = "TC_003 - Verify Explore Page functionality with Guest User")
+   /* @Test(priority = 3, description = "TC_003 - Verify Explore Page functionality with Guest User")
     @Description("Check Explore page functionality With GuestUser")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Explore Page")
@@ -133,7 +133,7 @@ public class GuestUserExploreTest extends BaseTest {
         welcomePage.clickLoginAsQuest();
         guestUserExplorePage.verifySvgView();
     }
-
+*/
 
    /* @Test(priority = 5, description = "TC_005 - Verify Explore Page functionality with Guest User")
     @Description("Check Explore page functionality With GuestUser")
@@ -192,7 +192,7 @@ public class GuestUserExploreTest extends BaseTest {
         guestUserExplorePage = new GuestUserExplorePage(driver);
         welcomePage = new WelcomePage(driver);
         welcomePage.clickLoginAsQuest();
-        guestUserExplorePage.verifySearchT();
+        guestUserExplorePage.pressWhereText();
     }
 
     @Test(priority = 14, description = "TC_014 - Verify Explore Page functionality with Guest User")

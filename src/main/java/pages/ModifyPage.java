@@ -27,7 +27,7 @@ public class ModifyPage {
     private WebElement myTrips;
     @FindBy(xpath = "//android.widget.EditText[@text=\"PNR / Booking Reference\"]")
     private WebElement pnrDetails;
-    @FindBy(xpath = "//android.widget.EditText[@text=\"Email ID / Last Name\"]")
+    @FindBy(xpath = "//android.widget.EditText[contains(@text, 'Email') or contains(@text, 'Last')]")
     private WebElement emailId;
     @FindBy(xpath = "//android.widget.TextView[@text=\"Get Started\"]")
     private WebElement getStarted;
@@ -77,8 +77,7 @@ public class ModifyPage {
 
     @Step("Click on  Get Started Button after pnr details ")
     public void clickOnGetStarted() throws InterruptedException {
-        ElementUtils.waitAndClickElement(getStarted, ConstantClass.LONG_WAIT_180);
-        Thread.sleep(10000);
+        ElementUtils.waitAndClickElement(getStarted, ConstantClass.LONG_WAIT_10);
     }
 
     @Step("Click on Modify button")

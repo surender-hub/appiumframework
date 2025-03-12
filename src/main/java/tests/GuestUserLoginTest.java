@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import utils.ConfigReader;
+import utils.ConfigUatReader;
 import utils.ElementUtils;
 
 public class GuestUserLoginTest extends BaseTest {
@@ -24,7 +25,7 @@ public class GuestUserLoginTest extends BaseTest {
     @Story("Enter valid mobile number and click on Continue button")
     public void testEnterValidMobileNumberAndContinue() {
         loginPage = new LoginPage(driver);
-        loginPage.enterMobileNumber(ConfigReader.getProperty("mobileNumber"));
+        loginPage.enterMobileNumber(ConfigUatReader.getProperty("mobileNumber"));
         // loginPage.enterPassword("Bhagatsingh@1");
         loginPage.clickOnContinue();
         loginPage.verifyElementTextVisibility();
@@ -37,7 +38,7 @@ public class GuestUserLoginTest extends BaseTest {
     @Story("Enter valid email  and click on Continue button")
     public void testEnterValidEmailAndContinue() {
         loginPage = new LoginPage(driver);
-        loginPage.enterMobileNumber(ConfigReader.getProperty("username"));
+        loginPage.enterMobileNumber(ConfigUatReader.getProperty("username"));
         loginPage.clickOnContinue();
         loginPage.verifyElementTextVisibility();
     }
@@ -49,7 +50,7 @@ public class GuestUserLoginTest extends BaseTest {
     @Story("Enter Invalid mobile number  and check error message is displayed")
     public void testInvalidMobileNumber() {
         loginPage = new LoginPage(driver);
-        loginPage.enterMobileNumber(ConfigReader.getProperty("wrongMobileNumber"));
+        loginPage.enterMobileNumber(ConfigUatReader.getProperty("wrongMobileNumber"));
         loginPage.verifyInvalidNumberMessage();
     }
 
@@ -60,7 +61,7 @@ public class GuestUserLoginTest extends BaseTest {
     @Story("Enter Invalid email address   and check error message is displayed")
     public void testInvalidEmailFormat() {
         loginPage = new LoginPage(driver);
-        loginPage.enterMobileNumber(ConfigReader.getProperty("invalidUsername"));
+        loginPage.enterMobileNumber(ConfigUatReader.getProperty("invalidUsername"));
         loginPage.verifyInvalidEmailMessage();
     }
 

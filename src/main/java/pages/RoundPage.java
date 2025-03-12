@@ -104,6 +104,6 @@ public class RoundPage {
     @Step("Select Next for Payment")
     public void nextButton() throws InterruptedException {
         ElementUtils.waitForElementVisible(By.xpath("//android.view.ViewGroup[@content-desc=\"When press next button open new screen\"]"),ConstantClass.LONG_WAIT_100);
-        ElementUtils.waitAndClickElement(nxtButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(nxtButton, ConstantClass.LONG_WAIT_10);
     }
 }

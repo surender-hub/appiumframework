@@ -139,18 +139,13 @@ public class GuestUserExplorePage {
 
     public void verifySearchT() {
         ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
-        Assert.assertTrue(verifyWhereAreYouText.isDisplayed(), "Book a Stay text is not displayed!");
+        Assert.assertTrue(searchText.isDisplayed(), "Book a Stay text is not displayed!");
     }
 
     public void pressWhereText() {
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
         ElementUtils.waitAndClickElement(whereText, ConstantClass.LONG_WAIT_180);
         Assert.assertTrue(verifyWhereAreYouText.isDisplayed(), "Search  text is not displayed!");
-        try {
-            ElementUtils.waitAndClickElement(closePopUp, ConstantClass.SHORT_WAIT_2);
-        } catch (Exception e) {
-            System.out.println("closePopUp not found, continuing...");
-        }
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
     }
 
     public void verifyWhereTInStay() {

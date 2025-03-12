@@ -2,10 +2,12 @@ package utils;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
+import io.qameta.allure.Allure;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.ByteArrayInputStream;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -154,5 +156,8 @@ public static String  getText(WebElement element)
                 "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text('"+text+"'))"));
     }
 
+    public void attachTextToAllureReport(String name, String content) {
+        Allure.addAttachment(name, new ByteArrayInputStream(content.getBytes()));
+    }
 
 }
