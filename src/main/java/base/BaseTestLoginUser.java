@@ -26,13 +26,13 @@ public class BaseTestLoginUser {
     {
 
         // Start Appium Server
-        service = new AppiumServiceBuilder()
-                .withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js")) // Update Appium Path
-                .withIPAddress(ConfigReader.getProperty("appium.ip"))
-                .usingPort(Integer.parseInt(ConfigReader.getProperty("appium.port")))
-                .build();
-        service.start();
-        System.out.println("✅ Appium server started.");
+//        service = new AppiumServiceBuilder()
+//                .withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js")) // Update Appium Path
+//                .withIPAddress(ConfigReader.getProperty("appium.ip"))
+//                .usingPort(Integer.parseInt(ConfigReader.getProperty("appium.port")))
+//                .build();
+//        service.start();
+//        System.out.println("✅ Appium server started.");
 
         //String folderPath = "/Users/Shubham.x.Jain/Desktop/Appium_Project/allure-results";
         String folderPath = System.getProperty("user.home") + "/Desktop/Appium_Project/allure-results";
@@ -96,7 +96,7 @@ public class BaseTestLoginUser {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setPlatformName(ConfigReader.getProperty("platform.name"));
         options.setDeviceName(ConfigReader.getProperty("device.name"));
-        options.setApp(ConfigReader.getProperty("app.path.UAT2"));
+        options.setApp(ConfigReader.getProperty("app.path.UAT"));
         options.setAutoGrantPermissions(true);
         // Initialize the driver
         driver = new AndroidDriver(new URL(ConfigReader.getProperty("appium.server")), options);
