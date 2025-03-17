@@ -95,6 +95,28 @@ public static String  getText(WebElement element)
                 "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + text + "\"))"));
     }
 
+    public static void scrollToElementAndClickByText(String text) {
+        try {
+            // Scroll to the element by text
+            WebElement element = driver.findElement(AppiumBy.androidUIAutomator(
+                    "new UiScrollable(new UiSelector().scrollable(true))" +
+                            ".scrollIntoView(new UiSelector().text(\"" + text + "\"))"));
+
+            // Wait until the element is clickable
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+
+            // Click the element
+            //element.click();
+        } catch (NoSuchElementException e) {
+            System.out.println("Element with text \"" + text + "\" not found.");
+        } catch (TimeoutException e) {
+            System.out.println("Element with text \"" + text + "\" is not clickable.");
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+        }
+    }
+
    /* public  static void waitAndClickElement(WebElement element, int timeout) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(timeout));
         wait.until(ExpectedConditions.visibilityOf(element));
@@ -160,4 +182,17 @@ public static String  getText(WebElement element)
         Allure.addAttachment(name, new ByteArrayInputStream(content.getBytes()));
     }
 
+
+    public static void scrollAndClickByText(String text) {
+        try {
+            // Scroll until the element with the given text is visible
+            WebElement element = driver.findElement(
+                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true))" +
+                            ".scrollIntoView(new UiSelector().textContains(\"" + text + "\"))"));
+            // Click the element once it is visible
+            element.click();
+        } catch (NoSuchElementException e) {
+            System.out.println("Element with text \"" + text + "\" not found.");
+        }
+    }
 }

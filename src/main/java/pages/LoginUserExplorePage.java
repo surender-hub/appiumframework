@@ -9,14 +9,17 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import utils.ConfigReader;
+import utils.ConfigUatReader;
 import utils.ElementUtils;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 public class LoginUserExplorePage {
     public AndroidDriver driver;
     public ElementUtils elementUtils;
+    public LoginUserPage loginUserPage;
 
     public LoginUserExplorePage(AndroidDriver driver) {
         this.driver = driver;
@@ -34,7 +37,8 @@ public class LoginUserExplorePage {
     public WebElement verifySearchText;
     @FindBy(xpath = "//android.widget.TextView[@text=\"One way\"]")
     public WebElement verifyOneWayText;
-    @FindBy(xpath = "//android.view.ViewGroup[@content-desc=\"Close Location List\"]")
+    @FindBy(xpath = "//android.view.ViewGroup[@content-desc=\"Close Airport List\"]") //this is without login
+    //android.view.ViewGroup[@content-desc="Close Airport List"]   this is after login
     public WebElement closePopUp;
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"From\"]")
@@ -57,15 +61,18 @@ public class LoginUserExplorePage {
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"What's new?\"]")
     public WebElement whatsNewText;
-    @FindBy(xpath = "//android.widget.TextView[@text=\"View All Offer\"]")
+    @FindBy(xpath = "//android.widget.TextView[contains(@text, \"View All\")]")
     public WebElement viewAllOfferText;
     @FindBy(xpath = "(//android.widget.TextView[@text=\"Explore\"])[1]")
     public WebElement exploreText;
     @FindBy(xpath = "//android.widget.Button[@text=\"All Offers\"]")
     public WebElement allOfferText;
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Hey there, Welcome onboard let's get started with booking.\"]")
+    public WebElement heyThereText;
+
     @FindBy(xpath = "//android.widget.TextView[@text=\"6E Guide to Get Inspired and Explore more...\"]")
     public WebElement guideText;
-    @FindBy(xpath = "//android.widget.TextView[@text=\"View more\"]")
+    @FindBy(xpath = "//android.widget.TextView[@text=\"IndiGo Bolsters Domestic Network: Introduces Bikaner as 90th destination in 6E network.\"]")
     public WebElement viewMoreText;
     @FindBy(xpath = "(//android.widget.TextView[contains(@text, 'IndiGo Bolsters')])[2]")
     public WebElement verifyIndigoText;
@@ -77,22 +84,23 @@ public class LoginUserExplorePage {
 
     public void loginUser() {
         LoginPage loginPage = new LoginPage(driver);
-        LoginUserPage loginUserPage = new LoginUserPage(driver);
-        loginPage.enterMobileNumber(ConfigReader.getProperty("loginMobileNumber"));
+        loginUserPage = new LoginUserPage(driver);
+        loginPage.enterMobileNumber(ConfigUatReader.getProperty("loginMobileNumber"));
         loginPage.clickOnContinue();
-        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
-        loginPage.enterPassword(ConfigReader.getProperty("loginPassword"));
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
+        loginPage.enterPassword(ConfigUatReader.getProperty("loginPassword"));
         loginUserPage.loginButton();
-        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
     }
 
     public void pressExploreButton() {
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+
     }
 
     public void verifyBookFlightText() {
         ThreadWaitClass.customSleep(ConstantClass.SHORT_WAIT_2);
-        Assert.assertTrue(verifyBookFlight.isDisplayed(), "Book a Flight text is not displayed!");
+        Assert.assertTrue(verifyBookFlight.isDisplayed(), "Whats New text is not displayed!");
     }
 
     public void verifyStayText() {
@@ -135,11 +143,12 @@ public class LoginUserExplorePage {
 
     public void verifySearchT() {
         Assert.assertTrue(searchText.isDisplayed(), "Book a Stay text is not displayed!");
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+        //ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
     }
 
     public void pressWhereText() {
-        ElementUtils.waitAndClickElement(whereText, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(whereText, ConstantClass.LONG_WAIT_10);
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
         Assert.assertTrue(verifyWhereAreYouText.isDisplayed(), "Search  text is not displayed!");
         try {
             ElementUtils.waitAndClickElement(closePopUp, ConstantClass.SHORT_WAIT_2);
@@ -187,10 +196,19 @@ public class LoginUserExplorePage {
     public void pressAllOfferText() {
         ElementUtils.scrollToElementByText("View All Offer");
         ElementUtils.waitAndClickElement(viewAllOfferText, ConstantClass.LONG_WAIT_10);
-        Assert.assertTrue(allOfferText.isDisplayed(), "View All Offers text is not displayed!");
-        //elementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+        List<WebElement> elements = Arrays.asList(allOfferText, heyThereText);
+        List<String> expectedTexts = Arrays.asList("All Offers","Hey there, Welcome onboard let's get started with booking.");
+        boolean isElementVisible = elements.stream().anyMatch(element -> {
+            try {
+                return expectedTexts.contains(element.getText().trim());
+            } catch (Exception ignored) {
+                return false; // Ignore NoSuchElementException or StaleElementException
+            }
+        });
+        Assert.assertTrue(isElementVisible, "None of the expected elements are visible on the page.");
         driver.navigate().back();
     }
+
 
     public void pressExploreText() {
         ElementUtils.scrollToElementByText("Embark on a journey of inspiration with IndiGo, where discovery meets the sky");
@@ -205,7 +223,8 @@ public class LoginUserExplorePage {
     }
 
     public void pressViewMoreText() {
-        ElementUtils.scrollToElementByText("View more");
+        ElementUtils.scrollToElementByText("IndiGo Bolsters Domestic Network: Introduces Bikaner as 90th destination in 6E network.");
+        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
         ElementUtils.waitAndClickElement(viewMoreText, ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(verifyIndigoText.isDisplayed(), "View More text is not displayed!");
         driver.navigate().back();

@@ -28,6 +28,9 @@ public class LoginPage {
     @FindBy(xpath = "//android.widget.EditText[@text=\"Enter Mobile No. / Email Id\"]")
     private WebElement enterMobile;
 
+    @FindBy(xpath = "//android.widget.EditText")
+    private WebElement enterValidEmailAddress;
+
     @FindBy(xpath = "//android.widget.TextView[@text=\"Continue\"]")
     private WebElement continueButton;
 
@@ -94,13 +97,20 @@ public class LoginPage {
 
     @Step("Enter Mobile Number: {mobile number}")
     public void enterMobileNumber(String mobileNumber) {
-        ElementUtils.waitAndClickElement(enterMobile, ConstantClass.LONG_WAIT_180);
-        elementUtils.sendKeys(enterMobile, mobileNumber, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(enterMobile, ConstantClass.LONG_WAIT_10);
+        elementUtils.sendKeys(enterMobile, mobileNumber, ConstantClass.LONG_WAIT_10);
     }
+
+    @Step("Enter Valid Email Address")
+    public void enterValidEmailAddress(String validEmail) {
+        ElementUtils.waitAndClickElement(enterValidEmailAddress, ConstantClass.LONG_WAIT_10);
+        elementUtils.sendKeys(enterValidEmailAddress, validEmail, ConstantClass.LONG_WAIT_10);
+    }
+
 
     @Step("Click on Continue Button")
     public void clickOnContinue() {
-        ElementUtils.waitAndClickElement(continueButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(continueButton, ConstantClass.LONG_WAIT_10);
     }
 
     @Step("Enter password: {password}")
@@ -187,7 +197,7 @@ public class LoginPage {
 
     @Step("Click on Continue As a Guest User Button")
     public void clickOnLoginButton() {
-        ElementUtils.waitAndClickElement(loginButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(loginButton, ConstantClass.LONG_WAIT_10);
     }
 
     public void verifyTextInWebView() {
@@ -207,8 +217,8 @@ public class LoginPage {
 
     @Step("Enter  Otp: {Otp}")
     public void enterOtpNumber(String otpField2) {
-        ElementUtils.waitAndClickElement(OtpField, ConstantClass.LONG_WAIT_180);
-        elementUtils.sendKeys(OtpField, otpField2, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(OtpField, ConstantClass.LONG_WAIT_10);
+        elementUtils.sendKeys(OtpField, otpField2, ConstantClass.LONG_WAIT_10);
     }
 
 

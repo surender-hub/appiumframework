@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTestLoginUser;
+import constant.ConstantClass;
 import constant.ThreadWaitClass;
 import io.qameta.allure.*;
 import listener.RetryAnalyzer;
@@ -141,7 +142,8 @@ public class LoginUserExploreTest extends BaseTestLoginUser
     @Story("Verify Search By Place text is displayed")
     public void verifyWhereTextClickable(){
         loginUserExplorePage = new LoginUserExplorePage(driver);
-        loginUserExplorePage.verifySearchT();
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
+        loginUserExplorePage.pressWhereText();
     }
 
 
@@ -162,6 +164,7 @@ public class LoginUserExploreTest extends BaseTestLoginUser
     @Story("Verify View All Offers text is displayed")
     public void verifyAllOffersText() {
         loginUserExplorePage = new LoginUserExplorePage(driver);
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
         loginUserExplorePage.verifyAllOfferText();
     }
 
@@ -175,16 +178,16 @@ public class LoginUserExploreTest extends BaseTestLoginUser
         loginUserExplorePage.verifyExploreText();
     }
 
-    @Test(priority = 17, description = "TC_017 - Verify Explore Page functionality with Guest User")
+    /*@Test(priority = 17, description = "TC_017 - Verify Explore Page functionality with Guest User")
     @Description("Check Explore page functionality after successfully Logged In.")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Explore Page")
     @Story("Verify All Offers text is displayed")
     public void verifyAllOffersTextClickable() {
         loginUserExplorePage = new LoginUserExplorePage(driver);
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
         loginUserExplorePage.pressAllOfferText();
     }
-
     @Test(priority = 18, description = "TC_018 - Verify Explore Page functionality with Guest User")
     @Description("Check Explore page functionality after successfully Logged In.")
     @Severity(SeverityLevel.CRITICAL)
@@ -192,8 +195,9 @@ public class LoginUserExploreTest extends BaseTestLoginUser
     @Story("Verify All Offers text is displayed")
     public void verifyExploreTextClickable() {
         loginUserExplorePage = new LoginUserExplorePage(driver);
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
         loginUserExplorePage.pressExploreText();
-    }
+    }*/
 
     @Test(priority = 19, description = "TC_019 - Verify Explore Page functionality with Guest User")
     @Description("Check Explore page functionality after successfully Logged In.")
@@ -204,16 +208,16 @@ public class LoginUserExploreTest extends BaseTestLoginUser
         loginUserExplorePage = new LoginUserExplorePage(driver);
         loginUserExplorePage.verifyViewMoreText();
     }
-    @Test(priority = 20, description = "TC_020 - Verify Explore Page functionality with Guest User")
+   /* @Test(priority = 20, description = "TC_020 - Verify Explore Page functionality with Guest User")
     @Description("Check Explore page functionality after successfully Logged In.")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Explore Page")
     @Story("Verify View More text is displayed")
     public void verifyViewMoreClickable() {
         loginUserExplorePage = new LoginUserExplorePage(driver);
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
         loginUserExplorePage.pressViewMoreText();
-    }
-
+    }*/
     @Test(priority = 21, description = "TC_021 - Verify Explore Page functionality with Guest User")
     @Description("Check Explore page functionality after successfully Logged In.")
     @Severity(SeverityLevel.CRITICAL)

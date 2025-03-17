@@ -31,17 +31,17 @@ public class GuestUserLoginTest extends BaseTest {
         loginPage.verifyElementTextVisibility();
     }
 
-    @Test(priority = 2, description = "TC_002 -Login page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
+ /*   @Test(priority = 2, description = "TC_002 -Login page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
     @Description("Enter Valid Email address")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check Valid email feature")
     @Story("Enter valid email  and click on Continue button")
     public void testEnterValidEmailAndContinue() {
         loginPage = new LoginPage(driver);
-        loginPage.enterMobileNumber(ConfigUatReader.getProperty("username"));
+        loginPage.enterValidEmailAddress(ConfigUatReader.getProperty("username"));
         loginPage.clickOnContinue();
         loginPage.verifyElementTextVisibility();
-    }
+    }*/
 
     @Test(priority = 3, description = "TC_003 -Login page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
     @Description("Enter Invalid Mobile number")

@@ -52,7 +52,8 @@ public class RegistrationPage {
     private WebElement checkFemaleText;
     @FindBy(xpath = "//android.widget.Button[@content-desc=\"Terms and Conditions\"]")
     private WebElement linkTextTnc;
-    @FindBy(xpath = "//android.view.View[contains(@text, 'Privacy Policy')]")
+    //@FindBy(xpath = "//android.view.View[contains(@text, 'Privacy Policy')]")
+    @FindBy(xpath = "//android.widget.TextView[@text=\"INDIGO BLUCHIP PROGRAM – TERMS &CONDITIONS\"]")
     private WebElement privacyPolicyText;
     @FindBy(xpath = "//android.widget.Button[@content-desc=\"Privacy Policy\"]")
     private WebElement privacyPolicyLinkText;
@@ -60,20 +61,6 @@ public class RegistrationPage {
     private WebElement tcLinkText;
     @FindBy(xpath = "//android.widget.EditText[@text=\"First and Middle Name\"]")
     private WebElement enterFirstN;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

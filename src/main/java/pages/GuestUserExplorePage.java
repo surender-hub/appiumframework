@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import utils.ConfigReader;
+import utils.ConfigUatReader;
 import utils.ElementUtils;
 
 import java.sql.SQLOutput;
@@ -78,10 +79,10 @@ public class GuestUserExplorePage {
     public void loginUser() {
         LoginPage loginPage = new LoginPage(driver);
         LoginUserPage loginUserPage = new LoginUserPage(driver);
-        loginPage.enterMobileNumber(ConfigReader.getProperty("loginMobileNumber"));
+        loginPage.enterMobileNumber(ConfigUatReader.getProperty("loginMobileNumber"));
         loginPage.clickOnContinue();
         ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
-        loginPage.enterPassword(ConfigReader.getProperty("loginPassword"));
+        loginPage.enterPassword(ConfigUatReader.getProperty("loginPassword"));
         loginUserPage.loginButton();
         ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
     }

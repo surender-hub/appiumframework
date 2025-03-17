@@ -301,4 +301,3 @@ public class GuestUserExploreTest extends BaseTest {
         guestUserExplorePage.whatsNewImageLoading();
     }
 }
-//8,12,13,15
