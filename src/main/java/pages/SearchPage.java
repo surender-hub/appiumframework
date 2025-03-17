@@ -250,12 +250,14 @@ public class SearchPage {
 //            System.out.println("Failed to click button: " + e.getMessage());
 //            throw e;
 //        }
-        try {
-            if (buttonResponse.isDisplayed())
-                ElementUtils.waitAndClickElement(buttonResponse, ConstantClass.LONG_WAIT_240);
-        } catch (Exception e) {
-            ElementUtils.waitAndClickElement(buttonResponse, ConstantClass.LONG_WAIT_240);
-        }
+//        try {
+//            if (buttonResponse.isDisplayed())
+//                ElementUtils.waitAndClickElement(buttonResponse, ConstantClass.LONG_WAIT_240);
+//        } catch (Exception e) {
+//            ElementUtils.waitAndClickElement(buttonResponse, ConstantClass.LONG_WAIT_240);
+//        }
+
+        buttonResponse.click();
     }
 
     public void getPnrDetails() throws InterruptedException {
@@ -291,8 +293,8 @@ public class SearchPage {
         System.out.println("PNR Details 6: " + pnrDetails6);
         System.out.println("PNR Details 7: " + pnrDetails7);
         System.out.println("PNR Details 8: " + pnrDetails8);
-        System.out.println("PNR Details 10: " + pnrDetails9);
-        System.out.println("PNR Details 11: " + pnrDetails10);
+        System.out.println("PNR Details 9: " + pnrDetails9);
+//        System.out.println("PNR Details 10: " + pnrDetails10);
 
         driver.navigate().back();
         bp.bookButton.click();

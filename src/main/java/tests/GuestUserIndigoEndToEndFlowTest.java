@@ -40,6 +40,7 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
         welcomePage = new WelcomePage(driver);
         searchPage = new SearchPage(driver);
         validFarePage = new ValidFarePage(driver);
+        ElementUtils elementUtils= new ElementUtils(driver);
         //welcomePage.loginByOtp();
         welcomePage.clickLoginAsQuest();
         LogUtils.info("User Enter Login Details For OTP");
@@ -137,7 +138,7 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
 
     }
 
- /*   @Test(priority = 3, description = "TC_003 - Modify the PNR details")
+    @Test(priority = 3, description = "TC_003 - Modify the PNR details")
     @Description("Verify GuestUser modify the PNR details")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser Modify the PNR id he wants")
@@ -151,9 +152,10 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
         validFarePage = new ValidFarePage(driver);
         welcomePage.clickLoginAsQuest();
         modifyPage.clickOnMyTrips();
-        modifyPage.enterPnr("K3NL7E");
-        modifyPage.enterEmail("surender@gmail.com");
+        modifyPage.enterPnr("T2B37K");
+        modifyPage.enterEmail("pal");
         modifyPage.clickOnGetStarted();
+        Thread.sleep(5000);
         modifyPage.clickOnModify();
         modifyPage.clickOnChangeFlightButton();
         modifyPage.clickOnCheckBox();
@@ -169,7 +171,7 @@ public class GuestUserIndigoEndToEndFlowTest extends BaseTest {
         LogUtils.info("PNR Details Generated");
         System.out.println("Test case is failing due to Known issue");
 
-    }*/
+    }
 
 
     @Test(priority = 4, description = "TC_004 -Round  Trip booking")

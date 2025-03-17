@@ -4,9 +4,8 @@ import base.BaseTestLoginUser;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import pages.TermsAndConditionPage;
-import utils.LogUtils;
 
-public class TermsAndConditionsTest extends BaseTestLoginUser {
+public class GuestUserTermsAndConditionsTest extends BaseTestLoginUser {
 
      @Test(groups = {"regression"},priority = 1, description = "TC_001 -Validate the Terms And Condition Link in Working or not ")
     @Description("Validate the Terms And Condition Link in Working or not")

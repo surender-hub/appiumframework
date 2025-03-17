@@ -9,9 +9,9 @@ import pages.*;
 import utils.ElementUtils;
 import utils.LogUtils;
 
-public class LoginUser extends BaseTestLoginUser
+public class LoginUserDummy extends BaseTestLoginUser
 {
-    private static final Logger log = LoggerFactory.getLogger(LoginUser.class);
+    private static final Logger log = LoggerFactory.getLogger(LoginUserDummy.class);
     private ElementUtils elementUtils;
     public LoginUserPage loginUserPage;
     public LoginPage loginPage;

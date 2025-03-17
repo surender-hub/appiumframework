@@ -1,12 +1,11 @@
 package tests;
 
-import base.BaseTest;
 import base.BaseTestLoginUser;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import pages.PrivacyPolicyPage;
 
-public class PrivacyPolicyTest extends BaseTestLoginUser {
+public class GuestUserPrivacyPolicyTest extends BaseTestLoginUser {
 
     private PrivacyPolicyPage policyPage;
 

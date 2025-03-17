@@ -1,17 +1,12 @@
 package tests;
 
-import base.BaseTest;
 import base.BaseTestLoginUser;
-import constant.ConstantClass;
 import constant.ThreadWaitClass;
-import io.appium.java_client.android.nativekey.AndroidKey;
-import io.appium.java_client.android.nativekey.KeyEvent;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import pages.*;
-import utils.ElementUtils;
 
-public class BookPageTest extends BaseTestLoginUser {
+public class GuestUserBookPageTest extends BaseTestLoginUser {
 
     private WelcomePage welcomePage;
     private BookPage bookPage;

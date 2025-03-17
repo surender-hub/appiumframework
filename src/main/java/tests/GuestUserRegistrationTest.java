@@ -10,12 +10,11 @@ import pages.LoginPage;
 import pages.LoginUserPage;
 import pages.RegistrationPage;
 import pages.SearchPage;
-import utils.ConfigReader;
 import utils.ConfigUatReader;
 import utils.ElementUtils;
 
 public class GuestUserRegistrationTest extends BaseTest {
-    private static final Logger log = LoggerFactory.getLogger(LoginUser.class);
+    private static final Logger log = LoggerFactory.getLogger(LoginUserDummy.class);
     private ElementUtils elementUtils;
     public LoginUserPage loginUserPage;
     public LoginPage loginPage;

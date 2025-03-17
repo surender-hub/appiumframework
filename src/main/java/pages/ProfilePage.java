@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import utils.ConfigReader;
 import utils.ElementUtils;
 
 public class ProfilePage {
@@ -31,7 +32,7 @@ public class ProfilePage {
     @FindBy(xpath = "//com.horcrux.svg.SvgView")
     public WebElement backButton;
 
-    @FindBy(xpath = "//android.widget.TextView[@text=\"Hello there\"]")
+    @FindBy(xpath = "//android.widget.TextView[@text=\"YOUR INFORMATION\"]/ancestor::android.view.ViewGroup/preceding-sibling::android.view.ViewGroup/child::android.view.ViewGroup/child::android.view.ViewGroup/child::android.widget.TextView")
     public WebElement validateProfileText;
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"About Us\"]")
@@ -99,12 +100,26 @@ public class ProfilePage {
     }
 
 
-    public void clickProfileButton() {
-        ElementUtils.waitForElementVisible(By.xpath("//android.widget.TextView[@text=\"Profile\"]"), ConstantClass.MEDIUM_WAIT_5);
+    public void verifyQuestProfileButton() {
+//        ElementUtils.waitForElementVisible(By.xpath("//android.widget.TextView[@text=\"Profile\"]"), ConstantClass.MEDIUM_WAIT_5);
         ElementUtils.waitAndClickElement(profileButton, ConstantClass.MEDIUM_WAIT_5);
         if (profileButton.isEnabled()) {
 
-           // Assert.assertEquals(validateProfileText.isDisplayed(), true);
+            Assert.assertEquals(validateProfileText.getText(), ConfigReader.getProperty("Expected(ExpectedQuestProfile)"));
+            System.out.println("Profile Button is working ");
+        } else {
+
+            System.out.println("Profile Button is not working ");
+            Assert.fail();
+        }
+    }
+
+    public void verifyLoginProfileButton() {
+//        ElementUtils.waitForElementVisible(By.xpath("//android.widget.TextView[@text=\"Profile\"]"), ConstantClass.MEDIUM_WAIT_5);
+        ElementUtils.waitAndClickElement(profileButton, ConstantClass.MEDIUM_WAIT_5);
+        if (profileButton.isEnabled()) {
+
+            Assert.assertEquals(validateProfileText.getText(), ConfigReader.getProperty("Expected(ExpectedLoginProfile)"));
             System.out.println("Profile Button is working ");
         } else {
 

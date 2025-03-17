@@ -14,8 +14,8 @@
             <class name="tests.GuestUserLoginTest"/>
             <class name="tests.GuestUserRegistrationTest"/>
             <class name="tests.GuestUserExploreTest"/>
-            <class name="tests.BookPageTest"/>
-            <class name="tests.ProfilePageTest"/>
+            <class name="tests.GuestUserBookPageTest"/>
+            <class name="tests.GuestUserProfilePageTest"/>
             <class name="tests.GuestUserIndigoEndToEndFlowTest"/>
 
         </classes>

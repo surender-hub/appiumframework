@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import pages.BookPage;
 import pages.WelcomePage;
 
-public class QuestUserTest extends BaseTestLoginUser {
+public class GuestUserTest extends BaseTestLoginUser {
 
     private WelcomePage welcomePage;
     private BookPage bookPage;

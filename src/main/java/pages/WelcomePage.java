@@ -57,10 +57,10 @@ public class WelcomePage {
         ElementUtils utils = new ElementUtils(driver);
         LoginPage loginPage = new LoginPage(driver);
         LoginUserPage loginUserPage = new LoginUserPage(driver);
-        loginPage.enterMobileNumber("9977141550");
+        loginPage.enterMobileNumber("8527247846");
         loginPage.clickOnContinue();
         Thread.sleep(2000);
-        loginPage.enterPassword("Sanu180295@");
+        loginPage.enterPassword("Qwerty@123");
         loginUserPage.loginButton();
         Thread.sleep(20000);
 

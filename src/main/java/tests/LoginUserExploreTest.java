@@ -22,9 +22,12 @@ public class LoginUserExploreTest extends BaseTestLoginUser
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Explore Page")
     @Story("Login User should be able to redirect on Explore Page")
-    public void verifyExploreDisplayed() {
+    public void verifyExploreDisplayed() throws InterruptedException {
         loginUserExplorePage = new LoginUserExplorePage(driver);
-        loginUserExplorePage.loginUser();
+//        loginUserExplorePage.loginUser();
+        WelcomePage welcomePage = new WelcomePage(driver);
+        welcomePage.loginByOtp();
+
         loginUserExplorePage.pressExploreButton();
     }
 
