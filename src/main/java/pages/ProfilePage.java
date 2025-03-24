@@ -342,8 +342,6 @@ public class ProfilePage {
             }
     }
 
-
-
     public void displayHelpAndFAQ() {
         if (helpAndFAQ.isDisplayed()) {
             Assert.assertEquals(helpAndFAQ.isDisplayed(), true);
