@@ -35,7 +35,8 @@ public class BaseTestLoginUser {
 //        System.out.println("✅ Appium server started.");
 
         //String folderPath = "/Users/Shubham.x.Jain/Desktop/Appium_Project/allure-results";
-        String folderPath = System.getProperty("user.home") + "/Desktop/Appium_Project/allure-results";
+        //String folderPath = System.getProperty("user.home") + "/Desktop/Appium_Project/allure-results";
+       String folderPath = System.getProperty("user.home") + "/IdeaProjects/appiumframework/allure-results";
         // Replace with your folder path
         File folder = new File(folderPath);
 
@@ -82,7 +83,7 @@ public class BaseTestLoginUser {
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     }
 
-    @BeforeClass
+    @BeforeTest
     public void activateApp() throws MalformedURLException {
 
         service = new AppiumServiceBuilder()
@@ -107,11 +108,11 @@ public class BaseTestLoginUser {
         System.out.println("Current App package name: " + currentPackage);
         ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
         driver.activateApp(currentPackage);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
 
-    @AfterClass
+    @AfterTest
     public void terminateApp()
     {
         System.out.println("🔻 Starting TearDown Process 🔻");
