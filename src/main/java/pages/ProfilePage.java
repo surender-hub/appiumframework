@@ -14,10 +14,9 @@ public class ProfilePage {
 
     public AndroidDriver driver;
 
-    public ProfilePage(AndroidDriver driver)
-    {
-        this.driver=driver;
-        PageFactory.initElements(driver,this);
+    public ProfilePage(AndroidDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"Profile\"]")
@@ -154,7 +153,13 @@ public class ProfilePage {
 
         public void workingAboutUsButton()
         {
-
+//            ElementUtils.waitAndClickElement(aboutUs, ConstantClass.MEDIUM_WAIT_5);
+//            try {
+//                ElementUtils.waitAndClickElement(backButton, ConstantClass.MEDIUM_WAIT_5);
+//            } catch (Exception e) {
+//                ElementUtils.waitAndClickElement(backButton, ConstantClass.MEDIUM_WAIT_5);
+//
+//            }
 
             try {
                 if (aboutUs.isEnabled()) {
@@ -418,4 +423,18 @@ public class ProfilePage {
         } finally {
             driver.navigate().back();
         }
-}}
+    }
+
+    public void verifyLogOutButton() {
+        if (logout.isDisplayed()) {
+            ElementUtils.waitAndClickElement(logout,ConstantClass.LONG_WAIT_10);
+        }
+    }
+
+    public void ClickProfileButton() {
+        if (profileButton.isDisplayed()) {
+            ElementUtils.waitAndClickElement(profileButton,ConstantClass.LONG_WAIT_10);
+        }
+    }
+}
+

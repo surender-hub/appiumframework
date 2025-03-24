@@ -1,5 +1,6 @@
 package tests;
 
+import base.BaseSuper;
 import base.BaseTestLoginUser;
 import constant.ConstantClass;
 import io.appium.java_client.android.Activity;
@@ -14,7 +15,10 @@ import utils.ConfigUatReader;
 import utils.ElementUtils;
 import utils.LogUtils;
 
-public class CheckinTest extends BaseTestLoginUser {
+import java.util.HashMap;
+import java.util.Map;
+
+public class CheckinTest extends BaseSuper {
 
     CheckinPage checkinPage;
     LoginPage loginPage;
@@ -28,10 +32,10 @@ public class CheckinTest extends BaseTestLoginUser {
     }
 
     @BeforeMethod
-    public void navigateToCheckinMenu() throws Exception{
+    public void navigateToCheckinMenu() throws Exception {
         checkinPage.clickOnCheckinMenu();
         Thread.sleep(3000);
-        ElementUtils.scrollToTop();
+         ElementUtils.scrollToTop();
     }
 
 
@@ -45,7 +49,7 @@ public class CheckinTest extends BaseTestLoginUser {
         String currentActivity = driver.currentActivity();
         System.out.println(currentActivity);
         checkinPage.moveToText("Need help? Check FAQ");
-//        checkinPage.verifyAllFAQ();
+        checkinPage.verifyAllFAQ();
     }
 
     @Test(priority = 2, description = "TC_002 - Verify to chat with us link visibility")

@@ -10,7 +10,7 @@
             <class name="tests.ExploreTest"/>
             <class name="tests.GuestUserProfilePageTest"/>
             <class name="tests.GuestUserBookPageTest"/>
-<!--            <class name="tests.GuestUserIndigoEndToEndFlowTest"/>-->
+            <class name="tests.CheckinTest"/>
 
         </classes>
     </test>

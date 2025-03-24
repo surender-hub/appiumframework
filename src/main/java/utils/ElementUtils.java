@@ -195,8 +195,7 @@ public static String  getText(WebElement element)
     public void attachTextToAllureReport(String name, String content) {
         Allure.addAttachment(name, new ByteArrayInputStream(content.getBytes()));
     }
-
-
+    
 
     public static void scrollToEndAndCheck(String textToFind) {
         boolean elementFound = false;
@@ -271,7 +270,5 @@ public static String  getText(WebElement element)
         ));
 
     }
-
-
 
 }

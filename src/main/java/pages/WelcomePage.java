@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.ConfigReader;
+import utils.ConfigUatReader;
 import utils.ElementUtils;
 
 public class WelcomePage {
@@ -58,11 +59,11 @@ public class WelcomePage {
         ElementUtils utils = new ElementUtils(driver);
         LoginPage loginPage = new LoginPage(driver);
         LoginUserPage loginUserPage = new LoginUserPage(driver);
-        loginPage.enterMobileNumber(ConfigReader.getProperty("mobileNumber"));
+        loginPage.enterMobileNumber(ConfigUatReader.getProperty("loginMobileNumber"));
         Thread.sleep(5000);
         loginPage.clickOnContinue();
         Thread.sleep(2000);
-        loginPage.enterPassword(ConfigReader.getProperty("password"));
+        loginPage.enterPassword(ConfigUatReader.getProperty("loginPassword"));
         loginUserPage.loginButton();
         Thread.sleep(20000);
 

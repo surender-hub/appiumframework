@@ -20,7 +20,8 @@ public class BaseGuestUser {
     public static AndroidDriver driver;
     public static UiAutomator2Options options;
     private static AppiumDriverLocalService service;
-    private static final String APP_PACKAGE = "in.goindigo.android.uat";
+    //private static final String APP_PACKAGE = "in.goindigo.android.uat";
+    private static final String APP_PACKAGE = "in.goindigo.android";
 
     @BeforeSuite
     public void startAppiumServer() {
@@ -41,7 +42,8 @@ public class BaseGuestUser {
         options = new UiAutomator2Options();
         options.setPlatformName(ConfigReader.getProperty("platform.name"));
         options.setDeviceName(ConfigReader.getProperty("device.name"));
-        options.setApp(ConfigReader.getProperty("app.path.UAT"));
+        options.setCapability("appPackage", APP_PACKAGE);         // Your App's Package Name
+        // options.setApp(ConfigReader.getProperty("app.path.UAT"));
         options.setAutoGrantPermissions(true);
         options.setNoReset(true);  // Preserve session
         options.setFullReset(false);

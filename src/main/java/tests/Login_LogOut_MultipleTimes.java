@@ -1,6 +1,10 @@
 package tests;
 
+import base.BaseGuestUser;
+import base.BaseSuper;
 import base.BaseTestLoginUser;
+import constant.ConstantClass;
+import constant.ThreadWaitClass;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import pages.ProfilePage;
@@ -8,7 +12,7 @@ import pages.WelcomePage;
 
 import static utils.ElementUtils.driver;
 
-public class Login_LogOut_MultipleTimes  extends BaseTestLoginUser {
+public class Login_LogOut_MultipleTimes  extends BaseSuper {
 
     private WelcomePage welcomePage;
     private ProfilePage profilePage;
@@ -22,12 +26,10 @@ public class Login_LogOut_MultipleTimes  extends BaseTestLoginUser {
         welcomePage = new WelcomePage(driver);
         profilePage=new ProfilePage(driver);
         welcomePage.loginByOtp();
-        profilePage.verifyLoginProfileButton();
-        Thread.sleep(5000);
-        profilePage.clickOnLogOutButton();
+        profilePage.ClickProfileButton();
+        profilePage.verifyLogOutButton();
         welcomePage.loginByOtp();
-        profilePage.verifyLoginProfileButton();
-        Thread.sleep(5000);
-        profilePage.clickOnLogOutButton();
+        profilePage.ClickProfileButton();
+        profilePage.verifyLogOutButton();
     }
 }

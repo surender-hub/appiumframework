@@ -1,6 +1,7 @@
 package pages;
 
 import constant.ConstantClass;
+import constant.ThreadWaitClass;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -115,7 +116,7 @@ public class CheckinPage {
     }
 
     public void clickVerifyLink() throws Exception{
-        Thread.sleep(3000);
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
         chat_link.click();
         ElementUtils.waitForWebElementVisible(skai_Assistant,ConstantClass.MEDIUM_WAIT_5);
         Assert.assertTrue(skai_Assistant.isDisplayed());
