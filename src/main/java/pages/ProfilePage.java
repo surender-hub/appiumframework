@@ -154,13 +154,7 @@ public class ProfilePage {
 
         public void workingAboutUsButton()
         {
-//            ElementUtils.waitAndClickElement(aboutUs, ConstantClass.MEDIUM_WAIT_5);
-//            try {
-//                ElementUtils.waitAndClickElement(backButton, ConstantClass.MEDIUM_WAIT_5);
-//            } catch (Exception e) {
-//                ElementUtils.waitAndClickElement(backButton, ConstantClass.MEDIUM_WAIT_5);
-//
-//            }
+
 
             try {
                 if (aboutUs.isEnabled()) {
