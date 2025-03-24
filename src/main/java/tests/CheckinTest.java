@@ -14,9 +14,6 @@ import utils.ConfigUatReader;
 import utils.ElementUtils;
 import utils.LogUtils;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class CheckinTest extends BaseTestLoginUser {
 
     CheckinPage checkinPage;
