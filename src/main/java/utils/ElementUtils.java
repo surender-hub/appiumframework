@@ -23,6 +23,7 @@ public class ElementUtils {
     //public static int dat;
 
     public ElementUtils(AndroidDriver driver) {
+
         ElementUtils.driver = driver;
     }
 
@@ -167,7 +168,7 @@ public static String  getText(WebElement element)
 
     public static void waitForElementVisible(By locator,int timeOut) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(timeOut));
-        WebElement textElement = wait.until(ExpectedConditions.visibilityOfElementLocated(locator)); // Replace with the element locator
+         wait.until(ExpectedConditions.visibilityOfElementLocated(locator)); // Replace with the element locator
     }
 
     public static void scrollToEnd()

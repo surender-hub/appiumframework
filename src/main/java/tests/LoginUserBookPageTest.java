@@ -289,6 +289,7 @@ public class LoginUserBookPageTest extends BaseSuper {
     public void verifyRoundTripRadioButtonDisplay() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
         bookPage = new BookPage(driver);
+        Thread.sleep(2000);
         bookPage.displayRoundCityButton();
     }
 

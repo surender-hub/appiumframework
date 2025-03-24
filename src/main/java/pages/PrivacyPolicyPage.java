@@ -35,15 +35,23 @@ public class PrivacyPolicyPage {
 
 
     public void clickPrivacyPolicyLink() {
-        if (policyLink.isDisplayed()) {
-            ElementUtils.waitAndClickElement(policyLink, ConstantClass.MEDIUM_WAIT_5);
-            Assert.assertEquals(validatePolicyLink.getText(), ConfigReader.getProperty("Privacy Policy"));
-            System.out.println("Privacy Policy link is working ");
-        } else {
+        try {
+            if (policyLink.isDisplayed()) {
+                ElementUtils.waitAndClickElement(policyLink, ConstantClass.MEDIUM_WAIT_5);
+                Assert.assertEquals(validatePolicyLink.getText(), ConfigReader.getProperty("PrivacyPolicy"));
+                System.out.println("Privacy Policy link is working ");
+            } else {
 
-            System.out.println("Privacy Policy link is not working ");
-            Assert.fail();
+                System.out.println("Privacy Policy link is not working ");
+                Assert.fail();
+            }
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
         }
+        finally {
+            driver.navigate().back();
+        }
+
 
     }
 

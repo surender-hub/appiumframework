@@ -266,7 +266,7 @@ public class GuestUserBookPageTest extends BaseSuper {
     }
 
 
-    @Test(priority = 22, description = "TC_0022 - Verify the RoundTrip button is Working or not ")
+    @Test(priority = 23, description = "TC_0022 - Verify the RoundTrip button is Working or not ")
     @Description("Verify RoundCity radio button is clickable for the guest user")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("bookPage")
@@ -274,11 +274,13 @@ public class GuestUserBookPageTest extends BaseSuper {
     public void verifyRoundTripRadioButtonWorking() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
         bookPage = new BookPage(driver);
+        welcomePage.clickLoginAsQuest();
         bookPage.selectRoundRadioButton();
+
     }
 
 
-    @Test(priority = 23, description = "TC_0023 - Verify the RoundTrip Radio button is display or not ")
+    @Test(priority = 22, description = "TC_0023 - Verify the RoundTrip Radio button is display or not ")
     @Description("Verify Medical Radio button is display for the guest user")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("bookPage")
