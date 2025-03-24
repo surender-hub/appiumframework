@@ -1,5 +1,6 @@
 package tests;
 
+import base.BaseSuper;
 import base.BaseTest;
 import io.qameta.allure.*;
 import listener.RetryAnalyzer;
@@ -7,12 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 import pages.LoginPage;
-import utils.ConfigReader;
 import utils.ConfigUatReader;
 import utils.ElementUtils;
 
-public class GuestUserLoginTest extends BaseTest {
-    private static final Logger log = LoggerFactory.getLogger(GuestUserLoginTest.class);
+public class LoginTest extends BaseSuper {
+    private static final Logger log = LoggerFactory.getLogger(LoginTest.class);
     LoginPage loginPage;
     private ElementUtils elementUtils;
     String expectedText = "INDIGO BLUCHIP";
@@ -31,7 +31,7 @@ public class GuestUserLoginTest extends BaseTest {
         loginPage.verifyElementTextVisibility();
     }
 
- /*   @Test(priority = 2, description = "TC_002 -Login page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
+/*    @Test(priority = 2, description = "TC_002 -Login page", groups = {"smoke"})
     @Description("Enter Valid Email address")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check Valid email feature")
@@ -66,14 +66,14 @@ public class GuestUserLoginTest extends BaseTest {
     }
 
     @Test(priority = 5, description = "TC_005 -Login page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
-    @Description("Click on continue as a guest button")
+    @Description("Click Terms and Condition link text is displayed")
     @Severity(SeverityLevel.CRITICAL)
-    @Feature("Check button clicking")
-    @Story("Verify continue as a guest button clicked and redirected to Next screen")
-    public void testContinueAsGuest() {
+    @Feature("Check button displaying")
+    @Story("Verify terms and condition link text displaying")
+    public void checkTermAndCondDisplayed() {
         loginPage = new LoginPage(driver);
-        loginPage.clickOnContinueAsGuestButton();
-        loginPage.verifyContinueButtonClicking();
+        loginPage.clickOnTermsAndConditionButton();
+        //loginPage.verifyTextInWebView();
     }
 
     @Test(priority = 6, description = "TC_006 -Login page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
@@ -83,67 +83,30 @@ public class GuestUserLoginTest extends BaseTest {
     @Story("Verify terms and condition link text clicked and redirected to Next screen")
     public void testTermsAndConditionsLink() {
         loginPage = new LoginPage(driver);
-        loginPage.clickOnTermsAndConditionButton();
         loginPage.verifyTextInWebView();
     }
 
-/*    @Test(priority = 7, description = "TC_007 - Login page")
-    @Description("Enter Valid Mobile Number")
+    @Test(priority = 7, description = "TC_007 -Login page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
+    @Description("Check Privacy Text displayed")
     @Severity(SeverityLevel.CRITICAL)
-    @Feature("Check Otp after entering Mobile Number")
-    @Story("Enter mobile number and click on Continue button")
-    public void loginWithMobileNumber() throws InterruptedException {
+    @Feature("Check privacy policy displaying")
+    @Story("Verify privacy policy button displayed")
+    public void verifyPrivacyText() {
         loginPage = new LoginPage(driver);
-        loginPage.enterMobileNumber("8265858568");
-        loginPage.clickOnContinue();
-        loginPage.enterPassword("Bhagatsingh@1");
-        loginPage.clickOnLoginButton();
-        //loginPage.enterOtpNumber("123456");
-        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
-        Thread.sleep(2000);
-        driver.openNotifications();
+        loginPage.verifyPrivacyT();
+    }
 
-        // Wait for notifications to load
+    @Test(priority = 7, description = "TC_007 -Login page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
+    @Description("Check Privacy Text clickable")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Check privacy policy clickable")
+    @Story("Verify privacy policy button is clickable")
+    public void verifyPrivacyTextClickable() {
+        loginPage = new LoginPage(driver);
+        loginPage.verifyPrivacyTClickable();
 
-        //Capture OTP from the first notification
-        List<WebElement> notifications = driver.findElements(By.xpath("//android.widget.TextView[@resource-id=\"android:id/message_text\" and contains(@text, 'is your One Time Password. OTP is valid for 5 minutes. Do not share this OTP with anyone. Regards, IndiGo')]"));
-        String otp = null;
+    }
 
-        for (WebElement notification : notifications) {
-            String text = notification.getText();
-            if (text.contains("OTP")) {
-                otp = text.replaceAll("\\D+", ""); // Extract OTP digits
-                break;
-            }
-        }
-
-        System.out.println("Retrieved OTP: " + otp);
-
-
-        String first = otp.substring(0, 1);
-        String Secound = otp.substring(1, 2);
-        String third = otp.substring(2, 3);
-        String four = otp.substring(3, 4);
-        String five = otp.substring(4, 5);
-        String six = otp.substring(5, 6);
-
-
-        //  List<WebElement>  otpFounds = driver.findElements(By.xpath("//android.view.View[@resource-id='otpField']//android.widget.EditText"));
-
-
-        driver.findElement(By.xpath("//android.widget.EditText[@resource-id=\"first\"]")).sendKeys(first);
-        driver.findElement(By.xpath("//android.widget.EditText[@resource-id=\"second\"]")).sendKeys(Secound);
-        driver.findElement(By.xpath("//android.widget.EditText[@resource-id=\"third\"]")).sendKeys(third);
-        driver.findElement(By.xpath("//android.widget.EditText[@resource-id=\"fourth\"]")).sendKeys(four);
-        driver.findElement(By.xpath("//android.widget.EditText[@resource-id=\"fifth\"]")).sendKeys(five);
-        driver.findElement(By.xpath("//android.widget.EditText[@resource-id=\"sixth\"]")).sendKeys(six);
-
-
-    }*/
-    //loginPage.enterOTP(driver, "123456");
-    // driver.findElement(By.xpath("//android.view.View[@resource-id='otpField']//android.widget.EditText[1]")).sendKeys("1");
-    //loginPage.verifyElementTextVisibility();
 }
-//8130614096
-//Curran@12345
+
 

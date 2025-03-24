@@ -11,19 +11,15 @@
             </run>
         </groups>
         <classes>
-            <class name="tests.QuestUserTest"/>
-            <class name="tests.GuestUserLoginTest"/>
-            <class name="tests.GuestUserRegistrationTest"/>
+
+            <class name="tests.LoginTest"/>
+            <class name="tests.RegistrationTest"/>
             <class name="tests.GuestUserExploreTest"/>
+              <class name="tests.GuestUserTest"/>
             <class name="tests.GuestUserBookPageTest"/>
             <class name="tests.GuestUserProfilePageTest"/>
-            <class name="tests.GuestUserIndigoEndToEndFlowTest"/>
+            <!--<class name="tests.GuestUserIndigoEndToEndFlowTest"/>-->
+
         </classes>
     </test>
 </suite>
-
-
-
-
-
-

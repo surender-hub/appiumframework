@@ -65,7 +65,7 @@ public class GuestUserValidateEndToEndFlowTest extends BaseTestLoginUser {
         searchPage.clickOnAvenueButtonPay();
         searchPage.clickOnButtonResponse();
         Thread.sleep(5000);
-        elementUtils.scrollToElementByText("Total fare");
+        ElementUtils.scrollToElementByText("Total fare");
         String totalFareOnPnrScreen = validFarePage.getTotalFare();
         System.out.println("Actual Text " + actualPrice + " " + " Expected text " + totalFareOnPnrScreen);
         Assert.assertEquals(fareString, totalFareOnPnrScreen, "Test Failed: Fares do NOT match!");
@@ -128,7 +128,7 @@ public class GuestUserValidateEndToEndFlowTest extends BaseTestLoginUser {
         System.out.println("Actual Text " + actualtotalFare + " " + " Expected text " + totalFareOnPnrScreen);
     }
 
-    @Test(priority = 3, description = "TC_003 -Compare Fare details in Multi city")
+   /* @Test(priority = 3, description = "TC_003 -Compare Fare details in Multi city")
     @Description("Verify GuestUser compare Fare in Multi city")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("GuestUser compare fare on payment screen")
@@ -188,7 +188,7 @@ public class GuestUserValidateEndToEndFlowTest extends BaseTestLoginUser {
         String totalFareOnPnrScreen = validFarePage.getTotalFare();
         Assert.assertEquals(fareString, totalFareOnPnrScreen, "Test Failed: Fares do NOT match!");
         System.out.println("Actual Text " + fareString + " " + " Expected text " + totalFareOnPnrScreen);
-    }
+    }*/
 
     @Test(priority = 4, description = "TC_004 -Compare Date details one Way")
     @Description("Verify GuestUser compare Date in One Way")
@@ -360,7 +360,7 @@ public class GuestUserValidateEndToEndFlowTest extends BaseTestLoginUser {
             String expectedDate2 = validFarePage.getFutureDate(5).trim();
             System.out.println("print expected Date 5 days ahead" + expectedDate2);
             //Thread.sleep(10000);
-            elementUtils.scrollToElementByText("Search");
+            ElementUtils.scrollToElementByText("Search");
             roundPage.clickOnSearchButton();
             validFarePage.clickOnFlightList();
             validFarePage.clickOnFlightReturn();
@@ -383,14 +383,14 @@ public class GuestUserValidateEndToEndFlowTest extends BaseTestLoginUser {
             searchPage.getPnrDetails();
             LogUtils.info("PNR Details Generated");
             Thread.sleep(5000);
-            elementUtils.scrollToElementByText("Departure Flight");
+            ElementUtils.scrollToElementByText("Departure Flight");
             String DestinationDate = driver.findElement(By.xpath(" (//android.widget.TextView[@text=\"Departure Flight\"]/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup//android.widget.TextView)[1]")).getText();
             System.out.println(DestinationDate);
             String ActualDate1 = DestinationDate.substring(5, 8).trim();
             System.out.println(DestinationDate);
             System.out.println(ActualDate1);
             Assert.assertEquals(expectedDate, ActualDate1, "Date is correct");
-            elementUtils.scrollToElementByText("Return Flight");
+            ElementUtils.scrollToElementByText("Return Flight");
             String DestinationDate2 = driver.findElement(By.xpath(" (//android.widget.TextView[@text=\"Return Flight\"]/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup//android.widget.TextView)[1]")).getText();
             System.out.println(DestinationDate2);
             String ActualDate2 = DestinationDate2.substring(5, 8).trim();

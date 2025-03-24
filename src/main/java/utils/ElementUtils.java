@@ -1,7 +1,11 @@
 package utils;
 
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -183,16 +187,34 @@ public static String  getText(WebElement element)
     }
 
 
-    public static void scrollAndClickByText(String text) {
-        try {
-            // Scroll until the element with the given text is visible
-            WebElement element = driver.findElement(
-                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true))" +
-                            ".scrollIntoView(new UiSelector().textContains(\"" + text + "\"))"));
-            // Click the element once it is visible
-            element.click();
-        } catch (NoSuchElementException e) {
-            System.out.println("Element with text \"" + text + "\" not found.");
+
+    public static void scrollToEndAndCheck(String textToFind) {
+        boolean elementFound = false;
+
+        while (!elementFound) {
+            try {
+                // Try finding the element with the given text
+                WebElement element = (WebElement) driver.findElement(By.xpath("//*[contains(@text, '" + textToFind + "')]"));
+                if (element.isDisplayed()) {
+                    System.out.println("Element with text '" + textToFind + "' is found!");
+                    elementFound = true;
+                    break;
+                }
+            } catch (Exception e) {
+                // Element not found, continue scrolling
+            }
+
+            // Perform step-wise scrolling
+            try {
+                driver.findElement(AppiumBy.androidUIAutomator(
+                        "new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"
+                ));
+                Thread.sleep(1000); // Pause to ensure slow scrolling
+            } catch (Exception e) {
+                System.out.println("Reached end of list, stopping scroll.");
+                break;  // Stop if we can't scroll further
+            }
         }
     }
+
 }

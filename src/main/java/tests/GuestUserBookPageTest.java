@@ -1,12 +1,12 @@
 package tests;
 
-import base.BaseTestLoginUser;
+import base.BaseSuper;
 import constant.ThreadWaitClass;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import pages.*;
 
-public class GuestUserBookPageTest extends BaseTestLoginUser {
+public class GuestUserBookPageTest extends BaseSuper {
 
     private WelcomePage welcomePage;
     private BookPage bookPage;
@@ -20,7 +20,7 @@ public class GuestUserBookPageTest extends BaseTestLoginUser {
     public void verifyMyTripsButtonIsDisplayed() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
         bookPage = new BookPage(driver);
-        welcomePage.clickLoginAsQuest();
+       // welcomePage.clickLoginAsQuest();
         bookPage.displayMyTripButton();
     }
 

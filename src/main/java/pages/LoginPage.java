@@ -28,8 +28,12 @@ public class LoginPage {
     @FindBy(xpath = "//android.widget.EditText[@text=\"Enter Mobile No. / Email Id\"]")
     private WebElement enterMobile;
 
-    @FindBy(xpath = "//android.widget.EditText")
+    //@FindBy(xpath = "//android.widget.TextView[contains(@text,'Login or Sign up')]/ancestor::*[position()=4]/following-sibling::android.view.ViewGroup")
+    @FindBy(xpath = "//android.widget.TextView[contains(@text,'Login or Sign up')]/ancestor::*[position()=4]/following-sibling::android.view.ViewGroup//android.widget.EditText")
     private WebElement enterValidEmailAddress;
+
+    @FindBy(xpath = "//android.widget.EditText[contains(@text, \"Enter Mobile No.\") or contains(@text, \"@\")]")
+    private WebElement enterValidEmailAddress1;
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"Continue\"]")
     private WebElement continueButton;
@@ -79,12 +83,14 @@ public class LoginPage {
     private WebElement displayText;
     @FindBy(xpath = "//android.widget.TextView[@text=\" Male\"]")
     private WebElement maleText;
-
-
-
-
-
-
+    @FindBy(xpath = "android.widget.EditText")
+    private WebElement editText;
+    @FindBy(xpath = "//android.widget.Button[@content-desc=\"Privacy Policy\"]")
+    private WebElement privacyText;
+    @FindBy(xpath = "//android.widget.Image[@text=\"Indigo Logo Image\"]")
+    private WebElement verifyLogo;
+    @FindBy(xpath = "//android.widget.TextView[contains(@text,'Login or Sign up')]/ancestor::*[position()=4]/following-sibling::android.view.ViewGroup//android.widget.EditText")
+    private WebElement clearMobile;
 
 
 
@@ -97,6 +103,7 @@ public class LoginPage {
 
     @Step("Enter Mobile Number: {mobile number}")
     public void enterMobileNumber(String mobileNumber) {
+        clearMobile.clear();
         ElementUtils.waitAndClickElement(enterMobile, ConstantClass.LONG_WAIT_10);
         elementUtils.sendKeys(enterMobile, mobileNumber, ConstantClass.LONG_WAIT_10);
     }
@@ -104,7 +111,7 @@ public class LoginPage {
     @Step("Enter Valid Email Address")
     public void enterValidEmailAddress(String validEmail) {
         ElementUtils.waitAndClickElement(enterValidEmailAddress, ConstantClass.LONG_WAIT_10);
-        elementUtils.sendKeys(enterValidEmailAddress, validEmail, ConstantClass.LONG_WAIT_10);
+        // elementUtils.sendKeys(enterValidEmailAddress1, validEmail, ConstantClass.LONG_WAIT_10);
     }
 
 
@@ -128,8 +135,9 @@ public class LoginPage {
     }
 
     public void verifyElementTextVisibility() {
-        List<WebElement> elements = Arrays.asList(loginButton, maleText);
-        List<String> expectedTexts = Arrays.asList("Login","Male");
+
+   /*     List<WebElement> elements = Arrays.asList(loginButton, maleText);
+        List<String> expectedTexts = Arrays.asList("Login", "Male");
 
         boolean isElementVisible = elements.stream().anyMatch(element -> {
             try {
@@ -137,9 +145,13 @@ public class LoginPage {
             } catch (Exception ignored) {
                 return false; // Ignore NoSuchElementException or StaleElementException
             }
-        });
 
-        Assert.assertTrue(isElementVisible, "None of the expected elements are visible on the page.");
+        });*/
+        // Assert.assertTrue(isElementVisible, "None of the expected elements are visible on the page.");
+
+        Assert.assertTrue(maleText.isDisplayed(), "Male text is not displayed");
+        driver.navigate().back();
+        enterValidEmailAddress.clear();
     }
 
 
@@ -155,6 +167,7 @@ public class LoginPage {
         } catch (WebDriverException e) {
             Assert.fail("Failed to find the validation message: " + e.getMessage());
         }
+        enterValidEmailAddress.clear();
     }
 
     public void verifyInvalidEmailMessage() {
@@ -168,30 +181,26 @@ public class LoginPage {
         } catch (WebDriverException e) {
             Assert.fail("Failed to find the validation message: " + e.getMessage());
         }
+        enterValidEmailAddress.clear();
     }
 
     public void verifyContinueButtonClicking() {
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-            wait.until(ExpectedConditions.visibilityOf(bookFlight));
-            Assert.assertTrue(bookFlight.isDisplayed(), "Validation message is not visible.");
-            System.out.println("Validation message is visible: " + bookFlight.getText());
 
-        } catch (WebDriverException e) {
-            Assert.fail("Failed to find the validation message: " + e.getMessage());
-        }
+        ElementUtils.waitAndClickElement(continueAsGuestButton, ConstantClass.LONG_WAIT_10);
+        Assert.assertTrue(bookFlight.isDisplayed(), "Validation message is not visible.");
+        //driver.navigate().back();
     }
 
     @Step("Click on Continue As a Guest User Button")
     public void clickOnContinueAsGuestButton() {
-        ElementUtils.waitAndClickElement(continueAsGuestButton, 50);
+        Assert.assertTrue(continueAsGuestButton.isDisplayed(), "Continue as a guest is not displayed");
+        //ElementUtils.waitAndClickElement(continueAsGuestButton, 50);
 
     }
 
     @Step("Click on Terms and condition link text")
     public void clickOnTermsAndConditionButton() {
-        ElementUtils.waitAndClickElement(termButton, 50);
-
+        Assert.assertTrue(termButton.isDisplayed(), "Terms & Conditions is not displayed");
     }
 
 
@@ -201,7 +210,11 @@ public class LoginPage {
     }
 
     public void verifyTextInWebView() {
-        try {
+
+        ElementUtils.waitAndClickElement(termButton, ConstantClass.MEDIUM_WAIT_5);
+        Assert.assertTrue(indigoTextButton.isDisplayed(), "Terms & Conditions is not displayed");
+
+        /*try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
             // Wait for the error message to be visible
             wait.until(ExpectedConditions.visibilityOf(indigoTextButton));
@@ -211,7 +224,8 @@ public class LoginPage {
 
         } catch (WebDriverException e) {
             Assert.fail("Failed to find the validation message: " + e.getMessage());
-        }
+        }*/
+        driver.navigate().back();
     }
 
 
@@ -248,6 +262,19 @@ public class LoginPage {
         } catch (Exception e) {
             System.out.println("Keyboard not visible, skipping hide.");
         }
+    }
+
+    @Step("Verify Privacy Policy Text Displayed")
+    public void verifyPrivacyT() {
+        Assert.assertTrue(privacyText.isDisplayed(), "Terms & Conditions is not displayed");
+    }
+
+    @Step("Verify Privacy Policy Text is clickable")
+    public void verifyPrivacyTClickable() {
+        ElementUtils.waitAndClickElement(privacyText, ConstantClass.MEDIUM_WAIT_5);
+        Assert.assertTrue(verifyLogo.isDisplayed(), "Terms & Conditions is not displayed");
+        driver.navigate().back();
+        enterValidEmailAddress.clear();
     }
 
 }

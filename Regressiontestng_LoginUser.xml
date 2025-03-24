@@ -12,17 +12,10 @@
         </groups>
         <classes>
 
-            <class name="tests.LoginUserExploreTest"/>
             <class name="tests.LoginUserBookPageTest"/>
-            <class name="tests.LoginUserIndigoEndToEndFlowTest"/>
-
+            <class name="tests.LoginProfilePageTest"/>
+            <class name="tests.Login_LogOut_MultipleTimes"/>
+            <class name="tests.ExploreTest"/>
         </classes>
-
     </test>
 </suite>
-
-
-
-
-
-

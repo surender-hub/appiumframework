@@ -1,6 +1,7 @@
 package tests;
 
-import base.BaseTest;
+import base.BaseGuestUser;
+import base.BaseSuper;
 import io.qameta.allure.*;
 import listener.RetryAnalyzer;
 import org.slf4j.Logger;
@@ -13,7 +14,7 @@ import pages.SearchPage;
 import utils.ConfigUatReader;
 import utils.ElementUtils;
 
-public class GuestUserRegistrationTest extends BaseTest {
+public class RegistrationTest extends BaseSuper {
     private static final Logger log = LoggerFactory.getLogger(LoginUserDummy.class);
     private ElementUtils elementUtils;
     public LoginUserPage loginUserPage;
@@ -33,6 +34,7 @@ public class GuestUserRegistrationTest extends BaseTest {
         loginPage.clickOnContinue();
         registrationPage.enterFirstName(ConfigUatReader.getProperty("firstname"));
     }
+
     @Test(priority = 2, description = "TC_002 -Registration page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
     @Description("Select last name and enter Invalid last name")
     @Severity(SeverityLevel.CRITICAL)
@@ -41,8 +43,6 @@ public class GuestUserRegistrationTest extends BaseTest {
     public void testValidLastName() {
         loginPage = new LoginPage(driver);
         registrationPage = new RegistrationPage(driver);
-        loginPage.enterMobileNumber(ConfigUatReader.getProperty("mobileNumber"));
-        loginPage.clickOnContinue();
         registrationPage.enterValidLastName(ConfigUatReader.getProperty("lastName"));
     }
 
@@ -54,8 +54,6 @@ public class GuestUserRegistrationTest extends BaseTest {
     public void testValidDob() throws InterruptedException {
         loginPage = new LoginPage(driver);
         registrationPage = new RegistrationPage(driver);
-        loginPage.enterMobileNumber(ConfigUatReader.getProperty("mobileNumber"));
-        loginPage.clickOnContinue();
         registrationPage.enterValidDob(ConfigUatReader.getProperty("validDob"));
         registrationPage.checkValidDateOfBirth();
     }
@@ -68,9 +66,8 @@ public class GuestUserRegistrationTest extends BaseTest {
     public void testInvalidDob() throws InterruptedException {
         loginPage = new LoginPage(driver);
         registrationPage = new RegistrationPage(driver);
-        loginPage.enterMobileNumber(ConfigUatReader.getProperty("mobileNumber"));
-        loginPage.clickOnContinue();
         registrationPage.enterInvalidDob(ConfigUatReader.getProperty("invalidDob"));
+
     }
 
     @Test(priority = 5, description = "TC_005 -Registration page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
@@ -81,10 +78,9 @@ public class GuestUserRegistrationTest extends BaseTest {
     public void checkMaleRadioButton() throws InterruptedException {
         loginPage = new LoginPage(driver);
         registrationPage = new RegistrationPage(driver);
-        loginPage.enterMobileNumber(ConfigUatReader.getProperty("mobileNumber"));
-        loginPage.clickOnContinue();
         registrationPage.verifyMaleRadioButton();
     }
+
     @Test(priority = 6, description = "TC_006 -Registration page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
     @Description("Check Male Text is displayed or not")
     @Severity(SeverityLevel.CRITICAL)
@@ -93,10 +89,9 @@ public class GuestUserRegistrationTest extends BaseTest {
     public void checkMaleText() throws InterruptedException {
         loginPage = new LoginPage(driver);
         registrationPage = new RegistrationPage(driver);
-        loginPage.enterMobileNumber(ConfigUatReader.getProperty("mobileNumber"));
-        loginPage.clickOnContinue();
         registrationPage.verifyMaleText();
     }
+
     @Test(priority = 7, description = "TC_007 -Registration page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
     @Description("Check Female Radio Button is displayed or not")
     @Severity(SeverityLevel.CRITICAL)
@@ -105,10 +100,9 @@ public class GuestUserRegistrationTest extends BaseTest {
     public void checkFemaleRadioButton() throws InterruptedException {
         loginPage = new LoginPage(driver);
         registrationPage = new RegistrationPage(driver);
-        loginPage.enterMobileNumber(ConfigUatReader.getProperty("mobileNumber"));
-        loginPage.clickOnContinue();
         registrationPage.verifyFemaleRadioButton();
     }
+
     @Test(priority = 8, description = "TC_008 -Registration page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
     @Description("Check Female Text is displayed or not")
     @Severity(SeverityLevel.CRITICAL)
@@ -117,8 +111,6 @@ public class GuestUserRegistrationTest extends BaseTest {
     public void checkFemaleText() throws InterruptedException {
         loginPage = new LoginPage(driver);
         registrationPage = new RegistrationPage(driver);
-        loginPage.enterMobileNumber(ConfigUatReader.getProperty("mobileNumber"));
-        loginPage.clickOnContinue();
         registrationPage.verifyFemaleText();
     }
 
@@ -130,8 +122,6 @@ public class GuestUserRegistrationTest extends BaseTest {
     public void verifyLinkTextTnc() throws InterruptedException {
         loginPage = new LoginPage(driver);
         registrationPage = new RegistrationPage(driver);
-        loginPage.enterMobileNumber(ConfigUatReader.getProperty("mobileNumber"));
-        loginPage.clickOnContinue();
         registrationPage.verifyLinkTextTnc();
     }
 
@@ -143,11 +133,8 @@ public class GuestUserRegistrationTest extends BaseTest {
     public void verifyLinkTextTncClickable() throws InterruptedException {
         loginPage = new LoginPage(driver);
         registrationPage = new RegistrationPage(driver);
-        loginPage.enterMobileNumber(ConfigUatReader.getProperty("mobileNumber"));
-        loginPage.clickOnContinue();
         registrationPage.verifyLinkTextTncIsClickable();
     }
-
 
 
     @Test(priority = 11, description = "TC_011 -Registration page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
@@ -158,26 +145,13 @@ public class GuestUserRegistrationTest extends BaseTest {
     public void verifyLinkTextPrivacyPolicy() throws InterruptedException {
         loginPage = new LoginPage(driver);
         registrationPage = new RegistrationPage(driver);
-        loginPage.enterMobileNumber(ConfigUatReader.getProperty("mobileNumber"));
-        loginPage.clickOnContinue();
         registrationPage.verifyLinkTextPrivacy();
     }
 
+
+
+
     @Test(priority = 12, description = "TC_012 -Registration page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
-    @Description("Check PrivacyPolicy Text is Clickable or not")
-    @Severity(SeverityLevel.CRITICAL)
-    @Feature("Check PrivacyPolicy text is clickable")
-    @Story("Verify Privacy Policy Text is showing after Clicking on Link text")
-    public void verifyLinkTextPrivacyPolicyIsClickable() throws InterruptedException {
-        loginPage = new LoginPage(driver);
-        registrationPage = new RegistrationPage(driver);
-        loginPage.enterMobileNumber(ConfigUatReader.getProperty("mobileNumber"));
-        loginPage.clickOnContinue();
-        registrationPage.verifyLinkTextPrivacyIsClickable();
-    }
-
-
-    @Test(priority = 13, description = "TC_013 -Registration page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
     @Description("Check T&C Text is displayed or not")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check T&C text is visible")
@@ -185,12 +159,10 @@ public class GuestUserRegistrationTest extends BaseTest {
     public void verifyLinkTextTc() throws InterruptedException {
         loginPage = new LoginPage(driver);
         registrationPage = new RegistrationPage(driver);
-        loginPage.enterMobileNumber(ConfigUatReader.getProperty("mobileNumber"));
-        loginPage.clickOnContinue();
         registrationPage.verifyLinkTextTc();
     }
 
-    @Test(priority = 14, description = "TC_014 -Registration page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
+    @Test(priority = 13, description = "TC_013 -Registration page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
     @Description("Check T&C Text is Clickable or not")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Check T&C text is clickable")
@@ -198,22 +170,18 @@ public class GuestUserRegistrationTest extends BaseTest {
     public void verifyLinkTextTcIsClickable() throws InterruptedException {
         loginPage = new LoginPage(driver);
         registrationPage = new RegistrationPage(driver);
-        loginPage.enterMobileNumber(ConfigUatReader.getProperty("mobileNumber"));
-        loginPage.clickOnContinue();
-        registrationPage.verifyLinkTextTcIsClickable();
+        registrationPage.verifyTncText();
     }
 
-
-   /* @Test(priority = 5, description = "TC_005 -Registration page")
-    @Description("Select Radio button")
+    @Test(priority = 14, description = "TC_014 -Registration page", groups = {"smoke"}, retryAnalyzer = RetryAnalyzer.class)
+    @Description("Check PrivacyPolicy Text is Clickable or not")
     @Severity(SeverityLevel.CRITICAL)
-    @Feature("Check radio button is selected.")
-    @Story("Verify radio button is slected")
-    public void testRadioButtonSelected() throws InterruptedException {
+    @Feature("Check PrivacyPolicy text is clickable")
+    @Story("Verify Privacy Policy Text is showing after Clicking on Link text")
+    public void verifyLinkTextPrivacyPolicyIsClickable() throws InterruptedException {
         loginPage = new LoginPage(driver);
         registrationPage = new RegistrationPage(driver);
-        loginPage.enterMobileNumber("7820079798");
-        loginPage.clickOnContinue();
-        registrationPage.checkMaleRadioButton();
-    }*/
+        registrationPage.verifyPrivacyText();
+    }
+
 }

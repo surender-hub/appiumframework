@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="LoggedInUserTests">
+    <listeners>
+        <listener class-name="listener.RetryClass">
+        </listener>
+    </listeners>
+    <test name="Logged-in Mode Test">
+        <parameter name="userType" value="loggedIn"/>
+        <classes>
+            <class name="tests.ExploreTest"/>
+            <class name="tests.LoginUserBookPageTest"/>
+            <class name="tests.LoginProfilePageTest"/>
+        </classes>
+    </test>
+</suite>

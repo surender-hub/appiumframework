@@ -25,7 +25,6 @@ public class GuestUserExplorePage {
         this.elementUtils = new ElementUtils(driver);
         PageFactory.initElements(driver, this);
     }
-
     @FindBy(xpath = "//android.widget.TextView[@text=\"Explore\"]")
     public WebElement exploreButton;
     @FindBy(xpath = "//android.widget.TextView[@text=\"Book a flight\"]")
@@ -36,9 +35,9 @@ public class GuestUserExplorePage {
     public WebElement verifySearchText;
     @FindBy(xpath = "//android.widget.TextView[@text=\"One way\"]")
     public WebElement verifyOneWayText;
-    @FindBy(xpath = "//android.view.ViewGroup[@content-desc=\"Close Location List\"]")
+    //@FindBy(xpath = "//android.view.ViewGroup[@content-desc=\"Close Location List\"]")
+    @FindBy(xpath = "//android.view.ViewGroup[contains(@content-desc, \"Close\")]")
     public WebElement closePopUp;
-
     @FindBy(xpath = "//android.widget.TextView[@text=\"From\"]")
     public WebElement fromText;
     @FindBy(xpath = "//android.widget.TextView[@text=\"Where to?\"]")
@@ -75,6 +74,8 @@ public class GuestUserExplorePage {
     public WebElement addMoreText;
     @FindBy(xpath = "//android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup")
     public List<WebElement> subChildElements;
+    @FindBy(xpath = "//android.widget.TextView[contains(@text, 'Book flights')]")
+    public WebElement bookFlightText;
 
     public void loginUser() {
         LoginPage loginPage = new LoginPage(driver);
@@ -89,6 +90,7 @@ public class GuestUserExplorePage {
 
     public void pressExploreButton() {
         ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
+        Assert.assertTrue(whatsNewText.isDisplayed(), "Not redirected to Explore page");
     }
 
     public void verifyBookFlightText() {
@@ -129,24 +131,30 @@ public class GuestUserExplorePage {
     }
 
     public void verifyFromT() {
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+        //ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(fromText.isDisplayed(), "Book a Stay text is not displayed!");
     }
 
     public void verifyWhereT() {
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.MEDIUM_WAIT_5);
+        //ElementUtils.waitAndClickElement(exploreButton, ConstantClass.MEDIUM_WAIT_5);
         Assert.assertTrue(whereText.isDisplayed(), "Book a Stay text is not displayed!");
     }
 
     public void verifySearchT() {
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+        //ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(searchText.isDisplayed(), "Book a Stay text is not displayed!");
     }
 
     public void pressWhereText() {
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+       // ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
         ElementUtils.waitAndClickElement(whereText, ConstantClass.LONG_WAIT_180);
         Assert.assertTrue(verifyWhereAreYouText.isDisplayed(), "Search  text is not displayed!");
+        try {
+            ElementUtils.waitAndClickElement(closePopUp, ConstantClass.SHORT_WAIT_2);
+        } catch (Exception e) {
+            System.out.println("closePopUp not found, continuing...");
+        }
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
     }
 
     public void verifyWhereTInStay() {
@@ -166,81 +174,93 @@ public class GuestUserExplorePage {
     }
 
     public void verifyClickAway() {
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
+       /* ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
         ElementUtils.waitAndClickElement(verifyBookStay, ConstantClass.LONG_WAIT_180);
         ElementUtils.waitAndClickElement(closePopUp, ConstantClass.SHORT_WAIT_2);
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
-        Assert.assertTrue(clickAwayText.isDisplayed(), "Book a Stay text is not displayed!");
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);*/
+        Assert.assertTrue(clickAwayText.isDisplayed(), "Click Away text is not displayed!");
     }
 
     public void verifyLowestFare() {
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
+       /* ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
         ElementUtils.waitAndClickElement(verifyBookStay, ConstantClass.LONG_WAIT_180);
         ElementUtils.waitAndClickElement(closePopUp, ConstantClass.SHORT_WAIT_2);
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);*/
         Assert.assertTrue(lowestFareText.isDisplayed(), "Book a Stay text is not displayed!");
     }
 
     public void verifySvgView() {
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
+      /*  ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
         ElementUtils.waitAndClickElement(verifyBookStay, ConstantClass.LONG_WAIT_180);
         ElementUtils.waitAndClickElement(closePopUp, ConstantClass.SHORT_WAIT_2);
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);*/
         Assert.assertTrue(svgView.isDisplayed(), "Book a Stay text is not displayed!");
     }
 
     public void verifyWhatsNewText() {
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+        //ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(whatsNewText.isDisplayed(), "Whats New text is not displayed!");
     }
 
     public void verifyAllOfferText() {
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
-        ElementUtils.scrollToElementByText("View All Offer");
+
+        ElementUtils.scrollToEndAndCheck("meets the sky");
         Assert.assertTrue(viewAllOfferText.isDisplayed(), "View All Offers text is not displayed!");
+        //ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+       // ElementUtils.scrollToElementByText("View All Offer");
+
+       // Assert.assertTrue(viewAllOfferText.isDisplayed(), "View All Offers text is not displayed!");
     }
 
     public void verifyExploreText() {
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
-        ElementUtils.scrollToElementByText("Embark on a journey of inspiration with IndiGo, where discovery meets the sky");
+        ElementUtils.scrollToEndAndCheck("meets the sky");
         Assert.assertTrue(exploreText.isDisplayed(), "View All Offers text is not displayed!");
+        //ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+       // ElementUtils.scrollToElementByText("Embark on a journey of inspiration with IndiGo, where discovery meets the sky");
+       // Assert.assertTrue(exploreText.isDisplayed(), "View All Offers text is not displayed!");
     }
 
     public void pressAllOfferText() {
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
-        ElementUtils.scrollToElementByText("View All Offer");
+       // ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+       // ElementUtils.scrollToElementByText("View All Offer");
+        ElementUtils.scrollToEndAndCheck("meets the sky");
         ElementUtils.waitAndClickElement(viewAllOfferText, ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(allOfferText.isDisplayed(), "View All Offers text is not displayed!");
+        driver.navigate().back();
     }
 
     public void pressExploreText() {
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
-        ElementUtils.scrollToElementByText("Embark on a journey of inspiration with IndiGo, where discovery meets the sky");
+        //ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+        //ElementUtils.scrollToElementByText("Embark on a journey of inspiration with IndiGo, where discovery meets the sky");
+        ElementUtils.scrollToEndAndCheck("meets the sky");
         ElementUtils.waitAndClickElement(exploreText, ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(guideText.isDisplayed(), "View All Offers text is not displayed!");
+        driver.navigate().back();
     }
 
     public void verifyViewMoreText() {
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
-        ElementUtils.scrollToElementByText("View more");
+        //ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+        ElementUtils.scrollToEndAndCheck("View more");
+        //ElementUtils.scrollToElementByText("View more");
         Assert.assertTrue(viewMoreText.isDisplayed(), "View More text is not displayed!");
     }
 
     public void pressViewMoreText() {
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
-        ElementUtils.scrollToElementByText("View more");
+        //ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+        ElementUtils.scrollToEndAndCheck("View more");
         ElementUtils.waitAndClickElement(viewMoreText, ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(verifyIndigoText.isDisplayed(), "View More text is not displayed!");
+        driver.navigate().back();
     }
 
     public void verifyAddMoreText() {
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
-        ElementUtils.scrollToElementByText("View more");
+       // ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+        ElementUtils.scrollToEndAndCheck("View more");
         Assert.assertTrue(addMoreText.isDisplayed(), "Add More text is not displayed!");
     }
 
     public void whatsNewImageLoading() {
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+        //ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
         ElementUtils.scrollToElementByText("Find exclusive offers and the best deals available for you.");
         for (WebElement subChild : subChildElements) {
             try {

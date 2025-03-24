@@ -13,8 +13,8 @@
             </run>
         </groups>
         <classes>
-            <class name="tests.GuestUserLoginTest" />
-            <class name="tests.GuestUserRegistrationTest" />
+            <class name="tests.LoginTest" />
+            <class name="tests.RegistrationTest" />
         </classes>
     </test>
 
@@ -27,8 +27,8 @@
             </run>
         </groups>
         <classes>
-            <class name="tests.GuestUserLoginTest" />
-            <class name="tests.GuestUserRegistrationTest" />
+            <class name="tests.LoginTest" />
+            <class name="tests.RegistrationTest" />
         </classes>
     </test>
 

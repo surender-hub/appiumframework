@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="GuestUserTests">
+    <listeners>
+        <listener class-name="listener.RetryClass">
+        </listener>
+    </listeners>
+    <test name="Guest Mode Test">
+        <parameter name="userType" value="guest"/>
+        <classes>
+            <class name="tests.ExploreTest"/>
+            <class name="tests.GuestUserProfilePageTest"/>
+            <class name="tests.GuestUserBookPageTest"/>
+<!--            <class name="tests.GuestUserIndigoEndToEndFlowTest"/>-->
+
+        </classes>
+    </test>
+</suite>

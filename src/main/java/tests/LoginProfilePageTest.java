@@ -1,5 +1,6 @@
 package tests;
 
+import base.BaseSuper;
 import base.BaseTestLoginUser;
 import constant.ThreadWaitClass;
 import io.qameta.allure.*;
@@ -7,7 +8,7 @@ import org.testng.annotations.Test;
 import pages.ProfilePage;
 import pages.WelcomePage;
 
-public class LoginProfilePageTest extends BaseTestLoginUser {
+public class LoginProfilePageTest extends BaseSuper {
 
     private WelcomePage welcomePage;
     private ProfilePage profilePage;
@@ -22,7 +23,7 @@ public class LoginProfilePageTest extends BaseTestLoginUser {
     public void verifyProfileButtonIsDisplayed() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
         profilePage=new ProfilePage(driver);
-        welcomePage.loginByOtp();
+       // welcomePage.loginByOtp();
         profilePage.displayProfileButton();
     }
 

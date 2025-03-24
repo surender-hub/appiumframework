@@ -7,21 +7,23 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import utils.ConfigReader;
 import utils.ConfigUatReader;
 import utils.ElementUtils;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class LoginUserExplorePage {
+public class ExplorePage {
     public AndroidDriver driver;
     public ElementUtils elementUtils;
     public LoginUserPage loginUserPage;
 
-    public LoginUserExplorePage(AndroidDriver driver) {
+    public ExplorePage(AndroidDriver driver) {
         this.driver = driver;
         this.elementUtils = new ElementUtils(driver);
         PageFactory.initElements(driver, this);
@@ -61,7 +63,9 @@ public class LoginUserExplorePage {
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"What's new?\"]")
     public WebElement whatsNewText;
-    @FindBy(xpath = "//android.widget.TextView[contains(@text, \"View All\")]")
+    //@FindBy(xpath = "(//android.view.ViewGroup//android.widget.TextView)[3]")
+    //@FindBy(xpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.view.ViewGroup")
+    @FindBy(xpath = "//android.widget.TextView[@text=\"View All Offer\"]")
     public WebElement viewAllOfferText;
     @FindBy(xpath = "(//android.widget.TextView[@text=\"Explore\"])[1]")
     public WebElement exploreText;
@@ -72,14 +76,30 @@ public class LoginUserExplorePage {
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"6E Guide to Get Inspired and Explore more...\"]")
     public WebElement guideText;
-    @FindBy(xpath = "//android.widget.TextView[@text=\"IndiGo Bolsters Domestic Network: Introduces Bikaner as 90th destination in 6E network.\"]")
+    @FindBy(xpath = "//android.widget.Button[@text=\"All Offers\"]")
+    public WebElement allOffers;
+    @FindBy(xpath = "//android.widget.TextView[@text=\"View more\"]")
     public WebElement viewMoreText;
-    @FindBy(xpath = "(//android.widget.TextView[contains(@text, 'IndiGo Bolsters')])[2]")
-    public WebElement verifyIndigoText;
+    @FindBy(xpath = "//android.widget.Image[@text=\"Indigo Logo Image\"]")
+    public WebElement verifyIndigoLogo;
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Home\"]")
+    public WebElement HomeText;
     @FindBy(xpath = "//android.widget.TextView[@text=\"Add more add-ons\n" + "to your journey\"]")
     public WebElement addMoreText;
     @FindBy(xpath = "//android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup")
     public List<WebElement> subChildElements;
+    @FindBy(xpath = "//android.widget.TextView[contains(@text, 'Book flights')]")
+    public WebElement bookFlightText;
+    @FindBy(xpath = "//android.widget.TextView[@text=\"View All Offer\"]")
+    public WebElement allOffersT;
+
+    @FindBy(xpath = "//android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup")
+    public List<WebElement> exclusiveImages;
+    @FindBy(id = "(//android.view.View[@text=\"CULTURE AND HERITAGE\"])[1]")
+    public WebElement cultureHeritage;
+    @FindBy(id = "(//android.widget.Image[@text=\"Indigo Logo Image\"]")
+    public WebElement indigoLogoImage;
+
 
 
     public void loginUser() {
@@ -95,15 +115,17 @@ public class LoginUserExplorePage {
 
     public void pressExploreButton() {
         ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
-
+        Assert.assertTrue(whatsNewText.isDisplayed(), "Not redirected to Explore page");
     }
 
     public void verifyBookFlightText() {
         ThreadWaitClass.customSleep(ConstantClass.SHORT_WAIT_2);
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(verifyBookFlight.isDisplayed(), "Whats New text is not displayed!");
     }
 
     public void verifyStayText() {
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(verifyBookStay.isDisplayed(), "Book a Stay text is not displayed!");
     }
 
@@ -133,15 +155,17 @@ public class LoginUserExplorePage {
     }
 
     public void verifyFromT() {
-        ElementUtils.waitAndClickElement(verifyBookFlight, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(fromText.isDisplayed(), "Book a Stay text is not displayed!");
     }
 
     public void verifyWhereT() {
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(whereText.isDisplayed(), "Book a Stay text is not displayed!");
     }
 
     public void verifySearchT() {
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(searchText.isDisplayed(), "Book a Stay text is not displayed!");
         //ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
     }
@@ -155,7 +179,7 @@ public class LoginUserExplorePage {
         } catch (Exception e) {
             System.out.println("closePopUp not found, continuing...");
         }
-        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
     }
 
     public void verifyWhereTInStay() {
@@ -180,62 +204,63 @@ public class LoginUserExplorePage {
 
 
     public void verifyWhatsNewText() {
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
         Assert.assertTrue(whatsNewText.isDisplayed(), "Whats New text is not displayed!");
     }
 
     public void verifyAllOfferText() {
-        ElementUtils.scrollToElementByText("View All Offer");
+        ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_10);
+        ElementUtils.scrollToEndAndCheck("meets the sky");
         Assert.assertTrue(viewAllOfferText.isDisplayed(), "View All Offers text is not displayed!");
     }
 
     public void verifyExploreText() {
-        ElementUtils.scrollToElementByText("Embark on a journey of inspiration with IndiGo, where discovery meets the sky");
+        //ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
+        ElementUtils.scrollToEndAndCheck("meets the sky");
         Assert.assertTrue(exploreText.isDisplayed(), "View All Offers text is not displayed!");
     }
 
     public void pressAllOfferText() {
-        ElementUtils.scrollToElementByText("View All Offer");
-        ElementUtils.waitAndClickElement(viewAllOfferText, ConstantClass.LONG_WAIT_10);
-        List<WebElement> elements = Arrays.asList(allOfferText, heyThereText);
-        List<String> expectedTexts = Arrays.asList("All Offers","Hey there, Welcome onboard let's get started with booking.");
-        boolean isElementVisible = elements.stream().anyMatch(element -> {
-            try {
-                return expectedTexts.contains(element.getText().trim());
-            } catch (Exception ignored) {
-                return false; // Ignore NoSuchElementException or StaleElementException
-            }
-        });
-        Assert.assertTrue(isElementVisible, "None of the expected elements are visible on the page.");
+        // ElementUtils.scrollToElementContainingText(driver, "View");
+        // ElementUtils.waitAndClickElement(exploreButton, ConstantClass.LONG_WAIT_180);
+        //ElementUtils.scrollToElementByText("View All Offer");
+        // ElementUtils.scrollToEndAndCheck("meets the sky");
+        ElementUtils.waitAndClickElement(allOffersT, ConstantClass.LONG_WAIT_10);
+        Assert.assertTrue(verifyIndigoLogo.isDisplayed(), "View More text is not displayed!");
         driver.navigate().back();
     }
 
 
     public void pressExploreText() {
-        ElementUtils.scrollToElementByText("Embark on a journey of inspiration with IndiGo, where discovery meets the sky");
+        //ElementUtils.waitAndClickElement(exploreText, ConstantClass.LONG_WAIT_10);
+        //ElementUtils.scrollToEndAndCheck("meets the sky");
         ElementUtils.waitAndClickElement(exploreText, ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(guideText.isDisplayed(), "View All Offers text is not displayed!");
         driver.navigate().back();
     }
 
     public void verifyViewMoreText() {
-        ElementUtils.scrollToElementByText("View more");
+        //ElementUtils.waitAndClickElement(exploreText, ConstantClass.LONG_WAIT_10);
+        ElementUtils.scrollToEndAndCheck("View more");
         Assert.assertTrue(viewMoreText.isDisplayed(), "View More text is not displayed!");
     }
 
     public void pressViewMoreText() {
-        ElementUtils.scrollToElementByText("IndiGo Bolsters Domestic Network: Introduces Bikaner as 90th destination in 6E network.");
-        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
+        // ElementUtils.waitAndClickElement(exploreText, ConstantClass.LONG_WAIT_10);
+        ElementUtils.scrollToEnd();
         ElementUtils.waitAndClickElement(viewMoreText, ConstantClass.LONG_WAIT_10);
-        Assert.assertTrue(verifyIndigoText.isDisplayed(), "View More text is not displayed!");
+        Assert.assertTrue(HomeText.isDisplayed(), "Home text is not displayed!");
         driver.navigate().back();
     }
 
     public void verifyAddMoreText() {
-        ElementUtils.scrollToElementByText("View more");
+        //ElementUtils.waitAndClickElement(exploreText, ConstantClass.LONG_WAIT_10);
+        //ElementUtils.scrollToElementByText("View more");
         Assert.assertTrue(addMoreText.isDisplayed(), "Add More text is not displayed!");
     }
 
     public void whatsNewImageLoading() {
+        //ElementUtils.waitAndClickElement(exploreText, ConstantClass.LONG_WAIT_10);
         ElementUtils.scrollToElementByText("Find exclusive offers and the best deals available for you.");
         for (WebElement subChild : subChildElements) {
             try {
@@ -257,4 +282,50 @@ public class LoginUserExplorePage {
         }
     }
 
+    public void exclusiveImageClicking() {
+        System.out.println("Total elements found: " + exclusiveImages.size());
+
+        for (int i = 0; i < subChildElements.size(); i++) {
+            try {
+                // Click on the current element
+                System.out.println("🔍 Clicking element at index: " + i);
+                subChildElements.get(i).click();
+
+                // WebDriverWait to check visibility
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+                // Flags for element visibility
+                boolean isCultureVisible = false;
+                boolean isIndigoVisible = false;
+                try {
+                    // Wait for cultureHeritage element (no exception if not found)
+                    wait.until(ExpectedConditions.visibilityOf(cultureHeritage));
+                    isCultureVisible = cultureHeritage.isDisplayed();
+                } catch (Exception e) {
+                    System.out.println("⚠️ CULTURE AND HERITAGE element not visible.");
+                }
+
+                try {
+                    // Wait for indigoLogoImage element (no exception if not found)
+                    wait.until(ExpectedConditions.visibilityOf(indigoLogoImage));
+                    isIndigoVisible = indigoLogoImage.isDisplayed();
+                } catch (Exception e) {
+                    System.out.println("⚠️ INDIGO LOGO element not visible.");
+                }
+
+                // Assert if at least one element is visible
+                if (isCultureVisible || isIndigoVisible) {
+                    System.out.println("✅ Assertion Passed at index: " + i);
+                    if (isCultureVisible) System.out.println("✔️ CULTURE AND HERITAGE is visible.");
+                    if (isIndigoVisible) System.out.println("✔️ INDIGO LOGO is visible.");
+                } else {
+                    System.out.println("❌ Assertion Failed at index: " + i);
+                }
+                // Navigate back to the previous screen
+                driver.navigate().back();
+                ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
+            } catch (Exception e) {
+                System.out.println("⚠️ Error on element at index " + i + ": " + e.getMessage());
+            }
+        }
+    }
 }

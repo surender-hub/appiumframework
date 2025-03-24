@@ -2,6 +2,7 @@ package pages;
 
 import constant.ConstantClass;
 import constant.ThreadWaitClass;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Step;
 import org.jspecify.annotations.Nullable;
@@ -12,6 +13,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import utils.ElementUtils;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class RegistrationPage {
     private AndroidDriver driver;
@@ -55,14 +59,18 @@ public class RegistrationPage {
     //@FindBy(xpath = "//android.view.View[contains(@text, 'Privacy Policy')]")
     @FindBy(xpath = "//android.widget.TextView[@text=\"INDIGO BLUCHIP PROGRAM – TERMS &CONDITIONS\"]")
     private WebElement privacyPolicyText;
+    @FindBy(xpath = "(//android.view.View[@text=\"Privacy Policy\"])[3]")
+    private WebElement privacyPolicyTextCheck;
+
+
+    //@FindBy(xpath = "//android.widget.Button[@content-desc=\"Privacy Policy\"]")
+    //@FindBy(xpath = "//android.widget.TextView[@text=\"*By clicking Next you agree to the terms of IndiGo's Privacy Policy.\"]")
     @FindBy(xpath = "//android.widget.Button[@content-desc=\"Privacy Policy\"]")
     private WebElement privacyPolicyLinkText;
     @FindBy(xpath = "//android.widget.Button[@content-desc=\"T&C.\"]")
     private WebElement tcLinkText;
     @FindBy(xpath = "//android.widget.EditText[@text=\"First and Middle Name\"]")
     private WebElement enterFirstN;
-
-
 
 
 
@@ -108,7 +116,7 @@ public class RegistrationPage {
     public void checkValidDateOfBirth() {
         ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);  // Waits for 5 seconds
         Assert.assertEquals(validDobCheck.getText(), "01-01-1991", "Data of birth input should be correct");
-
+        validDobCheck.clear();
     }
 
 
@@ -116,9 +124,13 @@ public class RegistrationPage {
     public void enterInvalidDob(String invalidDob) {
         ElementUtils.waitAndClickElement(clickDob, ConstantClass.LONG_WAIT_180);
         elementUtils.sendKeys(clickDob, invalidDob, ConstantClass.LONG_WAIT_180);
+        if (((AndroidDriver) driver).isKeyboardShown()) {
+            ((AndroidDriver) driver).hideKeyboard();
+        }
         ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
         Assert.assertEquals(invalidDobCheck.getText(), "Please enter valid date of birth", "Data of birth input is incorrect");
-
+        driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(10)"));
     }
 
     @Step("Enter invalid date of birth: {date of birth}")
@@ -158,6 +170,7 @@ public class RegistrationPage {
     public void verifyLinkTextTncIsClickable() {
         ElementUtils.waitAndClickElement(linkTextTnc,ConstantClass.LONG_WAIT_10);
         Assert.assertTrue(privacyPolicyText.isDisplayed(), "Privacy PolicyText is not displayed!");
+        driver.navigate().back();
     }
 
     public void verifyLinkTextPrivacy() {
@@ -183,4 +196,44 @@ public class RegistrationPage {
         elementUtils.sendKeys(enterFirstN, mobileNumber, ConstantClass.LONG_WAIT_180);
     }
 */
+
+    public void verifyPrivacyText() {
+        privacyPolicyLinkText.click();
+
+        List<WebElement> elements = Arrays.asList(privacyPolicyText, privacyPolicyTextCheck);
+        List<String> expectedTexts = Arrays.asList("INDIGO BLUCHIP PROGRAM – TERMS &CONDITIONS","Privacy Policy");
+
+        boolean isElementVisible = elements.stream().anyMatch(element -> {
+            try {
+                return expectedTexts.contains(element.getText().trim());
+            } catch (Exception ignored) {
+                return false; // Ignore NoSuchElementException or StaleElementException
+            }
+        });
+
+        Assert.assertTrue(isElementVisible, "None of the expected elements are visible on the page.");
+        driver.navigate().back();
+
+    }
+
+
+    public void verifyTncText() {
+        tcLinkText.click();
+        List<WebElement> elements = Arrays.asList(privacyPolicyText, privacyPolicyTextCheck);
+        List<String> expectedTexts = Arrays.asList("INDIGO BLUCHIP PROGRAM – TERMS &CONDITIONS","Privacy Policy");
+
+        boolean isElementVisible = elements.stream().anyMatch(element -> {
+            try {
+                return expectedTexts.contains(element.getText().trim());
+            } catch (Exception ignored) {
+                return false; // Ignore NoSuchElementException or StaleElementException
+            }
+        });
+
+        Assert.assertTrue(isElementVisible, "None of the expected elements are visible on the page.");
+        driver.navigate().back();
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
+        driver.navigate().back();
+    }
+
 }
