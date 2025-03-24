@@ -34,7 +34,7 @@ public class CheckinTest extends BaseTestLoginUser {
     public void navigateToCheckinMenu() throws Exception{
         checkinPage.clickOnCheckinMenu();
         Thread.sleep(3000);
-        ElementUtils.scrollToTop();
+       // ElementUtils.scrollToTop();
     }
 
 

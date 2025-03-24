@@ -135,7 +135,7 @@ public class MyTripsTest extends BaseTestLoginUser {
         searchPage.getPnrDetails();
         elementUtils.scrollToElementByText("Departure Flight");
 
-        searchPage.getPNRText();
+       // searchPage.getPNRText();
 
 //        elementUtils.attachTextToAllureReport("PNR Details", "Generated PNR: " + SearchPage.pnrDetails5);
 //        Allure.step("Generated PNR from Allure.Step: " + SearchPage.pnrDetails5);

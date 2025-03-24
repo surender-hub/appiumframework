@@ -117,7 +117,7 @@ public class CheckinPage {
     public void clickVerifyLink() throws Exception{
         Thread.sleep(3000);
         chat_link.click();
-        ElementUtils.waitForWebElementVisible(skai_Assistant,10);
+        ElementUtils.waitForWebElementVisible(skai_Assistant,ConstantClass.MEDIUM_WAIT_5);
         Assert.assertTrue(skai_Assistant.isDisplayed());
     }
 
@@ -180,10 +180,6 @@ public class CheckinPage {
         }
 
     }
-
-
-
-
 
 
 }

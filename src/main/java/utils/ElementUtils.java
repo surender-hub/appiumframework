@@ -8,13 +8,17 @@ import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.asserts.SoftAssert;
 
 import java.io.ByteArrayInputStream;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 
 public class ElementUtils {
     public  static AndroidDriver driver;
@@ -168,7 +172,12 @@ public static String  getText(WebElement element)
 
     public static void waitForElementVisible(By locator,int timeOut) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(timeOut));
-         wait.until(ExpectedConditions.visibilityOfElementLocated(locator)); // Replace with the element locator
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator)); // Replace with the element locator
+    }
+
+    public static void waitForWebElementVisible(WebElement element,int timeOut) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(timeOut));
+        wait.until(ExpectedConditions.visibilityOf(element)); // Replace with the element locator
     }
 
     public static void scrollToEnd()
@@ -217,5 +226,44 @@ public static String  getText(WebElement element)
             }
         }
     }
+    public static void slightScrollUntilElementFound(WebElement element, String[][] faq) {
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Dimension size = driver.manage().window().getSize();
+        int startX = size.width / 2;
+        int startY = (int) (size.height * 0.58);
+        int endY = (int) (size.height * 0.5);
+
+        SoftAssert softAssert = new SoftAssert();
+        boolean elementFound = false;
+        int i=0,j=0;
+        while (!elementFound && i< faq.length) {
+            String sol = "";
+            try {
+                j=i;
+                System.out.println(faq[i][0].trim());
+                driver.findElement(By.xpath("//android.widget.TextView[@text='" + faq[i][0] + "']/following-sibling::com.horcrux.svg.SvgView")).click();
+                Thread.sleep(2000);
+                sol = driver.findElement(By.xpath("(//android.widget.TextView[@text='"+ faq[i][0] +"']/parent::android.view.ViewGroup/following-sibling::android.view.ViewGroup[1]//android.widget.TextView)[1]")).getText();
+
+                driver.findElement(By.xpath("//android.widget.TextView[@text='" + faq[i][0] + "']/following-sibling::com.horcrux.svg.SvgView")).click();
+
+                element.click();
+                elementFound = true;
+            } catch (Exception e) {
+                softAssert.assertTrue(sol.contains(faq[j][1]));
+                Sequence swipe = new Sequence(finger, 1);
+                swipe.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), startX, startY));
+                swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                swipe.addAction(finger.createPointerMove(Duration.ofMillis(200), PointerInput.Origin.viewport(), startX, endY));
+                swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+                driver.perform(Arrays.asList(swipe));
+                i++;
+            }
+
+        }
+        softAssert.assertAll();
+    }
+
+
 
 }
