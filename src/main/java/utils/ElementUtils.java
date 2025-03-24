@@ -265,5 +265,13 @@ public static String  getText(WebElement element)
     }
 
 
+    public static void scrollToTop() {
+        driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollToBeginning(1)"
+        ));
+
+    }
+
+
 
 }

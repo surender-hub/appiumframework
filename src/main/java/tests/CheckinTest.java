@@ -27,14 +27,14 @@ public class CheckinTest extends BaseTestLoginUser {
     public void setup() {
         checkinPage = new CheckinPage(driver);
         loginPage = new LoginPage(driver);
-        loginPage.clickOnContinueAsGuestButton();
+//        loginPage.clickOnContinueAsGuestButton();
     }
 
     @BeforeMethod
     public void navigateToCheckinMenu() throws Exception{
         checkinPage.clickOnCheckinMenu();
         Thread.sleep(3000);
-       // ElementUtils.scrollToTop();
+        ElementUtils.scrollToTop();
     }
 
 
