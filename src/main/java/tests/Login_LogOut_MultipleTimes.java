@@ -12,7 +12,7 @@ import pages.WelcomePage;
 
 import static utils.ElementUtils.driver;
 
-public class Login_LogOut_MultipleTimes  extends BaseSuper {
+public class Login_LogOut_MultipleTimes extends BaseSuper {
 
     private WelcomePage welcomePage;
     private ProfilePage profilePage;
@@ -24,7 +24,7 @@ public class Login_LogOut_MultipleTimes  extends BaseSuper {
     @Story("Guest User should be able to  Login and Logout Multiple Times ")
     public void loginLogOut() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
-        profilePage=new ProfilePage(driver);
+        profilePage = new ProfilePage(driver);
         welcomePage.loginByOtp();
 //        profilePage.ClickProfileButton();
 //        profilePage.verifyLogOutButton();

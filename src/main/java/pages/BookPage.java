@@ -146,6 +146,11 @@ public class BookPage {
         bookastaybutton.click();
     }
 
+
+    public void clickOnBookPage() {
+        bookButton.click();
+    }
+
     public void displayMyTripButton() {
         if (myTripsButton.isDisplayed()) {
             System.out.println("My Trips Button is Displayed ");

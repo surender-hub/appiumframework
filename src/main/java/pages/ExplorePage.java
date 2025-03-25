@@ -101,7 +101,6 @@ public class ExplorePage {
     public WebElement indigoLogoImage;
 
 
-
     public void loginUser() {
         LoginPage loginPage = new LoginPage(driver);
         loginUserPage = new LoginUserPage(driver);
@@ -282,50 +281,49 @@ public class ExplorePage {
         }
     }
 
-    public void exclusiveImageClicking() {
-        System.out.println("Total elements found: " + exclusiveImages.size());
-
-        for (int i = 0; i < subChildElements.size(); i++) {
-            try {
-                // Click on the current element
-                System.out.println("🔍 Clicking element at index: " + i);
-                subChildElements.get(i).click();
-
-                // WebDriverWait to check visibility
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-                // Flags for element visibility
-                boolean isCultureVisible = false;
-                boolean isIndigoVisible = false;
-                try {
-                    // Wait for cultureHeritage element (no exception if not found)
-                    wait.until(ExpectedConditions.visibilityOf(cultureHeritage));
-                    isCultureVisible = cultureHeritage.isDisplayed();
-                } catch (Exception e) {
-                    System.out.println("⚠️ CULTURE AND HERITAGE element not visible.");
-                }
-
-                try {
-                    // Wait for indigoLogoImage element (no exception if not found)
-                    wait.until(ExpectedConditions.visibilityOf(indigoLogoImage));
-                    isIndigoVisible = indigoLogoImage.isDisplayed();
-                } catch (Exception e) {
-                    System.out.println("⚠️ INDIGO LOGO element not visible.");
-                }
-
-                // Assert if at least one element is visible
-                if (isCultureVisible || isIndigoVisible) {
-                    System.out.println("✅ Assertion Passed at index: " + i);
-                    if (isCultureVisible) System.out.println("✔️ CULTURE AND HERITAGE is visible.");
-                    if (isIndigoVisible) System.out.println("✔️ INDIGO LOGO is visible.");
+    // Method to click on a specific index and assert condition
+    public void clickOnIndex(int index) {
+            System.out.println("🔍 Clicking element at index: " + index);
+            subChildElements.get(index).click();
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            // Assertion logic based on index
+            if (index == 0) {
+                // Check for cultureHeritage element
+                wait.until(ExpectedConditions.visibilityOf(cultureHeritage));
+                if (cultureHeritage.isDisplayed()) {
+                    System.out.println("✅ Assertion Passed: CULTURE AND HERITAGE is visible at index " + index);
                 } else {
-                    System.out.println("❌ Assertion Failed at index: " + i);
+                    System.out.println("❌ Assertion Failed: CULTURE AND HERITAGE is NOT visible at index " + index);
                 }
-                // Navigate back to the previous screen
                 driver.navigate().back();
-                ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
-            } catch (Exception e) {
-                System.out.println("⚠️ Error on element at index " + i + ": " + e.getMessage());
-            }
-        }
+            } /*else if (index == 1) {
+                // Check for indigoLogoImage element
+                wait.until(ExpectedConditions.visibilityOf(indigoLogoImage));
+                if (indigoLogoImage.isDisplayed()) {
+                    System.out.println("✅ Assertion Passed: INDIGO LOGO is visible at index " + index);
+                } else {
+                    System.out.println("❌ Assertion Failed: INDIGO LOGO is NOT visible at index " + index);
+                }
+            } else if (index == 2) {
+                // Check for indigoLogoImage element
+                wait.until(ExpectedConditions.visibilityOf(indigoLogoImage));
+                if (indigoLogoImage.isDisplayed()) {
+                    System.out.println("✅ Assertion Passed: INDIGO LOGO is visible at index " + index);
+                } else {
+                    System.out.println("❌ Assertion Failed: INDIGO LOGO is NOT visible at index " + index);
+                }
+            } *//* else if (index >= 2 && index <= 4) {
+                // For indexes 2, 3, and 4 you can add custom assertions if needed.
+                // Here we just print a message.
+                System.out.println("ℹ️ No specific assertion defined for index " + index + ". Proceeding without assertion.");
+            }*//*
+            // Navigate back after assertion
+            driver.navigate().back();
+            ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
+
+        } catch (Exception e) {
+            System.out.println("⚠️ Error on element at index " + index + ": " + e.getMessage());
+        }*/
+
     }
 }

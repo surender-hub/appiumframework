@@ -144,5 +144,4 @@ public class CheckinTest extends BaseSuper {
         driver.navigate().back();
     }
 
-
 }

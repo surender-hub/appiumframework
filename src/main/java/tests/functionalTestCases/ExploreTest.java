@@ -1,5 +1,6 @@
 package tests.functionalTestCases;
 
+import base.BaseGuestUser;
 import base.BaseSuper;
 import constant.ConstantClass;
 import constant.ThreadWaitClass;
@@ -9,7 +10,7 @@ import org.testng.annotations.Test;
 import pages.ExplorePage;
 import utils.ElementUtils;
 
-public class ExploreTest extends BaseSuper
+public class ExploreTest extends BaseGuestUser
 {
 
     private ThreadWaitClass threadWaitClass;
@@ -262,14 +263,32 @@ public class ExploreTest extends BaseSuper
 
     }
 
-    @Test(priority = 20, description = "TC_020 - Verify Explore Page functionality with Guest User and Login user")
+ /*   @Test(priority = 20, description = "TC_020 - Verify Explore Page functionality with Guest User and Login user")
     @Description("Check for clicking on exclusive images")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Explore Page")
     @Story("Verify Image clicking and redirected to another screen")
-    public void clickOnExclusiveImages() {
+    public void clickOnExclusiveImagesOne() {
         loginUserExplorePage = new ExplorePage(driver);
-        loginUserExplorePage.exclusiveImageClicking();
+        loginUserExplorePage.clickOnIndex(0);
+    }*/
+   /* @Test(priority = 21, description = "TC_021 - Verify Explore Page functionality with Guest User and Login user")
+    @Description("Check for clicking on exclusive images")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Explore Page")
+    @Story("Verify Image clicking and redirected to another screen")
+    public void clickOnExclusiveImagesTwo() {
+        loginUserExplorePage = new ExplorePage(driver);
+        loginUserExplorePage.clickOnIndex(1);
     }
+    @Test(priority = 22, description = "TC_022 - Verify Explore Page functionality with Guest User and Login user")
+    @Description("Check for clicking on exclusive images")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Explore Page")
+    @Story("Verify Image clicking and redirected to another screen")
+    public void clickOnExclusiveImagesThree() {
+        loginUserExplorePage = new ExplorePage(driver);
+        loginUserExplorePage.clickOnIndex(2);
+    }*/
 
 }
