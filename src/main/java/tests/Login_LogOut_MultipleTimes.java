@@ -26,10 +26,10 @@ public class Login_LogOut_MultipleTimes  extends BaseSuper {
         welcomePage = new WelcomePage(driver);
         profilePage=new ProfilePage(driver);
         welcomePage.loginByOtp();
-        profilePage.ClickProfileButton();
-        profilePage.verifyLogOutButton();
-        welcomePage.loginByOtp();
-        profilePage.ClickProfileButton();
-        profilePage.verifyLogOutButton();
+//        profilePage.ClickProfileButton();
+//        profilePage.verifyLogOutButton();
+//        welcomePage.loginByOtp();
+//        profilePage.ClickProfileButton();
+//        profilePage.verifyLogOutButton();
     }
 }

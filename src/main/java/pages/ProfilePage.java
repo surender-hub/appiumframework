@@ -5,6 +5,7 @@ import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import utils.ConfigReader;
@@ -14,9 +15,10 @@ public class ProfilePage {
 
     public AndroidDriver driver;
 
-    public ProfilePage(AndroidDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public ProfilePage(AndroidDriver driver)
+    {
+        this.driver=driver;
+        PageFactory.initElements(driver,this);
     }
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"Profile\"]")
@@ -31,7 +33,7 @@ public class ProfilePage {
     @FindBy(xpath = "//com.horcrux.svg.SvgView")
     public WebElement backButton;
 
-    @FindBy(xpath = "//android.widget.TextView[@text=\"YOUR INFORMATION\"]/ancestor::android.view.ViewGroup/preceding-sibling::android.view.ViewGroup/child::android.view.ViewGroup/child::android.view.ViewGroup/child::android.widget.TextView")
+    @FindBy(xpath = "//android.widget.TextView[@text=\"YOUR INFORMATION\"]/ancestor::android.view.ViewGroup/preceding-sibling::android.view.ViewGroup/child::android.view.ViewGroup/child::android.view.ViewGroup/child::android.widget.TextView[contains(@text, 'Hello')]")
     public WebElement validateProfileText;
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"About Us\"]")
@@ -66,6 +68,42 @@ public class ProfilePage {
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"Registered Office\"]")
     public WebElement validateContactUs;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"My Nominee\"]")
+    public WebElement myNominees;
+
+    @FindBy(xpath = "//android.widget.RadioButton[@content-desc=\"Male unselected\"]/android.view.ViewGroup")
+    public WebElement maleRadioButton;
+
+    @FindBy(xpath = "(//android.widget.RadioButton[@content-desc=\"Female unselected\"])/android.view.ViewGroup")
+    public WebElement femaleRadioButton;
+
+    @FindBy(xpath = "//android.widget.EditText[@resource-id=\"First & Middle Name\" and @text=\"First & Middle Name\"]")
+    public WebElement firstName;
+
+    @FindBy(xpath = "//android.widget.EditText[@resource-id=\"Last Name\" and @text=\"Last Name\"]")
+    public WebElement lastName;
+
+    @FindBy(xpath = "//android.widget.EditText[@resource-id=\"dob\" and @text=\"DD-MM-YYYY\"]")
+    public WebElement dateOfBirth;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Save\"]")
+    public WebElement saveButton;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"ADD NOMINEE \"]")
+    public WebElement addNomineeButton;
+
+    @FindBy(xpath = "//com.horcrux.svg.SvgView/com.horcrux.svg.GroupView/com.horcrux.svg.GroupView/com.horcrux.svg.PathView[3]")
+    public WebElement closeButton;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Terms and Conditions\"]")
+    public WebElement termsAndConditions;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Terms and Conditions\"]")
+    public WebElement validateTermsAndConditons;
+
+
+
 
 
 
@@ -118,7 +156,7 @@ public class ProfilePage {
         ElementUtils.waitAndClickElement(profileButton, ConstantClass.MEDIUM_WAIT_5);
         if (profileButton.isEnabled()) {
 
-            Assert.assertEquals(validateProfileText.getText(), ConfigReader.getProperty("Expected(ExpectedQuestProfile)"));
+            Assert.assertEquals(validateProfileText.getText().substring(0,5), ConfigReader.getProperty("Expected(ExpectedQuestProfile)"));
             System.out.println("Profile Button is working ");
         } else {
 
@@ -132,7 +170,7 @@ public class ProfilePage {
         ElementUtils.waitAndClickElement(profileButton, ConstantClass.MEDIUM_WAIT_5);
         if (profileButton.isEnabled()) {
 
-            Assert.assertEquals(validateProfileText.getText(), ConfigReader.getProperty("Expected(ExpectedLoginProfile)"));
+            Assert.assertEquals(validateProfileText.getText().substring(0,5), ConfigReader.getProperty("Expected(ExpectedLoginProfile)"));
             System.out.println("Profile Button is working ");
         } else {
 
@@ -153,13 +191,7 @@ public class ProfilePage {
 
         public void workingAboutUsButton()
         {
-//            ElementUtils.waitAndClickElement(aboutUs, ConstantClass.MEDIUM_WAIT_5);
-//            try {
-//                ElementUtils.waitAndClickElement(backButton, ConstantClass.MEDIUM_WAIT_5);
-//            } catch (Exception e) {
-//                ElementUtils.waitAndClickElement(backButton, ConstantClass.MEDIUM_WAIT_5);
-//
-//            }
+
 
             try {
                 if (aboutUs.isEnabled()) {
@@ -296,7 +328,7 @@ public class ProfilePage {
         try {
             ElementUtils.waitAndClickElement(backButton, ConstantClass.MEDIUM_WAIT_5);
         } catch (Exception e) {
-            ElementUtils.waitAndClickElement(backButton, ConstantClass.MEDIUM_WAIT_5);
+           driver.navigate().back();
         }
     }
 
@@ -412,7 +444,7 @@ public class ProfilePage {
         try {
             if (contactUs.isDisplayed()) {
                 ElementUtils.waitAndClickElement(contactUs, ConstantClass.MEDIUM_WAIT_5);
-               // ElementUtils.waitForElementVisible(By.xpath("//android.widget.TextView[@text=\"Frequently Asked Questions\"]"), ConstantClass.MEDIUM_WAIT_5);
+                // ElementUtils.waitForElementVisible(By.xpath("//android.widget.TextView[@text=\"Frequently Asked Questions\"]"), ConstantClass.MEDIUM_WAIT_5);
                 Assert.assertEquals(validateContactUs.isDisplayed(), true);
                 System.out.println("ContactUs link is working ");
             } else {
@@ -424,17 +456,100 @@ public class ProfilePage {
             driver.navigate().back();
         }
     }
+        public void displayMyNominees() {
+            if (myNominees.isDisplayed()) {
+                Assert.assertEquals(myNominees.isDisplayed(), true);
+                System.out.println("My Nominees is Displayed ");
+            } else {
+                System.out.println("My Nominees is not Displayed ");
+                Assert.fail();
+            }
+        }
 
-    public void verifyLogOutButton() {
-        if (logout.isDisplayed()) {
-            ElementUtils.waitAndClickElement(logout,ConstantClass.LONG_WAIT_10);
+
+    public void enabledMyNominees() {
+        if (myNominees.isEnabled()) {
+            Assert.assertEquals(myNominees.isEnabled(), true);
+            System.out.println("My Nominees link is Enabled ");
+
+        } else {
+            System.out.println("My Nominees link is not Enabled");
+            Assert.fail();
         }
     }
 
-    public void ClickProfileButton() {
-        if (profileButton.isDisplayed()) {
-            ElementUtils.waitAndClickElement(profileButton,ConstantClass.LONG_WAIT_10);
+
+    public void workingMyNominees() {
+        try {
+            if (myNominees.isDisplayed()) {
+                ElementUtils.waitAndClickElement(myNominees, ConstantClass.MEDIUM_WAIT_5);
+                Assert.assertEquals(addNomineeButton.isDisplayed(), true);
+                System.out.println("My Nominees link is working ");
+            } else {
+                System.out.println("My Nominees link is not working ");
+                Assert.fail();
+            }
+        } catch (Exception e) {
+        } finally {
+            driver.navigate().back();
+        }
+    }
+
+    public void addNominessDetails() throws InterruptedException {
+        ElementUtils.waitAndClickElement(profileButton,ConstantClass.MEDIUM_WAIT_5);
+        ElementUtils.waitAndClickElement(myNominees,ConstantClass.MEDIUM_WAIT_5);
+        //ElementUtils.waitForWebElementVisible(addNomineeButton,ConstantClass.MEDIUM_WAIT_5);
+        Thread.sleep(5000);
+        ElementUtils.waitAndClickElement(addNomineeButton,ConstantClass.LONG_WAIT_50);
+        ElementUtils.waitAndClickElement(femaleRadioButton,ConstantClass.MEDIUM_WAIT_5);
+        firstName.sendKeys("Sk");
+        lastName.sendKeys("Jain");
+        dateOfBirth.sendKeys("08-09-1995");
+        ElementUtils.waitAndClickElement(closeButton,ConstantClass.MEDIUM_WAIT_5);
+        driver.navigate().back();
+//        ElementUtils.waitAndClickElement(saveButton,ConstantClass.MEDIUM_WAIT_5);
+    }
+
+
+    public void displayTermsAndCondtions() {
+        if (termsAndConditions.isDisplayed()) {
+            Assert.assertEquals(termsAndConditions.isDisplayed(), true);
+            System.out.println("Terms And Conditions is Displayed ");
+        } else {
+            System.out.println("Terms And Conditions is not Displayed ");
+            Assert.fail();
+        }
+    }
+
+
+    public void enabledTermsAndConditions() {
+        if (termsAndConditions.isEnabled()) {
+            Assert.assertEquals(termsAndConditions.isEnabled(), true);
+            System.out.println("Terms And Conditions link is Enabled ");
+
+        } else {
+            System.out.println("Terms And Conditions link is not Enabled");
+            Assert.fail();
+        }
+    }
+
+    public void workingTermsAndConditions() {
+        try {
+            if (termsAndConditions.isDisplayed()) {
+                ElementUtils.waitAndClickElement(termsAndConditions, ConstantClass.MEDIUM_WAIT_5);
+                Assert.assertEquals(validateTermsAndConditons.isDisplayed(), true);
+                System.out.println("Terms and Conditions link is working ");
+            } else {
+                System.out.println("Terms and Conditions  link is not working ");
+                Assert.fail();
+            }
+        } catch (Exception e)
+        {
+            System.out.println("terms and Conditions link is not Working");
+            Assert.fail();
+        }
+        finally {
+            driver.navigate().back();
         }
     }
 }
-

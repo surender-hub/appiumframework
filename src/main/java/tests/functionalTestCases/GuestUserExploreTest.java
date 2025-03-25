@@ -1,4 +1,4 @@
-package tests;
+package tests.functionalTestCases;
 
 import base.BaseGuestUser;
 import constant.ThreadWaitClass;

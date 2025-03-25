@@ -743,7 +743,33 @@ public class BookPage {
         finally {
             driver.navigate().back();
         }
+    }
+
+    public void displayReturnLink() {
+        if (returnButton.isDisplayed()) {
+            Assert.assertEquals(true, returnButton.isDisplayed());
+            System.out.println("Return Button is Displayed ");
+        } else {
+            System.out.println("Return Button is not Displayed ");
+            Assert.fail();
+        }
+    }
 
 
+    public void workingReturnLink() throws InterruptedException {
+        try {
+            if (returnButton.isDisplayed()) {
+                ElementUtils.waitAndClickElement(returnButton, ConstantClass.MEDIUM_WAIT_5);
+               // Assert.assertEquals(validateAddNominee.getText(), ConfigReader.getProperty("Expected(AddNominee)"));
+                System.out.println("Return button  is Working ");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Return button  is Not Working ");
+            Assert.fail();
+        }
+        finally {
+            driver.navigate().back();
+        }
     }
 }

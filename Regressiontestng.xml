@@ -14,11 +14,11 @@
 
             <class name="tests.LoginTest"/>
             <class name="tests.RegistrationTest"/>
-            <class name="tests.GuestUserExploreTest"/>
+            <class name="tests.functionalTestCases.GuestUserExploreTest"/>
               <class name="tests.GuestUserTest"/>
-            <class name="tests.GuestUserBookPageTest"/>
-            <class name="tests.GuestUserProfilePageTest"/>
-            <!--<class name="tests.GuestUserIndigoEndToEndFlowTest"/>-->
+            <class name="tests.functionalTestCases.GuestUserBookPageTest"/>
+            <class name="tests.functionalTestCases.GuestUserProfilePageTest"/>
+            <!--<class name="tests.functionalTestCases.GuestUserIndigoEndToEndFlowTest"/>-->
 
         </classes>
     </test>

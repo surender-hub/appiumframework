@@ -1,7 +1,6 @@
-package tests;
+package tests.functionalTestCases;
 
 import base.BaseSuper;
-import base.BaseTestLoginUser;
 import constant.ThreadWaitClass;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;

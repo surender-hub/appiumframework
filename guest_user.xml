@@ -7,10 +7,10 @@
     <test name="Guest Mode Test">
         <parameter name="userType" value="guest"/>
         <classes>
-            <class name="tests.ExploreTest"/>
-            <class name="tests.GuestUserProfilePageTest"/>
-            <class name="tests.GuestUserBookPageTest"/>
-            <class name="tests.CheckinTest"/>
+            <class name="tests.functionalTestCases.ExploreTest"/>
+            <class name="tests.functionalTestCases.GuestUserProfilePageTest"/>
+            <class name="tests.functionalTestCases.GuestUserBookPageTest"/>
+            <class name="tests.functionalTestCases.CheckinTest"/>
 
         </classes>
     </test>

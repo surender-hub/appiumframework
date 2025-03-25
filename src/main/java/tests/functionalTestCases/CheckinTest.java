@@ -1,22 +1,14 @@
-package tests;
+package tests.functionalTestCases;
 
 import base.BaseSuper;
-import base.BaseTestLoginUser;
-import constant.ConstantClass;
-import io.appium.java_client.android.Activity;
 import io.qameta.allure.*;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.*;
-import utils.ConfigUatReader;
 import utils.ElementUtils;
 import utils.LogUtils;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class CheckinTest extends BaseSuper {
 

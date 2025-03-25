@@ -12,10 +12,10 @@
         </groups>
         <classes>
 
-            <class name="tests.LoginUserBookPageTest"/>
-            <class name="tests.LoginProfilePageTest"/>
+            <class name="tests.functionalTestCases.LoginUserBookPageTest"/>
+            <class name="tests.functionalTestCases.LoginProfilePageTest"/>
             <class name="tests.Login_LogOut_MultipleTimes"/>
-            <class name="tests.ExploreTest"/>
+            <class name="tests.functionalTestCases.ExploreTest"/>
         </classes>
     </test>
 </suite>
