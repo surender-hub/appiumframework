@@ -175,6 +175,7 @@ public static String  getText(WebElement element)
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator)); // Replace with the element locator
     }
 
+
     public static void waitForWebElementVisible(WebElement element,int timeOut) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(timeOut));
         wait.until(ExpectedConditions.visibilityOf(element)); // Replace with the element locator

@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import pages.ExplorePage;
 import utils.ElementUtils;
 
-public class ExploreTest extends BaseGuestUser
+public class ExploreTest extends BaseSuper
 {
 
     private ThreadWaitClass threadWaitClass;
@@ -263,7 +263,7 @@ public class ExploreTest extends BaseGuestUser
 
     }
 
- /*   @Test(priority = 20, description = "TC_020 - Verify Explore Page functionality with Guest User and Login user")
+    @Test(priority = 20, description = "TC_020 - Verify Explore Page functionality with Guest User and Login user")
     @Description("Check for clicking on exclusive images")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Explore Page")
@@ -271,24 +271,34 @@ public class ExploreTest extends BaseGuestUser
     public void clickOnExclusiveImagesOne() {
         loginUserExplorePage = new ExplorePage(driver);
         loginUserExplorePage.clickOnIndex(0);
-    }*/
-   /* @Test(priority = 21, description = "TC_021 - Verify Explore Page functionality with Guest User and Login user")
+    }
+   @Test(priority = 21, description = "TC_021 - Verify Explore Page functionality with Guest User and Login user")
     @Description("Check for clicking on exclusive images")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Explore Page")
     @Story("Verify Image clicking and redirected to another screen")
     public void clickOnExclusiveImagesTwo() {
         loginUserExplorePage = new ExplorePage(driver);
-        loginUserExplorePage.clickOnIndex(1);
+        loginUserExplorePage.clickOnIndexOne(1);
     }
-    @Test(priority = 22, description = "TC_022 - Verify Explore Page functionality with Guest User and Login user")
+     @Test(priority = 22, description = "TC_022 - Verify Explore Page functionality with Guest User and Login user")
     @Description("Check for clicking on exclusive images")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Explore Page")
     @Story("Verify Image clicking and redirected to another screen")
     public void clickOnExclusiveImagesThree() {
         loginUserExplorePage = new ExplorePage(driver);
-        loginUserExplorePage.clickOnIndex(2);
-    }*/
+        loginUserExplorePage.clickOnIndexTwo(2);
+    }
 
+/*    @Test(priority = 23, description = "TC_023 - Verify Explore Page functionality with Guest User and Login user")
+    @Description("Check for clicking on exclusive images")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Explore Page")
+    @Story("Verify Image clicking and redirected to another screen")
+    public void clickOnViewAllOfferImages() {
+        loginUserExplorePage = new ExplorePage(driver);
+        ElementUtils.scrollToEndAndCheck("View All Offer");
+        loginUserExplorePage.clickSiblingElementsByIndex();
+    }*/
 }

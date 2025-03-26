@@ -13,6 +13,7 @@ import org.testng.Assert;
 import utils.ConfigUatReader;
 import utils.ElementUtils;
 
+import java.sql.SQLOutput;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
@@ -99,6 +100,10 @@ public class ExplorePage {
     public WebElement cultureHeritage;
     @FindBy(id = "(//android.widget.Image[@text=\"Indigo Logo Image\"]")
     public WebElement indigoLogoImage;
+    @FindBy(id = "//android.widget.Button[contains(@text, 'Get to Know Us')]")
+    public WebElement getToKnowUsText;
+    @FindBy(xpath = "//android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup")
+    public List<WebElement> siblingElements;
 
 
     public void loginUser() {
@@ -283,47 +288,62 @@ public class ExplorePage {
 
     // Method to click on a specific index and assert condition
     public void clickOnIndex(int index) {
-            System.out.println("🔍 Clicking element at index: " + index);
-            subChildElements.get(index).click();
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            // Assertion logic based on index
-            if (index == 0) {
-                // Check for cultureHeritage element
-                wait.until(ExpectedConditions.visibilityOf(cultureHeritage));
-                if (cultureHeritage.isDisplayed()) {
-                    System.out.println("✅ Assertion Passed: CULTURE AND HERITAGE is visible at index " + index);
-                } else {
-                    System.out.println("❌ Assertion Failed: CULTURE AND HERITAGE is NOT visible at index " + index);
-                }
-                driver.navigate().back();
-            } /*else if (index == 1) {
-                // Check for indigoLogoImage element
-                wait.until(ExpectedConditions.visibilityOf(indigoLogoImage));
-                if (indigoLogoImage.isDisplayed()) {
-                    System.out.println("✅ Assertion Passed: INDIGO LOGO is visible at index " + index);
-                } else {
-                    System.out.println("❌ Assertion Failed: INDIGO LOGO is NOT visible at index " + index);
-                }
-            } else if (index == 2) {
-                // Check for indigoLogoImage element
-                wait.until(ExpectedConditions.visibilityOf(indigoLogoImage));
-                if (indigoLogoImage.isDisplayed()) {
-                    System.out.println("✅ Assertion Passed: INDIGO LOGO is visible at index " + index);
-                } else {
-                    System.out.println("❌ Assertion Failed: INDIGO LOGO is NOT visible at index " + index);
-                }
-            } *//* else if (index >= 2 && index <= 4) {
-                // For indexes 2, 3, and 4 you can add custom assertions if needed.
-                // Here we just print a message.
-                System.out.println("ℹ️ No specific assertion defined for index " + index + ". Proceeding without assertion.");
-            }*//*
-            // Navigate back after assertion
-            driver.navigate().back();
-            ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
-
-        } catch (Exception e) {
-            System.out.println("⚠️ Error on element at index " + index + ": " + e.getMessage());
-        }*/
-
+        System.out.println("🔍 Clicking element at index: " + index);
+        System.out.println("Total elements found: " + subChildElements.size());
+        subChildElements.get(index).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//android.view.View[@text=\"CULTURE AND HERITAGE\"])[1]")));
+        Assert.assertTrue(element.isDisplayed(), "Culture and Heritage  text is not displayed!");
+        driver.navigate().back();
     }
+    public void clickOnIndexOne(int index) {
+        System.out.println("🔍 Clicking element at index: " + index);
+        subChildElements.get(index).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Image[@text=\"Indigo Logo Image\"]")));
+        Assert.assertTrue(element.isDisplayed(), "Indigo Logo is not displayed!");
+        driver.navigate().back();
+    }
+    public void clickOnIndexTwo(int index) {
+        System.out.println("🔍 Clicking element at index: " + index);
+        subChildElements.get(index).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Image[@text=\"Indigo Logo Image\"]")));
+        Assert.assertTrue(element.isDisplayed(), "Indigo Logo is not displayed!");
+        driver.navigate().back();
+    }
+
+    public void clickImageOne() {
+        //ElementUtils.waitAndClickElement(firstChildElementViewAllOffer,ConstantClass.MEDIUM_WAIT_5);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Image[@text=\"Indigo Logo Image\"]")));
+        Assert.assertTrue(element.isDisplayed(), "Indigo Logo is not displayed!");
+        driver.navigate().back();
+    }
+    public void clickImageTwo(int index) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Image[@text=\"Indigo Logo Image\"]")));
+        Assert.assertTrue(element.isDisplayed(), "Indigo Logo is not displayed!");
+        driver.navigate().back();
+    }
+
+    public void clickSiblingElementsByIndex() {
+        if (siblingElements.size() >= 2) {
+            // Click on the first sibling element (Index 0)
+            siblingElements.get(0).click();
+            System.out.println("Clicked on Sibling Element at Index 0.");
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Image[@text=\"Indigo Logo Image\"]")));
+            Assert.assertTrue(element.isDisplayed(), "Indigo Logo is not displayed!");
+            driver.navigate().back();
+
+          /*  // Click on the second sibling element (Index 1)
+            siblingElements.get(1).click();
+            System.out.println("Clicked on Sibling Element at Index 1.");
+        } else {
+            System.out.println("Not enough sibling elements found to perform clicks.");
+        }*/
+        }
+    }
+
 }

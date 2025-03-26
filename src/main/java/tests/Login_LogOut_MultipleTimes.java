@@ -15,7 +15,7 @@ import utils.ConfigUatReader;
 
 import static utils.ElementUtils.driver;
 
-public class Login_LogOut_MultipleTimes extends BaseSuper {
+public class Login_LogOut_MultipleTimes extends BaseGuestUser {
 
     private ProfilePage profilePage;
 

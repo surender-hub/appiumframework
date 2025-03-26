@@ -49,7 +49,7 @@ public class BaseSuper {
 
     @BeforeClass
     @Parameters({"userType"})  // Accept parameter "guest" or "loggedIn"
-    public void setup(@Optional("loggedIn") String userType) throws MalformedURLException {
+    public void setup(@Optional("noLogin") String userType) throws MalformedURLException {
         System.out.println("Initializing Appium session...");
         // Fix: Now userType is correctly used as a parameter
 

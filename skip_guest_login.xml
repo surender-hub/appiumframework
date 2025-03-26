@@ -7,8 +7,8 @@
     <test name="Login and Registration">
         <parameter name="userType" value="noLogin"/>
         <classes>
-           <!-- <class name="tests.LoginTest"/>
-            <class name="tests.RegistrationTest"/>-->
+            <class name="tests.LoginTest"/>
+            <class name="tests.RegistrationTest"/>
             <class name="tests.Login_LogOut_MultipleTimes"/>
 
         </classes>
