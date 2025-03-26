@@ -2,7 +2,9 @@ package pages;
 
 import constant.ConstantClass;
 import constant.ThreadWaitClass;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
+import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -108,30 +110,85 @@ public class ProfilePage {
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"Terms and Conditions\"]")
     public WebElement validateTermsAndConditons;
+
     @FindBy(xpath = "//android.view.View[@resource-id=\"a\"]")
     public WebElement continueAsGuest;
 
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Join Program\"]")
+    public WebElement joinProgram;
 
 
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Login or Sign up for IndiGo BluChip\"]")
+    public WebElement validateJoinProgram;
 
 
+    @FindBy(xpath = "//android.view.View[@resource-id=\"a\"]")
+    public WebElement continueAsQuestLink;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"About IndiGo BluChip\"]")
+    public WebElement aboutIndigoBlueChip;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Sign up and get access to exciting privileges and benefits\"]")
+    public WebElement validateAboutIndigoBlueChip;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Enrol Now\"]")
+    public WebElement enrolNow;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Tiers & Benefits\"]")
+    public WebElement tiersAndBenefits;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"IndiGo BluChip Tiers and Tier Benefits\"]")
+    public WebElement validateTiersAndBenefits;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"FAQ\"]")
+    public WebElement faq;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"HAVE A QUESTION?\"]")
+    public WebElement validateFaq;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Earn and Redeem\"]")
+    public WebElement earnAndRedeem;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Earn IndiGo BluChips\"]")
+    public WebElement earnIndigoBlueChip;
+
+    @FindBy(xpath = "//android.webkit.WebView[@text=\"How To Earn Points\"]/android.view.View")
+    public WebElement validateEarnIndigoBlueChip;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Redeem IndiGo BluChips\"]")
+    public WebElement redeemIndigoBluChip;
 
 
+    @FindBy(xpath = "//android.view.View[@text=\"Redeem IndiGo BluChips on IndiGo Flights\"]")
+    public WebElement validateRedeemIndigoBluChip;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Terms & Conditions\"]")
+    public WebElement IndigoTermsAndConditions;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"INDIGO BLUCHIP PROGRAM – TERMS &CONDITIONS\"]")
+    public WebElement validateIndigoTermsAndConditions;
+
+    //android.view.View[@text="Redeem IndiGo BluChips on IndiGo Flights"]
 
     //android.widget.Image[@text="Indigo Logo Image"]/ancestor::android.view.View/following-sibling::android.view.View/descendant::android.widget.ListView/descendant::android.view.View[@text="About Us"]
-
-    ////android.widget.TextView[@text="IndiGo BluChip"]
+    //android.view.View[@resource-id="a"]
+    //android.widget.TextView[@text="HAVE A QUESTION?"]
     //android.widget.TextView[@text="About IndiGo BluChip"]
+    //android.widget.TextView[@text="Sign up and get access to exciting privileges and benefits"]
+    //android.widget.TextView[contains(@text,"IndiGo BluChip")])[1]
+    //android.widget.TextView[@text="Enrol Now"]
     //android.widget.TextView[@text="Tiers & Benefits"]
     //android.widget.TextView[@text="Terms & Conditions"]
     //android.widget.TextView[@text="FAQ"]
     //android.widget.TextView[@text="Join Program"]
-
+    //android.widget.TextView[@text="Login or Sign up for IndiGo BluChip"]
+//android.widget.TextView[@text="IndiGo BluChip Tiers and Tier Benefits"]
     //android.widget.TextView[@text="Earn and Redeem"]
     ////android.widget.TextView[@text="DISCOVER"]
     //android.widget.TextView[@text="Earn and Redeem"]
     //android.widget.TextView[@text="Earn IndiGo BluChips"]
     //android.widget.TextView[@text="Redeem IndiGo BluChips"]
+    //android.webkit.WebView[@text="How To Earn Points"]/android.view.View
     //android.widget.TextView[@text="My Scratch Card"]
     //android.widget.TextView[@text="Contact Us"]
     //android.widget.TextView[@text="Help & FAQs"]
@@ -592,4 +649,158 @@ public class ProfilePage {
     public void checkLoginScreen() {
         Assert.assertTrue(continueAsGuest.isDisplayed(), "Login screen is not displayed !");
     }
+
+
+    public void clickOnJoinProgram()
+    {
+        ElementUtils.waitAndClickElement(indigoBlueChipLink, ConstantClass.MEDIUM_WAIT_5);
+        try {
+            if (joinProgram.isDisplayed()) {
+                ElementUtils.waitAndClickElement(joinProgram, ConstantClass.MEDIUM_WAIT_5);
+                Assert.assertEquals(validateJoinProgram.isDisplayed(), true);
+                System.out.println("Join Program link is working ");
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Join Program link is not working ");
+            Assert.fail();
+        }
+        finally {
+            ElementUtils.waitAndClickElement(continueAsGuest, ConstantClass.MEDIUM_WAIT_5);
+
+        }
+    }
+
+    public void clickOnAboutIndigoBlueChip()
+    {
+        try {
+            if (aboutIndigoBlueChip.isDisplayed()) {
+                ElementUtils.waitAndClickElement(aboutIndigoBlueChip, ConstantClass.MEDIUM_WAIT_5);
+                Assert.assertEquals(validateAboutIndigoBlueChip.isDisplayed(), true);
+                System.out.println("About Indigo Blue Chip link is working ");
+//                ElementUtils.scrollToText("Enrol Now");
+//                ElementUtils.waitAndClickElement(enrolNow,ConstantClass.MEDIUM_WAIT_5);
+            }
+        }
+        catch (Exception e) {
+            System.out.println("About Indigo Blue Chip  link is not working ");
+            Assert.fail();
+        }
+        finally {
+            driver.navigate().back();
+        }
+    }
+
+    public void clickOnTierAndBenefits()
+    {
+        try {
+            if (tiersAndBenefits.isDisplayed()) {
+                ElementUtils.waitAndClickElement(tiersAndBenefits, ConstantClass.MEDIUM_WAIT_5);
+                Thread.sleep(5000);
+                driver.findElement(AppiumBy.androidUIAutomator(
+                        "new UiScrollable(new UiSelector().scrollable(true)).scrollToBeginning(1)"));
+         //       ElementUtils.scrollToElementByText("IndiGo BluChip Tiers and Tier Benefits");
+                Assert.assertEquals(validateTiersAndBenefits.isDisplayed(), true);
+                System.out.println("Tier and Benefits link is working ");
+//                ElementUtils.scrollToElementByText("Enrol Now");
+//                ElementUtils.waitAndClickElement(enrolNow,ConstantClass.MEDIUM_WAIT_5);
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Tier and Benefits  link is not working ");
+            Assert.fail();
+        }
+        finally {
+            driver.navigate().back();
+        }
+    }
+
+
+    public void clickOnTermsAndConditions() {
+        try {
+            if (IndigoTermsAndConditions.isDisplayed()) {
+                ElementUtils.waitAndClickElement(IndigoTermsAndConditions, ConstantClass.MEDIUM_WAIT_5);
+                Assert.assertEquals(validateIndigoTermsAndConditions.isDisplayed(), true);
+                System.out.println("Terms and conditions link is working ");
+            }
+        } catch (Exception e) {
+            System.out.println("Terms and conditions  link is not working ");
+            Assert.fail();
+        } finally {
+            driver.navigate().back();
+        }
+    }
+
+    public void clickOnFAQ()
+    {
+        ElementUtils.waitForWebElementVisible(faq,ConstantClass.MEDIUM_WAIT_5);
+        try {
+            if (faq.isDisplayed()) {
+                ElementUtils.waitAndClickElement(faq, ConstantClass.MEDIUM_WAIT_5);
+                Assert.assertEquals(validateFaq.isDisplayed(), true);
+                System.out.println("FAQ link is working ");
+            }
+        }
+        catch (Exception e) {
+            System.out.println("FAQ link is not working ");
+            Assert.fail();
+        }
+        finally {
+            driver.navigate().back();
+        }
+    }
+
+    public void clickOnEarnAndRedeem()
+    {
+        try {
+            if (earnAndRedeem.isDisplayed()) {
+                ElementUtils.waitAndClickElement(earnAndRedeem, ConstantClass.MEDIUM_WAIT_5);
+                Assert.assertEquals(earnIndigoBlueChip.isDisplayed(), true);
+                System.out.println("Earn And Redeem link is working ");
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Earn And Redeem link is not working ");
+            Assert.fail();
+        }
+
+    }
+
+    public void clickOnEarnIndigoBlueChip()
+    {
+        try {
+            if (earnIndigoBlueChip.isDisplayed()) {
+                ElementUtils.waitAndClickElement(earnIndigoBlueChip, ConstantClass.MEDIUM_WAIT_5);
+                Assert.assertEquals(validateEarnIndigoBlueChip.isDisplayed(), true);
+                System.out.println("Earn Indigo BlueChip link is working ");
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Earn Indigo BlueChip link is not working ");
+            Assert.fail();
+        }
+        finally {
+            driver.navigate().back();
+        }
+    }
+
+    public void clickOnRedeemIndigoBlueChip()
+    {
+        try {
+            if (redeemIndigoBluChip.isDisplayed()) {
+                ElementUtils.waitAndClickElement(redeemIndigoBluChip, ConstantClass.MEDIUM_WAIT_5);
+                Assert.assertEquals(validateRedeemIndigoBluChip.isDisplayed(), true);
+                System.out.println("Redeem Indigo BlueChip link is working ");
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Redeem Indigo BlueChip link is not working ");
+            Assert.fail();
+        }
+        finally {
+            driver.navigate().back();
+        }
+    }
+
+
 }
