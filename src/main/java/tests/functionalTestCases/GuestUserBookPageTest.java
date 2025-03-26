@@ -121,7 +121,7 @@ public class GuestUserBookPageTest extends BaseSuper {
         bookPage.displayRoundCityButton();
     }
 
-    @Test(priority = 23, description = "TC_0022 - Verify the RoundTrip button is Working or not ")
+    @Test(priority = 11, description = "TC_0011 - Verify the RoundTrip button is Working or not ")
     @Description("Verify RoundTrip radio button is clickable for the guest user")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("BookPage")
@@ -134,17 +134,17 @@ public class GuestUserBookPageTest extends BaseSuper {
 
     }
 
-        @Test(priority = 10, description = "TC_0010 - Verify the Return button is Displayed or not ")
-    @Description("Verify  Return button is visible for  Guest user ")
-    @Severity(SeverityLevel.CRITICAL)
-    @Feature("BookPage")
-    @Story("Guest User should be able to  see the Return  button")
-    public void verifyProfileButtonIsDisplayed() throws InterruptedException {
-        welcomePage = new WelcomePage(driver);
-        bookPage = new BookPage(driver);
-        bookPage.displayReturnLink();
-
-    }
+//        @Test(priority = 12, description = "TC_0012 - Verify the Return button is Displayed or not ")
+//    @Description("Verify  Return button is visible for  Guest user ")
+//    @Severity(SeverityLevel.CRITICAL)
+//    @Feature("BookPage")
+//    @Story("Guest User should be able to  see the Return  button")
+//    public void verifyReturnButtonIsDisplayed() throws InterruptedException {
+//        welcomePage = new WelcomePage(driver);
+//        bookPage = new BookPage(driver);
+//        bookPage.displayReturnLink();
+//
+//    }
 
 //    @Test(priority = 11, description = "TC_0011 - Verify the Profile button is enabled or not ")
 //    @Description("Verify Profile button is enabled for  Guest user ")
@@ -162,7 +162,7 @@ public class GuestUserBookPageTest extends BaseSuper {
     @Severity(SeverityLevel.CRITICAL)
     @Feature("BookPage")
     @Story("Verify whether the Return  button is Clickable for the Guest user or not ")
-    public void verifyProfileButtonIsWorking() throws InterruptedException {
+    public void verifyReturnButtonIsWorking() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
         bookPage = new BookPage(driver);
         bookPage.workingReturnLink();

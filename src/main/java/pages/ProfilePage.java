@@ -1,6 +1,7 @@
 package pages;
 
 import constant.ConstantClass;
+import constant.ThreadWaitClass;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -9,11 +10,17 @@ import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import utils.ConfigReader;
+import utils.ConfigUatReader;
 import utils.ElementUtils;
 
 public class ProfilePage {
 
     public AndroidDriver driver;
+    public WelcomePage welcomePage;
+    public ProfilePage profilePage;
+    public LoginPage loginPage;
+    public LoginUserPage loginUserPage;
+
 
     public ProfilePage(AndroidDriver driver)
     {
@@ -101,6 +108,9 @@ public class ProfilePage {
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"Terms and Conditions\"]")
     public WebElement validateTermsAndConditons;
+    @FindBy(xpath = "//android.view.View[@resource-id=\"a\"]")
+    public WebElement continueAsGuest;
+
 
 
 
@@ -128,6 +138,7 @@ public class ProfilePage {
 
 
     public void displayProfileButton() {
+//        ElementUtils.waitAndClickElement(profileButton,ConstantClass.MEDIUM_WAIT_5);
         if (profileButton.isDisplayed()) {
             System.out.println("Profile Button is Displayed ");
             Assert.assertEquals(profileButton.isDisplayed(), true);
@@ -551,5 +562,34 @@ public class ProfilePage {
         finally {
             driver.navigate().back();
         }
+    }
+    public void verifyLogOutButton() {
+        if (logout.isDisplayed()) {
+            ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
+            ElementUtils.waitAndClickElement(logout,ConstantClass.LONG_WAIT_10);
+        }
+    }
+
+    public void ClickProfileButton() {
+        ElementUtils.waitAndClickElement(profileButton,ConstantClass.LONG_WAIT_10);
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
+        ElementUtils.waitAndClickElement(logout,ConstantClass.LONG_WAIT_10);
+    }
+
+
+    public void checkLoginLogout() {
+        welcomePage = new WelcomePage(driver);
+        profilePage = new ProfilePage(driver);
+        loginPage = new LoginPage(driver);
+        loginUserPage = new LoginUserPage(driver);
+        loginPage.enterMobileNumber(ConfigUatReader.getProperty("loginMobileNumber"));
+        loginPage.clickOnContinue();
+        loginPage.enterPassword(ConfigUatReader.getProperty("loginPassword"));
+        loginUserPage.loginButton();
+
+    }
+
+    public void checkLoginScreen() {
+        Assert.assertTrue(continueAsGuest.isDisplayed(), "Login screen is not displayed !");
     }
 }

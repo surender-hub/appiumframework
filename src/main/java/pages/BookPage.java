@@ -194,6 +194,7 @@ public class BookPage {
 
 
     public void displayBookButton() {
+//        ElementUtils.waitAndClickElement(bookButton,ConstantClass.MEDIUM_WAIT_5);
         if (bookButton.isDisplayed()) {
             System.out.println("Book Button is Displayed ");
         } else {
@@ -380,7 +381,7 @@ public class BookPage {
     }
 
     public void displayRoundCityButton() {
-        ElementUtils.scrollToElementByText("Book a Stay");
+//        ElementUtils.scrollToElementByText("Book a Stay");
         if (roundRadioButton.isDisplayed()) {
             System.out.println("RoundTrip Radio Button is Displayed ");
         } else {
@@ -391,8 +392,8 @@ public class BookPage {
 
     public void selectRoundRadioButton() {
         if (roundRadioButton.isDisplayed()) {
-            //ElementUtils.waitAndClickElement(roundRadioButton, ConstantClass.LONG_WAIT_50);
-           // Assert.assertEquals(returnButton.isDisplayed(),true);
+            ElementUtils.waitAndClickElement(roundRadioButton, ConstantClass.LONG_WAIT_50);
+            Assert.assertEquals(returnButton.isDisplayed(),true);
             System.out.println("RoundTrip radio Button is Selected ");
         } else {
             System.out.println("RoundTrip radio  is not Selected ");

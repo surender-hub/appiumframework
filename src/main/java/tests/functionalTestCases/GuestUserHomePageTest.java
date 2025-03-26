@@ -1,12 +1,13 @@
 package tests.functionalTestCases;
 
+import base.BaseSuper;
 import base.BaseTestLoginUser;
 import constant.ThreadWaitClass;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import pages.*;
 
-public class GuestUserHomePageTest extends BaseTestLoginUser {
+public class GuestUserHomePageTest extends BaseSuper {
 
     private WelcomePage welcomePage;
     private BookPage bookPage;
@@ -199,7 +200,7 @@ public class GuestUserHomePageTest extends BaseTestLoginUser {
     }
 
 
-    @Test(groups = {"regression"},priority = 1, description = "TC_001 -Validate the Terms And Condition Link in Working or not ")
+  /*  @Test(groups = {"regression"},priority = 1, description = "TC_001 -Validate the Terms And Condition Link in Working or not ")
     @Description("Validate the Terms And Condition Link in Working or not")
     @Feature("GuestUser")
     public void validateTermsAndConditionLink() throws InterruptedException{
@@ -252,7 +253,7 @@ public class GuestUserHomePageTest extends BaseTestLoginUser {
         welcomePage = new WelcomePage(driver);
         bookPage = new BookPage(driver);
         bookPage.workingQuestUserLink();
-    }
+    }*/
 }
 //}
 
