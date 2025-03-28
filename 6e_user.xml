@@ -8,7 +8,12 @@
         <parameter name="userType" value="6e"/>
         <classes>
             <class name="tests.functionalTestCases.ExploreTest"/>
-            <class name="tests.functionalTestCases.LoginUserBookPageTest"/>
+            <class name="tests.functionalTestCases.LoginUserBookPageTest">
+               <!-- <methods>
+                    <include name="validateIndigoBlueChips"/>
+                    <include name="workingGoingToLink"/>
+                </methods>-->
+            </class>
         </classes>
     </test>
 </suite>

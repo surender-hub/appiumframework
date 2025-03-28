@@ -130,7 +130,7 @@ public class LoginUserBookPageTest extends BaseSuper {
     public void verifyRoundTripRadioButtonWorking() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
         bookPage = new BookPage(driver);
-        welcomePage.clickLoginAsQuest();
+        //welcomePage.clickLoginAsQuest();
         bookPage.selectRoundRadioButton();
 
     }
