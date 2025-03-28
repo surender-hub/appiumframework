@@ -163,7 +163,7 @@ public class LoginUserBookPageTest extends BaseSuper {
     @Severity(SeverityLevel.CRITICAL)
     @Feature("BookPage")
     @Story("Verify whether the Return  button is Clickable for the Login user or not ")
-    public void verifyProfileButtonIsWorking() throws InterruptedException {
+    public void verifyReturnButtonIsWorking() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
         bookPage = new BookPage(driver);
         bookPage.workingReturnLink();

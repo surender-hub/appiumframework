@@ -7,9 +7,9 @@
     <test name="Logged-in Mode Test">
         <parameter name="userType" value="loggedIn"/>
         <classes>
-           <!-- <class name="tests.functionalTestCases.ExploreTest"/>-->
-            <class name="tests.functionalTestCases.LoginUserBookPageTest"/>
-            <class name="tests.functionalTestCases.LoginProfilePageTest"/>
+            <class name="tests.functionalTestCases.ExploreTest"/>
+           <!-- <class name="tests.functionalTestCases.LoginUserBookPageTest"/>
+            <class name="tests.functionalTestCases.LoginProfilePageTest"/>-->
         </classes>
     </test>
 </suite>

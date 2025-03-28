@@ -398,6 +398,7 @@ public class BookPage {
         } else {
             System.out.println("RoundTrip radio  is not Selected ");
            // Assert.fail();
+            Assert.assertEquals(returnButton.isDisplayed(),false);
         }
 
     }

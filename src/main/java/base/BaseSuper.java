@@ -29,6 +29,7 @@ public class BaseSuper {
     public LoginPage loginPage;
     private boolean isGuestUser = false;
     private static boolean isLoggedIn = false;  // Flag to track login status
+    private static boolean isSixEUser = false;  // Flag to track login status
     //private static final String APP_PACKAGE = "in.goindigo.android"; //Prod
     private static final String APP_PACKAGE = "in.goindigo.android.preprod"; //PreProd
     //private static final String APP_PACKAGE = "in.goindigo.android.uat";  //UAT
@@ -59,6 +60,7 @@ public class BaseSuper {
             return;  // Exit setup method early, skipping login & guest selection
         }*/
         isGuestUser = userType.equalsIgnoreCase("guest"); // Set guest mode based on parameter
+        isSixEUser = userType.equalsIgnoreCase("6e"); // Set 6e mode based on parameter
         options = new UiAutomator2Options();
         options.setPlatformName(ConfigReader.getProperty("platform.name"));
         options.setDeviceName(ConfigReader.getProperty("device.name"));
@@ -80,7 +82,7 @@ public class BaseSuper {
         }
 
         isGuestUser = userType.equalsIgnoreCase("guest");
-
+        isSixEUser = userType.equalsIgnoreCase("6e");
         // Check if the app is already installed and running
         if (driver.isAppInstalled(APP_PACKAGE)) {
             System.out.println("App is already installed.");
@@ -91,17 +93,26 @@ public class BaseSuper {
         } else {
             System.out.println("App launching for the first time...");
         }
-
-
         if (isGuestUser) {
             System.out.println("Running as Guest User. Skipping login...");
             selectGuestUser();
-        } else {
+        } else if (isSixEUser)
+        {
+            System.out.println("Running as 6E User. Skipping  loyalty login...");
             if (!isUserAlreadyLoggedIn()) {
-                System.out.println("User not logged in. Performing login...");
-                performLogin();
+                System.out.println("6E user not logged in. Performing login...");
+                performSixELogin();
             } else {
-                System.out.println("User already logged in. Skipping login...");
+                System.out.println("6E user already logged in. Skipping login...");
+            }
+        } else
+        {
+            if (!isUserAlreadyLoggedIn())
+            {
+                System.out.println("Loyalty user not logged in. Performing login...");
+                performLoyaltyLogin();
+            } else {
+                System.out.println("Loyalty User already logged in. Skipping login...");
             }
         }
 
@@ -157,7 +168,7 @@ public class BaseSuper {
         }
     }
 
-    private void performLogin() {
+    private void performLoyaltyLogin() {
         System.out.println("Performing login...");
         loginPage = new LoginPage(driver);
         loginUserPage = new LoginUserPage(driver);
@@ -169,6 +180,20 @@ public class BaseSuper {
         loginUserPage.loginButton();
         ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
         System.out.println("Login successful.");
+    }
+
+    private void performSixELogin() {
+        System.out.println("Performing login...");
+        loginPage = new LoginPage(driver);
+        loginUserPage = new LoginUserPage(driver);
+        driver.hideKeyboard();
+        loginPage.enterMobileNumber(ConfigUatReader.getProperty("6eMobileNumber"));
+        loginPage.clickOnContinue();
+        ThreadWaitClass.customSleep(ConstantClass.LONG_WAIT_10);
+        //loginPage.enterPassword(ConfigUatReader.getProperty("6eloginPassword"));
+        //loginUserPage.loginButton();
+        //ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
+        System.out.println("6E Login successful.");
     }
 
     private boolean isUserAlreadyLoggedIn() {

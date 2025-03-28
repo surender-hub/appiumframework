@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="6EUserTests">
+    <listeners>
+        <listener class-name="listener.RetryClass">
+        </listener>
+    </listeners>
+    <test name="6E Mode Test">
+        <parameter name="userType" value="6e"/>
+        <classes>
+            <class name="tests.functionalTestCases.ExploreTest"/>
+            <class name="tests.functionalTestCases.LoginUserBookPageTest"/>
+            <class name="tests.functionalTestCases.LoginProfilePageTest"/>
+        </classes>
+    </test>
+</suite>
