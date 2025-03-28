@@ -54,7 +54,6 @@ public class CheckinTest extends BaseSuper {
         checkinPage.verifyChatLink();
     }
 
-
     @Test(priority = 3, description = "TC_003 - Verify to functionality of chat with us link")
     @Description("Verify chat with us link for GuestUser ")
     @Severity(SeverityLevel.CRITICAL)

@@ -1,11 +1,7 @@
 package utils;
 
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.PointerInput;
@@ -27,7 +23,6 @@ public class ElementUtils {
     //public static int dat;
 
     public ElementUtils(AndroidDriver driver) {
-
         ElementUtils.driver = driver;
     }
 
@@ -141,8 +136,7 @@ public static String  getText(WebElement element)
             if (element == null || !element.isDisplayed()) {
                 throw new NoSuchElementException("Element is not present in the DOM.");
             }
-
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(timeout));
             wait.until(ExpectedConditions.visibilityOf(element));
             wait.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
@@ -175,6 +169,12 @@ public static String  getText(WebElement element)
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator)); // Replace with the element locator
     }
 
+
+    //for Web Element
+    public WebElement waitForElementVisibility(By locator, int timeoutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
 
     public static void waitForWebElementVisible(WebElement element,int timeOut) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(timeOut));

@@ -291,14 +291,111 @@ public class ExploreTest extends BaseSuper
         loginUserExplorePage.clickOnIndexTwo(2);
     }
 
-/*    @Test(priority = 23, description = "TC_023 - Verify Explore Page functionality with Guest User and Login user")
-    @Description("Check for clicking on exclusive images")
+    @Test(priority = 23, description = "TC_023 - Verify Explore Page functionality with Guest User and Login user")
+    @Description("Check XL Seat text")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Explore Page")
-    @Story("Verify Image clicking and redirected to another screen")
-    public void clickOnViewAllOfferImages() {
+    @Story("Verify XL Seat text is displayed on screen")
+    public void checkXlSeatText() {
         loginUserExplorePage = new ExplorePage(driver);
         ElementUtils.scrollToEndAndCheck("View All Offer");
-        loginUserExplorePage.clickSiblingElementsByIndex();
+        loginUserExplorePage.checkXlSeatText();
+    }
+
+    @Test(priority = 23, description = "TC_023 - Verify Explore Page functionality with Guest User and Login user")
+    @Description("Check XL Seat text")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Explore Page")
+    @Story("Verify XL Seat text is displayed on screen")
+    public void checkBonusText() {
+        loginUserExplorePage = new ExplorePage(driver);
+        loginUserExplorePage.checkBonusText();
+    }
+
+    @Test(priority = 24, description = "TC_024 - Verify Explore Page functionality with Guest User and Login user")
+    @Description("Check XL Seat text is clickable")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Explore Page")
+    @Story("Verify XL Seat text is clicked and redirected to another screen")
+    public void checkXlSeatTextClickable() {
+        loginUserExplorePage = new ExplorePage(driver);
+        loginUserExplorePage.checkXlSeatTextClickable();
+    }
+    @Test(priority = 25, description = "TC_024 - Verify Explore Page functionality with Guest User and Login user")
+    @Description("Check Bonus Indigo text is clickable")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Explore Page")
+    @Story("Verify Bonus Indigo text is clicked and redirected to another screen")
+    public void checkBonusIndigoTextClickable() {
+        loginUserExplorePage = new ExplorePage(driver);
+        loginUserExplorePage.checkBonusIndigoTextClickable();
+    }
+
+    @Test(priority = 25, description = "TC_025 - Verify Explore Page functionality with Guest User and Login user")
+    @Description("Check SPT text is displayed")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Explore Page")
+    @Story("Verify SPT text is displayed on screen")
+    public void checkCitySptText() {
+        loginUserExplorePage = new ExplorePage(driver);
+        loginUserExplorePage.checkSpitiText();
+    }
+
+    @Test(priority = 26, description = "TC_026 - Verify Explore Page functionality with Guest User and Login user")
+    @Description("Check SPT text is displayed")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Explore Page")
+    @Story("Verify SPT text is displayed on screen")
+    public void checkCityBomText() {
+        loginUserExplorePage = new ExplorePage(driver);
+        loginUserExplorePage.checkBomText();
+    }
+    @Test(priority = 27, description = "TC_027 - Verify Explore Page functionality with Guest User and Login user")
+    @Description("Check CNN text is displayed")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Explore Page")
+    @Story("Verify CNN text is displayed on screen")
+    public void checkCityCnnText() {
+        loginUserExplorePage = new ExplorePage(driver);
+        loginUserExplorePage.checkCnnText();
+    }
+    @Test(priority = 28, description = "TC_028 - Verify Explore Page functionality with Guest User and Login user")
+    @Description("Check GOA text is displayed")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Explore Page")
+    @Story("Verify GOA text is displayed on screen")
+    public void checkCityGoaText() {
+        loginUserExplorePage = new ExplorePage(driver);
+        loginUserExplorePage.checkGoaText();
+    }
+    @Test(priority = 29, description = "TC_029 - Verify Explore Page functionality with Guest User and Login user")
+    @Description("Check HYD text is displayed")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Explore Page")
+    @Story("Verify HYD text is displayed on screen")
+    public void checkCityHydText() {
+        loginUserExplorePage = new ExplorePage(driver);
+        loginUserExplorePage.checkHydText();
+    }
+
+
+  /*  @Test(priority = 30, description = "TC_030 - Verify Explore Page functionality with Guest User and Login user")
+    @Description("Check AGR text is displayed")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Explore Page")
+    @Story("Verify AGR text is displayed on screen")
+    public void checkCityAgrText() {
+        loginUserExplorePage = new ExplorePage(driver);
+        loginUserExplorePage.checkAgrText();
+    }*/
+
+   /* @Test(priority = 26, description = "TC_026 - Verify Explore Page functionality with Guest User and Login user")
+    @Description("Check SPT text is clickable")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("Explore Page")
+    @Story("Verify SPT text is clicked and redirected to another screen")
+    public void checkCitySptClickable() {
+        loginUserExplorePage = new ExplorePage(driver);
+        loginUserExplorePage.clickSpitiClickable();
     }*/
 }

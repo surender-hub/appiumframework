@@ -2,7 +2,10 @@ package pages;
 
 import constant.ConstantClass;
 import constant.ThreadWaitClass;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,6 +26,7 @@ public class ExplorePage {
     public AndroidDriver driver;
     public ElementUtils elementUtils;
     public LoginUserPage loginUserPage;
+
 
     public ExplorePage(AndroidDriver driver) {
         this.driver = driver;
@@ -104,6 +108,21 @@ public class ExplorePage {
     public WebElement getToKnowUsText;
     @FindBy(xpath = "//android.widget.HorizontalScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup")
     public List<WebElement> siblingElements;
+    @FindBy(id = "//android.widget.TextView[contains(@text, 'XL seat')]")
+    public WebElement xlSeatText;
+    public By xlSeatXpath = By.xpath("//android.widget.TextView[contains(@text, 'XL seat')]");
+    public By bonusXpath = By.xpath("//android.widget.TextView[contains(@text, 'Bonus IndiGo')]");
+    public By logoImageXpath = By.xpath("//android.widget.Image[@text=\"Indigo Logo Image\"]");
+    public By spitiXpath = By.xpath("(//android.widget.TextView[contains(@text, 'SPITI')])[1]");
+
+    List<String> cityCodes = List.of("SPT", "BOM", "CNN", "GOA", "HYD", "AGR", "JLR", "IXA", "DED", "DHM");
+    @FindBy(id = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.widget.HorizontalScrollView")
+    public WebElement horizontalScrollView;
+    public By horiScroll = By.xpath("//android.widget.FrameLayout[@resource-id=\\\"android:id/content\\\"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.widget.HorizontalScrollView");
+    @FindBy(id = "(//android.widget.TextView[contains(@text, 'SPITI')])[1]")
+    public WebElement citySpiti;
+
+
 
 
     public void loginUser() {
@@ -296,54 +315,180 @@ public class ExplorePage {
         Assert.assertTrue(element.isDisplayed(), "Culture and Heritage  text is not displayed!");
         driver.navigate().back();
     }
+
     public void clickOnIndexOne(int index) {
         System.out.println("🔍 Clicking element at index: " + index);
         subChildElements.get(index).click();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Image[@text=\"Indigo Logo Image\"]")));
-        Assert.assertTrue(element.isDisplayed(), "Indigo Logo is not displayed!");
+        WebElement logoImageText = elementUtils.waitForElementVisibility(logoImageXpath, ConstantClass.SHORT_WAIT_2_SEC);
+        Assert.assertTrue(logoImageText.isDisplayed(), "Indigo Logo is not displayed!");
         driver.navigate().back();
     }
+
     public void clickOnIndexTwo(int index) {
         System.out.println("🔍 Clicking element at index: " + index);
         subChildElements.get(index).click();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Image[@text=\"Indigo Logo Image\"]")));
-        Assert.assertTrue(element.isDisplayed(), "Indigo Logo is not displayed!");
+        WebElement logoImageText = elementUtils.waitForElementVisibility(logoImageXpath, ConstantClass.SHORT_WAIT_2_SEC);
+        Assert.assertTrue(logoImageText.isDisplayed(), "Indigo Logo is not displayed!");
         driver.navigate().back();
     }
 
-    public void clickImageOne() {
-        //ElementUtils.waitAndClickElement(firstChildElementViewAllOffer,ConstantClass.MEDIUM_WAIT_5);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Image[@text=\"Indigo Logo Image\"]")));
-        Assert.assertTrue(element.isDisplayed(), "Indigo Logo is not displayed!");
+    public void checkXlSeatText() {
+        WebElement xlSeatText = elementUtils.waitForElementVisibility(xlSeatXpath, ConstantClass.SHORT_WAIT_2_SEC);
+        Assert.assertTrue(xlSeatText.isDisplayed(), "XL Seat text is not displayed!");
+
+      /*  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebElement xlSeatText = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//android.widget.TextView[contains(@text, 'XL seat')]")));
+        Assert.assertTrue(xlSeatText.isDisplayed(), "XL Seat text is not displayed!");*/
+
+    }
+
+    public void checkBonusText() {
+        WebElement bonusText = elementUtils.waitForElementVisibility(bonusXpath, ConstantClass.SHORT_WAIT_2_SEC);
+        Assert.assertTrue(bonusText.isDisplayed(), "Bonus text is not displayed!");
+    }
+
+    public void checkXlSeatTextClickable() {
+        WebElement xlSeatText = elementUtils.waitForElementVisibility(xlSeatXpath, ConstantClass.SHORT_WAIT_2_SEC);
+        ElementUtils.waitAndClickElement(xlSeatText,ConstantClass.LONG_WAIT_10);
+        WebElement logoImageText = elementUtils.waitForElementVisibility(logoImageXpath, ConstantClass.SHORT_WAIT_2_SEC);
+        Assert.assertTrue(logoImageText.isDisplayed(), "Indigo Logo is not displayed!");
         driver.navigate().back();
     }
-    public void clickImageTwo(int index) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Image[@text=\"Indigo Logo Image\"]")));
-        Assert.assertTrue(element.isDisplayed(), "Indigo Logo is not displayed!");
+    public void checkBonusIndigoTextClickable() {
+        WebElement bonusText = elementUtils.waitForElementVisibility(bonusXpath, ConstantClass.SHORT_WAIT_2_SEC);
+        ElementUtils.waitAndClickElement(bonusText,ConstantClass.LONG_WAIT_10);
+        WebElement logoImageText = elementUtils.waitForElementVisibility(logoImageXpath, ConstantClass.SHORT_WAIT_2_SEC);
+        Assert.assertTrue(logoImageText.isDisplayed(), "Indigo Logo is not displayed!");
         driver.navigate().back();
     }
 
-    public void clickSiblingElementsByIndex() {
-        if (siblingElements.size() >= 2) {
-            // Click on the first sibling element (Index 0)
-            siblingElements.get(0).click();
-            System.out.println("Clicked on Sibling Element at Index 0.");
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//android.widget.Image[@text=\"Indigo Logo Image\"]")));
-            Assert.assertTrue(element.isDisplayed(), "Indigo Logo is not displayed!");
-            driver.navigate().back();
+    public void checkSpitiText() {
+        String firstCity = cityCodes.get(0);  // Get the first element "SPT"
+        By firstCityXpath = By.xpath("//android.widget.TextView[contains(@text, '" + firstCity + "')]");
+        WebElement spitiText = elementUtils.waitForElementVisibility(firstCityXpath, ConstantClass.SHORT_WAIT_4_SEC);
+        Assert.assertTrue(spitiText.isDisplayed(), "City Spiti is not displayed!");
+        System.out.println("Displayed : " + firstCity);
+    }
+    public void checkBomText() {
+        String firstCity = cityCodes.get(1);  // Get the first element "SPT"
+        By secondCityXpath = By.xpath("//android.widget.TextView[contains(@text, '" + firstCity + "')]");
+        WebElement bomText = elementUtils.waitForElementVisibility(secondCityXpath, ConstantClass.SHORT_WAIT_4_SEC);
+        Assert.assertTrue(bomText.isDisplayed(), "City BOM is not displayed!");
+        System.out.println("Displayed : " + firstCity);
+    }
+    public void checkCnnText() {
+        String firstCity = cityCodes.get(2);  // Get the first element "SPT"
+        By secondCityXpath = By.xpath("//android.widget.TextView[contains(@text, '" + firstCity + "')]");
+        WebElement bomText = elementUtils.waitForElementVisibility(secondCityXpath, ConstantClass.SHORT_WAIT_4_SEC);
+        Assert.assertTrue(bomText.isDisplayed(), "City CNN is not displayed!");
+        System.out.println("Displayed : " + firstCity);
+    }
+    public void checkGoaText() {
+        String firstCity = cityCodes.get(3);  // Get the first element "SPT"
+        By secondCityXpath = By.xpath("//android.widget.TextView[contains(@text, '" + firstCity + "')]");
+        WebElement bomText = elementUtils.waitForElementVisibility(secondCityXpath, ConstantClass.SHORT_WAIT_4_SEC);
+        Assert.assertTrue(bomText.isDisplayed(), "City GOA is not displayed!");
+        System.out.println("Displayed : " + firstCity);
+    }
+    public void checkHydText() {
+        String firstCity = cityCodes.get(4);  // Get the first element "SPT"
+        By secondCityXpath = By.xpath("//android.widget.TextView[contains(@text, '" + firstCity + "')]");
+        WebElement bomText = elementUtils.waitForElementVisibility(secondCityXpath, ConstantClass.SHORT_WAIT_4_SEC);
+        Assert.assertTrue(bomText.isDisplayed(), "City HYD is not displayed!");
+        System.out.println("Displayed : " + firstCity);
+    }
+    public void checkAgrText() {
+        String firstCity = cityCodes.get(5);  // Get "AGR"
+        By agrCityXpath = By.xpath("//android.widget.TextView[contains(@text, '" + firstCity + "')]");
 
-          /*  // Click on the second sibling element (Index 1)
-            siblingElements.get(1).click();
-            System.out.println("Clicked on Sibling Element at Index 1.");
-        } else {
-            System.out.println("Not enough sibling elements found to perform clicks.");
-        }*/
+        int maxScrolls = 5; // Maximum number of scrolls to avoid infinite loop
+        int currentScroll = 0;
+        boolean isDisplayed = false;
+
+        while (currentScroll < maxScrolls) {
+            try {
+                // Wait for element visibility
+                WebElement agrText = elementUtils.waitForElementVisibility(agrCityXpath, 4);
+                Assert.assertTrue(agrText.isDisplayed(), "City AGR is not displayed!");
+                System.out.println("Displayed: " + firstCity);
+                isDisplayed = true;
+                break;
+            } catch (Exception e) {
+                // Scroll horizontally if not found
+                System.out.println("AGR not visible, scrolling right... Attempt: " + (currentScroll + 1));
+                horizontalScrollRight();
+                currentScroll++;
+            }
         }
+
+        if (!isDisplayed) {
+            Assert.fail("City AGR is not displayed after scrolling!");
+        }
+    }
+
+    // Method to perform horizontal scroll to the right
+    private void horizontalScrollRight() {
+        // Find the scrollable view (Replace with your actual scroll view ID)
+        WebElement scrollView = driver.findElement(By.id("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.widget.HorizontalScrollView"));
+
+        int startX = (int) (scrollView.getSize().width * 0.8);  // Start from 80% of the width
+        int endX = (int) (scrollView.getSize().width * 0.2);    // End at 20% of the width
+        int startY = scrollView.getLocation().y + (scrollView.getSize().height / 2); // Mid Y
+
+        TouchAction<?> touchAction = new TouchAction<>(driver);
+        touchAction
+                .press(PointOption.point(startX, startY)) // Press at start point
+                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1))) // Wait
+                .moveTo(PointOption.point(endX, startY)) // Move to end point
+                .release() // Release the touch
+                .perform();
+    }
+       /* By secondCityXpath = By.xpath("//android.widget.TextView[contains(@text, '" + firstCity + "')]");
+        WebElement bomText = elementUtils.waitForElementVisibility(secondCityXpath, ConstantClass.SHORT_WAIT_4_SEC);
+        Assert.assertTrue(bomText.isDisplayed(), "City AGR is not displayed!");
+        System.out.println("Displayed : " + firstCity);
+    }
+*/
+
+    public void clickSpitiClickable() {
+        String firstCity = cityCodes.get(0);  // Get the first element "SPT"
+        By firstCityXpath = By.xpath("//android.widget.TextView[contains(@text, '" + firstCity + "')]");
+        driver.findElement(firstCityXpath).click();
+        System.out.println("Clicked on: " + firstCity);
+        WebElement spitiText = elementUtils.waitForElementVisibility(spitiXpath, ConstantClass.SHORT_WAIT_4_SEC);
+        Assert.assertTrue(spitiText.isDisplayed(), "City Spiti is not displayed!");
+        driver.navigate().back();
+    }
+
+
+
+
+
+
+
+
+
+    // Method to perform horizontal swipe
+    private void horizontalSwipe(WebElement scrollView) {
+        int startX = (int) (scrollView.getSize().width * 0.8);  // Start from 80% of the width
+        int endX = (int) (scrollView.getSize().width * 0.2);    // End at 20% of the width
+        int startY = scrollView.getLocation().y + (scrollView.getSize().height / 2); // Mid Y
+
+        TouchAction<?> touchAction = new TouchAction<>(driver);
+        touchAction
+                .press(PointOption.point(startX, startY))  // Press at start point
+                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1))) // Wait
+                .moveTo(PointOption.point(endX, startY))  // Move to end point
+                .release()  // Release the touch
+                .perform();
+    }
+    public void scrollAndClickByIndexAgr() {
+        String firstCity = cityCodes.get(5);  // Get the first element "SPT"
+        By firstCityXpath = By.xpath("//android.widget.TextView[contains(@text, '" + firstCity + "')]");
+        driver.findElement(firstCityXpath).click();
+        System.out.println("Clicked on: " + firstCity);
+
     }
 
 }
