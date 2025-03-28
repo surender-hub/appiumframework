@@ -381,7 +381,7 @@ public class BookPage {
     }
 
     public void displayRoundCityButton() {
-//        ElementUtils.scrollToElementByText("Book a Stay");
+        ElementUtils.scrollToElementByText("Book a Stay");
         if (roundRadioButton.isDisplayed()) {
             System.out.println("RoundTrip Radio Button is Displayed ");
         } else {
@@ -775,8 +775,7 @@ public class BookPage {
             System.out.println("Return button  is Not Working ");
             Assert.fail();
         }
-        finally {
             driver.navigate().back();
-        }
+
     }
 }
