@@ -161,6 +161,7 @@ public class BaseSuper {
         System.out.println("Performing login...");
         loginPage = new LoginPage(driver);
         loginUserPage = new LoginUserPage(driver);
+        driver.hideKeyboard();
         loginPage.enterMobileNumber(ConfigUatReader.getProperty("loginMobileNumber"));
         loginPage.clickOnContinue();
         ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
@@ -183,6 +184,7 @@ public class BaseSuper {
     private void selectGuestUser() {
         System.out.println("Selecting Guest User option...");
         try {
+            driver.hideKeyboard();
             driver.findElement(By.xpath("//android.view.View[@resource-id=\"a\"]")).click();
             ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
             System.out.println("Guest User mode activated.");
