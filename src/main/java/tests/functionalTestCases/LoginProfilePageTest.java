@@ -22,10 +22,9 @@ public class LoginProfilePageTest extends BaseSuper {
     public void verifyProfileButtonIsDisplayed() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
         profilePage=new ProfilePage(driver);
-        welcomePage.loginByOtp();
+       // welcomePage.loginByOtp();
         profilePage.displayProfileButton();
     }
-
 
     @Test(priority = 2, description = "TC_02 - Verify the Profile button is enabled or not ")
     @Description("Verify Profile button is enabled for  Login user ")
@@ -143,7 +142,6 @@ public class LoginProfilePageTest extends BaseSuper {
         //welcomePage.clickLoginAsQuest();
         profilePage.workingScratchCardLink();
     }
-
 
     @Test(priority = 13, description = "TC_013 - Verify the Flight Status link is Display or not ")
     @Description("Verify Flight Status link  is Display for the Login user")
@@ -313,6 +311,104 @@ public class LoginProfilePageTest extends BaseSuper {
     public void verifyTermsAndConditionsButtonIsWorking() throws InterruptedException {
         profilePage=new ProfilePage(driver);
         profilePage.workingTermsAndConditions();
+    }
+
+    @Test(priority = 25, description = "TC_25 - Verify the My Dashboard is visible for the Loyalty user or not after Login ")
+    @Description("Verify My Dashboard  Link is clickable for the Loyalty user after Login")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("ProfilePage")
+    @Story("Verify whether the My Dashboard  Link is visible and  Clickable for the Loyalty user or not  after Login ")
+    public void verifyMyDashboardButtonIsWorking() throws InterruptedException {
+        profilePage = new ProfilePage(driver);
+        profilePage.clickOnMyDashboard();
+    }
+
+    @Test(priority = 26, description = "TC_26 - Verify the About Indigo Blue Chip is Working or not")
+    @Description("Verify About Indigo Blue Chip Link is clickable for the Login user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("ProfilePage")
+    @Story("Verify whether the About Indigo Blue Chip Link is Clickable for the Login user or not ")
+    public void verifyAboutIndigoBlueChipLinkIsWorking() throws InterruptedException {
+        profilePage = new ProfilePage(driver);
+        profilePage.clickOnAboutIndigoBlueChip();
+    }
+
+    @Test(priority = 27, description = "TC_27 - Verify the TierAndBenefits is Working or not")
+    @Description("Verify TierAndBenefits Link is clickable for the Login user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("ProfilePage")
+    @Story("Verify whether the TierAndBenefits Link is Clickable for the Login user or not ")
+    public void verifyTierAndBenefitsLinkIsWorking() throws InterruptedException {
+        profilePage = new ProfilePage(driver);
+        profilePage.clickOnTierAndBenefits();
+    }
+    @Test(priority = 28, description = "TC_28 - Verify the TermsAndConditions is Working or not")
+    @Description("Verify TermsAndConditions Link is clickable for the Login user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("ProfilePage")
+    @Story("Verify whether the TermsAndConditions Link is Clickable for the Login user or not ")
+    public void verifyTermsAndConditionsLinkIsWorking() throws InterruptedException {
+        profilePage = new ProfilePage(driver);
+        profilePage.clickOnTermsAndConditions();
+    }
+
+    @Test(priority = 29, description = "TC_29 - Verify the FAQ is Working or not")
+    @Description("Verify FAQ Link is clickable for the Login user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("ProfilePage")
+    @Story("Verify whether the FAQ Link is Clickable for the Login user or not ")
+    public void verifyFAQLinkIsWorking() throws InterruptedException {
+        profilePage = new ProfilePage(driver);
+        profilePage.clickOnFAQ();
+    }
+
+    @Test(priority = 30, description = "TC_30 - Verify the EarnAndRedeems is Working or not")
+    @Description("Verify EarnAndRedeems Link is clickable for the Login user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("ProfilePage")
+    @Story("Verify whether the EarnAndRedeems Link is Clickable for the Login user or not ")
+    public void verifyEarnAndRedeemsLinkIsWorking() throws InterruptedException {
+        profilePage = new ProfilePage(driver);
+        profilePage.clickOnEarnAndRedeem();
+    }
+
+    @Test(priority = 31, description = "TC_31 - Verify the EarnIndigoBlueChip is Working or not")
+    @Description("Verify EarnIndigoBlueChip Link is clickable for the Login user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("ProfilePage")
+    @Story("Verify whether the EarnIndigoBlueChip Link is Clickable for the Login user or not ")
+    public void verifyEarnIndigoBlueChipLinkIsWorking() throws InterruptedException {
+        profilePage = new ProfilePage(driver);
+        profilePage.clickOnEarnIndigoBlueChip();
+    }
+
+    @Test(priority = 32, description = "TC_32 - Verify the RedeemIndigoBlueChip is Working or not")
+    @Description("Verify RedeemIndigoBlueChip Link is clickable for the Login user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("ProfilePage")
+    @Story("Verify whether the RedeemIndigoBlueChip Link is Clickable for the Login user or not ")
+    public void verifyRedeemIndigoBlueChipLinkIsWorking() throws InterruptedException {
+        profilePage = new ProfilePage(driver);
+        profilePage.clickOnRedeemIndigoBlueChip();
+    }
+
+    @Test(priority = 33, description = "TC_33 - Verify the indigoWallet is Working or not")
+    @Description("Verify indigoWallet button is clickable for the Login user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("ProfilePage")
+    @Story("Verify whether the RedeemIndigoBlueChip button is Clickable for the Login user or not ")
+    public void verifyIndigoWalletIsWorking() throws InterruptedException {
+        profilePage = new ProfilePage(driver);
+        profilePage.workingIndigoWallet();
+    }
+    @Test(priority = 34, description = "TC_34 - Verify the LogOut is Working or not")
+    @Description("Verify LogOut button is clickable for the Login user")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("ProfilePage")
+    @Story("Verify whether the LogOut button is Clickable for the Login user or not ")
+    public void verifyLogOutIsWorking() throws InterruptedException {
+        profilePage = new ProfilePage(driver);
+        profilePage.workingLogOut();
     }
 }
 

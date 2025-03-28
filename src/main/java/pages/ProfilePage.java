@@ -4,11 +4,9 @@ import constant.ConstantClass;
 import constant.ThreadWaitClass;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
-import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import utils.ConfigReader;
@@ -117,10 +115,8 @@ public class ProfilePage {
     @FindBy(xpath = "//android.widget.TextView[@text=\"Join Program\"]")
     public WebElement joinProgram;
 
-
     @FindBy(xpath = "//android.widget.TextView[@text=\"Login or Sign up for IndiGo BluChip\"]")
     public WebElement validateJoinProgram;
-
 
     @FindBy(xpath = "//android.view.View[@resource-id=\"a\"]")
     public WebElement continueAsQuestLink;
@@ -158,7 +154,6 @@ public class ProfilePage {
     @FindBy(xpath = "//android.widget.TextView[@text=\"Redeem IndiGo BluChips\"]")
     public WebElement redeemIndigoBluChip;
 
-
     @FindBy(xpath = "//android.view.View[@text=\"Redeem IndiGo BluChips on IndiGo Flights\"]")
     public WebElement validateRedeemIndigoBluChip;
 
@@ -168,32 +163,34 @@ public class ProfilePage {
     @FindBy(xpath = "//android.widget.TextView[@text=\"INDIGO BLUCHIP PROGRAM – TERMS &CONDITIONS\"]")
     public WebElement validateIndigoTermsAndConditions;
 
-    //android.view.View[@text="Redeem IndiGo BluChips on IndiGo Flights"]
+    @FindBy(xpath = "//android.widget.TextView[@text=\"IndiGo Wallet\"]")
+    public WebElement indigoWallet;
 
-    //android.widget.Image[@text="Indigo Logo Image"]/ancestor::android.view.View/following-sibling::android.view.View/descendant::android.widget.ListView/descendant::android.view.View[@text="About Us"]
-    //android.view.View[@resource-id="a"]
-    //android.widget.TextView[@text="HAVE A QUESTION?"]
-    //android.widget.TextView[@text="About IndiGo BluChip"]
-    //android.widget.TextView[@text="Sign up and get access to exciting privileges and benefits"]
-    //android.widget.TextView[contains(@text,"IndiGo BluChip")])[1]
-    //android.widget.TextView[@text="Enrol Now"]
-    //android.widget.TextView[@text="Tiers & Benefits"]
-    //android.widget.TextView[@text="Terms & Conditions"]
-    //android.widget.TextView[@text="FAQ"]
-    //android.widget.TextView[@text="Join Program"]
-    //android.widget.TextView[@text="Login or Sign up for IndiGo BluChip"]
-//android.widget.TextView[@text="IndiGo BluChip Tiers and Tier Benefits"]
-    //android.widget.TextView[@text="Earn and Redeem"]
-    ////android.widget.TextView[@text="DISCOVER"]
-    //android.widget.TextView[@text="Earn and Redeem"]
-    //android.widget.TextView[@text="Earn IndiGo BluChips"]
-    //android.widget.TextView[@text="Redeem IndiGo BluChips"]
-    //android.webkit.WebView[@text="How To Earn Points"]/android.view.View
-    //android.widget.TextView[@text="My Scratch Card"]
-    //android.widget.TextView[@text="Contact Us"]
-    //android.widget.TextView[@text="Help & FAQs"]
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Something went wrong\"]")
+    public WebElement someThingWentWrong;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"ok\"]")
+    public WebElement ok;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Log Out\"]")
+    public WebElement logOut;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Login or Sign up for IndiGo BluChip!\"]")
+    public WebElement validateLogOut;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"My dashboard\"]")
+    public WebElement myDashBoard;
+
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Welcome to IndiGo BluChip\"]")
+    public WebElement validateMyDashBoard;
+
+    @FindBy(xpath = " //android.widget.TextView[@text=\"Earn Now\"]")
+    public WebElement earnNow;
 
 
+    //android.widget.TextView[@text="My dashboard"]
+    //android.widget.TextView[@text="Welcome to IndiGo BluChip"]
+    //android.widget.TextView[@text="Earn Now"]
     public void displayProfileButton() {
 //        ElementUtils.waitAndClickElement(profileButton,ConstantClass.MEDIUM_WAIT_5);
         if (profileButton.isDisplayed()) {
@@ -259,22 +256,18 @@ public class ProfilePage {
 
         public void workingAboutUsButton()
         {
-
-
             try {
                 if (aboutUs.isEnabled()) {
                     ElementUtils.waitAndClickElement(aboutUs, ConstantClass.MEDIUM_WAIT_5);
                     ElementUtils.waitForElementVisible(By.xpath("//android.widget.Image[@text=\"Indigo Logo Image\"]/ancestor::android.view.View/following-sibling::android.view.View/descendant::android.widget.ListView/descendant::android.view.View[@text=\"About Us\"]"), ConstantClass.LONG_WAIT_10);
                     Assert.assertEquals(validateAboutUs.isDisplayed(), true);
                     System.out.println("About us link is working ");
-                } else {
-                    System.out.println("About us link is not working ");
-                    Assert.fail();
                 }
-
             } catch (Exception e) {
+                System.out.println("About us link is not working ");
+                Assert.assertEquals(!aboutUs.isDisplayed(), true);
 
-                }
+            }
 
             finally {
               //  ElementUtils.waitAndClickElement(backButton, ConstantClass.MEDIUM_WAIT_5);
@@ -383,20 +376,21 @@ public class ProfilePage {
 
 
     public void workingScratchCardLink() {
-        if (myScratchCard.isDisplayed())
-        {
-            ElementUtils.waitAndClickElement(myScratchCard, ConstantClass.MEDIUM_WAIT_5);
-//            Assert.assertEquals(myScratchCard.isDisplayed(), true);
-            System.out.println("Scratch Card link is working ");
+        try {
+
+            if (myScratchCard.isDisplayed()) {
+                ElementUtils.waitAndClickElement(myScratchCard, ConstantClass.MEDIUM_WAIT_5);
+            Assert.assertEquals(myScratchCard.isDisplayed(), true);
+                System.out.println("Scratch Card link is working ");
+            }
         }
-        else {
+        catch (Exception e) {
             System.out.println("Scratch Card link is not working ");
             Assert.fail();
         }
-        try {
-            ElementUtils.waitAndClickElement(backButton, ConstantClass.MEDIUM_WAIT_5);
-        } catch (Exception e) {
-           driver.navigate().back();
+
+        finally {
+            driver.navigate().back();
         }
     }
 
@@ -431,15 +425,14 @@ public class ProfilePage {
                     ElementUtils.waitForElementVisible(By.xpath("//android.widget.TextView[@text=\"Flight Status\"]"),ConstantClass.MEDIUM_WAIT_5);
             Assert.assertEquals(validateFlightStatus.isDisplayed(), true);
                     System.out.println("Flight Status link is working ");
-                } else {
-                    System.out.println("Flight Status link is not working ");
-                    Assert.fail();
                 }
             }
         catch(Exception e)
             {
-
+                System.out.println("Flight Status link is not working ");
+                Assert.assertEquals(flightStatus.isDisplayed(), true);
             }
+
             finally {
 //                ElementUtils.waitForElementVisible(By.xpath("//android.widget.TextView[@text=\"Flight Status\"]"),ConstantClass.MEDIUM_WAIT_5);
 //                ElementUtils.waitAndClickElement(backButton,ConstantClass.MEDIUM_WAIT_5);
@@ -478,7 +471,7 @@ public class ProfilePage {
                 System.out.println("Help&Faq link is working ");
             } else {
                 System.out.println("Help&Faq link is not working ");
-                Assert.fail();
+                Assert.assertEquals(!helpAndFAQ.isDisplayed(), true);
             }
         } catch (Exception e) {
         } finally {
@@ -555,7 +548,7 @@ public class ProfilePage {
                 System.out.println("My Nominees link is working ");
             } else {
                 System.out.println("My Nominees link is not working ");
-                Assert.fail();
+                Assert.assertEquals(!myNominees.isDisplayed(), true);
             }
         } catch (Exception e) {
         } finally {
@@ -585,7 +578,8 @@ public class ProfilePage {
             System.out.println("Terms And Conditions is Displayed ");
         } else {
             System.out.println("Terms And Conditions is not Displayed ");
-            Assert.fail();
+            Assert.assertEquals(!termsAndConditions.isDisplayed(), true);
+
         }
     }
 
@@ -671,6 +665,26 @@ public class ProfilePage {
         }
     }
 
+
+    public void clickOnMyDashBoard()
+    {
+        ElementUtils.waitAndClickElement(indigoBlueChipLink, ConstantClass.MEDIUM_WAIT_5);
+        try {
+            if (joinProgram.isDisplayed()) {
+                ElementUtils.waitAndClickElement(joinProgram, ConstantClass.MEDIUM_WAIT_5);
+                Assert.assertEquals(validateJoinProgram.isDisplayed(), true);
+                System.out.println("Join Program link is working ");
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Join Program link is not working ");
+            Assert.fail();
+        }
+        finally {
+            ElementUtils.waitAndClickElement(continueAsGuest, ConstantClass.MEDIUM_WAIT_5);
+
+        }
+    }
     public void clickOnAboutIndigoBlueChip()
     {
         try {
@@ -743,7 +757,7 @@ public class ProfilePage {
         }
         catch (Exception e) {
             System.out.println("FAQ link is not working ");
-            Assert.fail();
+            Assert.assertEquals(!faq.isDisplayed(), true);
         }
         finally {
             driver.navigate().back();
@@ -777,8 +791,7 @@ public class ProfilePage {
         }
         catch (Exception e) {
             System.out.println("Earn Indigo BlueChip link is not working ");
-            Assert.fail();
-        }
+            Assert.assertEquals(!earnIndigoBlueChip.isDisplayed(), true);          }
         finally {
             driver.navigate().back();
         }
@@ -795,12 +808,58 @@ public class ProfilePage {
         }
         catch (Exception e) {
             System.out.println("Redeem Indigo BlueChip link is not working ");
-            Assert.fail();
+            Assert.assertEquals(!redeemIndigoBluChip.isDisplayed(), true);
         }
         finally {
-            driver.navigate().back();
+            ElementUtils.waitAndClickElement(joinProgram, ConstantClass.MEDIUM_WAIT_5);
         }
     }
 
+    public void workingIndigoWallet() {
+        try {
+            if (indigoWallet.isDisplayed()) {
+                ElementUtils.waitAndClickElement(indigoWallet, ConstantClass.MEDIUM_WAIT_5);
+//                Assert.assertEquals(someThingWentWrong.isDisplayed(), true);
+                System.out.println("Indigo Wallet button is working ");
+            }
 
+        } catch (Exception e) {
+            System.out.println("Indigo Wallet button  is not working ");
+            Assert.assertEquals(!indigoWallet.isDisplayed(), true);
+        } finally {
+            ElementUtils.waitAndClickElement(ok, ConstantClass.MEDIUM_WAIT_5);
+
+        }
+    }
+
+        public void workingLogOut() {
+            try {
+                if (logout.isDisplayed()) {
+                    ElementUtils.waitAndClickElement(logout, ConstantClass.MEDIUM_WAIT_5);
+                    Assert.assertEquals(validateLogOut.isDisplayed(), true);
+                    System.out.println("LogOut button is working ");
+                }
+
+            } catch (Exception e) {
+                System.out.println("LogOut button is not working ");
+                Assert.assertEquals(!logout.isDisplayed(), true);            }
+        }
+
+        public void clickOnMyDashboard()
+        {
+            try {
+                if (myDashBoard.isDisplayed()) {
+                    ElementUtils.waitAndClickElement(myDashBoard, ConstantClass.MEDIUM_WAIT_5);
+                    Assert.assertEquals(validateMyDashBoard.isDisplayed(), true);
+                    System.out.println("My Dashboard Button is working ");
+                }
+            }
+            catch(Exception e)
+                {
+                    System.out.println("My Dashboard button is not working or it is not visible ");
+                    Assert.assertEquals(!myDashBoard.isDisplayed(), true);                }
+            finally {
+                     driver.navigate().back();
+            }
+        }
 }

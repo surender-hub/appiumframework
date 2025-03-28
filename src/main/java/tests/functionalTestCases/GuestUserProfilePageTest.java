@@ -6,15 +6,11 @@ import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import pages.ProfilePage;
 import pages.WelcomePage;
-import utils.ElementUtils;
-
-import java.util.Set;
 
 public class GuestUserProfilePageTest extends BaseSuper {
     private WelcomePage welcomePage;
     private ProfilePage profilePage;
     private ThreadWaitClass threadWaitClass;
-
 
     @Test(priority = 1, description = "TC_01 - Verify the Profile button is Displayed or not ")
     @Description("Verify  Profile button is visible for  Guest user ")
@@ -24,7 +20,7 @@ public class GuestUserProfilePageTest extends BaseSuper {
     public void verifyProfileButtonIsDisplayed() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
         profilePage=new ProfilePage(driver);
-        //welcomePage.clickGuestAsQuest();
+//        welcomePage.clickLoginAsQuest();
         profilePage.displayProfileButton();
 
     }

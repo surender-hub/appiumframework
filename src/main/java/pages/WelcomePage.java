@@ -2,7 +2,9 @@ package pages;
 
 import constant.ConstantClass;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -42,6 +44,7 @@ public class WelcomePage {
 
     public void clickLoginAsQuest() {
         System.out.println("Login page");
+        driver.hideKeyboard();
         ElementUtils.waitAndClickElement(guestUser, ConstantClass.LONG_WAIT_180);
         /*//ElementUtils utils = new ElementUtils(driver);
         LoginPage loginPage = new LoginPage(driver);
