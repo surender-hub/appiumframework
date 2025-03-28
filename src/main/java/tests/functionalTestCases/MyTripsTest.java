@@ -1,8 +1,6 @@
-package tests;
+package tests.functionalTestCases;
 
 import base.BaseSuper;
-import base.BaseTest;
-import base.BaseTestLoginUser;
 import constant.ConstantClass;
 import constant.ThreadWaitClass;
 import io.qameta.allure.*;

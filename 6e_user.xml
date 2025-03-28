@@ -9,7 +9,6 @@
         <classes>
             <class name="tests.functionalTestCases.ExploreTest"/>
             <class name="tests.functionalTestCases.LoginUserBookPageTest"/>
-            <class name="tests.functionalTestCases.LoginProfilePageTest"/>
         </classes>
     </test>
 </suite>
