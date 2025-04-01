@@ -194,7 +194,7 @@ public class BookPage {
 
 
     public void displayBookButton() {
-//        ElementUtils.waitAndClickElement(bookButton,ConstantClass.MEDIUM_WAIT_5);
+       // ElementUtils.waitAndClickElement(bookButton,ConstantClass.MEDIUM_WAIT_5);
         if (bookButton.isDisplayed()) {
             System.out.println("Book Button is Displayed ");
         } else {

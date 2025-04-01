@@ -192,7 +192,7 @@ public class ProfilePage {
     //android.widget.TextView[@text="Welcome to IndiGo BluChip"]
     //android.widget.TextView[@text="Earn Now"]
     public void displayProfileButton() {
-//        ElementUtils.waitAndClickElement(profileButton,ConstantClass.MEDIUM_WAIT_5);
+       // ElementUtils.waitAndClickElement(profileButton,ConstantClass.MEDIUM_WAIT_5);
         if (profileButton.isDisplayed()) {
             System.out.println("Profile Button is Displayed ");
             Assert.assertEquals(profileButton.isDisplayed(), true);
