@@ -7,13 +7,12 @@
     <test name="Guest Mode Test">
         <parameter name="userType" value="guest"/>
         <classes>
-           <!-- <class name="tests.functionalTestCases.GuestUserHomePageTest"/>
+            <class name="tests.functionalTestCases.GuestUserHomePageTest"/>
             <class name="tests.functionalTestCases.ExploreTest"/>
             <class name="tests.functionalTestCases.GuestUserProfilePageTest"/>
             <class name="tests.functionalTestCases.GuestUserBookPageTest"/>
-            <class name="tests.functionalTestCases.CheckinTest"/>-->
+            <class name="tests.functionalTestCases.CheckinTest"/>
             <class name="tests.functionalTestCases.MyTripsTest"/>
-
         </classes>
     </test>
 </suite>

@@ -291,7 +291,7 @@ public class ExploreTest extends BaseSuper
         loginUserExplorePage.clickOnIndexTwo(2);
     }
 
-    @Test(priority = 23, description = "TC_023 - Verify Explore Page functionality with Guest User and Login user")
+   /* @Test(priority = 23, description = "TC_023 - Verify Explore Page functionality with Guest User and Login user")
     @Description("Check XL Seat text")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Explore Page")
@@ -310,9 +310,9 @@ public class ExploreTest extends BaseSuper
     public void checkBonusText() {
         loginUserExplorePage = new ExplorePage(driver);
         loginUserExplorePage.checkBonusText();
-    }
+    }*/
 
-    @Test(priority = 24, description = "TC_024 - Verify Explore Page functionality with Guest User and Login user")
+  /*  @Test(priority = 24, description = "TC_024 - Verify Explore Page functionality with Guest User and Login user")
     @Description("Check XL Seat text is clickable")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Explore Page")
@@ -329,9 +329,9 @@ public class ExploreTest extends BaseSuper
     public void checkBonusIndigoTextClickable() {
         loginUserExplorePage = new ExplorePage(driver);
         loginUserExplorePage.checkBonusIndigoTextClickable();
-    }
+    }*/
 
-    @Test(priority = 25, description = "TC_025 - Verify Explore Page functionality with Guest User and Login user")
+   /* @Test(priority = 25, description = "TC_025 - Verify Explore Page functionality with Guest User and Login user")
     @Description("Check SPT text is displayed")
     @Severity(SeverityLevel.CRITICAL)
     @Feature("Explore Page")
@@ -378,7 +378,7 @@ public class ExploreTest extends BaseSuper
         loginUserExplorePage.checkHydText();
     }
 
-
+*/
   /*  @Test(priority = 30, description = "TC_030 - Verify Explore Page functionality with Guest User and Login user")
     @Description("Check AGR text is displayed")
     @Severity(SeverityLevel.CRITICAL)

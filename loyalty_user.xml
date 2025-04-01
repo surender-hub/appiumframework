@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="LoggedInUserTests">
+<suite name="LoyaltyUserTests">
     <listeners>
         <listener class-name="listener.RetryClass">
         </listener>

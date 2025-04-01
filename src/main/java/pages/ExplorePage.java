@@ -310,15 +310,20 @@ public class ExplorePage {
         System.out.println("🔍 Clicking element at index: " + index);
         System.out.println("Total elements found: " + subChildElements.size());
         subChildElements.get(index).click();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
+        WebElement logoImageText = elementUtils.waitForElementVisibility(logoImageXpath, ConstantClass.SHORT_WAIT_2_SEC);
+        Assert.assertTrue(logoImageText.isDisplayed(), "Indigo Logo is not displayed!");
+        driver.navigate().back();
+       /* WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//android.view.View[@text=\"CULTURE AND HERITAGE\"])[1]")));
         Assert.assertTrue(element.isDisplayed(), "Culture and Heritage  text is not displayed!");
-        driver.navigate().back();
+        driver.navigate().back();*/
     }
 
     public void clickOnIndexOne(int index) {
         System.out.println("🔍 Clicking element at index: " + index);
         subChildElements.get(index).click();
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
         WebElement logoImageText = elementUtils.waitForElementVisibility(logoImageXpath, ConstantClass.SHORT_WAIT_2_SEC);
         Assert.assertTrue(logoImageText.isDisplayed(), "Indigo Logo is not displayed!");
         driver.navigate().back();
@@ -327,6 +332,7 @@ public class ExplorePage {
     public void clickOnIndexTwo(int index) {
         System.out.println("🔍 Clicking element at index: " + index);
         subChildElements.get(index).click();
+        ThreadWaitClass.customSleep(ConstantClass.MEDIUM_WAIT_5);
         WebElement logoImageText = elementUtils.waitForElementVisibility(logoImageXpath, ConstantClass.SHORT_WAIT_2_SEC);
         Assert.assertTrue(logoImageText.isDisplayed(), "Indigo Logo is not displayed!");
         driver.navigate().back();

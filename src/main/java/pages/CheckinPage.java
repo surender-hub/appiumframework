@@ -137,7 +137,8 @@ public class CheckinPage {
     }
 
     public void verifyChatBot() {
-        chatBot_logo.click();
+        //chatBot_logo.click();
+        ElementUtils.waitAndClickElement(chatBot_logo,ConstantClass.MEDIUM_WAIT_5);
         Assert.assertTrue(smart_assistant.isDisplayed());
     }
 

@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Without Guest and Login user test">
+<suite name="Without Guest,6E and Loyalty User tests">
     <listeners>
         <listener class-name="listener.RetryClass">
         </listener>
     </listeners>
-    <test name="Login and Registration">
+    <test name="Without Guest,6E and Loyalty User">
         <parameter name="userType" value="noLogin"/>
         <classes>
             <class name="tests.LoginTest"/>
