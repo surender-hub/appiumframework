@@ -31,8 +31,8 @@ public class BaseSuper {
     private static boolean isLoggedIn = false;  // Flag to track login status
     private static boolean isSixEUser = false;  // Flag to track login status
     //private static final String APP_PACKAGE = "in.goindigo.android"; //Prod
-    private static final String APP_PACKAGE = "in.goindigo.android.preprod"; //PreProd
-    //private static final String APP_PACKAGE = "in.goindigo.android.uat";  //UAT
+//    private static final String APP_PACKAGE = "in.goindigo.android.preprod"; //PreProd
+    private static final String APP_PACKAGE = "in.goindigo.android.uat";  //UAT
 
 
     @BeforeSuite
@@ -64,7 +64,8 @@ public class BaseSuper {
         options = new UiAutomator2Options();
         options.setPlatformName(ConfigReader.getProperty("platform.name"));
         options.setDeviceName(ConfigReader.getProperty("device.name"));
-        options.setApp(ConfigReader.getProperty("app.path.PreProd"));
+//        options.setApp(ConfigReader.getProperty("app.path.PreProd"));
+        options.setApp(ConfigReader.getProperty("app.path.UAT"));
         options.setAutoGrantPermissions(true);
 
         // Preserve login session

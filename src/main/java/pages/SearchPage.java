@@ -163,11 +163,36 @@ public class SearchPage {
     @FindBy(xpath = "//android.widget.TextView[@text='1 Seats Added']")
     private WebElement seatAddedText;
 
+    @FindBy(xpath = "//android.widget.TextView[@text='Next']")
+    private WebElement nextBtn;
+
+    @FindBy(xpath = "//android.view.ViewGroup[@resource-id='__CAROUSEL_ITEM_0_READY__']//android.widget.TextView[@text=\"Add\"]")
+    private WebElement addOns1;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Meal']/following-sibling::android.view.ViewGroup")
+    private WebElement selectMeal;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='IndiGo Classics']/following-sibling::android.widget.ScrollView//(//android.widget.TextView[@text='Add'])[1]")
+    private WebElement meal1;
+
 
     @Step("Select Next for Payment")
     public void bookingNextButton() throws InterruptedException {
         //Thread.sleep(5000);
         ElementUtils.waitAndClickElement(nextButton, ConstantClass.LONG_WAIT_180);
+    }
+
+    public void clickNextBtn() {
+        ElementUtils.waitAndClickElement(nextBtn, ConstantClass.LONG_WAIT_50);
+    }
+
+    public void clickAddOns() {
+        ElementUtils.waitAndClickElement(addOns1, ConstantClass.LONG_WAIT_50);
+        ElementUtils.waitAndClickElement(selectMeal, ConstantClass.LONG_WAIT_50);
+//        ElementUtils.scrollToText("IndiGo Classics");
+        ElementUtils.waitAndClickElement(meal1, ConstantClass.LONG_WAIT_50);
+
+
     }
 
     @Step("Enter User Details")

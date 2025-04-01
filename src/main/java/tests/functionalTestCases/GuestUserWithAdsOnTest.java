@@ -58,6 +58,11 @@ public class GuestUserWithAdsOnTest extends BaseSuper {
         LogUtils.info("Click on next Button");
         searchPage.enterUserDetails(ConfigUatReader.getProperty("firstname"), ConfigUatReader.getProperty("lastname"), ConfigUatReader.getProperty("dob"), ConfigUatReader.getProperty("phone"), ConfigUatReader.getProperty("email"));
         LogUtils.info("Enter User Details");
+
+        searchPage.clickNextBtn();
+        searchPage.clickAddOns();
+
+        /*
         searchPage.clickOnSkipToPayment();
         searchPage.clickOnNetBanking();
         LogUtils.info("User Click on Net banking Button");
@@ -73,6 +78,8 @@ public class GuestUserWithAdsOnTest extends BaseSuper {
         LogUtils.info("User Click on Response Button");
         userBookingDetails = myTripsPage.getBookingDetails();
         myTripsPage.enterPNRinMyTripsMenu(userBookingDetails.get(0),ConfigUatReader.getProperty("lastname"));
+
+         */
 
     }
 
