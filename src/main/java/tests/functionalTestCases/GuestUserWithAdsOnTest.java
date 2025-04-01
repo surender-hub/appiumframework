@@ -13,7 +13,7 @@ import utils.LogUtils;
 
 import java.util.List;
 
-public class MyTripsTest extends BaseSuper {
+public class GuestUserWithAdsOnTest extends BaseSuper {
 
     private WelcomePage welcomePage;
     private SearchPage searchPage;
@@ -29,14 +29,18 @@ public class MyTripsTest extends BaseSuper {
     List<String> userBookingDetails;
 
 
-    @BeforeClass
+    @Test(priority = 1)
+    @Description("")
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("GuestUser Booking Ticket Flow with full Ads On using Saver Fare..")
+    @Story("Guest User should be able to book ticket with full Ads On using Saver Fare..")
     public void setup() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
         searchPage = new SearchPage(driver);
         validFarePage = new ValidFarePage(driver);
         myTripsPage = new MyTripsPage(driver);
 
-        LogUtils.info("Guest User booking ticket using skip to payment");
+        LogUtils.info("Guest User booking ticket with Ads On...");
         searchPage.clickOnTo();
         LogUtils.info("User Click on Going To Flight Link");
         searchPage.searchPlace(ConfigUatReader.getProperty("source"));
@@ -71,55 +75,5 @@ public class MyTripsTest extends BaseSuper {
         myTripsPage.enterPNRinMyTripsMenu(userBookingDetails.get(0),ConfigUatReader.getProperty("lastname"));
 
     }
-
-
-    @Test(priority = 1, description = "TC_001 - Verify the Guest user generated PNR")
-    @Description("Verify GuestUser booking ticket PNR number")
-    @Severity(SeverityLevel.CRITICAL)
-    @Feature("GuestUser Booking Ticket Flow")
-    @Story("User should be able to check details using PNR")
-    public void verifyPNRNumber() {
-        myTripsPage.verifyPNRDetails(userBookingDetails.get(0));
-    }
-
-//    @Test
-    public void verifyGuestName() {
-        myTripsPage.guestUserName();
-    }
-
-    @Test(priority = 2)
-    public void verifyBookingConfirmed() {
-        myTripsPage.checkBookingConfirmed();
-
-    }
-
-    @Test(priority = 3)
-    public void verifyDepartureCity() {
-        myTripsPage.checkDepartureCity(userBookingDetails.get(1));
-    }
-
-    @Test(priority = 4)
-    public void verifyDestinationCity() {
-        myTripsPage.checkDestinationCity(userBookingDetails.get(2));
-    }
-
-    @Test(priority = 5)
-    public void verifyBookingDate() {
-        myTripsPage.checkBookingDate(userBookingDetails.get(3));
-    }
-
-    @Test(priority = 6)
-    public void verifyJourneyTime() {
-        System.out.println(userBookingDetails.get(4));
-       myTripsPage.checkJourneyTime(userBookingDetails.get(4));
-
-    }
-
-    @Test(priority = 7)
-    public void verifyPassengerCount() {
-        System.out.println(userBookingDetails.get(5));
-        myTripsPage.checkPassengerCount(userBookingDetails.get(5));
-    }
-
 
 }

@@ -1,6 +1,5 @@
-package tests;
+package tests.functionalTestCases;
 
-import base.BaseGuestUser;
 import base.BaseSuper;
 import io.qameta.allure.*;
 import listener.RetryAnalyzer;

@@ -1,7 +1,6 @@
-package tests;
+package tests.functionalTestCases;
 
 import base.BaseSuper;
-import base.BaseTest;
 import io.qameta.allure.*;
 import listener.RetryAnalyzer;
 import org.slf4j.Logger;

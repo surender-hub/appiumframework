@@ -1,19 +1,9 @@
-package tests;
+package tests.functionalTestCases;
 
 import base.BaseGuestUser;
-import base.BaseSuper;
-import base.BaseTestLoginUser;
-import constant.ConstantClass;
-import constant.ThreadWaitClass;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
-import pages.LoginPage;
-import pages.LoginUserPage;
 import pages.ProfilePage;
-import pages.WelcomePage;
-import utils.ConfigUatReader;
-
-import static utils.ElementUtils.driver;
 
 public class Login_LogOut_MultipleTimes extends BaseGuestUser {
 

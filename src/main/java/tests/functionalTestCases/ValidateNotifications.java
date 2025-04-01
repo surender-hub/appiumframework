@@ -1,4 +1,4 @@
-package tests;
+package tests.functionalTestCases;
 
 import base.BaseTestLoginUser;
 import org.openqa.selenium.By;

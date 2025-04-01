@@ -14,7 +14,7 @@
 
             <class name="tests.functionalTestCases.LoginUserBookPageTest"/>
             <class name="tests.functionalTestCases.LoginProfilePageTest"/>
-            <class name="tests.Login_LogOut_MultipleTimes"/>
+            <class name="tests.functionalTestCases.Login_LogOut_MultipleTimes"/>
             <class name="tests.functionalTestCases.ExploreTest"/>
         </classes>
     </test>
