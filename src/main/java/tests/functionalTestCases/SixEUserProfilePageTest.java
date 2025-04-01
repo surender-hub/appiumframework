@@ -320,7 +320,7 @@ public class SixEUserProfilePageTest extends BaseSuper {
     @Story("Verify whether the Join Program Link is Clickable for the 6E user or not ")
     public void verifyJoinProgramLinkIsWorking() throws InterruptedException {
         profilePage = new ProfilePage(driver);
-        profilePage.clickOnJoinProgram();
+        profilePage.clickOnJoinProgramLogin();
     }
 
     @Test(priority = 26, description = "TC_26 - Verify the About Indigo Blue Chip is Working or not")

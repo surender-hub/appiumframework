@@ -7,9 +7,9 @@
     <test name="6E Mode Test">
         <parameter name="userType" value="6e"/>
         <classes>
+            <class name="tests.functionalTestCases.SixEUserProfilePageTest"/>
             <class name="tests.functionalTestCases.ExploreTest"/>
             <class name="tests.functionalTestCases.LoyaltyUserBookPageTest">
-
             </class>
         </classes>
     </test>

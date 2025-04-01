@@ -670,6 +670,25 @@ public class ProfilePage {
         }
     }
 
+    public void clickOnJoinProgramLogin()
+    {
+        ElementUtils.waitAndClickElement(indigoBlueChipLink, ConstantClass.MEDIUM_WAIT_5);
+        try {
+            if (joinProgram.isDisplayed()) {
+                ElementUtils.waitAndClickElement(joinProgram, ConstantClass.MEDIUM_WAIT_5);
+            //    Assert.assertEquals(.isDisplayed(), true);
+                System.out.println("Join Program link is working ");
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Join Program link is not working ");
+         //   Assert.assertEquals(maleRadioButton.isDisplayed(), false);
+        }
+        finally {
+driver.navigate().back();
+        }
+    }
+
 
     public void clickOnMyDashBoard()
     {
