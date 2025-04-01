@@ -1,12 +1,13 @@
 package tests.functionalTestCases;
 
 import base.BaseSuper;
+import base.BaseTestLoginUser;
 import constant.ThreadWaitClass;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import pages.*;
 
-public class LoginUserBookPageTest extends BaseSuper {
+public class LoyaltyUserBookPageTest extends BaseSuper{
 
     private WelcomePage welcomePage;
     private BookPage bookPage;
@@ -21,7 +22,7 @@ public class LoginUserBookPageTest extends BaseSuper {
     public void verifyBookButtonIsDisplayed() throws InterruptedException {
         welcomePage = new WelcomePage(driver);
         bookPage = new BookPage(driver);
-       // welcomePage.loginByOtp();
+//        welcomePage.loginByOtp();
         bookPage.displayBookButton();
     }
 
@@ -132,7 +133,6 @@ public class LoginUserBookPageTest extends BaseSuper {
         bookPage = new BookPage(driver);
         //welcomePage.clickLoginAsQuest();
         bookPage.selectRoundRadioButton();
-
     }
 
 //    @Test(priority = 12, description = "TC_0012 - Verify the Return button is Displayed or not ")
@@ -147,7 +147,7 @@ public class LoginUserBookPageTest extends BaseSuper {
 //
 //    }
 
-//    @Test(priority = 11, description = "TC_0011 - Verify the Profile button is enabled or not ")
+//    @Test(priority = , description = "TC_00 - Verify the Profile button is enabled or not ")
 //    @Description("Verify Profile button is enabled for  Login user ")
 //    @Severity(SeverityLevel.CRITICAL)
 //    @Feature("BookPage")

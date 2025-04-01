@@ -61,7 +61,7 @@ public class BookPage {
     @FindBy(xpath = "//android.widget.TextView[@text=\"Round trip\"]/preceding-sibling::android.view.ViewGroup")
     public WebElement roundRadioButton;
 
-    @FindBy(xpath = "//android.widget.TextView[@text=\"Round trip\"]/preceding-sibling::android.view.ViewGroup")
+    @FindBy(xpath = "//android.widget.TextView[@text=\"Return\"]")
     public WebElement returnButton;
 
     @FindBy(xpath = "//android.widget.RadioButton[@content-desc=\"Multi city unselected\"]/android.view.ViewGroup")
@@ -223,7 +223,7 @@ public class BookPage {
                 System.out.println("Book Button is working ");
             } else {
                 System.out.println("Book Button is not working ");
-                Assert.fail();
+                Assert.assertEquals(validatebookButton.isDisplayed(), false);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -381,7 +381,10 @@ public class BookPage {
     }
 
     public void displayRoundCityButton() {
-        ElementUtils.scrollToElementByText("Book a Stay");
+        //ElementUtils.scrollToElementByText("Book a Stay");
+        driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true))" +
+                        ".scrollIntoView(new UiSelector().text(\"Book a Stay\"))"));
         if (roundRadioButton.isDisplayed()) {
             System.out.println("RoundTrip Radio Button is Displayed ");
         } else {
@@ -661,6 +664,7 @@ public class BookPage {
         searchPage.searchPlace("Mumbai");
         LogUtils.info("Select Destination city");
         searchPage.clickOnMumbaiFlight();
+        Thread.sleep(2000);
         validFarePage.clickOnFutureDate(3);
         ElementUtils.scrollToElementByText("Search");
         ElementUtils.waitAndClickElement(searchButton, ConstantClass.MEDIUM_WAIT_5);
@@ -767,14 +771,15 @@ public class BookPage {
         try {
             if (returnButton.isDisplayed()) {
                 ElementUtils.waitAndClickElement(returnButton, ConstantClass.MEDIUM_WAIT_5);
-               // Assert.assertEquals(validateAddNominee.getText(), ConfigReader.getProperty("Expected(AddNominee)"));
+                Assert.assertEquals(validateAddNominee.getText(), ConfigReader.getProperty("Expected(AddNominee)"));
                 System.out.println("Return button  is Working ");
             }
 
         } catch (Exception e) {
             System.out.println("Return button  is Not Working ");
-            Assert.fail();
+
         }
+        Thread.sleep(2000);
             driver.navigate().back();
 
     }

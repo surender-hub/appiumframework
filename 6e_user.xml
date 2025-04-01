@@ -8,11 +8,8 @@
         <parameter name="userType" value="6e"/>
         <classes>
             <class name="tests.functionalTestCases.ExploreTest"/>
-            <class name="tests.functionalTestCases.LoginUserBookPageTest">
-               <!-- <methods>
-                    <include name="validateIndigoBlueChips"/>
-                    <include name="workingGoingToLink"/>
-                </methods>-->
+            <class name="tests.functionalTestCases.LoyaltyUserBookPageTest">
+
             </class>
         </classes>
     </test>

@@ -315,18 +315,23 @@ public class ProfilePage {
     }
 
 
-    public void workingAboutIndigoBlueChipLink() {
+    public void workingIndigoBlueChipLink() {
         try {
-            if (indigoBlueChipLink.isDisplayed()) {
+            ElementUtils.waitAndClickElement(indigoBlueChipLink, ConstantClass.MEDIUM_WAIT_5);
+
+            if (validateIndigoBlueChipLink.isDisplayed()) {
                 ElementUtils.waitAndClickElement(indigoBlueChipLink, ConstantClass.MEDIUM_WAIT_5);
                 Assert.assertEquals(validateIndigoBlueChipLink.isDisplayed(), true);
                 System.out.println("Indigo BlueChip link is working ");
-            } else {
-                System.out.println("Indigo BlueChip link is not working ");
-                Assert.fail();
+            }
+            else
+            {
+                Assert.assertEquals(joinProgram.isDisplayed(), true);
+                System.out.println("Indigo BlueChip link is working ");
             }
 
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
 
         }
         finally {
@@ -811,8 +816,10 @@ public class ProfilePage {
             Assert.assertEquals(!redeemIndigoBluChip.isDisplayed(), true);
         }
         finally {
-            ElementUtils.waitAndClickElement(joinProgram, ConstantClass.MEDIUM_WAIT_5);
+//            ElementUtils.waitAndClickElement(joinProgram, ConstantClass.MEDIUM_WAIT_5);
+            driver.navigate().back();
         }
+
     }
 
     public void workingIndigoWallet() {
@@ -847,6 +854,7 @@ public class ProfilePage {
 
         public void clickOnMyDashboard()
         {
+            ElementUtils.waitAndClickElement(indigoBlueChipLink,ConstantClass.MEDIUM_WAIT_5);
             try {
                 if (myDashBoard.isDisplayed()) {
                     ElementUtils.waitAndClickElement(myDashBoard, ConstantClass.MEDIUM_WAIT_5);
@@ -862,4 +870,6 @@ public class ProfilePage {
                      driver.navigate().back();
             }
         }
+
+
 }

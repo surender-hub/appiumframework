@@ -83,7 +83,7 @@ public class BaseTestLoginUser {
 //        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     }
 
-    @BeforeTest
+    @BeforeClass
     public void activateApp() throws MalformedURLException {
 
         service = new AppiumServiceBuilder()
@@ -112,7 +112,7 @@ public class BaseTestLoginUser {
     }
 
 
-    @AfterTest
+    @AfterClass
     public void terminateApp()
     {
         System.out.println("🔻 Starting TearDown Process 🔻");

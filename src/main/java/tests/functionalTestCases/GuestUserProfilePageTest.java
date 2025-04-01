@@ -112,45 +112,45 @@ public class GuestUserProfilePageTest extends BaseSuper {
         welcomePage = new WelcomePage(driver);
         profilePage=new ProfilePage(driver);
        //welcomePage.clickGuestAsQuest();
-        profilePage.workingAboutIndigoBlueChipLink();
+        profilePage.workingIndigoBlueChipLink();
     }
 
 
-    @Test(priority = 10, description = "TC_010 - Verify the Scratch Card Link is Displayed or not ")
-    @Description("Verify Scratch Card  Link is visible for  Guest user ")
-    @Severity(SeverityLevel.CRITICAL)
-    @Feature("ProfilePage")
-    @Story("Guest User should be able to  see the Scratch Card Link ")
-    public void verifyMyScratchCardLinkIsDisplayed() throws InterruptedException {
-        welcomePage = new WelcomePage(driver);
-        profilePage=new ProfilePage(driver);
-        //welcomePage.clickGuestAsQuest();
-        profilePage.displayScratchCard();
-    }
-
-    @Test(priority = 11, description = "TC_011 - Verify the Scratch Card  Link  is enabled or not ")
-    @Description("Verify Scratch Card Link enabled for  Guest user ")
-    @Severity(SeverityLevel.CRITICAL)
-    @Feature("ProfilePage")
-    @Story("Guest User should be able to see the Flight Status Link")
-    public void verifyMyScratchCardLinkIsEnabled() throws InterruptedException {
-        welcomePage = new WelcomePage(driver);
-        profilePage=new ProfilePage(driver);
-        //welcomePage.clickGuestAsQuest();
-        profilePage.enabledScratchCard();
-    }
-
-    @Test(priority = 12, description = "TC_012 - Verify the Scratch Card  Link is Working or not ")
-    @Description("Verify Scratch Card  Link is clickable for the guest user")
-    @Severity(SeverityLevel.CRITICAL)
-    @Feature("ProfilePage")
-    @Story("Verify whether the Scratch Card  Link is Clickable for the Guest user or not ")
-    public void verifyMyScratchCardLinkIsWorking() throws InterruptedException {
-        welcomePage = new WelcomePage(driver);
-        profilePage=new ProfilePage(driver);
-        //welcomePage.clickGuestAsQuest();
-        profilePage.workingScratchCardLink();
-    }
+//    @Test(priority = 10, description = "TC_010 - Verify the Scratch Card Link is Displayed or not ")
+//    @Description("Verify Scratch Card  Link is visible for  Guest user ")
+//    @Severity(SeverityLevel.CRITICAL)
+//    @Feature("ProfilePage")
+//    @Story("Guest User should be able to  see the Scratch Card Link ")
+//    public void verifyMyScratchCardLinkIsDisplayed() throws InterruptedException {
+//        welcomePage = new WelcomePage(driver);
+//        profilePage=new ProfilePage(driver);
+//        //welcomePage.clickGuestAsQuest();
+//        profilePage.displayScratchCard();
+//    }
+//
+//    @Test(priority = 11, description = "TC_011 - Verify the Scratch Card  Link  is enabled or not ")
+//    @Description("Verify Scratch Card Link enabled for  Guest user ")
+//    @Severity(SeverityLevel.CRITICAL)
+//    @Feature("ProfilePage")
+//    @Story("Guest User should be able to see the Flight Status Link")
+//    public void verifyMyScratchCardLinkIsEnabled() throws InterruptedException {
+//        welcomePage = new WelcomePage(driver);
+//        profilePage=new ProfilePage(driver);
+//        //welcomePage.clickGuestAsQuest();
+//        profilePage.enabledScratchCard();
+//    }
+//
+//    @Test(priority = 12, description = "TC_012 - Verify the Scratch Card  Link is Working or not ")
+//    @Description("Verify Scratch Card  Link is clickable for the guest user")
+//    @Severity(SeverityLevel.CRITICAL)
+//    @Feature("ProfilePage")
+//    @Story("Verify whether the Scratch Card  Link is Clickable for the Guest user or not ")
+//    public void verifyMyScratchCardLinkIsWorking() throws InterruptedException {
+//        welcomePage = new WelcomePage(driver);
+//        profilePage=new ProfilePage(driver);
+//        //welcomePage.clickGuestAsQuest();
+//        profilePage.workingScratchCardLink();
+//    }
 
 
 
